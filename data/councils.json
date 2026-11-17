@@ -1,1 +1,389 @@
-{"read_on":null,"councils":[]}
+{
+ "read_on": "2026-11-17",
+ "by": "civic.research.councils@PrompTugal.dinis",
+ "councils": [
+  {
+   "id": "albufeira",
+   "name": "Albufeira",
+   "site": "https://www.cm-albufeira.pt",
+   "robots": "allowed",
+   "mayor": {
+    "name": "Rui Cristina",
+    "source": "https://www.cm-albufeira.pt/presidente-rui-cristina"
+   },
+   "minutes": {
+    "url": "https://www.cm-albufeira.pt/atas-das-reunioes-de-camara",
+    "latest": "2026-09-28"
+   },
+   "agendas": {
+    "url": "https://www.cm-albufeira.pt/ordem-do-dia-da-reuniao-da-camara"
+   },
+   "assembly": {
+    "url": "https://www.cm-albufeira.pt/atas-da-assembleia-municipal"
+   },
+   "notices": {
+    "url": "https://www.cm-albufeira.pt/editais-das-reunioes-da-camara-municipal"
+   },
+   "budget": {
+    "url": "https://www.cm-albufeira.pt/documentos-financeiros"
+   },
+   "procurement": null,
+   "gaps": [
+    "robots.txt disallows /core/, /profiles/ and similar system paths only; paths read are allowed. Latest minutes listed is the meeting of 28 September 2026 (published 23-10-2026), read 2026-11-17.",
+    "General avisos/editais: also https://www.cm-albufeira.pt/avisos-despachos (linked, not read). No contratação pública page or base.gov.pt link found on the home page or on /transparencia-e-integridade."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "alcoutim",
+   "name": "Alcoutim",
+   "site": "https://cm-alcoutim.pt",
+   "robots": "allowed",
+   "mayor": {
+    "name": "Paulo Jorge Cavaco Paulino",
+    "source": "https://cm-alcoutim.pt/municipio/camara-municipal/constituicao-da-camara-municipal"
+   },
+   "minutes": {
+    "url": "https://cm-alcoutim.pt/municipio/camara-municipal/reunioes-de-camara/atas-das-reunioes",
+    "latest": null
+   },
+   "agendas": {
+    "url": "https://cm-alcoutim.pt/municipio/camara-municipal/reunioes-de-camara"
+   },
+   "assembly": {
+    "url": "https://cm-alcoutim.pt/municipio/orgaos-autarquicos-locais/assembleia-municipal/reunioes-de-assembleia/atas-das-reunioes"
+   },
+   "notices": {
+    "url": "https://cm-alcoutim.pt/avisos"
+   },
+   "budget": {
+    "url": "https://cm-alcoutim.pt/municipio/camara-municipal/documentos-financeiros"
+   },
+   "procurement": {
+    "url": "https://cm-alcoutim.pt/municipio/contratacao-publica"
+   },
+   "gaps": [
+    "Site is a client-rendered Next.js app: the minutes list is not in the fetched HTML, so the latest minutes date is null. Agendas URL is the meetings section; whether it holds agendas was not confirmed. Notices URL is /avisos (in the site sitemap); editais not confirmed. Mayor shown as 'Presidente' with no party tag on the constitution page. Procurement page has sub-pages contratos celebrados and peças concursais; base.gov.pt link not confirmed."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "aljezur",
+   "name": "Aljezur",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "castro-marim",
+   "name": "Castro Marim",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "faro",
+   "name": "Faro",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "lagoa",
+   "name": "Lagoa",
+   "site": "https://www.cm-lagoa.pt",
+   "robots": "none",
+   "mayor": {
+    "name": "Ruben Patrício Infante Palma",
+    "source": "https://www.cm-lagoa.pt/municipio/camara-municipal/executivo-municipal"
+   },
+   "minutes": null,
+   "agendas": {
+    "url": "https://www.cm-lagoa.pt/municipio/camara-municipal/apoio-ao-executivo/calendario-de-reunioes-de-camara"
+   },
+   "assembly": {
+    "url": "https://www.cm-lagoa.pt/municipio/assembleia-municipal/sessoes-da-assembleia-municipal"
+   },
+   "notices": {
+    "url": "https://www.cm-lagoa.pt/municipio/arquivo-documental/avisos-e-editais-e-anuncios"
+   },
+   "budget": null,
+   "procurement": {
+    "url": "https://www.cm-lagoa.pt/balcao-virtual/contratacao-publica"
+   },
+   "gaps": [
+    "robots.txt exists but contains only comments (no Disallow), recorded as none.",
+    "No Câmara minutes listing or budget/accounts page found in the pages read; calendar of meetings page may hold them but was not confirmed. Mayor name read as the first 'Presidente' entry on the executive page (text extraction); confirm on page. base.gov.pt link not checked on the procurement page."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "lagos",
+   "name": "Lagos",
+   "site": "https://www.cm-lagos.pt",
+   "robots": "allowed",
+   "mayor": {
+    "name": "Hugo Miguel Marreiros Henrique Pereira",
+    "source": "https://www.cm-lagos.pt/municipio/camara-municipal/composicao-do-executivo"
+   },
+   "minutes": {
+    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/reunioes-de-camara",
+    "latest": "2026-11-04"
+   },
+   "agendas": {
+    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/reunioes-de-camara"
+   },
+   "assembly": null,
+   "notices": {
+    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/editais-avisos-anuncios"
+   },
+   "budget": {
+    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/documentos-financeiros"
+   },
+   "procurement": null,
+   "gaps": [
+    "Each meeting page carries ORDEM DE TRABALHOS and 'Ata em Minuta' attachments (seen on the 04/11/2026 meeting page); 'latest' is that meeting date, and the attachment is a draft-minute (minuta), not necessarily the approved ata.",
+    "No assembleia municipal minutes page found (only composição and regimento linked). No contratação pública page or base.gov.pt link found on the pages read. Editais and financial pages are linked from the site, not opened."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "loule",
+   "name": "Loulé",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "monchique",
+   "name": "Monchique",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "olhao",
+   "name": "Olhão",
+   "site": "https://cm-olhao.pt",
+   "robots": "allowed",
+   "mayor": {
+    "name": "Ricardo Calé",
+    "source": "https://cm-olhao.pt/municipio/camara-municipal/executivo"
+   },
+   "minutes": {
+    "url": "https://cm-olhao.pt/municipio/camara-municipal/documentos",
+    "latest": null
+   },
+   "agendas": null,
+   "assembly": {
+    "url": "https://cm-olhao.pt/municipio/assembleia-municipal/documentos"
+   },
+   "notices": {
+    "url": "https://cm-olhao.pt/municipio/camara-municipal/documentos"
+   },
+   "budget": {
+    "url": "https://cm-olhao.pt/atendimento/portal-da-transparencia/documentos"
+   },
+   "procurement": null,
+   "gaps": [
+    "Next.js app: document lists are client-rendered, so latest minutes date is null; the Câmara documents page has tabs titled Atas and Editais (titles seen in page data). Budget URL is the transparency portal documents page; its contents were not confirmed. Agendas not found. No contratação pública page or base.gov.pt link found."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "portimao",
+   "name": "Portimão",
+   "site": "https://www.cm-portimao.pt",
+   "robots": "allowed",
+   "mayor": {
+    "name": "Álvaro Miguel Bila",
+    "source": "https://www.cm-portimao.pt/menus/autarquia/camara-municipal/executivo/presidente-da-camara-municipal-de-portimao"
+   },
+   "minutes": {
+    "url": "https://webatas.cm-portimao.pt/",
+    "latest": "2026-06-17"
+   },
+   "agendas": {
+    "url": "https://www.cm-portimao.pt/doc-reuniao-de-camara"
+   },
+   "assembly": {
+    "url": "https://www.cm-portimao.pt/doc-assembleia-atas"
+   },
+   "notices": {
+    "url": "https://www.cm-portimao.pt/doc-editais"
+   },
+   "budget": {
+    "url": "https://www.cm-portimao.pt/doc-documentos-financeiros"
+   },
+   "procurement": null,
+   "gaps": [
+    "webatas.cm-portimao.pt is a separate host: its /robots.txt returned an HTML page (no robots rules), recorded as none for that host. Latest listed item there is 'Ata da Reunião Ordinária realizada em 17 de junho de 2026' (summaries of deliberations).",
+    "robots.txt disallows /agenda/, /agenda2/, /agenda3/ among others; not read. Assembly minutes and financial pages linked, not opened. No contratação pública page or base.gov.pt link found on /transparencia or home."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "sao-bras-de-alportel",
+   "name": "São Brás de Alportel",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "silves",
+   "name": "Silves",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "tavira",
+   "name": "Tavira",
+   "site": "https://cm-tavira.pt/site/",
+   "robots": "none",
+   "mayor": {
+    "name": "Ana Paula Fernandes Martins",
+    "source": "https://cm-tavira.pt/site/camara-municipal/composicao/"
+   },
+   "minutes": {
+    "url": "https://cm-tavira.pt/site/camara-municipal/reunioes/",
+    "latest": null
+   },
+   "agendas": {
+    "url": "https://cm-tavira.pt/site/camara-municipal/reunioes/"
+   },
+   "assembly": {
+    "url": "https://cm-tavira.pt/site/assembleia-municipal/sessoes/"
+   },
+   "notices": {
+    "url": "https://cm-tavira.pt/site/camara-municipal/anuncios-avisos-editais/"
+   },
+   "budget": {
+    "url": "https://cm-tavira.pt/site/financas-e-impostos/orcamentos-e-grandes-opcoes-do-plano/"
+   },
+   "procurement": {
+    "url": "https://cm-tavira.pt/site/contratacao-publica/"
+   },
+   "gaps": [
+    "https://www.cm-tavira.pt/robots.txt returned 404, recorded as none. Site redirects to cm-tavira.pt/site/.",
+    "The meetings page links agendas (Ordem de Trabalhos PDFs up to 2026-11-18) and atas PDFs, the newest being wp-content/uploads/2026/11/Ata-em-minuta.pdf with no date in its name; latest set to null. The contratação page links base.gov.pt contract search. Financial page /financas-e-impostos/outros-documentos-financeiros/ also linked."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "vila-do-bispo",
+   "name": "Vila do Bispo",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  },
+  {
+   "id": "vila-real-de-santo-antonio",
+   "name": "Vila Real de Santo António",
+   "site": null,
+   "robots": "unreachable",
+   "mayor": null,
+   "minutes": null,
+   "agendas": null,
+   "assembly": null,
+   "notices": null,
+   "budget": null,
+   "procurement": null,
+   "gaps": [
+    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+   ],
+   "read_on": "2026-11-17"
+  }
+ ],
+ "diario_da_republica": {
+  "robots": "none: https://diariodarepublica.pt/robots.txt redirected to an application error page (HTML), no rules found",
+  "terms_url": null,
+  "how_to": "The Diário da República eletrónico (INCM) offers free universal access with search of acts in the 1.ª and 2.ª séries (Decreto-Lei 83/2016). In the 2.ª série each act names its issuing entity, so a reader searches the 2.ª série by entity name (for example Município de Albufeira) and filters by date. Search interface details were not read directly: the site is a JavaScript app and no terms page URL was seen; gap.",
+  "source": "https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2016-122826417"
+ },
+ "amal": {
+  "what": "AMAL, the Comunidade Intermunicipal do Algarve, is the inter-municipal community of the 16 Algarve councils (our description; its home page was read on 2026-11-17).",
+  "url": "https://amal.pt",
+  "source": "https://amal.pt/"
+ }
+}

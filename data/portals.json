@@ -84,10 +84,18 @@
    "robots": "allowed",
    "terms_url": null,
    "notes": "robots.txt disallows wp-admin and similar; pages not read in full."
+  },
+  {
+   "host": "16 council sites (cm-*.pt)",
+   "robots": "7 read; 9 unreachable",
+   "terms_url": null,
+   "notes": "Read: Albufeira, Alcoutim, Lagoa, Lagos, Olhão, Portimão, Tavira. Connection reset by peer on 2026-11-17: Aljezur, Castro Marim, Faro, Loulé, Monchique, São Brás de Alportel, Silves, Vila do Bispo, Vila Real de Santo António."
   }
  ],
  "gaps": [
   "base.gov.pt: its search answered our requests with a firewall alert; we use IMPIC's open data instead (same contracts, published weekly on dados.gov.pt).",
+  "Nine council sites reset our connection on 2026-11-17 (Aljezur, Castro Marim, Faro, Loulé, Monchique, São Brás de Alportel, Silves, Vila do Bispo, Vila Real de Santo António): their minutes, agendas, notices and budgets are not mapped yet. Their contracts are, from the open data.",
+  "Alcoutim and Olhão list their minutes with JavaScript, so we link the listing but cannot give the latest date.",
   "Municipal companies (for example water, waste or sport companies owned by a council) buy under their own NIF; not yet mapped.",
   "Council minutes are linked, not read: most are PDFs, and linking each contract to the meeting that decided it is the next step.",
   "aima.gov.pt failed TLS verification and then answered 503; AIMA steps rest on gov.pt pages only.",

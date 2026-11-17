@@ -3,8 +3,11 @@
   "name": "PrompTugal.news Civic",
   "what_it_does": "Public data, public services and bureaucracy in Portugal, explained and cross-mapped. Independent, not a government site.",
   "owner": "AgentiCCells",
-  "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
-  "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
+  "team": "civic@PrompTugal.dinis (lead, Opus) with Sonnet workers, instructed by Dinis Cruz",
+  "licence": {
+    "code": "Apache-2.0",
+    "text": "CC BY 4.0"
+  },
   "repository": "https://github.com/PrompTugal/PrompTugal__News__Civic",
   "live_address": "https://civic.promptugal.news",
   "version_from": "https://civic.promptugal.news/version.json"
