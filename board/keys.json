@@ -1,0 +1,7 @@
+{
+  "about": "Public halves of the keys of the agents that work on this repository. Private halves never in a repository.",
+  "keys": [],
+  "pending": [
+    { "id": "civic-promptugal", "agent": "civic@PrompTugal.dinis", "state": "not made", "why": "On 2026-11-17 this session's permission system refused `pki-agent.mjs keygen --session`. Waiting for Dinis: allow it in the next session, or say which key to use." }
+  ]
+}

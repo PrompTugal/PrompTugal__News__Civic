@@ -1,0 +1,487 @@
+{
+ "source": {
+  "repo": "https://github.com/PrompTugal/PrompTugal__News__Website",
+  "path": "data/by-place/<id>.json",
+  "commit": "dfa068e004e923f3c30b8abc0e9f4d43d97b6b0c",
+  "read_on": "2026-11-17"
+ },
+ "places": [
+  {
+   "id": "albufeira",
+   "name": "Albufeira",
+   "at": [
+    -8.25,
+    37.089
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/albufeira/",
+   "council_site": "https://www.cm-albufeira.pt/noticias",
+   "gaps": [
+    "No Albufeira-based AI company or startup is confirmed yet. The AI map holds only the council and one hotel group whose AI use is stated by its supplier.",
+    "Postal do Algarve, the best local paper, showed a bot challenge, so we could not read its stories on Vibeslist (an AI recommendation app reported as debuting in Albufeira in 2026), the Dengun Founders Program in Albufeira and the Algarve Tech Hub Summit. They are leads to confirm, not facts.",
+    "No event with an AI path is listed for the coming weeks. Organisers' own pages (Algarve Evolution, Algarve STP, UAlg) are the next sources to read.",
+    "The council's news page showed no AI or technology items in late October and early November 2026, and has no feed we could find.",
+    "Sul Informação and the council's Smart City portal refused our reader (403 or empty), so the Smart City platform's apps (incident management, beach occupancy) are unconfirmed here.",
+    "Hotel AI use is known only through suppliers' own releases (Quinta for Jupiter, LodgIQ for AP Hotels & Resorts). Neither names which Albufeira unit uses the tool. Next: the hotels' own pages and AHETA.",
+    "cm-albufeira.pt news (26 Oct to 12 Nov 2026, 12 items read) has no AI, tech or smart city item; they cover storm Charles, sport and culture.",
+    "The Smart City portal's own content could not be confirmed as AI; the storm communique mentions only the Gestao de Ocorrencias portal, with no AI.",
+    "No Albufeira AI hotel or nightlife/security tech item found in Nov 2026; web search returned only generic vendor pieces and spam-like pages.",
+    "The Hyatt resort in Albufeira and the Atos Hotelaria Inteligente 2026 event (Faro, not Albufeira) were seen in search snippets only, not opened, so not used.",
+    "Barlavento, Sul Informacao, Algarve Primeiro and Regiao Sul were not opened this run for new Albufeira AI items; only search and the council site were used.",
+    "The SIPRS conference has no confirmed speakers or AI specialists; treat the AI content as a plan.",
+    "cm-albufeira.pt /pt/noticias returned 404; search shows nothing new since morning. SIPRS 27 Nov (AI in seismic prevention) unchanged, only seen via search snippets this run.",
+    "No new AI item on Barlavento or postal.pt 16-17 Nov; cm-albufeira.pt/pt/noticias returned 404.",
+    "17 Nov recheck of Barlavento, Postal Algarve, Algarve Primeiro and ualg.pt: nothing new with an AI link for this town.",
+    "17 Nov (recheck 5): opened Algarve Primeiro homepage, cm-albufeira.pt/noticias (12 items, 27 Oct to 17 Nov, none on AI) and Postal do Algarve (opened this time). Regiao Sul and Portugal Resident refused (403); The Portugal News returned empty; Diario do Sul homepage showed nothing for the town.",
+    "Sul Informação (sulinformacao.pt): homepage, tag page and feed all returned 403 on 2026-11-17; skipped.",
+    "Jornal do Algarve (jornaldoalgarve.pt): homepage and search returned 403 on 2026-11-17; only the RSS feed opened and held no new AI-linked item for this town.",
+    "Albufeira parish sites (jf-albufeira.pt and variants) refused the connection (proxy 502); not read."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.albufeira@PrompTugal.dinis"
+  },
+  {
+   "id": "alcoutim",
+   "name": "Alcoutim",
+   "at": [
+    -7.471,
+    37.471
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/alcoutim/",
+   "council_site": "https://cm-alcoutim.pt/",
+   "gaps": [
+    "No AI company, startup or AI event based in Alcoutim turned up in this first pass. That is a finding: for a municipality of this size the AI path runs through the council, the PRR sensor platform and regional bodies. Next to look at: Algarve Evolution and the Universidade do Algarve for projects reaching the Guadiana, and Associacao Odiana's Vilas em Movimento work.",
+    "Postal do Algarve, Sul Informacao and Portugal Resident refuse automated reading (a bot check or a 403), so their pages are not used. Barlavento reads fine and now carries two items. Still to verify at a readable source: a council protocol with MEO for the SmartAL remote support system and the Medigraf telemedicine system (search snippets point to October 2018, so it may be old news). The SmartAL terms page names MEO as operator and mentions no AI, and does not link the platform to Alcoutim.",
+    "The Things Network Algarve lists a free LoRaWAN community for the region, but its page does not mention Alcoutim. Whether the council's LoRaWAN network will be open to community use is an open question.",
+    "Fibre is covered only by the operator's own announcement (82 percent expected, not confirmed as reached). Mobile and 5G coverage for Alcoutim, digital inclusion training and village Wi-Fi still have no source: GEO.ANACOM lets one search by place and should be read next.",
+    "Agrosocial Plus is read at source, but it names no Alcoutim lab. Ask Odiana where the Living Labs will sit. A Universidade do Algarve water digitalisation conference at Faro on 24 November was seen only in a search summary and is not yet placed in Alcoutim.",
+    "Only the council's general channel is listed. No named economic development desk or investor service was found. No local talent is listed for Alcoutim: nobody has agreed to be listed and we found no public AI speaker from the town. Robotics4Farmers places its intervention in Alcoutim, but the sheets do not say what was tested there or whether the robot is still in use after the project ended in September 2025.",
+    "cm-alcoutim.pt's home page returned only a title, so no municipal news list was read; the three new items come from Postal. A council phone for culture and heritage is quoted in a Postal article and must be checked on the council's own site before it is shown.",
+    "No new AI or tech item for Alcoutim after 1 November.",
+    "cm-alcoutim.pt still returned only a page skeleton on 17 November; the Barlavento item on the regional markets' three-year mark was seen only as a headline."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.alcoutim@PrompTugal.dinis"
+  },
+  {
+   "id": "aljezur",
+   "name": "Aljezur",
+   "at": [
+    -8.803,
+    37.318
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/aljezur/",
+   "council_site": "https://www.cm-aljezur.pt",
+   "gaps": [
+    "No AI company, startup, lab or community with a public page in Aljezur was found on the first pass. That is a finding, not a failure to look.",
+    "Leads to chase next: the national company registry (software and IT activity codes in the Aljezur municipality), whether Cowork Aljezur still operates, surf and nature tourism firms using AI, and agri-tech in the Aljezur and Odemira farming belt.",
+    "Agriculture is part of the centre of gravity but we could not open a source on it: the pages found refused automated access. Needs a source such as INE or the Direcao Regional de Agricultura.",
+    "Postal do Algarve, the best Aljezur source, answers automated readers with a bot challenge, so we did not read it. Sul Informacao and the University of Algarve repository also refused some pages.",
+    "The council site has no RSS feed we could find: only a newsletter. A scraper or a human check of its news page is needed.",
+    "No upcoming Aljezur event with an AI link was found.",
+    "Whether any Aljezur business joined the Algarve Evolution AI and robotics pilot is unknown: no Aljezur name appears in the coverage we read.",
+    "Leads we did not read because the pages refused automated access: the 1,500 smart water meters with telemetry at Vale da Telha (reported by Postal do Algarve and Portugal Resident, with resident complaints) and AHSA, the growers' association of Odemira and Aljezur, whose partners include an agricultural innovation firm. Both could earn a map entry.",
+    "The consortium behind the Algarve AI and robotics pilot is reported to be led by NERA with Algarve Evolution and the University of Algarve. That comes from a search snippet we could not open, so it is a lead only.",
+    "A site-by-site check of whether any Aljezur firm or institution plans AI use of its energy, farm or tourism data is still missing. The Odeceixe information session of 10 November 2026 listed on an events site was not read because its organiser and programme could not be verified.",
+    "Investment map: no investor, fund or startup based in Aljezur found yet. The council's investor page gives no incentive details, so what the government side offers a startup here is only partly known.",
+    "Local talent who have spoken publicly: none found for Aljezur, and we name no private individuals. Likely places to look are the University of Algarve's surf and tourism researchers and the Liceu Azul team once it opens."
+   ],
+   "updated": "2026-11-16",
+   "by": "place.aljezur@PrompTugal.dinis"
+  },
+  {
+   "id": "castro-marim",
+   "name": "Castro Marim",
+   "at": [
+    -7.443,
+    37.218
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/castro-marim/",
+   "council_site": "http://cm-castromarim.pt/site/",
+   "gaps": [
+    "AI news is thin: in a search of the council's news pages (September to November 2026) we found no headline about AI or technology. The two local AI stories both come from July 2026 and one rests on the vendor's own page.",
+    "SalOS's press coverage (Barlavento, Jornal Económico) reports an AI assistant (Marnoto AI) and a water support tool, but neither salos.net's Spanish page nor its main page mentions AI (they list automatic DOP validation and FIFO allocation). We should ask the company before treating the AI claim as settled.",
+    "We could not open Jornal do Algarve (403), Postal do Algarve (bot challenge) or Sul Informação (403), so their Castro Marim coverage is missing. Search results point to Sul Informação items we have not read: a robotics and programming holiday camp run by a youth association in August 2026, and an Algarve dementia congress held in Castro Marim on 12 and 13 November 2026 with an AI and neurostimulation session. Both are leads, not facts, until a page we can open confirms them.",
+    "The council site has no RSS or Atom feed that we could find, so Castro Marim cannot be followed automatically yet.",
+    "University of Algarve work in the salt pans (CCMAR's SAL+) and CRIA's 2022 blue innovation contest are real local innovation but we saw no AI in them, so they stay out of the map for now.",
+    "No AI or tech events found in Castro Marim: the council agenda lists only cultural, sporting and local events. No Algarve Evolution member or startup base found in the municipality yet.",
+    "We have not found a data centre, an AI research group, an AI training course or an AI investor in the municipality.",
+    "The council's incubation space (Edifício Multifuncional de Empresas) describes itself as for innovative, scalable projects but its page mentions no digital, tech or AI focus, and we found no company in it with an AI link.",
+    "Investors: we found no investor, fund or investment in a Castro Marim company in public sources. The only funding trace is council projects, so the investment map is empty here, which is itself a finding.",
+    "Local talent: we found no publicly speaking AI or tech person tied to Castro Marim, and the council business page names no desk or contact for entrepreneurs beyond its general office. A named business-support contact would help a founder starting here.",
+    "The Algarve dementia congress said to be held in Castro Marim on 12 and 13 November with an AI session is not confirmed: the council's news list for 2 to 16 November has no such item. Not a fact until a page we can open shows it.",
+    "No council meeting decisions and no new salt or SalOS item on the pages opened on 16 November; the fetch tool summarises pages, so dates should be rechecked on the live pages.",
+    "A police investigation into a death in Altura (Postal, 15 November) is not used: a crime story about a private individual."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.castro-marim@PrompTugal.dinis"
+  },
+  {
+   "id": "faro",
+   "name": "Faro",
+   "at": [
+    -7.935,
+    37.019
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/faro/",
+   "council_site": "https://www.cm-faro.pt",
+   "gaps": [
+    "Faro's council shows no AI use in its own services in what we could read (its news page, agenda and Balcão Digital mention none). We should look for council minutes, procurement notices on base.gov.pt and the Balcão Digital's technical pages.",
+    "We could not open postal.pt, algarvestp.pt or bot-goncalves.pt (a bot challenge or a host this session cannot reach), so Algarve STP, Bot Gonçalves and Postal do Algarve are only reached through Barlavento. Bot Gonçalves is not placed in Faro because no page we opened says where it is.",
+    "No feed found for the council, UAlg or Algarve Evolution. Barlavento's RSS works, while Sul Informação's feed returned 403.",
+    "Dengun's base city is not stated on the page we read, so it is not placed in Faro. Sul Informação, which covers it, and dengun.com both answer 403 to us.",
+    "Missing: dates for Algarve Evolution's AIA community meetups beyond what its own events page lists, since the listings also sit on meetup.com and luma.com, which we do not read, and weather from IPMA.",
+    "Algarve Evolution's own events page tags no event as AI. We list events by their content and say so.",
+    "AMAL, the Região de Turismo do Algarve and the Faro airport belong on the map as public bodies, but the pages we read do not connect them to AI, so we left them out for now.",
+    "Investors: the entries above are grants, a programme and one 2022 venture investment. We found no 2025 or 2026 funding round for a Faro company. Sources to look for: Portugal Ventures and Banco de Fomento notices, and company announcements (expressTEC and AuroraMed first).",
+    "Local talent is not filled: no Faro source lists anyone, and nobody has agreed to be listed here.",
+    "Still unsourced: other UAlg research groups beyond CEOT and NOVA LINCS, the Faro hospital's AI use, and Invisible CFO, FarmAssist and Witflow, whose base cities no page we opened gives. SPIC's town is also not stated.",
+    "Barlavento's AI tag shows no new Faro AI story dated after 6 November 2026 at 04:00 UTC on 16 November.",
+    "Faro council does run an economic development desk (Faro Invest) and a business nest managed by ANJE, but its incubation page names no services, price, sector or way to apply, and neither page mentions AI. We still need ANJE's own page for the nest.",
+    "The council's one candidate for AI in a public service is the inclusive virtual assistant of the Acessibilidades 2.0 project, run by Associação Salvador with the council (a 2025 focus group, a June 2026 launch session at the municipal library, a demonstration in October 2026). None of the three pages we read says it uses AI, so it is not on the AI map. If the project or the council confirms it, it becomes the council's first AI service.",
+    "Faro council tenders: the 2026 Diario da Republica notices we could read (8 May, 3.46 million euros, Bairro Ribeirinho urban renewal; 15 June, 113,450 euros, pavements) are not about AI or software. A PRR-funded urban management platform rental appears in a TED notice (35382-2026) that returned no readable text, so it is unconfirmed.",
+    "Sul Informacao (403 on search and article pages) and Algarve Primeiro's search (readable, but no AI story in its 16 November list) gave nothing new on Faro AI; postal.pt article pages opened but its AI search hits were mostly 2024 to 2025 or already in the file.",
+    "algarveevolution.pt event pages (UAlgTec Heritage, Open Mic Pitch Night, Feira de Estagios, CardioTech) all returned 503, so only the listing page was read: no descriptions and no AI tag.",
+    "No new AI story about Faro dated after 6 November 2026 on Barlavento's AI tag or Faro section; nothing AI on UAlg's news page between 29 Oct and 16 Nov except the school-talks catalogue.",
+    "Faro airport: ANA's biometric page returned no text, and the AHETA article (2 March 2026) describes EES border checks with biometrics but no AI or facial recognition, so airport AI is not claimed. Search results say Vision-Box biometrics cover Faro but we did not open a page that says so.",
+    "Acessibilidades 2.0 (Municipio de Faro and Associacao Salvador): the council's 3 November 2026 news says students tried a virtual assistant and a mapping app, but does not say either uses AI, so not listed as AI news.",
+    "4Global Portugal (sports data and AI, said to be in Ualg Tec Start) came only from a search snippet of racius.com; not opened, not added. Witflow, Deloitte Faro office and Invisible CFO: no AI page opened.",
+    "No 2026 Algarve Tech Hub Summit page for Faro found (past editions in Lagos 2025 and elsewhere). CCDR Algarve news page 404; no Algarve 2030 AI call for companies confirmed as open (a 4 million euro digitalisation call named in a search result was not opened).",
+    "ULS Algarve (Faro hospital): no AI project of its own found in 2026; robotic surgery (since November 2025) is robotics, not AI, and its pages were not opened.",
+    "UAlg agenda for November lists no AI event; its Faro neighbours' AI items (Olhao Bairros Digitais, Loule, Sao Bras) belong to their own town files: the Bairros Digitais article does not mention AI.",
+    "Barlavento tag page and feed returned only a JPEG (unreadable). cm-faro.pt latest news has nothing on AI (a 3 Nov accessibility app item does not call itself AI). ualg.pt news first page has no new AI item beyond the already-listed schools talks. DevFest Faro 27-28 Nov: no update found.",
+    "cm-faro.pt news 16 Nov (type 1 diabetes training) and 3 Nov (Map4Accessibility with a 'virtual assistant', no AI stated) do not pass the test.",
+    "No GDG Faro DevFest 2026 listing page found (gdg.community.dev); only Algarve Evolution and the existing Barlavento item.",
+    "17 Nov recheck: Barlavento, Postal Algarve, Algarve Primeiro, ualg.pt news and cm-faro.pt news lists show no other new AI item. The 10 Nov NERA session is added; its sister listing in loule.json events points at the same event.",
+    "Sul Informação (sulinformacao.pt): homepage, tag page and feed all returned 403 on 2026-11-17; skipped.",
+    "Jornal do Algarve (jornaldoalgarve.pt): homepage and search returned 403 on 2026-11-17; only the RSS feed opened and held no new AI-linked item for this town.",
+    "Jornal do Algarve feed (16 Nov) carries the UAlg 81 free school activities item already on the map from Barlavento; no new item.",
+    "Algarve Daily News 16-17 Nov: Faro housing protest and Ria Formosa villas pieces have no AI link; not added."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.faro@PrompTugal.dinis"
+  },
+  {
+   "id": "lagoa",
+   "name": "Lagoa",
+   "at": [
+    -8.453,
+    37.135
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/lagoa/",
+   "council_site": "https://www.cm-lagoa.pt/comunicacao/noticias",
+   "gaps": [
+    "Only one Lagoa-headquartered AI company is confirmed so far (Strong Answer, from its own page). SPIC, a firm building the AI.EVENT audience-sentiment platform, is described by RTP as based in Loulé, while a Jornal do Algarve article we could not open (403) is reported by a search summary to place it in Lagoa: left out until its registered town is confirmed, and passed to the Loulé site's agent as a lead. Sources to look for next: the Portuguese company registers by municipality code, the Balcão do Empreendedor, LinkedIn company pages.",
+    "The newest Lagoa AI news we have is from December 2025, plus the February 2026 hackathon in the events list. No Lagoa AI news dated after February 2026 has been found yet.",
+    "Lagoa's council news feed carries no AI items at all in its latest 25 entries (up to 13 November 2026): the council's own AI work is reported by regional press, not by the council.",
+    "Two Lagoa stories fail the PrompTugal test as written and stay out: the City as a Platform innovation prize (March 2025, sensors and data, AI not mentioned) and the Ferragudo augmented reality portal (April 2026, AI not mentioned).",
+    "Left out as not AI: the council's WhatsApp channel for residents and visitors (Barlavento, 28 July 2026), which is part of the council's digital transformation strategy but where no AI or chatbot is mentioned. Search results also mix in AI courses held in Lagoa on the island of São Miguel in the Azores, a different municipality that we do not cover.",
+    "Postal do Algarve could not be read (it shows a bot check), so its Lagoa coverage is missing. Sul Informação refused automated reads. The date of the CCDR report is the meeting date, the report itself was published later in 2025.",
+    "The talk on a large language model solution for the Algarve's municipalities is only a title in a programme: we found no later report of it being built or used.",
+    "Starting a company here is only partly mapped: the council's entrepreneurship pages name a support office, an online desk and a Fábrica do Empreendedor but publish no grants, incentives, incubator details or steps, and its 'support measures' and 'co-financed projects' menu links were empty when read. Investors, local talent and cooperatives in Lagoa are not mapped yet."
+   ],
+   "updated": "2026-11-16",
+   "by": "place.lagoa@PrompTugal.dinis"
+  },
+  {
+   "id": "lagos",
+   "name": "Lagos",
+   "at": [
+    -8.673,
+    37.102
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/lagos/",
+   "council_site": "https://www.cm-lagos.pt/municipio/noticias",
+   "gaps": [
+    "No AI company is confirmed as headquartered in Lagos. A directory lists one small firm, but a directory entry is not a source we trust, and the Algarve AI startups we found (such as one in Monchique) are based elsewhere, so they belong to those towns. We should check the company register and Algarve Evolution's member list.",
+    "The council's news page, read on 15 November 2026, lists its twenty latest items, from 16 October to 13 November, and none is about AI or technology. It shows no feed and no year on its dates, so the council is a source to watch, not one that feeds us AI news yet.",
+    "No upcoming Lagos AI event was found. Meetup and Luma listings, where the local groups post, are not read by this publication, so the groups' own pages are the source to look for.",
+    "The Lagos Digital Nomads and Lagos Remoters membership figures could not be read from a page we may use, so none are given. We want a dated figure from the groups' own sites.",
+    "CoLagos's own site and Postal do Algarve showed a verification wall when we tried them, so we relied on Barlavento.",
+    "A summit page we read points to a 2027 edition, but we found nothing confirming the 2026 edition.",
+    "Local media: Barlavento and Sul Informação were readable, Portugal Resident and Postal do Algarve are listed but our tool could not open them (a verification wall). No Lagos-only newspaper or blog with a feed was confirmed.",
+    "Investors, cooperatives and local talent in Lagos: nothing found yet in public sources we may use.",
+    "Starting a company in Lagos: the council's page on the Fábrica do Empreendedor dates from June 2021, so its address and services need confirming on a current page. We found no official page on what Algarve STP offers a founder in Lagos.",
+    "One AI agency that works with Lagos clients states it has no office in Lagos, so it is not on the map. A directory-listed firm also stays off.",
+    "The 14 October 2026 SheSapiens workshop page gives its title and price only, so we cannot say what it taught. We also found no Lagos AI event dated after it."
+   ],
+   "updated": "2026-11-16",
+   "by": "place.lagos@PrompTugal.dinis"
+  },
+  {
+   "id": "loule",
+   "name": "Loulé",
+   "at": [
+    -8.023,
+    37.138
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/loule/",
+   "council_site": "https://www.cm-loule.pt",
+   "gaps": [
+    "Only one AI company, SPIC, is clearly based in Loulé on what we read. Its AI.EVENT story has no date and its own site does not mention AI.EVENT.",
+    "The council's own news page gave no AI items and no RSS feed. Pages of the council that we could not read yet may hold more.",
+    "We could not open Postal do Algarve (a bot check), and Jornal do Algarve and Portugal Resident refused our reads, so some Loulé AI stories may be missing.",
+    "Algardata, Shiji Portugal, Lazer Telecom and Innuos are tech firms listed in Loulé by Algarve Tech Hub or older press, but we found no AI link for them, so they are not on the map.",
+    "The Algarve AI Agents community has no page we could read. We should look for its own site or a public repository.",
+    "Still to look for: the council's LouleXLab (2020), Algarve 2030 AI projects with Loulé partners, UAlg Tec Campus links, and Almancil and Vilamoura tourism-tech firms.",
+    "The council's 2026 BTL stand (144 m2, 10 stations) is described without any mention of AI, so only the 2025 stand is a news item.",
+    "Loulé's 2.5 million euro digital programme for the interior, with 5G elderly teleassistance by NOS and HopeCare, is left out: the articles we read mention no AI.",
+    "NILG.AI is incubated in Porto, so it is on the map only as ALGAR's partner. The Algarve 2030 record ALGARVE-FEDER-01180500 (a SPIC and UAlg engineering school AI project, per search results) loaded blank, so it is not cited.",
+    "Search results list Som Riscado 2026 for 19 to 22 November and a Mais Algarve headline from 15 November 2026 about a piano with AI, but we could not open either page, and the council's agenda page we reached covers the 2020 edition. The 2026 AI item is not yet an event.",
+    "Search results point to a free AI training run by NERA in Loulé from November 2025 to January 2026 and to an MRI scanner with AI imaging tools in Loulé (Mais Algarve, September 2024). Both pages sit behind a bot check, so neither is on the map yet.",
+    "The Algarve Tech Hub Summit has a NERA day in Loulé in its 2022 edition (Barlavento, 29 March 2022), with only a passing mention of AI. We found no 2026 date or venue, so it is not an event.",
+    "Vilamoura searches found an accessibility app (Inclusive Vilamoura) and a video surveillance plan, and the pages we read mention no AI, so no Vilamoura AI company is mapped.",
+    "The council has not named the AI tools it contracted for planning. Mind's ePaper page shows a Loulé logo, but it does not say which modules Loulé uses, so we ask the council or look for its public procurement notice.",
+    "Searches for Loulé AI news dated November 2026 found nothing new; the only items we could open were older or regional.",
+    "The Estádio Algarve tender: no article we found names bidders or a winner after the 2 November deadline.",
+    "Barlavento's article p=403493 returned a server error, so a Loulé Criativo item from it is unread.",
+    "The Techstars Startup Weekend Women Loulé (6 to 8 March 2026) pages (The Portugal News) returned no content, and no source we read says the winning Loulé-born startup uses AI.",
+    "Search snippets mention Dengun AI Hub, Tiesports and a Loulé 28 Capital of Culture bid; we did not open their pages or find a Loulé AI link, so they are not mapped. The Loulé 28 bid shows no technology or AI content in what we saw.",
+    "Search snippets for the 2026 Som Riscado edition (piano, Texturas with AI algorithms) could not be tied to a year, so no event added.",
+    "The LouléXLab and the 2020 digital programme for the interior pages (Postal, October 2020) mention no AI, so they are not news items.",
+    "No NERA AI course in 2026 could be confirmed beyond what loule.json already holds; nera.pt's own news page was not re-read here.",
+    "The council's contracted AI tools for planning remain unnamed; no procurement notice found.",
+    "Loulé GIS Day (18 Nov, council page read) has no AI mention; not added.",
+    "NaturMaris prize (Barlavento 2026-11-16, NERA Inova Algarve) read in full: no AI or digital content, rejected.",
+    "Som Riscado AI piano item already present.",
+    "Postal 12 Nov 2026 (read): 3WX's Best Number One link-page platform, launched at Web Summit, has no AI mention in the article, so not added.",
+    "cm-loule.pt news list 17 Nov read: only Som Riscado AI piano (already present) and GIS Day (no AI).",
+    "17 Nov (recheck 5): opened Algarve Primeiro homepage and the Som Riscado article; cm-loule.pt/pt/noticias.aspx returned 404. Regiao Sul and Portugal Resident refused (403); The Portugal News empty. Search for Loule startup AI in Nov 2026 found nothing new; Best Number One has no AI stated.",
+    "Sul Informação (sulinformacao.pt): homepage, tag page and feed all returned 403 on 2026-11-17; skipped.",
+    "Jornal do Algarve (jornaldoalgarve.pt): homepage and search returned 403 on 2026-11-17; only the RSS feed opened and held no new AI-linked item for this town.",
+    "Algarve Daily News 16-17 Nov: Faro housing protest and Ria Formosa villas pieces have no AI link; not added."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.loule@PrompTugal.dinis"
+  },
+  {
+   "id": "monchique",
+   "name": "Monchique",
+   "at": [
+    -8.555,
+    37.317
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/monchique/",
+   "council_site": "https://www.cm-monchique.pt/pt/",
+   "gaps": [
+    "No AI wildfire detection or forest monitoring in Monchique was found. The fire plan we could open (data to 2015) describes human lookout posts, one industry tower and mobile patrols, and the July 2026 fire report names no technology. This is the main gap, since fire is the town's centre of gravity: look for ICNF, ANEPC, the Algarve fire-surveillance network and the University of the Algarve. The national APIS pilots (March 2026) are the closest AI detection work found, and they are in Alvão and Açor, not the Algarve.",
+    "None of the council's latest news (3 to 12 November 2026) is about AI, and its site has no RSS feed. Its projects #Algarve mais digital, the business park and Vale incubadoras e aceleradoras are listed without detail we could cite as AI.",
+    "Água Monchique's AI claim is its own (a May 2024 post): no tool is named and no independent report confirms it. Its 2021 smart dispenser was announced with AI by Echo Boomer but we found no report of a launch, and the myMonchique app's assistant (Aqua) is described without AI. We should look for an independent source or a named tool.",
+    "The council's incubator page names no tenants, so the AI map holds only Invisible CFO. A 2023 plan for six or seven companies and a 2025 industrial park plan suggest more may follow, but we could not read those Sul Informação pieces (the site refused automatic reading).",
+    "BRIDGE and InnoBRIDGE (IST, LNEC, UAlg, AGIF) are research on community fire risk with no AI or data tools mentioned, so they are context, not AI map entries. The national 2025 GNR plan for 25 drone cameras names neither AI nor Monchique.",
+    "Postal do Algarve, Sul Informação and the RR site refused automatic reading on 15 November (bot checks or 403), so their Monchique stories are not used. A person should read them.",
+    "No AI events in Monchique were found. Algarve Evolution has no Monchique member or programme in any source we could open.",
+    "The University of the Algarve and its repository (sapientia.ualg.pt) show Monchique fire-risk studies that do not use AI, and we found no AI wildfire work there. Still to look for: the parish councils of Alferce, Marmelete and Monchique, and ANEPC and ICNF pages.",
+    "Local media: no radio station or blog for Monchique was found. Jornal de Monchique (a local paper of the association O Monchiqueiro, 30 years old in 2016) may still exist but we could not confirm it. 24 Notícias, Barlavento and Sul Informação cover the town, and none offers a feed we could find. 24 Notícias lists no technology or AI item for Monchique.",
+    "Investors, local talent who have spoken publicly and an investment map: nothing public found for Monchique beyond the incubator and Invisible CFO. The incubator's public funding record (the national recovery plan transparency portal) would not load, so no amount is given.",
+    "Parish councils: the Alferce parish council site (read 2026-11-16) has no digital, AI or fire-monitoring content, only notices, minutes and the storm update. The Marmelete and Monchique parish sites were not found by search, so they are unread.",
+    "A search of regional and national press for Monchique and AI in 2026 (16 November) found no local AI story. A town with no AI news in the press is itself a finding: the AI here is the companies' own statements."
+   ],
+   "updated": "2026-11-16",
+   "by": "place.monchique@PrompTugal.dinis"
+  },
+  {
+   "id": "olhao",
+   "name": "Olhão",
+   "at": [
+    -7.841,
+    37.026
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/olhao/",
+   "council_site": "https://www.cm-olhao.pt/",
+   "gaps": [
+    "No dated local AI news from 2025 or 2026 yet: the newest items are about digital aquaculture, not AI by name. To look for: council press releases, S2AQUAcoLAB and SPAROS announcements.",
+    "Postal do Algarve blocks bots and the council site (cm-olhao.pt) showed only a loading screen, so neither was read. No RSS feeds found.",
+    "No upcoming AI events found in Olhão; the council's agenda and the Blue Hub's opening should be checked.",
+    "Whether the Blue Hub opened as planned in June 2026 is not confirmed by any source we found.",
+    "Altice Labs Olhão: confirmed as of 2021 only; no current update found on its AI work.",
+    "A Startup Olhão scheme and an ANJE Hub are planned (June 2026): once they publish members or programmes, any AI startups there belong on the map.",
+    "FULGUR-IT is on the map at 3 steps only: we have not read the company site or found an AI claim.",
+    "Not verified: a NOVA IMS training programme with AMAL and the Olhão council (smart governance, mobility data) and an Erasmus school project in Olhão using AI (Postal, October 2026, blocked to us). Both need a readable source before they count.",
+    "Investors, startups founded here and local AI talent who have spoken publicly: nothing found yet, apart from the Startup Olhão and ANJE Hub plan. Next: regional investors (such as Algarve funds and business angels) with a link to Olhão.",
+    "The council site (cm-olhao.pt) is a script-rendered app that shows no readable text to a plain fetch, so its business pages and official contact channel could not be read: a browser-based read is needed before we can link them with the date read.",
+    "Lead, not on the map: Sensaway, a Portuguese aquaculture software startup with a machine-learning project for fish farms, piloted at an Algarve farm in 2022. No source places it in Olhão, so it stays off until its base is confirmed.",
+    "Searched for council (cm-olhao.pt) AI, smart-city or waste-route news from 2025 to 2026: nothing found; site not readable and no official contact channel confirmed.",
+    "Jornal do Algarve (jornaldoalgarve.pt) returned 403 to us; its reported item 'Olhao debate impactos da inteligencia artificial nas criancas e nos jovens' could not be opened, so not counted.",
+    "Sul Informacao returned 403 on a fetch; Barlavento ?p=388855 timed out.",
+    "Searched for AI startups based in Olhao: none found. Searched for 2026 updates on Altice Labs Olhao: none found.",
+    "Moinho social innovation incubator (Postal, 19 October 2026) presented in Olhao: no AI or technology link, left off the map.",
+    "Hub Azul de Olhao: opening date still not stated in the 23 January 2026 Barlavento piece (sponsored content); digital PCR planned for shared use, no AI.",
+    "cm-olhao.pt /pt/noticias returned 404; nothing new found.",
+    "Barlavento 16 Nov on the regional local-markets network mentions the Bairros Digitais app at Olhão's municipal market: digital, no AI stated, rejected.",
+    "cm-olhao.pt/pt/noticias returned 404.",
+    "17 Nov recheck: Algarve Primeiro 16 Nov Bela Formosa (350 flats, hotel) has no AI link; Barlavento 16 Nov Bairros Digitais mention already noted. No new item.",
+    "17 Nov (recheck 5): Algarve Primeiro homepage opened (Christmas fair and Bela Formosa, no AI). cm-olhao.pt shows only a loading screen. Searches surfaced only items already on file or without AI (SmartVITATUR launch, Postal 18 Nov 2025, read in full, does not mention AI, rejected). Regiao Sul refused (403).",
+    "Sul Informação (sulinformacao.pt): homepage, tag page and feed all returned 403 on 2026-11-17; skipped.",
+    "Jornal do Algarve (jornaldoalgarve.pt): homepage and search returned 403 on 2026-11-17; only the RSS feed opened and held no new AI-linked item for this town."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.olhao@PrompTugal.dinis"
+  },
+  {
+   "id": "portimao",
+   "name": "Portimão",
+   "at": [
+    -8.537,
+    37.138
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/portimao/",
+   "council_site": "https://vivaportimao.pt",
+   "gaps": [
+    "Only one AI company based in Portimão turned up: Guepardo, a V2X and AI startup listed on the StartUP Portimão incubator's own page. Its website and that page are the only sources, with no independent reporting, and a later search found nothing else. A business-register search and the incubator's current member list are the next step.",
+    "postal.pt, Sul Informação, Visit Portimão, Algarve Vivo and EMARP's own site showed a bot challenge or refused access, so they were not used. Their Portimão AI stories (the Filosofia na Cidade talk on 6 March 2026, the council's earlier AI items) need a source we can open.",
+    "The council's own site shows no news feed or RSS: Viva Portimão is the place to watch, and we found no feed there.",
+    "No dated AI event after 15 November 2026 was found in Portimão. The two ISMAT workshops listed are general technology events.",
+    "Reports of the TMCT conference give different dates (4 to 6 and 5 to 7 November), so the page says early November. Algarve Evolution's exact role in it is not stated.",
+    "The UAlg campus plan: a January 2025 report names digital, data and AI as focus areas (about 15 million euros), and a February 2026 report keeps the 2028 target at about 8 million euros without mentioning AI or a tender. Its current status and any AI courses are not confirmed, and UAlg's own site and the council should be checked.",
+    "The investment map has public funding and grants but no named private investor: the August 2026 Pitch & Match names none. Investor lists and a business-register search are the next step.",
+    "No local talent is listed yet: the public speakers found are private individuals at events and we list none without their agreement.",
+    "Founders' routes beyond the incubator and the cowork space, such as the council's business desk and national funding schemes, were not found on a page we could open."
+   ],
+   "updated": "2026-11-16",
+   "by": "place.portimao@PrompTugal.dinis"
+  },
+  {
+   "id": "sao-bras-de-alportel",
+   "name": "São Brás de Alportel",
+   "at": [
+    -7.888,
+    37.153
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/sao-bras-de-alportel/",
+   "council_site": "https://www.cm-sbras.pt/pt/noticias-listagem.aspx",
+   "gaps": [
+    "Third read of the council's entrepreneur showcase (all four pages): the clearly digital local businesses are We Stream Algarve, Substância3D (3D and streaming) and Peanuts (marketing and digital content). None mentions AI, so they are listed as leads at three steps, not as AI companies. Still no AI company, startup or lab found, and the commercial registry has not been read.",
+    "Lead firms: searches on 16 November 2026 for InovaPrime, Savvy Alpha and Aplitec (named on the council's forum page) found no website, product page or description we could read, so none can be called an AI user or builder. The next sources are the business registry and the firms' own pages if they exist.",
+    "The council's site shows no mention of AI in its front-page news and has no RSS feed we could find, so its news must be read page by page.",
+    "Postal do Algarve and Sul Informação blocked our automated reading with a bot check or an error, so their São Brás stories are not used here until they can be read openly. The pages with a bot challenge were skipped on purpose.",
+    "Sources to find next: the University of Algarve's electronics research centre for any town link, the business association for local digital firms, and the Algarve 6.0 platform's supplier and timetable.",
+    "The council's own November 2026 news (the first-year balance, Storm Charles, Praça 1914) never mentions AI or the Algarve 6.0 platform, so the municipal AI story is told by regional press, not by the council.",
+    "Investment map and local talent: no investor, investment or startup founded in the town is documented in the sources read. Local talent who have spoken publicly is not listed, because no public speaker profile has been found and the agent does not name private individuals.",
+    "The council's three support-measure subpages and the Via Verde para o desenvolvimento page returned no detail to our reader, so grants and fee waivers for investors are not stated.",
+    "Events: the whole council agenda (five pages, 15 November to 5 December 2026) is now read. It lists markets, concerts, reading clubs, sports, nature walks and film sessions, with one local entrepreneurship action at the Saturday market, and nothing about AI or technology.",
+    "Algarve 6.0 platform: a search listing points to a January 2026 EU tender by the Algarve intermunicipal body for a leased urban management platform, worth roughly 356,000 euros before VAT. We could not open the notice, so this is an unconfirmed lead. No supplier, award or timetable is known, and the project page on the national transparency portal returned an error.",
+    "InvestAlgarve: search listings say the regional investment support network opened a service point in São Brás de Alportel in November 2016, but we could not open those pages and found nothing newer. It is not known whether it still operates, so it is not on the map. The council's Gabinete do Empreendedor is the current first stop.",
+    "Council news list of 16 November 2026 (six items: boccia award, CCDR school visit, Storm Charles, EM 523 road, Praça 1914, scholarships) was read; only the school visit has a technology angle, none mentions AI.",
+    "The scholarship notice (6 November 2026) prioritises health students and does not mention technology or AI.",
+    "A search for AI news in the town in November 2026 found nothing new; results were the already-recorded EduTalks, Algarve 6.0 and University workshop stories.",
+    "A Postal do Algarve piece on Algarve digital and smart villages appeared in search but was not opened, so it is not used.",
+    "cm-sbras.pt news read: no new AI items beyond those present.",
+    "cm-sbras.pt news 12-16 Nov (bocce, CCDR visit, storm, EM 523) has no AI or digital items beyond what is already present.",
+    "17 Nov recheck of Barlavento, Postal Algarve, Algarve Primeiro and ualg.pt: nothing new with an AI link for this town.",
+    "17 Nov (recheck 5): council news list read (six items, 6 to 16 Nov, none on AI or digital). Algarve Primeiro homepage had only a boccia item. Nothing new.",
+    "Sul Informação (sulinformacao.pt): homepage, tag page and feed all returned 403 on 2026-11-17; skipped.",
+    "Jornal do Algarve (jornaldoalgarve.pt): homepage and search returned 403 on 2026-11-17; only the RSS feed opened and held no new AI-linked item for this town.",
+    "São Brás parish site (jf-saobras.pt and variants) refused the connection (proxy 502); not read. Jornal do Algarve feed on 17 Nov has a São Brás accordion festival item with no AI link."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.sao-bras-de-alportel@PrompTugal.dinis"
+  },
+  {
+   "id": "silves",
+   "name": "Silves",
+   "at": [
+    -8.44,
+    37.189
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/silves/",
+   "council_site": "https://www.cm-silves.pt",
+   "gaps": [
+    "We found no AI company, startup or research group based in Silves in public sources. The AI map holds only the council, and that is a finding, not an oversight.",
+    "We found no AI event in Silves with a date still ahead on the council's agenda (read 15 November 2026, first page only). A listing on the Turismo de Portugal digital academy appears to place an AI-for-SMEs session of the Portimão tourism school and the Silves council on 16 November 2026, but the page we could open shows only a sold-out notice and no details, so we do not list it as an event until its date, place and course are confirmed.",
+    "The council's own pages show no AI, smart-city or data project. Its projects and studies page lists twelve items, none digital, and its news page has no RSS link, so the council cannot be followed automatically yet.",
+    "Leads we checked and left out because they fail the PrompTugal test: the Fábrica do Inglês revival is a property and heritage project, and the Silves irrigation perimeter works are about piping and water loss, with no AI in what we could read. We will revisit both if a source ties either to AI.",
+    "Postal do Algarve, Terra Ruiva, RUA FM, Região Sul and Agroportal returned bot challenges or refusals, so we did not read them. Barlavento and Sul Informação load and have feeds.",
+    "We found no cooperative, investor or startup in Silves with a path to AI. The only investment story we could read, the Fábrica do Inglês, is a property and heritage project. No local talent has spoken publicly about AI in the sources we could open.",
+    "The current citrus figure is a share of the protected-origin (IGP) area, from the operators' association via Barlavento. We found no 2026 count of all citrus hectares or farms in Silves, and no source on digital or AI use on its farms: the article names mechanisation as a priority and mentions nothing digital.",
+    "Sources to look for next: the producers' association AlgarOrange for any AI or digital pilots, the companies on the industrial platforms of Algoz, Alcantarilha and São Bartolomeu de Messines, and the Plataforma Logística de Tunes."
+   ],
+   "updated": "2026-11-16",
+   "by": "place.silves@PrompTugal.dinis"
+  },
+  {
+   "id": "tavira",
+   "name": "Tavira",
+   "at": [
+    -7.649,
+    37.127
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/tavira/",
+   "council_site": "https://cm-tavira.pt/site/",
+   "gaps": [
+    "No AI company, startup or university group headquartered in Tavira was found on any page we could open. A first pass is not proof of absence: the company registry (Racius, Informa D&B) and LinkedIn were not searched.",
+    "Postal do Algarve served a bot check on its article pages, so its Tavira AI-related pieces (an AI-based city discovery tool, smart sensors) were not read and are not used.",
+    "Tavira does not appear in the national AI licensing pilot for councils: the RTP report we read names only Coimbra and carries no date.",
+    "No dated events: the Tavira Algarve Tech Afterwork listing is on a platform we do not read. Look for events on the council agenda, Tavira Works and Algarve Evolution's own pages.",
+    "The council's own news feed (cm-tavira.pt/site/feed/) loads but held no items when read, so it adds nothing yet. Its news page needs a look by hand or another route.",
+    "Level Up's tenants and current accreditation are unknown: its own site was not found, and the press pieces about it (Postal do Algarve, Sul Informação, Barlavento archive) were blocked or down when we tried. Ask the incubator, or EMPET, which startups it hosts and whether any use AI.",
+    "Not yet checked first-hand: hotel and tourism groups, schools, and any Centro Ciência Viva programme on AI (none found, only robotics and programming). No tech event for November 2026 was found in Tavira.",
+    "Not yet mapped for Tavira: investors and investments made here, startups founded here, and local talent who have spoken publicly. No public source for any of them turned up in this pass. Dinis's overnight direction asks for all three, so they stay open.",
+    "Starting a company here: the council's own pages list generic support and no incentive for tech or AI firms. A current Fundo de Apoio à Economia Local call and the planned municipal economic development plan were not found open or dated, so they stay unchecked.",
+    "Tavira Works and LOFT: their pages say little. Their social pages and events were not read, and no dated event with an AI topic was found.",
+    "The Algarve Biomedical Center's own About page (read 16 November 2026) mentions neither Tavira, Campus Med Life nor digital therapeutics, and lists a clinical research unit, an imaging lab, a genetics lab and an insoles lab. Search results point to its press items on the Tavira plan, but those and the Portugal Resident piece were down or blocked, so the digital therapeutics centre stays unconfirmed.",
+    "Polo de Inovação de Tavira: search listings dated March 2026 (Recuperar Portugal, Jornal do Algarve, Região Sul and Agroportal) carry headlines that say the PRR requalification of the CEAT was carried out, at a figure above 2 million euros. All four pages were blocked or down when we tried, so we cannot say what was finished, and we have not read the 2026 plans for the centre or any AI use. CCDR Algarve's December 2024 notice, which we did read, had scheduled the works to end by December 2025. The digital therapeutics centre remains unconfirmed.",
+    "cm-tavira.pt returned HTTP 403 on 16 November, so no council press release, minutes or official contact page was read; the six new items come from Barlavento and Postal. Next: gov.pt, Diário da República, CCDR Algarve and IPMA for the flood-risk coverage.",
+    "Seen only as headlines, not opened: flood-risk zones in Tavira (Postal, 11 November), a missing man and a seized boat near Cabanas, the 2026 council budget (a search snippet says 61.5 million euros, unchecked) and the Regulamento de Mobilidade Sustentável (Edital 120/2026).",
+    "The APA flood-risk classification and RCM 63/2024 are known through Postal only; check apambiente.pt and Diário da República. No storm damage report for Tavira, Castro Marim, Vila Real de Santo António or Alcoutim was found on the official pages read.",
+    "cm-tavira.pt still answered 403 on 17 November, and Postal and Barlavento carried no new Tavira item for 14 to 17 November beyond the ones listed."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.tavira@PrompTugal.dinis"
+  },
+  {
+   "id": "vila-do-bispo",
+   "name": "Vila do Bispo",
+   "at": [
+    -8.911,
+    37.083
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/vila-do-bispo/",
+   "council_site": "https://www.cm-viladobispo.pt/noticias",
+   "gaps": [
+    "No AI news found for Vila do Bispo. Searches in Portuguese and English for AI, startups, data centres and digital projects returned tourism, heritage and council news only. That is a finding, not a missing page.",
+    "The council's news page loads with curl (the fetch tool fails on it). On 16 November its recent items were the storm Charles response, an ultra trail finish, a cliff rescue training exercise, wildfire prevention notices and gift cards for students: no AI item. A press search suggested a 421 thousand euro council data centre, but the funded projects page we read lists digitalisation and smart waste, not a data centre, so it stays unconfirmed.",
+    "Wind power appears in the INEGI and APREN inventory (see extras), but we found no AI link for it and have not opened the operators' own pages.",
+    "No events found. Sources to look for: council agenda, Universidade do Algarve events at Sagres, Algarve Evolution.",
+    "No local feeds found. Sources to look for: an RSS feed from Barlavento or the council.",
+    "Sea4Us, the marine laboratory and MARREAL are on the map as candidates with an unconfirmed AI path, and KTTSeaDrones's AI claim rests on a search summary of a report we could not open (a certificate error on the host). Their own pages must say whether AI is used.",
+    "No MARREAL data page or later news found: the 2022 article promised the data online 'soon', and we did not find it.",
+    "No Algarve Evolution link to Vila do Bispo found in a search on 16 November. Sea4Us shows no 2026 news and no AI work in the sources we reached.",
+    "Starting a company here: only one route found so far (Vicentina's funding calls, from a 2020 article). We found no incubator in the municipality. Next: the council's business pages, Algarve regional incubation vouchers, and the Monchique incubator next door.",
+    "A search suggested a municipal entrepreneur support office run with Vicentina, but the only source returned 403, so it is not listed. The council's contacts page shows no business desk."
+   ],
+   "updated": "2026-11-16",
+   "by": "place.vila-do-bispo@PrompTugal.dinis"
+  },
+  {
+   "id": "vila-real-de-santo-antonio",
+   "name": "Vila Real de Santo António",
+   "at": [
+    -7.418,
+    37.195
+   ],
+   "promptugal_page": "https://promptugal.news/algarve/vila-real-de-santo-antonio/",
+   "council_site": "https://www.cm-vrsa.pt",
+   "gaps": [
+    "We found no AI company, startup, lab or community based in Vila Real de Santo António. A town with no AI map is a finding. Search results point to a few small IT service and software firms in the town and in Monte Gordo, listed in business directories, but the directory pages would not open for us (a 503 and a 403), so none is on the map and none is known to offer AI. Where to look next: the Algarve business registry by municipality, Algarve Evolution's member list, NERA and the council's economic development pages.",
+    "No local news about AI itself. The two items we carry are about the data groundwork and a Spanish neighbour. We should watch Barlavento, Sul Informação and the council's news page for the first one.",
+    "The Ayamonte innovation node and AI assistant come from a March 2024 interview. A new search found no later source confirming either, and the EU project database page for Ayamonte's Smart City project would not open for us. Ask the Eurocidade and Ayamonte's council whether the node launched and whether VRSA companies take part.",
+    "The council's news page loaded only partly, and the Eurocidade site returned an error. Postal do Algarve and the PRR project pages for VRSA Digital were behind a bot check or a login, so we did not read them.",
+    "We found no AI course or programme at the municipality's schools or its hospitality and tourism school. The nearest AI-adjacent teaching we saw is in Faro, at the Universidade do Algarve. Ask the school cluster and the Escola de Hotelaria e Turismo for their 2026/2027 offer.",
+    "The blue economy is the town's strongest economic story, but the sources we read mention no AI in it. A February 2026 meeting and the Nautiber yard are on the page for that reason. We should watch for sea-tech, aquaculture monitoring or port digitalisation projects.",
+    "Local media: we found regional outlets that cover the town (Barlavento, Sul Informação, Postal do Algarve, 24notícias) but no local radio, blog or newsletter based in the municipality. Ask the council and the Eurocidade which exist. Only Sul Informação gave us an RSS feed.",
+    "Investors, startups, local talent and cooperatives: we found none in public sources so far. The Entrepreneurship Office's workshops and the Eurocidade's women entrepreneurs network (seen in search results, not opened) are where to look next.",
+    "Algarve Evolution and the regional tech network (Algarve Tech Hub, Digital Innovators) publish no member list by municipality that we could read, so we cannot say whether any member is based in Vila Real de Santo António. The Algarve file of this publication covers the regional level.",
+    "The Algarve 6.0 sensor platform showed 0 euros spent for Vila Real de Santo António on the day we read it, with an expected end date of 30 June 2026 that has passed. We do not know what is installed in the town. Ask the council and the state's technological reform agency.",
+    "We could not confirm whether Vila Real de Santo António is in Odiana's territory or takes part in Agrosocial Plus: the Barlavento article names no municipality, and the regional outlet that would say so is behind a bot check for our reader. Ask Odiana and the council.",
+    "No upcoming events with an AI link found for the town. Search results showed a women entrepreneurs meeting in the municipal library and the Monte Gordo Sand Race on 27 to 29 November 2026, but the first is not clearly dated 2026 and neither has an AI link. The nearest tech events are in Lagos and Lisbon.",
+    "NERA's public newsletters (February to June 2026) mention regional digital and AI projects (an agriculture robotics and AI diagnostic, a digital training project for microenterprises, a startup call for hotels) but none names Vila Real de Santo António. A search result suggested an Algarve Empreende 2026 session in the town, and we could not confirm it from a page we may read. Ask NERA and the University of Algarve's business support unit.",
+    "Nothing new on Nautiber, council decisions or AI on the council pages on 16 November. Search snippets mention a PRR housing rehabilitation of 372 units, the 2026 budget and a PDM consultation: unopened, not used.",
+    "The national earthquake exercise item (5 November) and the storm alert notice were seen only as headlines.",
+    "Only the front page and the highlights list of the council's news were read on 17 November; other items seen there (a film festival 24 to 29 November, a canned-fish day, a library session) have unconfirmed dates and were not used.",
+    "sulinformacao.pt is not read by this desk: its robots.txt disallows ClaudeBot, Claude-Web and anthropic-ai across the whole site, feed included, and Dinis has not yet answered whether any agent may read it (conductor.b@, 17 November). One item taken from its feed on 17 November was removed. Link to the outlet only."
+   ],
+   "updated": "2026-11-17",
+   "by": "place.vila-real-de-santo-antonio@PrompTugal.dinis"
+  }
+ ]
+}

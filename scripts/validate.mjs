@@ -32,6 +32,15 @@ for (const f of [...files, 'hub.json', 'README.md']) {
     }
   }
 }
+// civic@PrompTugal.dinis (2026-11-17): the estate's standard. Every page has a markdown twin, shows the
+// version and says it is independent; llms.txt exists.
+for (const f of files.filter(f => f.endsWith('index.html'))) {
+  if (!existsSync(f.replace(/index\.html$/, 'index.md'))) fail(`${f}: no markdown twin index.md`);
+  const s = readFileSync(f, 'utf8');
+  if (!/Version (dev|v\d+\.\d+\.\d+|__VERSION__)/.test(s)) fail(`${f}: no version shown`);
+  if (!s.includes('Not a government or official site')) fail(`${f}: no independence label`);
+}
+if (!isTemplate && !existsSync('_site/llms.txt')) fail('no llms.txt');
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {

@@ -1,0 +1,405 @@
+// Generate the site's pages from data/ into _site/: every page as index.html and its markdown twin index.md,
+// plus llms.txt and sitemap.xml. Node built-ins only. Called by scripts/build.mjs after src/ is copied.
+// Written by civic@PrompTugal.dinis, 17 November 2026.
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+
+const SITE = 'https://civic.promptugal.news';
+const OUT = '_site';
+const read = (p, fallback = null) => existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : fallback;
+
+// ---------------------------------------------------------------- data
+const base = { 2026: read('data/procurement/base-2026.json'), 2025: read('data/procurement/base-2025.json') };
+const places = read('data/places.json', { places: [] });
+const councilsData = read('data/councils.json', { councils: [] });
+const services = read('data/services.json', { guides: [], offices: [] });
+const portals = read('data/portals.json', { portals: [] });
+const glossary = read('data/glossary.json', { terms: [] });
+
+const COUNCIL_IDS = places.places.map(p => p.id);
+const placeOf = id => places.places.find(p => p.id === id);
+const councilOf = id => (councilsData.councils || []).find(c => c.id === id) || { id };
+
+// ---------------------------------------------------------------- formatting
+const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const eur = n => n == null ? 'n/a' : `${Math.round(n).toLocaleString('en-GB')} €`;
+const meur = n => n >= 1e6 ? `${(n / 1e6).toLocaleString('en-GB', { maximumFractionDigits: 1 })} million €` : eur(n);
+const pct = x => `${Math.round(x * 100)}%`;
+const int = n => n.toLocaleString('en-GB');
+const day = s => { if (!s) return 'n/a'; const d = new Date(s + 'T12:00:00Z'); return isNaN(d) ? s : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }); };
+const nodash = s => String(s ?? '').replace(/—/g, ',');
+
+// Inline: [text](url) and **bold**. HTML escapes first; markdown passes through.
+const inlineHtml = s => esc(nodash(s))
+  .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => `<a href="${u}">${t}</a>`)
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+const inlineMd = s => nodash(s);
+const cellMd = s => inlineMd(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
+
+// Blocks render to both HTML and markdown.
+function render(blocks) {
+  let html = '', md = '';
+  for (const b of blocks) {
+    const [k, a, c, d] = b;
+    if (k === 'h2') { html += `<h2 id="${slug(a)}">${inlineHtml(a)}</h2>\n`; md += `\n## ${inlineMd(a)}\n\n`; }
+    else if (k === 'h3') { html += `<h3>${inlineHtml(a)}</h3>\n`; md += `\n### ${inlineMd(a)}\n\n`; }
+    else if (k === 'p') { html += `<p>${inlineHtml(a)}</p>\n`; md += `${inlineMd(a)}\n\n`; }
+    else if (k === 'lede') { html += `<p class="lede">${inlineHtml(a)}</p>\n`; md += `${inlineMd(a)}\n\n`; }
+    else if (k === 'small') { html += `<p class="small muted">${inlineHtml(a)}</p>\n`; md += `_${inlineMd(a)}_\n\n`; }
+    else if (k === 'src') { html += `<p class="src">${inlineHtml(a)}</p>\n`; md += `Source: ${inlineMd(a)}\n\n`; }
+    else if (k === 'note') { html += `<div class="note${c ? ' warn' : ''}"><p>${inlineHtml(a)}</p></div>\n`; md += `> ${inlineMd(a)}\n\n`; }
+    else if (k === 'ul') { html += `<ul${c ? ` class="${c}"` : ''}>${a.map(x => `<li>${inlineHtml(x)}</li>`).join('')}</ul>\n`; md += a.map(x => `- ${inlineMd(x)}`).join('\n') + '\n\n'; }
+    else if (k === 'ol') { html += `<ol class="steps">${a.map(x => `<li>${inlineHtml(x)}</li>`).join('')}</ol>\n`; md += a.map((x, i) => `${i + 1}. ${inlineMd(x)}`).join('\n') + '\n\n'; }
+    else if (k === 'table') {
+      const right = new Set((c && c.right) || []);
+      html += `<div class="tbl"><table><thead><tr>${a.map((h, i) => `<th${right.has(i) ? ' class="r"' : ''}>${inlineHtml(h)}</th>`).join('')}</tr></thead><tbody>`
+        + c0(c).map(r => `<tr>${r.map((x, i) => `<td${right.has(i) ? ' class="r num"' : ''}>${typeof x === 'object' && x && x.html ? x.html : inlineHtml(x)}</td>`).join('')}</tr>`).join('') + '</tbody></table></div>\n';
+      md += `| ${a.map(cellMd).join(' | ')} |\n|${a.map((_, i) => right.has(i) ? '---:' : '---').join('|')}|\n` + c0(c).map(r => `| ${r.map(x => cellMd(typeof x === 'object' && x && x.html ? x.md : x)).join(' | ')} |`).join('\n') + '\n\n';
+    }
+    else if (k === 'cards') {
+      html += `<div class="grid">${a.map(x => `<div class="card ${x.cls || ''}">${x.stat ? `<div class="stat">${esc(x.stat)}</div>` : ''}<h3>${x.href ? `<a href="${x.href}">${inlineHtml(x.title)}</a>` : inlineHtml(x.title)}</h3><p>${inlineHtml(x.text)}</p></div>`).join('')}</div>\n`;
+      md += a.map(x => `- **${x.href ? `[${inlineMd(x.title)}](${x.href})` : inlineMd(x.title)}**${x.stat ? ` (${x.stat})` : ''}: ${inlineMd(x.text)}`).join('\n') + '\n\n';
+    }
+    else if (k === 'raw') { html += a + '\n'; md += (c || '') + (c ? '\n\n' : ''); }
+    else throw new Error(`unknown block ${k}`);
+  }
+  return { html, md };
+}
+function c0(c) { return (c && c.rows) || []; }
+const slug = s => nodash(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// ---------------------------------------------------------------- layout
+const NAV = [['/', 'Front'], ['/money/', 'Public money'], ['/councils/', 'Councils'], ['/services/', 'Services'], ['/map/', 'Cross-map'], ['/about/', 'About']];
+const pages = [];
+const PROV_DEFAULT = {
+  code: '`scripts/generate.mjs` builds this page from the data files in `data/` (no hand-edited numbers).',
+  agents: 'civic@PrompTugal.dinis (Opus 5.5) wrote the text and the code; research by civic.research.services@ and civic.research.councils@ (Sonnet), checked by civic@.',
+  person: 'Not yet checked by a person.',
+};
+function page({ path, title, description, kicker, blocks, prov = {}, sources = [] }) {
+  const navCur = '/' + (path.split('/')[1] ? path.split('/')[1] + '/' : '');
+  const p = { ...PROV_DEFAULT, ...prov };
+  const srcBlocks = sources.length ? [['h2', 'Sources'], ['ul', sources.map(s => typeof s === 'string' ? s : `[${s.title}](${s.url})${s.read_on ? `, read ${day(s.read_on)}` : ''}`)]] : [];
+  const { html, md } = render([...blocks, ...srcBlocks]);
+  const fullTitle = path === '/' ? 'PrompTugal.news Civic: public money and public services, explained' : `${title} · PrompTugal.news Civic`;
+  const doc = `<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(fullTitle)}</title>
+<meta name="description" content="${esc(nodash(description))}">
+<link rel="canonical" href="${SITE}${path}">
+<link rel="alternate" type="text/markdown" href="${path}index.md">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/civic.css">
+</head>
+<body>
+<header class="mast"><div class="wrap">
+<a class="brand" href="/" aria-label="PrompTugal.news Civic, front page"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="184" height="30"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="184" height="30"><span class="sub">Civic</span></a>
+<nav class="main" aria-label="Sections">${NAV.map(([h, t]) => `<a href="${h}"${h === navCur ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>
+</div></header>
+<div class="strip"><div class="wrap"><span><strong>Independent.</strong> Not a government or official site.</span><span>Every fact links its source and the date we read it.</span><span>Version __VERSION__</span><a class="pay" href="https://promptugal.news/account/">Pay for what you read</a></div></div>
+<main><div class="wrap">
+${kicker ? `<p class="kicker">${esc(kicker)}</p>\n` : ''}<h1>${inlineHtml(title)}</h1>
+${html}
+<section class="prov" aria-label="How this page was made"><strong>How this page was made</strong>
+<dl><dt>Code</dt><dd>${inlineHtml(p.code.replace(/`/g, ''))}</dd><dt>Agents</dt><dd>${inlineHtml(p.agents)}</dd><dt>A person</dt><dd>${inlineHtml(p.person)}</dd></dl>
+<p>Markdown twin: <a href="${path}index.md">${path}index.md</a>. Something wrong? The <a href="https://github.com/PrompTugal/PrompTugal__News__Civic">repository</a> holds every source file.</p></section>
+</div></main>
+<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version __VERSION__. Code Apache-2.0, text CC BY 4.0. Public data from the sources named on each page.</div></footer>
+</body>
+</html>
+`;
+  const twin = `---\ntitle: "${nodash(title).replace(/"/g, "'")}"\nurl: ${SITE}${path}\nsite: PrompTugal.news Civic (independent, not a government site)\nversion: __VERSION__\n---\n\n# ${inlineMd(title)}\n\n${md.trim()}\n\n---\n\nHow this page was made. Code: ${p.code} Agents: ${p.agents} A person: ${p.person}\n`;
+  const dir = join(OUT, path);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), doc);
+  writeFileSync(join(dir, 'index.md'), twin);
+  pages.push({ path, title, description });
+}
+
+// ---------------------------------------------------------------- procurement analysis
+const PROC = {
+  'Ajuste Direto Regime Geral': ['Direct award', 'the council invites one supplier'],
+  'Ajuste direto simplificado ao abrigo da Lei n.º 30/2021, de 21.05': ['Simplified direct award', 'a direct award under the faster rules of Law 30/2021'],
+  'Consulta Prévia': ['Prior consultation', 'the council invites at least three suppliers of its choice'],
+  'Consulta Prévia Simplificada': ['Simplified prior consultation', 'a prior consultation under the faster rules of Law 30/2021'],
+  'Concurso público': ['Open tender', 'anyone may bid, after a notice in the Diário da República'],
+  'Concurso público simplificado': ['Simplified open tender', 'an open tender under the faster rules of Law 30/2021'],
+  'Concurso limitado por prévia qualificação': ['Restricted tender', 'bidders must first qualify, then bid'],
+  'Ao abrigo de acordo-quadro (art.º 258.º)': ['Under a framework agreement (art. 258)', 'bought from a framework agreement with fixed terms'],
+  'Ao abrigo de acordo-quadro (art.º 259.º)': ['Under a framework agreement (art. 259)', 'a mini-competition among a framework agreement\'s suppliers'],
+  'Contratação excluída II': ['Excluded contracting', 'a contract outside the code\'s procedures (for example between public bodies)'],
+};
+const procName = p => (PROC[p] || [p])[0];
+const isDirect = p => /^Ajuste/i.test(p);
+const isPrior = p => /^Consulta Pr/i.test(p);
+function summarise(contracts) {
+  const total = contracts.reduce((s, c) => s + (c.price || 0), 0);
+  const direct = contracts.filter(c => isDirect(c.procedure));
+  const prior = contracts.filter(c => isPrior(c.procedure));
+  const open = contracts.filter(c => /^Concurso/i.test(c.procedure));
+  const byProc = {};
+  for (const c of contracts) { const k = c.procedure; byProc[k] = byProc[k] || { n: 0, v: 0 }; byProc[k].n++; byProc[k].v += c.price || 0; }
+  return { n: contracts.length, total, direct: direct.length, directV: direct.reduce((s, c) => s + (c.price || 0), 0), prior: prior.length, open: open.length, openV: open.reduce((s, c) => s + (c.price || 0), 0), byProc };
+}
+function suppliersOf(contracts) {
+  const m = new Map();
+  for (const c of contracts) {
+    const share = (c.price || 0) / Math.max(1, c.suppliers.length);
+    for (const s of c.suppliers) {
+      if (s.withheld) continue;
+      const x = m.get(s.nif) || { nif: s.nif, name: s.name, n: 0, v: 0, councils: new Set(), contracts: [] };
+      x.n++; x.v += share; x.councils.add(c.council); x.contracts.push(c);
+      m.set(s.nif, x);
+    }
+  }
+  return [...m.values()];
+}
+const y26 = base[2026].contracts, y25 = base[2025].contracts;
+const by26 = Object.fromEntries(COUNCIL_IDS.map(id => [id, y26.filter(c => c.council === id)]));
+const by25 = Object.fromEntries(COUNCIL_IDS.map(id => [id, y25.filter(c => c.council === id)]));
+const all26 = summarise(y26), all25 = summarise(y25);
+const sup26 = suppliersOf(y26);
+const multi = sup26.filter(s => s.councils.size >= 3).sort((a, b) => b.councils.size - a.councils.size || b.v - a.v);
+const lastPub = y26.reduce((m, c) => (c.published > m ? c.published : m), '');
+const BASE_SRC = { title: 'Contratos Públicos, Portal BASE, IMPIC: open data on dados.gov.pt (contracts of 2026 and 2025)', url: base[2026].source.dataset, read_on: base[2026].source.read_on };
+const whoName = id => (placeOf(id) || { name: id }).name;
+const contractLabel = c => c.object || `(object withheld: a supplier is a private individual) ${c.cpv[0] ? c.cpv[0].desc : ''}`;
+const supplierCell = c => c.suppliers.map(s => s.withheld ? 'a private individual (name withheld)' : (companyPages.has(s.nif) ? `[${s.name}](/map/${s.nif}/)` : s.name)).join('; ');
+const companyPages = new Set(multi.map(s => s.nif));
+
+// ---------------------------------------------------------------- the front page
+function frontBlocks() {
+  const top = COUNCIL_IDS.map(id => ({ id, s: summarise(by26[id]) })).sort((a, b) => b.s.total - a.s.total);
+  return [
+    ['lede', 'Public money, public services and the bureaucracy in between, explained and cross-mapped. We start with the Algarve\'s 16 councils: what they buy, from whom, and how; where their decisions are written down; and how to get the everyday things done (a NIF, a health centre, a Multibanco reference, a residence permit).'],
+    ['note', `**Independent.** PrompTugal.news Civic is not a government site and does not speak for any council or public body. It reads public, official sources, links each one and says when we read it. Contracts on this site: ${int(all26.n)} signed by the 16 Algarve councils in IMPIC's 2026 open data (published up to ${day(lastPub)}), read ${day(base[2026].source.read_on)}.`],
+    ['cards', [
+      { cls: 'money', title: 'Public money', href: '/money/', stat: meur(all26.total), text: `What the Algarve's 16 councils have contracted in 2026 so far, across ${int(all26.n)} contracts. ${pct(all26.direct / all26.n)} were direct awards to a single invited supplier. How to read a contract, the minutes and the Diário da República.` },
+      { cls: 'money', title: 'The 16 councils', href: '/councils/', stat: '16', text: 'One page per council: its contracts, its biggest suppliers, where its minutes, agendas and notices are published, and what we could not read.' },
+      { cls: 'services', title: 'Public services, step by step', href: '/services/', stat: String(services.guides.length + 1), text: 'Paying by Multibanco reference, getting a NIF, registering with the SNS, AIMA residency, and which office does what. From official pages, each step sourced.' },
+      { title: 'The cross-map', href: '/map/', stat: String(multi.length), text: 'Companies that hold contracts with three or more Algarve councils this year: council, contract, company, place, linked both ways.' },
+    ]],
+    ['h2', 'The Algarve\'s councils, by money contracted in 2026'],
+    ['p', 'Contract value as published (precoContratual, without VAT as BASE records it), by the council that signed. Direct award share is the share of the council\'s contracts made by ajuste direto.'],
+    ['table', ['Council', 'Contracts', 'Value', 'Direct award', ''], { right: [1, 2, 3], rows: top.map(({ id, s }) => [`[${whoName(id)}](/councils/${id}/)`, int(s.n), meur(s.total), pct(s.direct / s.n), { html: `<span class="bar" style="width:${Math.max(2, Math.round(s.total / top[0].s.total * 120))}px"></span>`, md: '' }]) }],
+    ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), file contratos2026, read ${day(BASE_SRC.read_on)}. Each contract links its record on base.gov.pt.`],
+    ['h2', 'Start here'],
+    ['ul', [
+      '[How a council spends: the four ways it can buy](/money/#how-a-council-buys)',
+      '[Paying a bill with a Multibanco reference](/services/pay-by-multibanco-reference/)',
+      '[Which office does what](/services/which-office/)',
+      '[What we could not read, and why](/about/#what-we-could-not-read)',
+    ]],
+  ];
+}
+
+// ---------------------------------------------------------------- money
+function moneyBlocks() {
+  const procRows = Object.entries(all26.byProc).sort((a, b) => b[1].n - a[1].n).map(([k, v]) => [procName(k), (PROC[k] || ['', ''])[1], int(v.n), pct(v.n / all26.n), meur(v.v)]);
+  const biggest = [...y26].sort((a, b) => (b.price || 0) - (a.price || 0)).slice(0, 12);
+  return [
+    ['lede', 'Every council contract in Portugal is meant to be published on the Portal BASE, the public procurement portal run by IMPIC. We read IMPIC\'s open data of those contracts and show the Algarve\'s 16 councils: what they buy, how, from whom.'],
+    ['h2', 'The year so far'],
+    ['cards', [
+      { cls: 'money', title: 'Contracts in 2026', stat: int(all26.n), text: `signed by the 16 councils, published on BASE up to ${day(lastPub)}.` },
+      { cls: 'money', title: 'Value', stat: meur(all26.total), text: `as published, against ${meur(all25.total)} across all of 2025 (${int(all25.n)} contracts).` },
+      { cls: 'money', title: 'Direct awards', stat: pct(all26.direct / all26.n), text: `of contracts (${pct(all26.directV / all26.total)} of value) went to one invited supplier. ${pct(all26.prior / all26.n)} were prior consultations.` },
+      { cls: 'money', title: 'Open tenders', stat: pct(all26.open / all26.n), text: `of contracts, but ${pct(all26.openV / all26.total)} of the value: big works go to open tender.` },
+    ]],
+    ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), files contratos2026 and contratos2025, read ${day(BASE_SRC.read_on)}. Our calculation; the code is tools/extract-base.mjs and scripts/generate.mjs in the repository.`],
+    ['h2', 'How a council buys'],
+    ['p', 'The Código dos Contratos Públicos (the public contracts code, Decreto-Lei 18/2008, as amended) sets the procedures. Which one a council may use depends mostly on the value and the kind of contract; the value limits are in articles 19 to 21 of the code. The four you will see most:'],
+    ['table', ['Procedure', 'What it means', 'Contracts', 'Share', 'Value'], { right: [2, 3, 4], rows: procRows }],
+    ['src', `Procedure names as recorded in the BASE data; the plain-English meanings are ours. [The code, consolidated, in the Diário da República](https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475), read ${day('2026-11-17')}.`],
+    ['h2', 'The twelve largest contracts of 2026'],
+    ['table', ['Council', 'What', 'Supplier', 'Procedure', 'Value', 'Record'], { right: [4], rows: biggest.map(c => [`[${whoName(c.council)}](/councils/${c.council}/)`, contractLabel(c), supplierCell(c), procName(c.procedure), eur(c.price), `[BASE ${c.id}](${c.url})`]) }],
+    ['h2', 'How to read a contract on BASE'],
+    ['ul', [
+      '**Entidade adjudicante**: the public body that buys (here, the Município).',
+      '**Adjudicatário**: the supplier that won. A company shows with its NIF; we withhold the names of private individuals.',
+      '**Preço contratual**: the contract price as published, normally without VAT.',
+      '**Tipo de procedimento**: how the supplier was chosen (see the table above).',
+      '**Fundamentação**: the article of the code the council relied on, for example article 20 for a direct award by value.',
+      '**CPV**: the European common procurement vocabulary code that says what was bought.',
+      '**Data de publicação / celebração**: when it was published on BASE and when it was signed.',
+    ]],
+    ['h2', 'Where the decisions are written down'],
+    ['p', 'A contract is the end of a chain. Before it, the council\'s executive (the Câmara Municipal) decides in a meeting, minuted in an **ata**; big decisions go to the elected Assembleia Municipal; tenders are announced in the **Diário da República** (2nd series) and the budget is approved each year. Each council page lists where that council publishes its minutes, agendas, notices and budget, as far as we could read them.'],
+    ['p', councilsData.diario_da_republica && councilsData.diario_da_republica.how_to ? `**Searching the Diário da República.** ${councilsData.diario_da_republica.how_to}` : '**Searching the Diário da República.** Its site at diariodarepublica.pt is an application that needs JavaScript; search by the issuing entity (Município de ...) in the 2nd series.'],
+    ['note', '**What BASE does not show.** Contracts that are not reported, municipal companies (they buy under their own NIF, not the council\'s) and spending outside contracts (salaries, transfers to parishes and associations). We have not yet mapped municipal companies: see [the gaps](/about/#what-we-could-not-read).'],
+  ];
+}
+
+// ---------------------------------------------------------------- councils
+const CIVIC_GAP = /(minut|atas?\b|procure|base\.gov|contract|council|câmara|camara|agenda|budget|tender|deliber)/i;
+function councilBlocks(id) {
+  const pl = placeOf(id), co = councilOf(id), cs = by26[id], s = summarise(cs), s25 = summarise(by25[id]);
+  const sups = suppliersOf(cs).sort((a, b) => b.v - a.v).slice(0, 10);
+  const recent = cs.slice(0, 15);
+  const nif = base[2026].councils[id] ? base[2026].councils[id].nif : null;
+  const link = (o, label) => o && o.url ? `[${label}](${o.url})` : 'not found yet';
+  const where = [
+    ['Official site', co.site ? `[${co.site.replace(/^https?:\/\//, '').replace(/\/$/, '')}](${co.site})` : (pl.council_site ? `[${pl.council_site.replace(/^https?:\/\//, '')}](${pl.council_site})` : 'not found yet')],
+    ['Executive meeting minutes (atas)', co.minutes ? `${link(co.minutes, 'listing')}${co.minutes.latest ? `, latest listed ${day(co.minutes.latest)}` : ''}` : 'not found yet'],
+    ['Meeting agendas', link(co.agendas, 'listing')],
+    ['Municipal assembly', link(co.assembly, 'page')],
+    ['Public notices (editais)', link(co.notices, 'listing')],
+    ['Budget and accounts', link(co.budget, 'page')],
+    ['Procurement page', link(co.procurement, 'page')],
+    ['Contracts on BASE (open data)', `${int(s.n)} in 2026, below`],
+  ];
+  const gaps = [...(co.gaps || []), ...(pl.gaps || []).filter(g => CIVIC_GAP.test(g)).map(g => `${g} (from [PrompTugal.news ${pl.name}](${pl.promptugal_page}))`)];
+  return [
+    ['lede', `The Câmara Municipal de ${pl.name}: what it has contracted in 2026, from whom and how, and where its decisions are published.${co.mayor && co.mayor.name ? ` Its mayor (Presidente da Câmara), as the council's own site names them: ${co.mayor.name}.` : ''}`],
+    ['cards', [
+      { cls: 'money', title: 'Contracts in 2026', stat: int(s.n), text: `against ${int(s25.n)} in all of 2025.` },
+      { cls: 'money', title: 'Value', stat: meur(s.total), text: `as published (${meur(s25.total)} in 2025).` },
+      { cls: 'money', title: 'Direct awards', stat: s.n ? pct(s.direct / s.n) : 'n/a', text: `of contracts; open tenders ${s.n ? pct(s.open / s.n) : 'n/a'}.` },
+      { title: 'Its NIF', stat: nif || 'n/a', text: 'as the BASE data records the Município (a public body\'s tax number, used to find its contracts).' },
+    ]],
+    ['h2', 'Where its decisions are published'],
+    ['table', ['What', 'Where'], { rows: where }],
+    ['src', co.read_on || councilsData.read_on ? `The council's own website, read ${day(co.read_on || councilsData.read_on)}${co.mayor && co.mayor.source ? `; the mayor's name from [the council's page](${co.mayor.source})` : ''}.` : 'Not yet read.'],
+    ['h2', 'Its biggest suppliers in 2026'],
+    sups.length ? ['table', ['Supplier', 'NIF', 'Contracts', 'Value', 'Other Algarve councils'], { right: [2, 3], rows: sups.map(x => [companyPages.has(x.nif) ? `[${x.name}](/map/${x.nif}/)` : x.name, x.nif, int(x.n), meur(x.v), String(x.councils.size - 1 + sup26.find(y => y.nif === x.nif).councils.size - x.councils.size)]) }] : ['p', 'None published yet.'],
+    ['small', 'Companies and public bodies only. Contracts with private individuals count in the totals, but we withhold their names. A contract with several suppliers is split equally between them.'],
+    ['h2', 'Its latest contracts'],
+    ['table', ['Published', 'What', 'Supplier', 'Procedure', 'Value'], { right: [4], rows: recent.map(c => [`[${day(c.published)}](${c.url})`, contractLabel(c), supplierCell(c), procName(c.procedure), eur(c.price)]) }],
+    ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), read ${day(BASE_SRC.read_on)}. The full list for this council: [data/procurement/base-2026.json](/data/procurement/base-2026.json) (filter by council "${id}").`],
+    ['h2', 'What we could not read yet'],
+    gaps.length ? ['ul', gaps, 'gaps'] : ['p', 'Nothing recorded yet.'],
+    ['p', `More on ${pl.name} (its people, events and news): [PrompTugal.news ${pl.name}](${pl.promptugal_page}).`],
+  ];
+}
+
+// ---------------------------------------------------------------- services
+function serviceBlocks(g) {
+  const b = [['lede', g.summary || '']];
+  if (g.who_for) b.push(['p', `**Who it is for:** ${g.who_for}`]);
+  b.push(['h2', 'Step by step']);
+  b.push(['ol', (g.steps || []).map(s => `${s.text}${s.source ? ` [source](${s.source})` : ''}`)]);
+  if ((g.costs || []).length) { b.push(['h2', 'What it costs']); b.push(['ul', g.costs.map(s => `${s.text}${s.source ? ` [source](${s.source})` : ''}`)]); }
+  if ((g.portuguese_terms || []).length) { b.push(['h2', 'The words you will see']); b.push(['table', ['Portuguese', 'What it means'], { rows: g.portuguese_terms.map(t => [`**${t.pt}**`, t.en]) }]); }
+  if ((g.gaps || []).length) { b.push(['h2', 'What the official pages do not say']); b.push(['ul', g.gaps, 'gaps']); }
+  b.push(['note', 'This is our summary of official pages, not official advice. Rules change: check the official page before you go, and tell us if we are out of date.', true]);
+  return b;
+}
+
+// ---------------------------------------------------------------- build all pages
+export function generate() {
+  page({ path: '/', title: 'Public money and public services, explained', description: 'Independent: public procurement, council decisions and public services in Portugal, explained and cross-mapped, starting with the Algarve\'s 16 councils. Not a government site.', blocks: frontBlocks(), sources: [BASE_SRC] });
+
+  page({ path: '/money/', kicker: 'Public money', title: 'What the Algarve\'s councils buy, and how', description: `Public procurement by the Algarve's 16 councils in 2026, from IMPIC's open data of the Portal BASE: ${int(all26.n)} contracts, procedures explained.`, blocks: moneyBlocks(), sources: [BASE_SRC, { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });
+
+  const rows = COUNCIL_IDS.map(id => { const s = summarise(by26[id]); const co = councilOf(id); return [`[${whoName(id)}](/councils/${id}/)`, int(s.n), meur(s.total), pct(s.direct / s.n), co.minutes && co.minutes.url ? `[yes](${co.minutes.url})` : 'not found yet']; });
+  page({ path: '/councils/', kicker: 'Councils', title: 'The Algarve\'s 16 councils', description: 'One page per Algarve council: its 2026 contracts, biggest suppliers, and where its minutes, agendas, notices and budget are published.', blocks: [
+    ['lede', 'Each council (Câmara Municipal) is run by an executive, elected every four years with the municipal assembly. It decides in minuted meetings and buys through public contracts. Pick a council.'],
+    ['table', ['Council', 'Contracts 2026', 'Value', 'Direct award', 'Minutes online'], { right: [1, 2, 3], rows }],
+    ['src', `Contracts: [IMPIC open data](${BASE_SRC.url}), read ${day(BASE_SRC.read_on)}. Minutes: each council's own site${councilsData.read_on ? `, read ${day(councilsData.read_on)}` : ''}.`],
+    ...(councilsData.amal ? [['h2', 'AMAL, the councils together'], ['p', `${councilsData.amal.what} [amal.pt](${councilsData.amal.url})`]] : []),
+  ], sources: [BASE_SRC] });
+  for (const id of COUNCIL_IDS) page({ path: `/councils/${id}/`, kicker: 'Council', title: `${whoName(id)}`, description: `The Câmara Municipal de ${whoName(id)}: contracts in 2026, suppliers, and where its minutes, agendas and notices are published. Independent.`, blocks: councilBlocks(id), sources: [BASE_SRC] });
+
+  page({ path: '/services/', kicker: 'Public services', title: 'How public services work, step by step', description: 'Paying by Multibanco reference, getting a NIF, the SNS, AIMA residency and which office does what in Portugal: step by step, from official pages.', blocks: [
+    ['lede', 'The everyday bureaucracy that matters and few explain: each guide is our summary of official pages (gov.pt, ePortugal, the Portal das Finanças, the SNS, AIMA), each step with its source and the date we read it.'],
+    ['cards', [...services.guides.map(g => ({ cls: 'services', title: g.title, href: `/services/${g.id}/`, text: g.summary || '' })), { cls: 'services', title: 'Which office does what', href: '/services/which-office/', text: 'Loja do Cidadão, Espaço Cidadão, Finanças, Segurança Social, Junta de Freguesia, Câmara, AIMA, the Conservatória: one line each.' }]],
+    ['p', 'Why this matters: [The payment desk that could not take payment](https://promptugal.news/articles/the-payment-desk-that-could-not-take-payment.html), PrompTugal.news, 17 November 2026.'],
+  ] });
+  for (const g of services.guides) page({ path: `/services/${g.id}/`, kicker: 'Public services', title: g.title, description: nodash(g.summary || g.title).slice(0, 300), blocks: serviceBlocks(g), sources: g.official_pages || [], prov: { code: 'scripts/generate.mjs renders this guide from data/services.json.' } });
+  page({ path: '/services/which-office/', kicker: 'Public services', title: 'Which office does what', description: 'Loja do Cidadão, Espaço Cidadão, Finanças, Segurança Social, Junta de Freguesia, Câmara Municipal, AIMA and the Conservatória: what each does, from official pages.', blocks: [
+    ['lede', 'Portugal\'s public services are spread over national agencies, councils and parishes, with shared front desks (the Lojas and Espaços Cidadão) that host several of them. Who does what:'],
+    ['table', ['Office', 'What it does', 'Official page'], { rows: (services.offices || []).map(o => [`**${o.name}**`, o.what, o.url ? `[page](${o.url})` : 'n/a']) }],
+    ['note', 'Our summary of official pages, not official advice.', true],
+  ], sources: (services.offices || []).filter(o => o.url).map(o => ({ title: o.name, url: o.url, read_on: o.read_on })) });
+
+  // the cross-map
+  page({ path: '/map/', kicker: 'Cross-map', title: 'Council, contract, company, place', description: `Companies holding contracts with three or more Algarve councils in 2026 (${multi.length}), from IMPIC's open data: the links between councils, contracts and companies.`, blocks: [
+    ['lede', 'Which companies work for several Algarve councils at once? From the 2026 contracts, every company (by NIF) with contracts at three or more of the 16 councils. Each links to its contracts, and each council page links back.'],
+    ['table', ['Company', 'NIF', 'Councils', 'Contracts', 'Value', 'Which'], { right: [2, 3, 4], rows: multi.map(x => [`[${x.name}](/map/${x.nif}/)`, x.nif, String(x.councils.size), int(x.n), meur(x.v), [...x.councils].map(whoName).join(', ')]) }],
+    ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), read ${day(BASE_SRC.read_on)}. Our calculation. A link is a fact about contracts, not a judgement about anyone.`],
+    ['h2', 'What comes next on the map'],
+    ['ul', ['Municipal companies and their own contracts.', 'Companies by place: where each supplier is registered against where the work is done.', 'Each contract back to the council meeting that decided it (the minutes) and the notice in the Diário da República.', 'Earlier years (IMPIC publishes from 2012).']],
+  ], sources: [BASE_SRC] });
+  for (const x of multi) {
+    const cs = [...x.contracts].sort((a, b) => (b.published || '').localeCompare(a.published || ''));
+    page({ path: `/map/${x.nif}/`, kicker: 'Company', title: x.name, description: `${x.name} (NIF ${x.nif}): contracts with ${x.councils.size} Algarve councils in 2026, from IMPIC's open data.`, blocks: [
+      ['lede', `${x.name} (NIF ${x.nif}) holds ${int(x.n)} contracts with ${x.councils.size} of the Algarve's 16 councils in IMPIC's 2026 data, worth ${meur(x.v)} as published.`],
+      ['table', ['Council', 'Contracts', 'Value'], { right: [1, 2], rows: [...x.councils].map(id => { const c2 = cs.filter(c => c.council === id); return [`[${whoName(id)}](/councils/${id}/)`, int(c2.length), meur(c2.reduce((s, c) => s + (c.price || 0) / Math.max(1, c.suppliers.length), 0))]; }) }],
+      ['h2', 'The contracts'],
+      ['table', ['Published', 'Council', 'What', 'Procedure', 'Value'], { right: [4], rows: cs.map(c => [`[${day(c.published)}](${c.url})`, whoName(c.council), contractLabel(c), procName(c.procedure), eur(c.price)]) }],
+      ['small', 'A company is shown by its name and NIF as the public contract data records them. We have not yet read its registry entry.'],
+    ], sources: [BASE_SRC] });
+  }
+
+  // about
+  page({ path: '/about/', kicker: 'About', title: 'About PrompTugal.news Civic', description: 'Who makes PrompTugal.news Civic, how, from which sources, what we could not read, and why it is independent and not official.', blocks: [
+    ['lede', 'PrompTugal.news Civic explains public data, public services and the bureaucracy that matters, and maps the links between them (council, contract, company, place). It is part of PrompTugal.news and is made by AI agents with a named human operator, Dinis Cruz.'],
+    ['h2', 'Independent, not official'],
+    ['p', 'We are not a government site, a council, a public portal or anyone\'s agent. We do not use any public body\'s logo, colours or layout. Official sources are linked so you can check them; for anything that matters, the official page is the authority, not us.'],
+    ['h2', 'How we read sources'],
+    ['ul', [
+      'Public, official sources only, each value with its source and the date we read it.',
+      'Before reading a portal we check its robots.txt and terms. A refusal (a firewall, a 403, a bot check, a login) is respected and recorded below as a gap, never worked around.',
+      'We read politely: a named user agent (PrompTugalCivicBot) and two to three seconds between requests.',
+      'People only as public and professional: office holders by name and office, as their own body publishes it. **Suppliers who are private individuals keep no name and no NIF here**, and the free-text description of their contracts is left out, because it can name them. Their contracts still count in every total.',
+    ]],
+    ['h2', 'The portals we checked'],
+    ['table', ['Portal', 'robots.txt', 'Terms', 'What happened'], { rows: (portals.portals || []).map(p => [p.host, p.robots, p.terms_url ? `[terms](${p.terms_url})` : 'not found', p.notes]) }],
+    ['h2', 'What we could not read'],
+    ['ul', (portals.gaps || []), 'gaps'],
+    ['h2', 'The data'],
+    ['ul', [
+      `[data/procurement/base-2026.json](/data/procurement/base-2026.json) and [base-2025.json](/data/procurement/base-2025.json): the 16 councils' contracts, extracted by tools/extract-base.mjs from [IMPIC's open data](${BASE_SRC.url}) (licence as published there: other-pd).`,
+      '[data/councils.json](/data/councils.json): where each council publishes its minutes, agendas, notices and budget.',
+      '[data/services.json](/data/services.json): the service guides and their official sources.',
+      'Place context from [PrompTugal.news by place](https://promptugal.news/algarve/) (data/by-place in PrompTugal__News__Website).',
+    ]],
+    ['h2', 'How it is made'],
+    ['p', 'A static site: Node scripts with no dependencies build every page and its markdown twin from the data files; a gate (scripts/validate.mjs) and a leak scan run on every push. The text is written by civic@PrompTugal.dinis, an AI agent (Opus), with research workers (Sonnet). Nothing on the site has yet been checked by a person; each page says so.'],
+    ['p', 'Licences: code Apache-2.0, text CC BY 4.0. Source: [github.com/PrompTugal/PrompTugal__News__Civic](https://github.com/PrompTugal/PrompTugal__News__Civic). For machines: [llms.txt](/llms.txt).'],
+  ] });
+
+  // the design pass: three front-page variations side by side
+  designPages();
+
+  // copy the data so readers can download it
+  mkdirSync(join(OUT, 'data'), { recursive: true });
+  cpSync('data', join(OUT, 'data'), { recursive: true });
+
+  // llms.txt and sitemap.xml
+  const llms = `# PrompTugal.news Civic\n\n> Independent (not a government site): public money, public services and bureaucracy in Portugal, explained and cross-mapped, starting with the Algarve's 16 councils. Every page has a markdown twin at <path>index.md. Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${nodash(p.title)}](${SITE}${p.path}index.md): ${nodash(p.description)}`).join('\n')}\n\n## Data\n\n- [Contracts 2026](${SITE}/data/procurement/base-2026.json)\n- [Contracts 2025](${SITE}/data/procurement/base-2025.json)\n- [Councils](${SITE}/data/councils.json)\n- [Services](${SITE}/data/services.json)\n`;
+  writeFileSync(join(OUT, 'llms.txt'), llms);
+  writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map(p => `<url><loc>${SITE}${p.path}</loc></url>`).join('\n')}\n</urlset>\n`);
+  writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+  return pages.length;
+}
+
+// ---------------------------------------------------------------- design variations
+const SHORT = { 'vila-real-de-santo-antonio': 'VRSA', 'vila-do-bispo': 'V. do Bispo', 'sao-bras-de-alportel': 'S. Brás', 'castro-marim': 'C. Marim' };
+function designPages() {
+  const top = COUNCIL_IDS.map(id => ({ id, s: summarise(by26[id]) })).sort((a, b) => b.s.total - a.s.total);
+  const max = top[0].s.total;
+  const placeDots = places.places.filter(p => p.at).map(p => { const s = summarise(by26[p.id]); const x = (p.at[0] + 8.95) / 1.6 * 560 + 20, y = (37.5 - p.at[1]) / 0.5 * 200 + 20; return `<a href="/councils/${p.id}/"><circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(4 + Math.sqrt(s.total / max) * 22).toFixed(1)}" fill="var(--red)" fill-opacity=".55" stroke="var(--ink)" stroke-width=".6"><title>${esc(p.name)}: ${esc(meur(s.total))}</title></circle><text x="${x.toFixed(0)}" y="${(y + 3).toFixed(0)}" font-size="9" text-anchor="middle" fill="var(--ink)" font-family="IBM Plex Mono, monospace">${esc(SHORT[p.id] || p.name)}</text></a>`; }).join('');
+  const variants = {
+    a: { name: 'A · The ledger', why: 'Numbers first: the money table leads, like a public ledger. Best for readers who come for procurement.', blocks: [
+      ['raw', `<p class="lede">What the Algarve's 16 councils have bought in 2026, from whom and how. Independent; every number linked to its source.</p><div class="grid"><div class="card money"><div class="stat">${esc(meur(all26.total))}</div><p>contracted in 2026</p></div><div class="card money"><div class="stat">${int(all26.n)}</div><p>contracts</p></div><div class="card money"><div class="stat">${pct(all26.direct / all26.n)}</div><p>direct awards</p></div></div><div class="tbl"><table><thead><tr><th>Council</th><th class="r">Value</th><th></th></tr></thead><tbody>${top.map(({ id, s }) => `<tr><td><a href="/councils/${id}/">${esc(whoName(id))}</a></td><td class="r num">${esc(meur(s.total))}</td><td><span class="bar" style="width:${Math.round(s.total / max * 200)}px"></span></td></tr>`).join('')}</tbody></table></div><p><a href="/services/">Public services, step by step</a> · <a href="/map/">The cross-map</a></p>`, 'Variation A: the ledger. The money table leads.'],
+    ] },
+    b: { name: 'B · The help desk', why: 'Services first: "how do I...?" leads, money second. Best for residents and newcomers.', blocks: [
+      ['raw', `<p class="lede">How do I...? The everyday bureaucracy, step by step, from official pages.</p><div class="grid">${services.guides.map(g => `<div class="card services"><h3><a href="/services/${g.id}/">${esc(nodash(g.title))}</a></h3><p>${esc(nodash(g.summary || ''))}</p></div>`).join('')}<div class="card services"><h3><a href="/services/which-office/">Which office does what</a></h3><p>Eight offices, one line each.</p></div></div><h2>And where the money goes</h2><p>${int(all26.n)} contracts worth ${esc(meur(all26.total))} signed by the Algarve's 16 councils in 2026. <a href="/money/">Read the ledger</a>.</p>`, 'Variation B: the help desk. Service guides lead.'],
+    ] },
+    c: { name: 'C · The map', why: 'Place first: the 16 councils on a map, sized by money contracted; click one. Best for the cross-mapping and for local readers.', blocks: [
+      ['raw', `<p class="lede">Sixteen councils, one coast. Each circle is a council, sized by what it contracted in 2026. Pick one.</p><svg viewBox="0 0 600 240" role="img" aria-label="The Algarve's councils sized by money contracted in 2026" style="width:100%;height:auto;background:var(--card);border:1px solid var(--rule)">${placeDots}</svg><p class="src">Positions from PrompTugal.news by place; values from IMPIC's open data, read ${day(BASE_SRC.read_on)}.</p><div class="grid"><div class="card money"><h3><a href="/money/">Public money</a></h3><p>${esc(meur(all26.total))} in ${int(all26.n)} contracts.</p></div><div class="card services"><h3><a href="/services/">Public services</a></h3><p>Five guides, step by step.</p></div><div class="card"><h3><a href="/map/">Cross-map</a></h3><p>${multi.length} companies working for three or more councils.</p></div></div>`, 'Variation C: the map. Councils on a map, sized by money.'],
+    ] },
+  };
+  for (const [k, v] of Object.entries(variants)) page({ path: `/design/${k}/`, kicker: 'Design pass: front page', title: v.name, description: `Front page variation ${k.toUpperCase()} for PrompTugal.news Civic: ${v.why}`, blocks: [['note', `Design variation for Dinis to choose. ${v.why}`], ...v.blocks], prov: { code: 'scripts/generate.mjs (designPages) renders this variation from the same data as the front page.' } });
+  page({ path: '/design/', kicker: 'Design pass', title: 'Three front pages, side by side', description: 'Three variations of the PrompTugal.news Civic front page for Dinis to choose: the ledger, the help desk and the map.', blocks: [
+    ['lede', 'One design pass: three ways to open the site, built from the same data. The live front page today is closest to A with B\'s cards. Dinis chooses.'],
+    ['raw', `<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))">${Object.entries(variants).map(([k, v]) => `<div class="card"><h3><a href="/design/${k}/">${esc(v.name)}</a></h3><p>${esc(v.why)}</p><iframe src="/design/${k}/" title="${esc(v.name)}" loading="lazy" style="width:100%;height:520px;border:1px solid var(--rule);background:var(--paper)"></iframe></div>`).join('')}</div>`, Object.entries(variants).map(([k, v]) => `- [${v.name}](/design/${k}/): ${v.why}`).join('\n')],
+  ], prov: { code: 'scripts/generate.mjs (designPages).' } });
+}
+
+if (process.argv[1] && process.argv[1].endsWith('generate.mjs')) console.log(`generated ${generate()} pages`);

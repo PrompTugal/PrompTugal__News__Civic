@@ -1,0 +1,541 @@
+{
+ "read_on": "2026-11-17",
+ "by": "civic.research.services@PrompTugal.dinis",
+ "guides": [
+  {
+   "id": "pay-by-multibanco-reference",
+   "title": "Paying a bill by Multibanco reference",
+   "summary": "A Multibanco reference payment needs three numbers from the bill: entidade, referência and montante. They can be keyed in at a Multibanco ATM or in home banking; the official pages read give only a short outline, so confirm the menu names on screen.",
+   "who_for": "Anyone holding a bill, invoice or payment slip that shows entidade, referência and montante.",
+   "steps": [
+    {
+     "text": "Find the three items on the bill: entidade (who is paid), referência (identifies this payment) and montante (the amount). Meaning as given in search summaries of official pages; the pages themselves could not be read.",
+     "source": "https://www.seg-social.pt/como-pagar1"
+    },
+    {
+     "text": "At an ATM: insert the card and enter the PIN, choose \"Pagamentos e Outros Serviços\", then \"Pagamentos de Serviços/Compras\", fill in entidade, referência and montante, and confirm with the green key. Taken from a Segurança Social guide as summarised by a search tool; the page itself could not be read (it shows only a cookie notice to a script-less fetch), so treat the menu names as unconfirmed.",
+     "source": "https://www.seg-social.pt/como-pagar1"
+    },
+    {
+     "text": "In home banking or a banking app: the SIBS documentation says a Multibanco reference can be paid through ATMs, home banking or mobile banking. The exact menu depends on your bank; the official pages read do not describe it. Not stated on the official pages read. (SIBS page returned 403 to the fetch tool; wording is from a search summary.)",
+     "source": "https://www.qly.docs.pay.sibs.com/portugal/sibs-gateway/payment-methods/reference-multibanco/"
+    },
+    {
+     "text": "If the entity name shown does not match who you expect, do not confirm; this check is a suggestion for the site, not from an official page read.",
+     "source": "https://www.seg-social.pt/como-pagar1"
+    }
+   ],
+   "costs": [
+    {
+     "text": "Cost to the payer for paying a reference: not stated on the official pages read. Banks publish their own price lists (preçários) on the Banco de Portugal Cliente Bancário site; payment institutions' preçários there show fees charged to merchants, not to payers.",
+     "source": "https://clientebancario.bportugal.pt/"
+    }
+   ],
+   "official_pages": [
+    {
+     "title": "Segurança Social, Como pagar (page content not readable by fetch)",
+     "url": "https://www.seg-social.pt/como-pagar1",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "Banco de Portugal, Portal do Cliente Bancário (robots allowed; no payer guide found)",
+     "url": "https://clientebancario.bportugal.pt/",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "SIBS, Multibanco brand page (named in search results; not read in full)",
+     "url": "https://www.sibs.com/marcas/multibanco/",
+     "read_on": "2026-11-17"
+    }
+   ],
+   "portuguese_terms": [
+    {
+     "pt": "entidade",
+     "en": "payee code (5 digits per third-party guides, not confirmed on an official page)"
+    },
+    {
+     "pt": "referência",
+     "en": "reference number identifying the payment (9 digits per third-party guides, not confirmed officially)"
+    },
+    {
+     "pt": "montante",
+     "en": "amount"
+    },
+    {
+     "pt": "Pagamentos de Serviços/Compras",
+     "en": "ATM menu option for service payments"
+    },
+    {
+     "pt": "homebanking",
+     "en": "online banking"
+    }
+   ],
+   "gaps": [
+    "SIBS documentation (docs.pay.sibs.com) returned 403 to the fetch tool; not worked around.",
+    "Banco de Portugal main site (bportugal.pt) showed a browser check page; not worked around. clientebancario.bportugal.pt robots allows general pages but no step-by-step payer guide was found.",
+    "Segurança Social 'Como pagar' page is rendered by script; only its cookie notice could be read. ATM steps rely on a search-tool summary of that page.",
+    "What to do if a reference has expired: not stated on the official pages read. References have a validity set by the issuer (SIBS merchant documentation, via search summary). Suggested, not official: ask the issuer for a new reference.",
+    "Digit counts for entidade and referência come from third-party guides only.",
+    "The 'service desk where only Multibanco cards worked' context is not covered by any official page read."
+   ]
+  },
+  {
+   "id": "get-a-nif",
+   "title": "Getting a NIF (número de identificação fiscal)",
+   "summary": "The NIF is a 9-digit tax number issued by the Autoridade Tributária (AT). Foreign nationals ask for it at a Serviço de Finanças or Loja do Cidadão by appointment, or through a legal representative via the Portal das Finanças e-balcão.",
+   "who_for": "Foreign nationals, resident or non-resident, who need a Portuguese tax number (for work, a contract, a bank account, Segurança Social).",
+   "steps": [
+    {
+     "text": "Residents with a Portuguese Cartão de Cidadão: the NIF is requested at IRN counters or the Cartão de Cidadão service; holders of a lifelong Bilhete de Identidade use a Serviço de Finanças or Loja do Cidadão.",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_ao_contribuinte/Cidadaos/Dados_pessoais_familia/Dados_pessoais/NIF/Paginas/default.aspx"
+    },
+    {
+     "text": "Foreign nationals, in person: book an appointment (atendimento por marcação) on the Portal das Finanças under Contactos > Atendimento por Marcação, choosing Assunto: Identificação, Subassunto: Pedido de NIF; or call the AT telephone centre on (+351) 217 206 707 on working days 9:00 to 19:00.",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf"
+    },
+    {
+     "text": "Bring a valid civil identity document (passport) and a document showing the address abroad, unless the address is on the passport. For non-EU nationals applying themselves, the leaflet says the passport should carry an entry visa unless an EU/Schengen entry visa is shown or the nationality is visa-exempt for Schengen.",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf"
+    },
+    {
+     "text": "Online route: a legal representative (not the same as a tax representative) opens an e-balcão question under Registo Contribuinte > Identific > Atrib/Alter NIF-Singulares, attaching the passport, proof of foreign address, the representative's ID and a power of attorney with powers for this purpose (signature recognition not needed if issued to a lawyer or solicitor).",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf"
+    },
+    {
+     "text": "Documents in a foreign language need a certified translation; copies are accepted only with the originals or if certified.",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf"
+    },
+    {
+     "text": "If conditions are met, the NIF is issued with the person registered as non-resident. When they become tax resident in Portugal they must ask for an address change.",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf"
+    },
+    {
+     "text": "Tax representative, non-residents: not required at the moment of getting the NIF. Once a tax-legal relationship arises (for example owning property or a vehicle in Portugal, a work contract, or self-employment), within 15 days appoint a tax representative in Portugal or join an electronic notification channel (Portal das Finanças notifications or ViaCTT).",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf"
+    },
+    {
+     "text": "EU/EEA (with Norway, Iceland, Liechtenstein, Andorra and Switzerland as the English page lists) residents can choose either option. Non-EU/EEA nationals who work for themselves in Portugal must appoint a tax representative who is a VAT taxable person with Portuguese tax domicile, even if they join an electronic channel, and before starting the activity.",
+     "source": "https://info.portaldasfinancas.gov.pt/en/tax-information/getting-started-in-portugal/tax-identification-number/appoint-a-tax-representative/Pages/default.aspx"
+    },
+    {
+     "text": "To appoint: the non-resident logs into the Portal das Finanças and goes to Todos os Serviços > Dados Cadastrais > Representante > Entregar Nomeação; the representative confirms under Confirmar Nomeação. In person at a Serviço de Finanças is also possible.",
+     "source": "https://info.portaldasfinancas.gov.pt/en/tax-information/getting-started-in-portugal/tax-identification-number/appoint-a-tax-representative/Pages/default.aspx"
+    }
+   ],
+   "costs": [
+    {
+     "text": "Fee for getting a NIF: not stated on the official pages read.",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_ao_contribuinte/Cidadaos/Dados_pessoais_familia/Dados_pessoais/NIF/Paginas/default.aspx"
+    },
+    {
+     "text": "The leaflet mentions a fine (coima) of 75 to 7,500 euros linked to failing the representation or notification duty; read the leaflet section before relying on this.",
+     "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf"
+    }
+   ],
+   "official_pages": [
+    {
+     "title": "Portal das Finanças, NIF",
+     "url": "https://info.portaldasfinancas.gov.pt/pt/apoio_ao_contribuinte/Cidadaos/Dados_pessoais_familia/Dados_pessoais/NIF/Paginas/default.aspx",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "AT leaflet, NIF for foreign citizens, non-residents (PDF)",
+     "url": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Atribuicao_de_NIF_a_cidadaos_estrangeiros_nao_residentes.pdf",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "Portal das Finanças, Appoint a tax representative (English)",
+     "url": "https://info.portaldasfinancas.gov.pt/en/tax-information/getting-started-in-portugal/tax-identification-number/appoint-a-tax-representative/Pages/default.aspx",
+     "read_on": "2026-11-17"
+    }
+   ],
+   "portuguese_terms": [
+    {
+     "pt": "número de identificação fiscal (NIF)",
+     "en": "tax identification number"
+    },
+    {
+     "pt": "Serviço de Finanças",
+     "en": "local tax office"
+    },
+    {
+     "pt": "atendimento por marcação",
+     "en": "service by appointment"
+    },
+    {
+     "pt": "representante fiscal",
+     "en": "tax representative"
+    },
+    {
+     "pt": "não residente",
+     "en": "non-resident"
+    },
+    {
+     "pt": "e-balcão",
+     "en": "AT online help desk"
+    }
+   ],
+   "gaps": [
+    "Cost of the NIF not stated on the pages read (a news article in a search result said free; not an official source read).",
+    "No separate official page for residents with a residence permit was read beyond the NIF page.",
+    "Whether foreigners without a Cartão de Cidadão may now log in to e-balcão themselves (a news report suggests a 2025 change) was not confirmed on an official page.",
+    "portaldasfinancas.gov.pt has no robots.txt (404 at info.portaldasfinancas.gov.pt, HTML shell on www); no terms page found."
+   ]
+  },
+  {
+   "id": "sns-health-centre",
+   "title": "The SNS: health centre registration, SNS 24 and fees",
+   "summary": "Foreign nationals with a residence authorisation can register at the health centre of their area; the SNS user number is assigned at first contact with a public health unit. SNS 24 is the phone line 808 24 24 24, an app and a portal; moderating fees (taxas moderadoras) apply unless exempt.",
+   "who_for": "People living in Portugal who need a número de utente and a health centre.",
+   "steps": [
+    {
+     "text": "Check eligibility: Portuguese nationals and foreign nationals with a residence authorisation can register at a centro de saúde; the page advises the centre of your area of residence.",
+     "source": "https://www.gov.pt/servicos/inscrever-se-no-centro-de-saude"
+    },
+    {
+     "text": "Número de utente: for Portuguese nationals it comes with the Cartão de Cidadão; for foreign nationals it is assigned the first time they go to a public health unit (health centre or hospital). Having the number does not guarantee the SNS covers costs.",
+     "source": "https://www.gov.pt/servicos/pedir-o-numero-de-utente-do-sns"
+    },
+    {
+     "text": "EU/EEA/Swiss residents who work or draw a pension: register with Segurança Social to get a NISS and take the proof to the health centre of your area; it enters you in the Registo Nacional de Utentes (RNU) and assigns the number.",
+     "source": "https://www.sns24.gov.pt/pt/tema/prevencao-e-cuidados-de-saude/acesso-a-cuidados-por-cidadaos-estrangeiros/"
+    },
+    {
+     "text": "EU/EEA/Swiss residents not economically active: get the registration certificate from the Câmara Municipal and take it to the health centre.",
+     "source": "https://www.sns24.gov.pt/pt/tema/prevencao-e-cuidados-de-saude/acesso-a-cuidados-por-cidadaos-estrangeiros/"
+    },
+    {
+     "text": "Documents to bring for a non-EU national: not stated on the official pages read. The SNS 24 page covers only EU/EEA/Swiss citizens.",
+     "source": "https://www.sns24.gov.pt/pt/tema/prevencao-e-cuidados-de-saude/acesso-a-cuidados-por-cidadaos-estrangeiros/"
+    },
+    {
+     "text": "Some foreigners without a Cartão de Cidadão can request NIF, NISS and SNS numbers together at 12 Espaços Cidadão if they have applied for or hold a residence authorisation, are EU citizens, or hold or applied for international protection; certified copies and a power of attorney apply to representatives.",
+     "source": "https://www.gov.pt/servicos/pedir-os-numeros-de-identificacao-fiscal-seguranca-social-e-nacional-de-utente-saude-para-estrangeiros"
+    },
+    {
+     "text": "SNS 24: phone line 808 24 24 24 (advice on symptoms and directing you to a suitable health unit), the SNS 24 app and the portal sns24.gov.pt. Opening hours and call cost are not stated on the page read.",
+     "source": "https://www.sns24.gov.pt/"
+    },
+    {
+     "text": "Fees: taxas moderadoras are charged when care is given in the SNS; the amounts are not stated on the SNS 24 page read. Exemption for economic insufficiency can be requested via the SNS 24 portal, the 808 24 24 24 line, or in person at a health centre or Balcão SNS 24; the AT assesses it, decisions are due within 10 working days and it is reviewed each 30 September.",
+     "source": "https://www.sns24.gov.pt/servico/isencao-de-taxa-moderadora/"
+    }
+   ],
+   "costs": [
+    {
+     "text": "Taxas moderadoras amounts: not stated on the official page read.",
+     "source": "https://www.sns24.gov.pt/pt/servico/taxas-moderadoras/"
+    },
+    {
+     "text": "Exempt groups listed by gov.pt: households in economic insufficiency (limit 805.70 euros average monthly income for 2026, being 1.5 times IAS of 537.13 euros), pregnant women, children up to and including 12, people with disability degree 60% or more, blood donors, living donors, transplant patients, firefighters, military personnel and some former service members.",
+     "source": "https://www.gov.pt/servicos/pedir-a-isencao-de-taxas-moderadoras-por-insuficiencia-economica"
+    },
+    {
+     "text": "Cost of registering or of the número de utente: not stated on the official pages read.",
+     "source": "https://www.gov.pt/servicos/inscrever-se-no-centro-de-saude"
+    }
+   ],
+   "official_pages": [
+    {
+     "title": "gov.pt, Inscrever-se no centro de saúde",
+     "url": "https://www.gov.pt/servicos/inscrever-se-no-centro-de-saude",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "gov.pt, Pedir o número de utente do SNS",
+     "url": "https://www.gov.pt/servicos/pedir-o-numero-de-utente-do-sns",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "SNS 24, Acesso a cuidados por cidadãos estrangeiros",
+     "url": "https://www.sns24.gov.pt/pt/tema/prevencao-e-cuidados-de-saude/acesso-a-cuidados-por-cidadaos-estrangeiros/",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "SNS 24 portal home",
+     "url": "https://www.sns24.gov.pt/",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "SNS 24, Taxas moderadoras",
+     "url": "https://www.sns24.gov.pt/pt/servico/taxas-moderadoras/",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "SNS 24, Isenção de taxa moderadora",
+     "url": "https://www.sns24.gov.pt/servico/isencao-de-taxa-moderadora/",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "gov.pt, Isenção por insuficiência económica",
+     "url": "https://www.gov.pt/servicos/pedir-a-isencao-de-taxas-moderadoras-por-insuficiencia-economica",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "gov.pt, Pedir NIF, NISS e utente para estrangeiros",
+     "url": "https://www.gov.pt/servicos/pedir-os-numeros-de-identificacao-fiscal-seguranca-social-e-nacional-de-utente-saude-para-estrangeiros",
+     "read_on": "2026-11-17"
+    }
+   ],
+   "portuguese_terms": [
+    {
+     "pt": "centro de saúde",
+     "en": "public primary care centre"
+    },
+    {
+     "pt": "número de utente",
+     "en": "SNS user number"
+    },
+    {
+     "pt": "Registo Nacional de Utentes (RNU)",
+     "en": "national register of SNS users"
+    },
+    {
+     "pt": "taxa moderadora",
+     "en": "moderating fee charged at point of care"
+    },
+    {
+     "pt": "isenção",
+     "en": "exemption"
+    },
+    {
+     "pt": "insuficiência económica",
+     "en": "economic insufficiency"
+    },
+    {
+     "pt": "Balcão SNS 24",
+     "en": "SNS 24 service counter"
+    }
+   ],
+   "gaps": [
+    "sns.gov.pt returned HTTP 405 (blocked) to the bot; not worked around. sns24.gov.pt robots.txt allows public pages.",
+    "Amounts of taxas moderadoras not stated on the SNS 24 page; the DL 113/2011 text on diariodarepublica.pt was not read.",
+    "Documents for non-EU registrants not stated on the pages read.",
+    "servicos.min-saude.pt connection was reset; not retried.",
+    "Registering at a centre does not itself assign a family doctor (RNU page, via search summary; not read in full)."
+   ]
+  },
+  {
+   "id": "aima-residency",
+   "title": "AIMA and residency in Portugal",
+   "summary": "AIMA (Agência para a Integração, Migrações e Asilo) began work on 29 October 2023 and took over the administrative migration and asylum functions of the abolished SEF. EU citizens staying over three months register at the Câmara Municipal; non-EU nationals deal with AIMA.",
+   "who_for": "EU/EEA/Swiss citizens and non-EU nationals planning to live in Portugal.",
+   "steps": [
+    {
+     "text": "Understand who is who: AIMA replaced SEF's administrative functions (reception, integration, asylum, migrants' residence matters) from 29 October 2023; border control was reorganised separately.",
+     "source": "https://www.gov.pt/noticias/agencia-para-a-integracao-migracoes-e-asilo-aima-inicia-funcoes"
+    },
+    {
+     "text": "EU citizens: if staying more than three months, ask for the certificado de registo at the Câmara Municipal of your area within 30 days after the three months. It is valid for five years or until the planned end of stay if shorter. The gov.pt guide says documents are on an AIMA page and does not list them.",
+     "source": "https://www.gov.pt/guias/residir-em-portugal"
+    },
+    {
+     "text": "Non-EU family members of EU citizens need a residence card, requested at AIMA counters with prior appointment in the same 30-day window.",
+     "source": "https://www.gov.pt/guias/residir-em-portugal"
+    },
+    {
+     "text": "Non-EU nationals: entry routes include the Schengen visa (up to 90 days in 180), the temporary stay visa, and the residence visa (allows two entries and four months to apply for a residence permit). A temporary residence permit is valid two years then renewable in three-year periods; a permanent one lasts five years and is renewable.",
+     "source": "https://www.gov.pt/guias/migrantes-vistos-e-autorizacoes-para-entrar-e-viver-em-portugal"
+    },
+    {
+     "text": "Permanent residence under article 80 of Lei 23/2007 (non-EU/EEA nationals with at least 5 years of temporary residence): submit in person at an AIMA Loja with the signed official form, by appointment.",
+     "source": "https://www.gov.pt/servicos/pedir-a-autorizacao-de-residencia-permanente"
+    },
+    {
+     "text": "How to book: the gov.pt pages say bookings are made through AIMA and point to the AIMA portal; the AIMA site could not be reached, so current booking steps are not stated here.",
+     "source": "https://www.gov.pt/servicos/pedir-a-autorizacao-de-residencia-permanente"
+    },
+    {
+     "text": "What to bring: for entry declaration, passport and visa or Schengen entry stamp; for residence permit applications, the lists are on the AIMA site and not stated on the gov.pt pages read.",
+     "source": "https://www.gov.pt/guias/migrantes-vistos-e-autorizacoes-para-entrar-e-viver-em-portugal"
+    }
+   ],
+   "costs": [
+    {
+     "text": "Registration certificate for EU citizens: 15 euros, or 7.50 euros for children under 6. Fine of 400 to 1,500 euros for staying over three months without it.",
+     "source": "https://www.gov.pt/guias/residir-em-portugal"
+    },
+    {
+     "text": "Residence card for non-EU family members of EU citizens: 15 euros.",
+     "source": "https://www.gov.pt/guias/residir-em-portugal"
+    },
+    {
+     "text": "Residence permit and visa fees: not stated on the pages read.",
+     "source": "https://www.gov.pt/guias/migrantes-vistos-e-autorizacoes-para-entrar-e-viver-em-portugal"
+    }
+   ],
+   "official_pages": [
+    {
+     "title": "gov.pt, Residir em Portugal (updated 26/10/2026 per page)",
+     "url": "https://www.gov.pt/guias/residir-em-portugal",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "gov.pt, Migrantes: vistos e autorizações (updated 02/09/2026; warns it may be outdated)",
+     "url": "https://www.gov.pt/guias/migrantes-vistos-e-autorizacoes-para-entrar-e-viver-em-portugal",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "gov.pt news, AIMA inicia funções (31/10/2023)",
+     "url": "https://www.gov.pt/noticias/agencia-para-a-integracao-migracoes-e-asilo-aima-inicia-funcoes",
+     "read_on": "2026-11-17"
+    },
+    {
+     "title": "gov.pt, Pedir a autorização de residência permanente (updated 19.10.2026; warns it may be outdated)",
+     "url": "https://www.gov.pt/servicos/pedir-a-autorizacao-de-residencia-permanente",
+     "read_on": "2026-11-17"
+    }
+   ],
+   "portuguese_terms": [
+    {
+     "pt": "certificado de registo",
+     "en": "EU citizen registration certificate"
+    },
+    {
+     "pt": "autorização de residência",
+     "en": "residence permit"
+    },
+    {
+     "pt": "cartão de residência",
+     "en": "residence card"
+    },
+    {
+     "pt": "agendamento",
+     "en": "booking an appointment"
+    },
+    {
+     "pt": "visto de residência",
+     "en": "residence visa"
+    },
+    {
+     "pt": "Câmara Municipal",
+     "en": "town hall"
+    }
+   ],
+   "gaps": [
+    "aima.gov.pt: curl failed TLS verification (certificate chain not trusted here) and WebFetch got HTTP 503; verification was not disabled. robots.txt of aima.gov.pt therefore unknown and no AIMA page read directly.",
+    "Two gov.pt pages carry an 'may be outdated' warning; AIMA is the stated source of current rules.",
+    "Booking channels and document lists for non-EU residence permits not read; search summaries mention AIMA online forms and contact centre but are not confirmed here.",
+    "A 2026 backlog in appointments is mentioned in search results only; not confirmed officially."
+   ]
+  }
+ ],
+ "offices": [
+  {
+   "name": "Loja do Cidadão",
+   "what": "Larger public service centre where several entities share one site; managed by AMA (per search summary, AMA page not read in full). Many have an Espaço Cidadão inside.",
+   "url": "https://www.gov.pt/guias/atendimento-nos-espacos-cidadao",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Espaço Cidadão",
+   "what": "Walk-in assisted counter (no appointment) offering services from several bodies, such as activating Chave Móvel Digital, changing the address on the Cartão de Cidadão, renewing a driving licence; over 1,100 across the country in Lojas, town halls, parish councils and libraries; services vary by site.",
+   "url": "https://www.gov.pt/guias/atendimento-nos-espacos-cidadao",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Finanças (Autoridade Tributária, Serviço de Finanças)",
+   "what": "Tax registration and NIF, tax matters; many services need an appointment (atendimento por marcação) booked on the Portal das Finanças or on (+351) 217 206 707.",
+   "url": "https://info.portaldasfinancas.gov.pt/pt/apoio_ao_contribuinte/Cidadaos/Dados_pessoais_familia/Dados_pessoais/NIF/Paginas/default.aspx",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Segurança Social",
+   "what": "Issues the NISS; EU/EEA workers and pensioners take NISS proof to the health centre. Own services not read directly. (The page cited was an SNS 24 page on access for foreign citizens; Segurança Social's own site is script-rendered and was not read.)",
+   "url": null,
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Junta de Freguesia",
+   "what": "Parish council; issues certificates such as proof of residence (atestado). Not stated on a gov.pt page read; based on a legal opinion in search results.",
+   "url": "https://www.ccdr-a.gov.pt/app_ext/pareceres/printpdf.php?id=1150",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "Câmara Municipal",
+   "what": "Town hall; issues the EU citizen registration certificate for stays over three months (15 euros).",
+   "url": "https://www.gov.pt/guias/residir-em-portugal",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "AIMA",
+   "what": "Agency handling migrants' residence, integration and asylum administration since 29 October 2023, after SEF was abolished; non-EU residence permits and cards, by appointment.",
+   "url": "https://www.gov.pt/noticias/agencia-para-a-integracao-migracoes-e-asilo-aima-inicia-funcoes",
+   "read_on": "2026-11-17"
+  },
+  {
+   "name": "IRN (Conservatória, Instituto dos Registos e do Notariado)",
+   "what": "Cartão de Cidadão, passports, nationality, civil, property, vehicle and commercial registries; booking via justica.gov.pt, Linha Registo 211 950 500 and Linha Cartão de Cidadão 210 990 111.",
+   "url": "https://irn.justica.gov.pt/",
+   "read_on": "2026-11-17"
+  }
+ ],
+ "portals_checked": [
+  {
+   "host": "www.portaldasfinancas.gov.pt / info.portaldasfinancas.gov.pt",
+   "robots": "none",
+   "terms_url": null,
+   "notes": "No robots.txt (404 on info; HTML shell on www). Pages read: NIF page, leaflet, English representative page. No terms page found."
+  },
+  {
+   "host": "www.gov.pt (ePortugal)",
+   "robots": "none",
+   "terms_url": null,
+   "notes": "robots.txt returned 404 (app shell). Read through WebFetch; eportugal.gov.pt redirects to www.gov.pt. Terms page not found."
+  },
+  {
+   "host": "www.sns24.gov.pt",
+   "robots": "allowed",
+   "terms_url": null,
+   "notes": "robots.txt allows public pages; disallows /login/ and /area-reservada/. Terms page not located."
+  },
+  {
+   "host": "www.sns.gov.pt",
+   "robots": "unreachable",
+   "terms_url": null,
+   "notes": "HTTP 405 with encoded body to the bot; recorded as a gap, not worked around."
+  },
+  {
+   "host": "aima.gov.pt",
+   "robots": "unreachable",
+   "terms_url": null,
+   "notes": "TLS verification failed with curl; WebFetch HTTP 503. robots.txt unknown. Not worked around."
+  },
+  {
+   "host": "www.seg-social.pt",
+   "robots": "allowed",
+   "terms_url": null,
+   "notes": "robots.txt allows all. Pages are script-rendered; only a cookie notice was readable. Cookie policy linked under terms; URL not captured."
+  },
+  {
+   "host": "www.bportugal.pt",
+   "robots": "unreachable",
+   "terms_url": null,
+   "notes": "Browser-check interstitial returned; not worked around."
+  },
+  {
+   "host": "clientebancario.bportugal.pt",
+   "robots": "allowed",
+   "terms_url": null,
+   "notes": "robots.txt disallows admin/search paths only; no payer step guide found."
+  },
+  {
+   "host": "www.sibs.com",
+   "robots": "allowed",
+   "terms_url": null,
+   "notes": "robots.txt allows normal pages. docs.pay.sibs.com returned 403 to WebFetch; recorded as a gap."
+  },
+  {
+   "host": "justica.gov.pt / irn.justica.gov.pt",
+   "robots": "allowed",
+   "terms_url": null,
+   "notes": "robots.txt disallows system folders such as /Portals/ and /DesktopModules/; public pages read are allowed."
+  },
+  {
+   "host": "www.ama.gov.pt / www.arte.gov.pt",
+   "robots": "allowed",
+   "terms_url": null,
+   "notes": "robots.txt disallows wp-admin and similar; pages not read in full."
+  }
+ ]
+}
