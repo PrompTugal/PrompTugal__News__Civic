@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T22:12Z",
+  "updated": "2026-11-18T22:35Z",
   "run": "2026-11-18 19:24 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -17,6 +17,7 @@
   "live": "v0.1.28 (ff65001), deployed and checked 22:10 UTC",
   "next": [
     "Install the shared sites bar when conductor.b@ publishes it (vendored, pinned by version and sha256, registry rendered with escaping, https *.promptugal.news only), replacing the current rail.",
+    "London section once data.b@'s Contracts Finder and London Datastore feeds are on data.promptugal.news.",
     "A Content-Security-Policy for the site, tested with the meter and the obs lane.",
     "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
     "Storm items 1 and 2: /cases/storm-charles/.",
@@ -48,5 +49,6 @@
   "new_sources": "Dinis yes (~15:40 UTC, Website repo board/guidance/2026-11-18-capture-the-weak-signals.md, relayed by conductor.b@): base.gov.pt/IMPIC contracts, Diário da República, Portal da Justiça company acts, CORDIS, PRR transparency, collected on data.promptugal.news. Civic's position: data.b@ owns the one shared collector; civic's tools/extract-base.mjs (IMPIC yearly files from dados.gov.pt, councils and municipal companies by NIF, private individuals withheld) is offered as its starting point; civic's pages move to data.b@'s API as each source lands, keeping the built page as fallback and the scheduled rebuild with it.",
   "government_track": "Dinis (~16:00 UTC, Website repo board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md): civic.b@ leads the government track: the Diário da República and other public records linked as a semantic graph to the places we track (data.b@ collects, library.b@ links), use cases on tech, AI and reducing bureaucracy. Plan: (1) a /sources/ home page per civic source (IMPIC contracts, councils' sites, DGAL list, service pages) under the pipeline standard: raw kept and timestamped, JSON, visualisation, analysis, OpenAPI; (2) ask data.b@ for the Diário da República collector (2nd series notices by entity: the 16 municipalities and their companies); (3) a graph view council - contract - company - DR notice - place; (4) use cases: where the councils buy tech and AI (CPV 48, 72), and where a bureaucratic step could be removed.",
   "every_wake": "Read https://library.promptugal.news/api/v1/requests/index.json (civic's: /api/v1/requests/civic.b-at-promptugal.dinis.json) and answer each request to civic. 2026-11-18 ~15:55 UTC: 5 open requests, none to civic (civic's file not yet published: 404).",
-  "preview": "Dinis ~22:00 UTC, relayed by conductor.b@: /preview.svg at each build, an infographic of civic's own numbers with provenance and licence, plus /preview.png. Done in v0.1.28: /preview.svg (1200x630, six figures: 3,396 council contracts in 2026, 304.3 M€ with 51% direct awards, 177 firms at 3+ councils, 14 municipal companies, 9/16 council sites read, 5 guides; source IMPIC open data read 17 Nov 2026, Outra (Domínio Público); our calculation CC BY 4.0), /api/v1/preview.json with the same figures and sources, /preview.png rendered by tools/preview-png.mjs, og:image on every page. /version.json current. Shared sites bar: waiting for conductor.b@ to publish it."
+  "preview": "Dinis ~22:00 UTC, relayed by conductor.b@: /preview.svg at each build, an infographic of civic's own numbers with provenance and licence, plus /preview.png. Done in v0.1.28: /preview.svg (1200x630, six figures: 3,396 council contracts in 2026, 304.3 M€ with 51% direct awards, 177 firms at 3+ councils, 14 municipal companies, 9/16 council sites read, 5 guides; source IMPIC open data read 17 Nov 2026, Outra (Domínio Público); our calculation CC BY 4.0), /api/v1/preview.json with the same figures and sources, /preview.png rendered by tools/preview-png.mjs, og:image on every page. /version.json current. Shared sites bar: waiting for conductor.b@ to publish it.",
+  "london": "Dinis ~22:20 UTC (Website repo board/guidance/2026-11-18-london.md, read at source 22:25 UTC): London is the first place beyond Portugal. Civic's part: (1) done now: every council record in the API says its country (PT, Portugal), region and currency, so a place is not assumed Portuguese; (2) when data.b@'s UK feeds land (London Datastore, Contracts Finder, data.police.uk area totals, London Air Quality Network), a London section: public contracts of the London boroughs and the GLA from Contracts Finder (Open Government Licence, attributed), with the same rules as the Algarve (public bodies and companies only, no private individuals). Checked 22:27 UTC: no UK source on data.promptugal.news yet."
 }

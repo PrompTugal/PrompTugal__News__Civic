@@ -498,8 +498,11 @@ export function generate() {
       contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
   };
   put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/billing/meter.json', '/api/v1/openapi.json'] });
-  put('councils.json', { ...meta, councils: COUNCIL_IDS.map(id => { const x = summarise(by26[id]); return { id, name: whoName(id), contracts_2026: x.n, value_eur_2026: Math.round(x.total), direct_award_share_2026: x.n ? +(x.direct / x.n).toFixed(3) : null, site_read: !!councilOf(id).site, href: `/api/v1/councils/${id}.json` }; }), sources: [baseSrc] });
-  for (const id of COUNCIL_IDS) put(`councils/${id}.json`, { ...meta, ...councilOut(id) });
+  // Dinis, 18 Nov 2026 ~22:20 UTC (Website repo board/guidance/2026-11-18-london.md): London is the first place beyond Portugal,
+  // so no record assumes a place is Portuguese: each one says its country, region and currency.
+  const PLACE_PT = { country: { code: 'PT', name: 'Portugal' }, region: 'Algarve', currency: 'EUR' };
+  put('councils.json', { ...meta, councils: COUNCIL_IDS.map(id => { const x = summarise(by26[id]); return { id, name: whoName(id), ...PLACE_PT, contracts_2026: x.n, value_eur_2026: Math.round(x.total), direct_award_share_2026: x.n ? +(x.direct / x.n).toFixed(3) : null, site_read: !!councilOf(id).site, href: `/api/v1/councils/${id}.json` }; }), sources: [baseSrc] });
+  for (const id of COUNCIL_IDS) put(`councils/${id}.json`, { ...meta, ...PLACE_PT, ...councilOut(id) });
   put('companies.json', { ...meta, about: 'Companies with contracts at three or more of the Algarve\'s 16 councils in 2026. Private individuals are never listed.', companies: multi.map(x => ({ nif: x.nif, name: x.name, councils: x.councils.size, contracts: x.n, value_eur: Math.round(x.v), href: `/api/v1/companies/${x.nif}.json` })), sources: [baseSrc] });
   for (const x of multi) put(`companies/${x.nif}.json`, { ...meta, nif: x.nif, name: x.name, page: `${SITE}/map/${x.nif}/`,
     by_council: [...x.councils].map(id => { const cs = x.contracts.filter(c => c.council === id); return { council: id, name: whoName(id), contracts: cs.length, value_eur: Math.round(cs.reduce((t, c) => t + (c.price || 0) / Math.max(1, c.suppliers.length), 0)) }; }).sort((a, b) => b.value_eur - a.value_eur),
