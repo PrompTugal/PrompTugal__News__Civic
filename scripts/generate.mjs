@@ -118,6 +118,9 @@ function page({ path, title, description, kicker, blocks, prov = {}, sources = [
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/civic.css">
+<meta property="og:image" content="${SITE}/preview.png">
+<meta property="og:title" content="${esc(fullTitle)}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/meter/meter.css">
 <meta name="page-type" content="${pageType(path)}">
 <script defer src="/assets/meter/meter.js"></script>
@@ -576,6 +579,39 @@ export function generate() {
     ] }],
     ['p', 'Private individuals who are suppliers are never named, in the API as on the pages; they still count in totals. A contract shared by several suppliers is split equally between them in company totals (our calculation).'],
   ], prov: { code: 'scripts/generate.mjs writes these JSON files from data/ at every build, with the same numbers as the pages.' } });
+
+  // the sites bar's preview (Dinis, 18 Nov 2026 ~22:00 UTC: an infographic of each site's own live numbers, with provenance
+  // and licence): /preview.svg at every build; /preview.png from it by tools/preview-png.mjs (a social card).
+  {
+    const xe = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const mc = munis.companies.filter(m => m.nif).length;
+    const read = (councilsData.councils || []).filter(c => c.site).length;
+    const figs = [
+      [int(all26.n), 'council contracts in 2026'],
+      [meur(all26.total).replace(' million €', ' M€'), 'contracted, ' + pct(all26.direct / all26.n) + ' direct awards'],
+      [String(multi.length), 'firms at 3+ councils'],
+      [String(mc), 'municipal companies mapped'],
+      [`${read}/16`, 'council sites read'],
+      [String(services.guides.length + 1), 'public-service guides'],
+    ];
+    const W = 1200, H = 630;
+    const cells = figs.map(([n, l], i) => { const x = 60 + (i % 3) * 370, y = 230 + Math.floor(i / 3) * 170;
+      return `<text x="${x}" y="${y}" font-family="Georgia,serif" font-size="64" fill="#121317">${xe(n)}</text><text x="${x}" y="${y + 40}" font-family="Arial,sans-serif" font-size="22" fill="#555">${xe(l)}</text>`; }).join('');
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="t d">
+<title id="t">PrompTugal.news Civic: public money and public services, explained</title>
+<desc id="d">${xe(figs.map(f => f.join(' ')).join('; '))}. Source: IMPIC open data (dados.gov.pt), read ${xe(BASE_SRC.read_on)}; our calculation, CC BY 4.0. Independent, not an official site.</desc>
+<rect width="${W}" height="${H}" fill="#f6f3ec"/><rect width="${W}" height="10" fill="#c52830"/>
+<text x="60" y="95" font-family="Georgia,serif" font-size="46" fill="#121317">PrompTugal.news <tspan fill="#006600" font-family="Arial,sans-serif" font-size="34" font-weight="bold">· CIVIC</tspan></text>
+<text x="60" y="140" font-family="Arial,sans-serif" font-size="26" fill="#333">Public money, public services and bureaucracy in the Algarve, explained and cross-mapped</text>
+${cells}
+<text x="60" y="572" font-family="Arial,sans-serif" font-size="18" fill="#666">Independent, not a government site. Source: IMPIC open data (dados.gov.pt, Outra (Domínio Público)), read ${xe(day(BASE_SRC.read_on))},</text>
+<text x="60" y="598" font-family="Arial,sans-serif" font-size="18" fill="#666">and the councils' own sites. Our calculation, CC BY 4.0. civic.promptugal.news, version __VERSION__.</text>
+</svg>
+`;
+    writeFileSync(join(OUT, 'preview.svg'), svg);
+    put('preview.json', { ...meta, about: 'The figures in /preview.svg, for the PrompTugal.news sites bar.', figures: figs.map(([value, label]) => ({ value, label })), sources: [baseSrc] });
+  }
 
   // llms.txt and sitemap.xml
   const llms = `# PrompTugal.news Civic\n\n> Independent (not a government site): public money, public services and bureaucracy in Portugal, explained and cross-mapped, starting with the Algarve's 16 councils. Every page has a markdown twin at <path>index.md. Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${nodash(p.title)}](${SITE}${p.path}index.md): ${nodash(p.description)}`).join('\n')}\n\n## Data\n\n- [Contracts 2026](${SITE}/data/procurement/base-2026.json)\n- [Contracts 2025](${SITE}/data/procurement/base-2025.json)\n- [Councils](${SITE}/data/councils.json)\n- [Services](${SITE}/data/services.json)\n- [API (OpenAPI 3.1)](${SITE}/api/v1/openapi.json): one JSON GET per council, company and service guide\n`;
