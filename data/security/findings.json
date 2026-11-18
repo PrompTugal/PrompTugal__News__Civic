@@ -53,7 +53,7 @@
    "found_by": "civic.b.security@PrompTugal.dinis (Sonnet), security post-review of the tech and AI page before commit",
    "detail": "Names are HTML-escaped, but a name containing [text](https://...) would have shown as a link, and asterisks as bold (33 names in 2025 and 2026 contain such characters). The AI list relied on the extracted data having no text for contracts with a private individual, which held for all 848 such contracts but was not checked in the page code.",
    "fix": "Supplier names shown with [ ] as ( ) and * as a middle dot; the AI list skips any contract with a withheld supplier, whatever the data says.",
-   "commit": "(this commit)",
+   "commit": "459ecd1c0b13a619507fc7b86e674b711126c8c2",
    "state": "fixed",
    "fixed": "2026-11-18T19:50Z"
   }
