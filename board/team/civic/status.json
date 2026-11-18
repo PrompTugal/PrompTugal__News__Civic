@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T09:45Z",
+  "updated": "2026-11-18T10:05Z",
   "run": "2026-11-18, first run on account B (fixes first)",
   "observability_lane": "civic",
   "observability_note": "For conductor.b@ to relay to account A's observability@: every page loads assets/obs/obs.js; each event carries lane \"civic\" and site civic.promptugal.news. The vault, drain key and shared site lanes are read at run time from https://promptugal.news/assets/obs/obs.json. Civic's own append tokens, once issued, go in src/assets/obs/obs.json lanes.civic (public, write-only).",
@@ -16,14 +16,15 @@
   },
   "live": "v0.1.4 before this run; this run's push to dev releases the next v0.1.N",
   "next": [
-    "Retry the nine councils that reset the connection, once, from this network.",
-    "Link the largest contracts to the minutes (atas) that decided them.",
-    "Municipal companies' contracts on each council page."
+    "Link the largest contracts to the minutes (atas) that decided them, starting with the 9 councils whose minutes we can read.",
+    "Municipal companies' contracts on each council page.",
+    "The 7 councils that still refuse: once from a different network, if a session has one."
   ],
   "asks": [
     "Dinis: allow this session to run pki-agent.mjs (keygen --session), or say which key to use. Nothing is signed until then.",
     "Dinis: ask observability@ (account A) to issue civic's own append lane tokens; until then civic's events, marked lane civic, go to the shared site lanes.",
     "Dinis: pick front page A, B or C at https://civic.promptugal.news/design/ (not waited on).",
     "Dinis: keep or change the rule that withholds suppliers who are private individuals (392 of 3,396 contract descriptions)."
-  ]
+  ],
+  "done_after_fixes": "Retried the nine blocked councils once: Castro Marim and Vila do Bispo answered and are mapped (9 of 16 council sites read); 7 still reset the connection."
 }
