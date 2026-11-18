@@ -79,7 +79,7 @@ footer{border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);padd
 .nr-graph-fig svg{width:100%;height:auto;max-height:420px;border:1px solid var(--rule);background:var(--card)}
 .nr-graph-fig svg text{fill:var(--ink)}
 .tbl,.table{overflow-x:auto}
-/* meter.css hides the chip under 768px (promptugal.news shows it in another row there); here it stays visible on a phone:
-   Dinis, 17 Nov 2026, "I need to see the value of my budget, always". */
+/* the "Free to read" chip stays visible on a phone:
+   Dinis, 18 Nov 2026: a sub-site's chip says it is free. */
 @media (max-width:767px){.mast .tools .tool.meter{display:inline-flex !important}.mast .tools{width:100%}}
 .takedown{display:block;margin-top:.5rem}
