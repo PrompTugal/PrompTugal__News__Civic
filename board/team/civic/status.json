@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T15:40Z",
+  "updated": "2026-11-18T15:50Z",
   "run": "2026-11-18 13:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -16,6 +16,7 @@
   },
   "live": "v0.1.4 before this run; this run's push to dev releases the next v0.1.N",
   "next": [
+    "Council pages: a 'latest contracts' section that loads https://data.promptugal.news/api/v1/base-gov-pt/latest.json in the browser (text only, links http(s) only), the built table as fallback; then the scheduled rebuild. At 15:47 UTC the endpoint answered 404 (data.b@'s deploy not out yet).",
     "Storm items 1 and 2: the incident record and the decisions viz at /cases/storm-charles/, reading data.promptugal.news.",
     "Link the largest contracts to the minutes (atas) that decided them.",
     "Put the municipal companies' suppliers on the cross-map."
