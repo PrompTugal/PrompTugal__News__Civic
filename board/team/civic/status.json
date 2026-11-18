@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T19:55Z",
+  "updated": "2026-11-18T22:12Z",
   "run": "2026-11-18 19:24 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -14,8 +14,9 @@
     "4_ipma_free": "nothing to do: no page on this site is built on IPMA data. The rule is written in scripts/generate.mjs next to pageType.",
     "5_observability": "done: obs.js on every page, lane civic."
   },
-  "live": "v0.1.4 before this run; this run's push to dev releases the next v0.1.N",
+  "live": "v0.1.28 (ff65001), deployed and checked 22:10 UTC",
   "next": [
+    "Install the shared sites bar when conductor.b@ publishes it (vendored, pinned by version and sha256, registry rendered with escaping, https *.promptugal.news only), replacing the current rail.",
     "A Content-Security-Policy for the site, tested with the meter and the obs lane.",
     "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
     "Storm items 1 and 2: /cases/storm-charles/.",
@@ -46,5 +47,6 @@
   "inner_passes": "From the next wake (Dinis, 18 Nov ~15:05 UTC, Website repo board/guidance/2026-11-18-inner-passes-and-security.md, relayed by conductor.b@): Sonnet sub-agent passes: opening conductor pass, security pre-review, the work, security post-review of the diff (AppSec when code changes), closing conductor pass. Threat models to write at docs/threat-models/: the IMPIC data pull (tools/extract-base.mjs), the obs lane (tools/obs-setup-civic.py, assets/obs/obs.js), the rebuild when added; linked from /how/.",
   "new_sources": "Dinis yes (~15:40 UTC, Website repo board/guidance/2026-11-18-capture-the-weak-signals.md, relayed by conductor.b@): base.gov.pt/IMPIC contracts, Diário da República, Portal da Justiça company acts, CORDIS, PRR transparency, collected on data.promptugal.news. Civic's position: data.b@ owns the one shared collector; civic's tools/extract-base.mjs (IMPIC yearly files from dados.gov.pt, councils and municipal companies by NIF, private individuals withheld) is offered as its starting point; civic's pages move to data.b@'s API as each source lands, keeping the built page as fallback and the scheduled rebuild with it.",
   "government_track": "Dinis (~16:00 UTC, Website repo board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md): civic.b@ leads the government track: the Diário da República and other public records linked as a semantic graph to the places we track (data.b@ collects, library.b@ links), use cases on tech, AI and reducing bureaucracy. Plan: (1) a /sources/ home page per civic source (IMPIC contracts, councils' sites, DGAL list, service pages) under the pipeline standard: raw kept and timestamped, JSON, visualisation, analysis, OpenAPI; (2) ask data.b@ for the Diário da República collector (2nd series notices by entity: the 16 municipalities and their companies); (3) a graph view council - contract - company - DR notice - place; (4) use cases: where the councils buy tech and AI (CPV 48, 72), and where a bureaucratic step could be removed.",
-  "every_wake": "Read https://library.promptugal.news/api/v1/requests/index.json (civic's: /api/v1/requests/civic.b-at-promptugal.dinis.json) and answer each request to civic. 2026-11-18 ~15:55 UTC: 5 open requests, none to civic (civic's file not yet published: 404)."
+  "every_wake": "Read https://library.promptugal.news/api/v1/requests/index.json (civic's: /api/v1/requests/civic.b-at-promptugal.dinis.json) and answer each request to civic. 2026-11-18 ~15:55 UTC: 5 open requests, none to civic (civic's file not yet published: 404).",
+  "preview": "Dinis ~22:00 UTC, relayed by conductor.b@: /preview.svg at each build, an infographic of civic's own numbers with provenance and licence, plus /preview.png. Done in v0.1.28: /preview.svg (1200x630, six figures: 3,396 council contracts in 2026, 304.3 M€ with 51% direct awards, 177 firms at 3+ councils, 14 municipal companies, 9/16 council sites read, 5 guides; source IMPIC open data read 17 Nov 2026, Outra (Domínio Público); our calculation CC BY 4.0), /api/v1/preview.json with the same figures and sources, /preview.png rendered by tools/preview-png.mjs, og:image on every page. /version.json current. Shared sites bar: waiting for conductor.b@ to publish it."
 }
