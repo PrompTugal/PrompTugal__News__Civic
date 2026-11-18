@@ -108,9 +108,11 @@
         window.addEventListener('scroll', scrolled, { passive: true })
 
         let cfgP = null
-        // civic: this site's obs.json names its lane and points at promptugal.news's obs.json (config_from) for the vault,
+        // civic: this site's obs.json holds civic's own vault, lanes and drain key (since 18 Nov 2026); promptugal.news's obs.json
+        // (config_from) gives only the geo lookup list. Without a vault_id here, it falls back to that file's vault,
         // the drain's public key and the shared lanes, so no token is copied here and a rotation there reaches this site
         const cfg = () => cfgP || (cfgP = fetch(base + 'obs.json', { cache: 'no-cache' }).then(r => r.json()).then(own => !own.config_from ? own
+            : own.vault_id ? fetch(own.config_from, { cache: 'no-cache', credentials: 'omit' }).then(r => r.json()).then(shared => Object.assign({}, own, { geo: own.geo || shared.geo }), () => own)
             : fetch(own.config_from, { cache: 'no-cache', credentials: 'omit' }).then(r => r.json()).then(shared => Object.assign({}, shared,
                 { enabled: own.enabled !== false && shared.enabled, lane: own.lane, lanes: Object.assign({}, shared.lanes, own.lanes || {}) }))))
         const send = async ev => {
