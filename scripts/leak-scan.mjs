@@ -87,7 +87,10 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
-  // (none yet)
+  ['src/assets/obs/obs.json', 'long high-entropy string', "civic's observability config: four append-only lane tokens and the drain's public encryption key, public by design as on promptugal.news (Dinis, 18 Nov 2026, in civic.b@'s session: 'Those tokens are public by design'). A token can only append to its lane; the key can only encrypt. The vault key, enum key and drain private key are never here."],
+  ['src/assets/obs/obs.json', 'public key outside team/keys', "civic's observability config: four append-only lane tokens and the drain's public encryption key, public by design as on promptugal.news (Dinis, 18 Nov 2026, in civic.b@'s session: 'Those tokens are public by design'). A token can only append to its lane; the key can only encrypt. The vault key, enum key and drain private key are never here."],
+  ['_site/assets/obs/obs.json', 'long high-entropy string', 'the built copy of src/assets/obs/obs.json (same reason)'],
+  ['_site/assets/obs/obs.json', 'public key outside team/keys', 'the built copy of src/assets/obs/obs.json (same reason)'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 

@@ -1,10 +1,21 @@
 {
-  "about": "civic.promptugal.news's page views and reads, sent by assets/obs/obs.js (copied from PrompTugal__News__Website on 18 November 2026, at Dinis's word: \"add observability to all the other sites\") into PrompTugal.news's observability vault, drained by observability@PrompTugal.dinis on account A. The vault, the drain's public key and the shared write-only lanes are read at run time from promptugal.news's own obs.json (config_from), so none is copied here. This site's lane is 'civic': every event says so, and once observability@ issues civic's own append tokens they go in lanes.civic.",
+  "about": "civic.promptugal.news's page views and reads, sent by assets/obs/obs.js into civic's own observability vault, made by civic.b@PrompTugal.dinis on 18 November 2026 at Dinis Cruz's word (tools/obs-setup-civic.py). Public on purpose (Dinis: 'Those tokens are public by design'): each append token can only append to its lane, and the key can only encrypt. The drain is conductor.b@PrompTugal.dinis's (credentials sealed to its key). The geo lookup list is read from promptugal.news's obs.json (config_from).",
   "enabled": true,
   "lane": "civic",
   "config_from": "https://promptugal.news/assets/obs/obs.json",
   "lanes": {
-    "civic": []
+    "civic": [
+      "b246467831172805837d8d56a6efa39323a71bea1e2c5522d938c14b6a06e51d",
+      "b46a1cc51fc48a58119182dd80201f9f994493c55a0662d295814b91cae85ae4",
+      "ad8b25cce258c691021f1f0c145e3edf6153fa1b2bc70ab317532ac6944ef7ef",
+      "f59cd48b6eb21ccecefdf38c3c0529f29e1b67c4f6f79b2cbc4918f3ae26cf35"
+    ]
   },
-  "what": "This site counts page views and reading time, with no IP address kept, no cookie and no user-agent string, as promptugal.news does. Do Not Track, Global Privacy Control and the Pause switch in the footer stop it. What is counted: https://promptugal.news/newsroom/observability/index.html"
+  "what": "This site counts page views and reading time, with no IP address kept, no cookie and no user-agent string, as promptugal.news does. Do Not Track, Global Privacy Control and the Pause switch in the footer stop it. What is counted: https://promptugal.news/newsroom/observability/index.html",
+  "endpoint": "https://dev.send.sgraph.ai",
+  "vault_id": "a334roim",
+  "recipient": {
+    "fingerprint": "sha256:4f38d59943029b43",
+    "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAp7/cXhJInTIxUnNaGhkU\nYAqfpSVQiSSXhPZdPQZ1auq1RsQ5FGBLDZ+JbYHMFQpxt/71lGg4SlLgY82j0hw0\ninGFlokxNmocUpV29E/CuPP7oEPQCM8mMHCrsLlb1kJWWq66+urCKC1u5dX8+FJP\nX+fXWLbvBqXydWkeQTBaHu8t2zRqQ7rsk4Dtu+/lBqRT84NBUQE3OhV9k4ynrRPm\nR2aUr5hqmN91naH8cT+qk0UUSiN3jwTLxVwVORga6SMgoNgiNt2PZxSILJHTGpnh\nwsOdyv/SR7F4FlTrIc6vdrBN9XVcOepIp0jhsbM/cQt4ZtRH6t3XOxrpmISvblIg\nvdY+Qr51FklanM/qhuMuU6Ox6k6YBUCDpcMEGzBKEqv5o71NJLD/dUmKkmdbuliN\n0i6YPmUFR+1IbQ7EuO+fMLoygL4bOouSBZti3zhu4qcucpNewWk7ONcjk6/X83gO\n4/nRmbxAWSIHVZXXnd2PupC5sJq6BpTP6+f3z7Qn9RdlL+Q/TwNOM9aguAiqZR5T\ndOttQHJHM0NeMkjDuNbDDlx/orJA+5sRs33RHun67u+2KrcOSWYU9gpKP+Bu80aX\nV/T3i4Dgpnlt/zEmBK/W0JrDN7WV2Y9F68CAHY/JiLokMipu+QKjjTDpckJ1+3iK\nvrgdQSjF2rNdAwdLlZx0hxsCAwEAAQ==\n-----END PUBLIC KEY-----\n"
+  }
 }

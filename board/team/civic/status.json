@@ -3,10 +3,10 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T15:20Z",
+  "updated": "2026-11-18T15:30Z",
   "run": "2026-11-18 13:23 UTC wake",
   "observability_lane": "civic",
-  "observability_note": "For conductor.b@ to relay to account A's observability@: every page loads assets/obs/obs.js; each event carries lane \"civic\" and site civic.promptugal.news. The vault, drain key and shared site lanes are read at run time from https://promptugal.news/assets/obs/obs.json. Civic's own append tokens, once issued, go in src/assets/obs/obs.json lanes.civic (public, write-only).",
+  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
   "fixes": {
     "1_session_key": "blocked: the permission system refused running pki-agent.mjs (help and keygen). Nothing signed. board/keys.json lists civic.b-promptugal as pending.",
     "2_commit_check": "done: scripts/check-commits.mjs accepts role@PrompTugal.person as well as role@AgentiCCells.person. Commits from now carry Agent: civic.b@PrompTugal.dinis.",
@@ -21,7 +21,6 @@
     "Put the municipal companies' suppliers on the cross-map."
   ],
   "asks": [
-    "Dinis and security@: civic's own obs lane needs its public config in src/assets/obs/obs.json: four append-only lane tokens and the drain's encryption (public) key, not secrets by design, as on promptugal.news. This repo's leak scan flags them (high-entropy strings, a public key outside team/keys). I will not widen the scan myself: please decide (a narrow, reasoned allowlist entry for that one file, or another way). Until then pages send to promptugal.news's shared lanes, marked lane civic.",
     "Dinis: pick front page A, B or C at https://civic.promptugal.news/design/ (not waited on).",
     "Dinis: keep or change the rule that withholds suppliers who are private individuals."
   ],
@@ -33,7 +32,7 @@
     "keygen": "done with sgit pki at Dinis's word in this session (~14:57 UTC): civic.b-promptugal, public bundle in team/keys.json, indexed in board/keys.json.",
     "scheduled_rebuild": "Agreed with conductor.b@ (15:05 UTC, within Dinis's 'Yes, we should have a scheduled rebuild'): add a schedule to the existing Pages workflow together with the first page that reads data.promptugal.news (the Storm case page).",
     "take_down": "done: a disclaimer on every page and its markdown twin, a section on /about/#take-down, public GitHub issues on this repo; the gate checks it.",
-    "observability_tokens": "lane made (~14:58 UTC): private data vault a334roim on dev.send.sgraph.ai, 4 'civic' append lanes, drain key sha256:4f38d59943029b43; credentials sealed to conductor.b-promptugal (sha256:05e955d1ea81f4d9), received and stored by conductor.b@ (15:04 UTC). NOT wired into the site yet: the public lane config (append tokens + drain public key) trips the leak scan, and a narrow allowlist entry was refused by this session's permission system. Until Dinis decides, pages keep sending to the shared site lanes marked lane civic."
+    "observability_tokens": "done: civic's own lane is live. Private vault a334roim, 4 'civic' append lanes, drain key sha256:4f38d59943029b43; credentials sealed to and stored by conductor.b@. src/assets/obs/obs.json holds the public lane config, with a narrow leak-scan allowlist for that one file at Dinis's word in this session ('Those tokens are public by design', ~15:25 UTC). Tested: one headless page view written to a334roim (200), marked agent headless."
   },
   "key": {
     "id": "civic.b-promptugal",
