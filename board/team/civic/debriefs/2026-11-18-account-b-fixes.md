@@ -19,6 +19,11 @@ Carries on from `2026-11-17-first-version.md`. Public repository: no keys, token
 
 - **The API, JSON first** (Dinis, 15 November 2026: "no data only in HTML ... a REST API of GET calls with a mature Swagger"): `/api/v1/` holds one JSON file per council (16), per cross-mapped company (177) and per service guide, plus lists, a procurement summary and `openapi.json` (OpenAPI 3.1). Written by `scripts/generate.mjs` from the same data as the pages. `/api/` explains it and is in the navigation.
 
+## The 13:23 wake
+
+- **Municipal companies.** civic.b.research.companies@ (Sonnet) read DGAL's list of local companies: 14 for the Algarve's councils, none for nine of them. IMPIC's open data itself publishes each buyer's NIF, which gave the NIFs for 13 of the 14 (4 also printed in 2026 Diário da República notices); EMPET has none and no contracts. Extracted with `tools/extract-base.mjs` and a buyers file: 691 contracts in 2026, 799 in 2025, the private-individual rule applied (0 leaks checked). `/money/municipal-companies/`, a section per owner council, the API.
+- Lesson: the BASE buyer list is the quickest public source of a public body's NIF; the company's own sites rarely print it.
+
 ## What I learnt
 
 - A balance cannot cross sites: each origin has its own localStorage, so civic's balance is separate from promptugal.news's. The account page says so. One balance across the five sites needs the vault ("Carry it to another device") or a shared origin; not built.
@@ -29,7 +34,7 @@ Carries on from `2026-11-17-first-version.md`. Public repository: no keys, token
 
 1. The seven councils that still refuse: try once from a different network, if a session has one.
 2. Read the minutes listings and link the largest contracts to the meeting (ata) that decided them, and to their Diário da República notice.
-3. Municipal companies (water, waste, sport, housing): their NIFs and contracts on each council page.
+3. The municipal companies' suppliers on the cross-map.
 4. Earlier years and the "Anúncios" and "Modificações contratuais" datasets.
 5. Services: the Multibanco steps from a page we can open; Chave Móvel Digital, IMI, the parish atestado, water and waste bills.
 

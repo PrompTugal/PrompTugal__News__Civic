@@ -15,6 +15,9 @@ const councilsData = read('data/councils.json', { councils: [] });
 const services = read('data/services.json', { guides: [], offices: [] });
 const portals = read('data/portals.json', { portals: [] });
 const glossary = read('data/glossary.json', { terms: [] });
+// The councils' municipal companies (civic.b@, 18 Nov 2026): they buy under their own NIF, outside the councils' totals.
+const munis = read('data/municipal-companies.json', { companies: [] });
+const coBase = { 2026: read('data/procurement/companies-2026.json', { contracts: [] }), 2025: read('data/procurement/companies-2025.json', { contracts: [] }) };
 
 const COUNCIL_IDS = places.places.map(p => p.id);
 const placeOf = id => places.places.find(p => p.id === id);
@@ -182,6 +185,11 @@ const whoName = id => (placeOf(id) || { name: id }).name;
 const contractLabel = c => c.object || `(object withheld: a supplier is a private individual) ${c.cpv[0] ? c.cpv[0].desc : ''}`;
 const supplierCell = c => c.suppliers.map(s => s.withheld ? 'a private individual (name withheld)' : (companyPages.has(s.nif) ? `[${s.name}](/map/${s.nif}/)` : s.name)).join('; ');
 const companyPages = new Set(multi.map(s => s.nif));
+const muniOf = id => munis.companies.filter(c => c.council === id);
+const muniContracts = (nif, y) => coBase[y].contracts.filter(c => c.buyer === nif);
+const muniRows = list => list.map(m => { const a = summarise(muniContracts(m.nif, 2026)), b = summarise(muniContracts(m.nif, 2025));
+  return { m, a, b }; });
+const MUNI_SRC = { title: 'DGAL, list of local companies (Lista das empresas locais), dated 12 February 2025', url: (munis.sources || [{}])[0].url, read_on: munis.read_on };
 
 // ---------------------------------------------------------------- the front page
 function frontBlocks() {
@@ -242,7 +250,7 @@ function moneyBlocks() {
     ['h2', 'Where the decisions are written down'],
     ['p', 'A contract is the end of a chain. Before it, the council\'s executive (the Câmara Municipal) decides in a meeting, minuted in an **ata**; big decisions go to the elected Assembleia Municipal; tenders are announced in the **Diário da República** (2nd series) and the budget is approved each year. Each council page lists where that council publishes its minutes, agendas, notices and budget, as far as we could read them.'],
     ['p', councilsData.diario_da_republica && councilsData.diario_da_republica.how_to ? `**Searching the Diário da República.** ${councilsData.diario_da_republica.how_to}` : '**Searching the Diário da República.** Its site at diariodarepublica.pt is an application that needs JavaScript; search by the issuing entity (Município de ...) in the 2nd series.'],
-    ['note', '**What BASE does not show.** Contracts that are not reported, municipal companies (they buy under their own NIF, not the council\'s) and spending outside contracts (salaries, transfers to parishes and associations). We have not yet mapped municipal companies: see [the gaps](/about/#what-we-could-not-read).'],
+    ['note', '**What BASE does not show.** Contracts that are not reported, municipal companies (they buy under their own NIF, not the council\'s) and spending outside contracts (salaries, transfers to parishes and associations). We now map the councils\' [municipal companies](/money/municipal-companies/) separately; transfers and salaries are not in BASE at all.'],
   ];
 }
 
@@ -282,6 +290,12 @@ function councilBlocks(id) {
     ['h2', 'Its latest contracts'],
     ['table', ['Published', 'What', 'Supplier', 'Procedure', 'Value'], { right: [4], rows: recent.map(c => [`[${day(c.published)}](${c.url})`, contractLabel(c), supplierCell(c), procName(c.procedure), eur(c.price)]) }],
     ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), read ${day(BASE_SRC.read_on)}. The full list for this council: [data/procurement/base-2026.json](/data/procurement/base-2026.json) (filter by council "${id}").`],
+    ...(muniOf(id).length ? [
+      ['h2', 'Its municipal companies'],
+      ['p', `These bodies are owned by the council but buy under their own NIF, so their contracts are not in the council's totals above. Together they signed ${int(muniRows(muniOf(id)).reduce((t, x) => t + x.a.n, 0))} contracts worth ${meur(muniRows(muniOf(id)).reduce((t, x) => t + x.a.total, 0))} in 2026.`],
+      ['table', ['Company', 'What it does', 'NIF', 'Contracts 2026', 'Value 2026', 'Value 2025'], { right: [3, 4, 5], rows: muniRows(muniOf(id)).map(({ m, a, b }) => [`[${m.name}](/money/municipal-companies/#${m.id})${m.status.startsWith('no activity') ? ' (DGAL: no activity or in liquidation)' : ''}`, m.what, m.nif || 'not found', int(a.n), meur(a.total), meur(b.total)]) }],
+      ['src', `Ownership from [DGAL's list of local companies](${MUNI_SRC.url}), read ${day(munis.read_on)}; contracts from [IMPIC's open data](${BASE_SRC.url}) by the company's NIF. All of them: [Municipal companies](/money/municipal-companies/).`],
+    ] : []),
     ['h2', 'What we could not read yet'],
     gaps.length ? ['ul', gaps, 'gaps'] : ['p', 'Nothing recorded yet.'],
     ['p', `More on ${pl.name} (its people, events and news): [PrompTugal.news ${pl.name}](${pl.promptugal_page}).`],
@@ -348,7 +362,7 @@ export function generate() {
     ['table', ['Company', 'NIF', 'Councils', 'Contracts', 'Value', 'Which'], { right: [2, 3, 4], rows: multi.map(x => [`[${x.name}](/map/${x.nif}/)`, x.nif, String(x.councils.size), int(x.n), meur(x.v), [...x.councils].map(whoName).join(', ')]) }],
     ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), read ${day(BASE_SRC.read_on)}. Our calculation. A link is a fact about contracts, not a judgement about anyone.`],
     ['h2', 'What comes next on the map'],
-    ['ul', ['Municipal companies and their own contracts.', 'Companies by place: where each supplier is registered against where the work is done.', 'Each contract back to the council meeting that decided it (the minutes) and the notice in the Diário da República.', 'Earlier years (IMPIC publishes from 2012).']],
+    ['ul', ['Suppliers of the councils\' [municipal companies](/money/municipal-companies/) on the cross-map too.', 'Companies by place: where each supplier is registered against where the work is done.', 'Each contract back to the council meeting that decided it (the minutes) and the notice in the Diário da República.', 'Earlier years (IMPIC publishes from 2012).']],
   ], sources: [BASE_SRC] });
   for (const x of multi) {
     const cs = [...x.contracts].sort((a, b) => (b.published || '').localeCompare(a.published || ''));
@@ -396,6 +410,29 @@ export function generate() {
   mkdirSync(join(OUT, 'data'), { recursive: true });
   cpSync('data', join(OUT, 'data'), { recursive: true });
 
+  // municipal companies
+  {
+    const rows = muniRows(munis.companies).sort((x, y) => y.a.total - x.a.total);
+    const tot = rows.reduce((t, x) => t + x.a.total, 0), n = rows.reduce((t, x) => t + x.a.n, 0);
+    const blocks = [
+      ['lede', `The Algarve's councils also spend through companies they own: water and waste, sport, markets, housing, infrastructure in the resorts. These buy under their own NIF, so their contracts are missing from the councils' totals. In 2026 so far, ${rows.filter(x => x.a.n).length} of them signed ${int(n)} contracts worth ${meur(tot)}, against ${meur(all26.total)} signed by the 16 councils themselves.`],
+      ['table', ['Company', 'Council', 'What it does', 'Contracts 2026', 'Value 2026', 'Direct awards', 'Value 2025'], { right: [3, 4, 5, 6], rows: rows.map(({ m, a, b }) => [`[${m.name}](#${m.id})`, `[${whoName(m.council)}](/councils/${m.council}/)`, m.what, int(a.n), meur(a.total), a.n ? pct(a.direct / a.n) : 'n/a', meur(b.total)]) }],
+      ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), files contratos2026 and contratos2025, read ${day(munis.read_on)}, by each company's NIF. Ownership: [DGAL's list of local companies](${MUNI_SRC.url}), read ${day(munis.read_on)}. Our calculation.`],
+      ['note', 'Councils with no company in DGAL\'s list: Albufeira, Alcoutim, Aljezur, Castro Marim, Lagoa, Monchique, São Brás de Alportel, Silves and Vila do Bispo. Infraquinta, Inframoura and Infralobo are 51% owned by Loulé, with the resorts\' owners holding the rest.'],
+    ];
+    for (const { m, a } of rows) {
+      const cs = muniContracts(m.nif, 2026), sups = suppliersOf(cs).sort((x, y) => y.v - x.v).slice(0, 5);
+      blocks.push(['raw', `<h2 id="${m.id}">${esc(m.name)}</h2>`, `## ${m.name}`]);
+      blocks.push(['p', `Owned by [${whoName(m.council)}](/councils/${m.council}/)${m.council_share_pct ? ` (${m.council_share_pct}%)` : ''}. ${m.what[0].toUpperCase() + m.what.slice(1)}. NIF ${m.nif || 'not found'}. ${m.status_note}`]);
+      if (cs.length) {
+        blocks.push(['p', `${int(a.n)} contracts in 2026, ${meur(a.total)}; ${pct(a.direct / a.n)} by direct award. Biggest suppliers: ${sups.map(x => companyPages.has(x.nif) ? `[${x.name}](/map/${x.nif}/) (${meur(x.v)})` : `${x.name} (${meur(x.v)})`).join('; ') || 'private individuals only (names withheld)'}.`]);
+        blocks.push(['table', ['Published', 'What', 'Supplier', 'Procedure', 'Value'], { right: [4], rows: cs.slice(0, 5).map(c => [`[${day(c.published)}](${c.url})`, contractLabel(c), supplierCell(c), procName(c.procedure), eur(c.price)]) }]);
+      } else blocks.push(['p', 'No contract published on BASE in 2026.']);
+    }
+    blocks.push(['p', 'Every contract: [data/procurement/companies-2026.json](/data/procurement/companies-2026.json) and [companies-2025.json](/data/procurement/companies-2025.json); the list of companies: [data/municipal-companies.json](/data/municipal-companies.json).']);
+    page({ path: '/money/municipal-companies/', kicker: 'Public money', title: 'The councils\' companies', description: `The municipal companies of the Algarve's councils (water, waste, sport, markets, housing, resort infrastructure) and their ${int(n)} contracts of 2026, which are not in the councils' own totals.`, blocks, sources: [BASE_SRC, MUNI_SRC] });
+  }
+
   // ---------------------------------------------------------------- the API: JSON first (Dinis, 15 Nov 2026: "no data only in
   // HTML ... a REST API of GET calls with a mature Swagger"). Static GET files under /api/v1/, described by /api/v1/openapi.json.
   const API = join(OUT, 'api', 'v1');
@@ -410,9 +447,10 @@ export function generate() {
       top_suppliers_2026: suppliersOf(cs).sort((a, b) => b.v - a.v).slice(0, 10).map(x => ({ nif: x.nif, name: x.name, contracts: x.n, value_eur: Math.round(x.v), page: companyPages.has(x.nif) ? `${SITE}/map/${x.nif}/` : null })),
       withheld_private_individuals_2026: cs.filter(c => c.suppliers.some(x => x.withheld)).length,
       where_published: { site: co.site || null, minutes: co.minutes || null, agendas: co.agendas || null, assembly: co.assembly || null, notices: co.notices || null, budget: co.budget || null, procurement: co.procurement || null, mayor: co.mayor || null, read_on: co.read_on || councilsData.read_on || null, gaps: co.gaps || [] },
+      municipal_companies: muniRows(muniOf(id)).map(({ m, a, b }) => ({ id: m.id, name: m.name, nif: m.nif, what: m.what, status: m.status, contracts_2026: a.n, value_eur_2026: Math.round(a.total), value_eur_2025: Math.round(b.total) })),
       contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
   };
-  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/billing/meter.json', '/api/v1/openapi.json'] });
+  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/billing/meter.json', '/api/v1/openapi.json'] });
   put('councils.json', { ...meta, councils: COUNCIL_IDS.map(id => { const x = summarise(by26[id]); return { id, name: whoName(id), contracts_2026: x.n, value_eur_2026: Math.round(x.total), direct_award_share_2026: x.n ? +(x.direct / x.n).toFixed(3) : null, site_read: !!councilOf(id).site, href: `/api/v1/councils/${id}.json` }; }), sources: [baseSrc] });
   for (const id of COUNCIL_IDS) put(`councils/${id}.json`, { ...meta, ...councilOut(id) });
   put('companies.json', { ...meta, about: 'Companies with contracts at three or more of the Algarve\'s 16 councils in 2026. Private individuals are never listed.', companies: multi.map(x => ({ nif: x.nif, name: x.name, councils: x.councils.size, contracts: x.n, value_eur: Math.round(x.v), href: `/api/v1/companies/${x.nif}.json` })), sources: [baseSrc] });
@@ -422,6 +460,7 @@ export function generate() {
     note: 'value_eur splits a contract with several suppliers equally between them (our calculation).', sources: [baseSrc] });
   put('services.json', { ...meta, read_on: services.read_on, guides: services.guides.map(g => ({ id: g.id, title: g.title, summary: g.summary, page: `${SITE}/services/${g.id}/`, href: `/api/v1/services/${g.id}.json` })), offices: services.offices });
   for (const g of services.guides) put(`services/${g.id}.json`, { ...meta, ...g, page: `${SITE}/services/${g.id}/`, note: 'Our summary of official pages, not official advice. The official page is the authority.' });
+  put('municipal-companies.json', { ...meta, about: munis.about, read_on: munis.read_on, companies: muniRows(munis.companies).map(({ m, a, b }) => ({ ...m, contracts_2026: sumOut(a), contracts_2025: sumOut(b) })), contracts: [`${SITE}/data/procurement/companies-2026.json`, `${SITE}/data/procurement/companies-2025.json`], sources: [...(munis.sources || []), baseSrc], gaps: munis.gaps || [] });
   put('procurement/summary.json', { ...meta, year_2026: sumOut(all26), year_2025: sumOut(all25), companies_at_three_or_more_councils: multi.length, sources: [baseSrc] });
   const ref = n => ({ $ref: `#/components/schemas/${n}` }), obj = { type: 'object' };
   const get = (summary, schema, param) => ({ get: { summary, ...(param ? { parameters: [{ name: param, in: 'path', required: true, schema: { type: 'string' } }] } : {}), responses: { 200: { description: 'OK', content: { 'application/json': { schema } } }, 404: { description: 'Not found' } } } });
@@ -437,6 +476,7 @@ export function generate() {
       '/api/v1/services.json': get('Public-service guides and which office does what', obj),
       '/api/v1/services/{id}.json': get('One guide, step by step, with official pages', obj, 'id'),
       '/api/v1/procurement/summary.json': get('Totals for the 16 councils, 2026 and 2025', obj),
+      '/api/v1/municipal-companies.json': get('The councils\' municipal companies, with their contracts by procedure, 2026 and 2025', obj),
       '/api/v1/billing/meter.json': get('The reading meter\'s prices for this site', obj),
       '/data/procurement/base-2026.json': get('Every 2026 contract of the 16 councils (large)', obj),
     },
@@ -452,6 +492,7 @@ export function generate() {
       [`[/api/v1/companies/${multi[0].nif}.json](/api/v1/companies/${multi[0].nif}.json)`, 'One company and its contracts'],
       ['[/api/v1/services.json](/api/v1/services.json)', 'The service guides and which office does what'],
       ['[/api/v1/procurement/summary.json](/api/v1/procurement/summary.json)', 'Totals for the 16 councils, 2026 and 2025'],
+      ['[/api/v1/municipal-companies.json](/api/v1/municipal-companies.json)', 'The councils\' municipal companies and their contracts by procedure'],
       ['[/data/procurement/base-2026.json](/data/procurement/base-2026.json)', 'Every 2026 contract (large file)'],
     ] }],
     ['p', 'Private individuals who are suppliers are never named, in the API as on the pages; they still count in totals. A contract shared by several suppliers is split equally between them in company totals (our calculation).'],

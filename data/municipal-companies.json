@@ -1,0 +1,238 @@
+{
+ "about": "The bodies owned by the Algarve's 16 councils that buy under their own NIF, so their contracts are not in the councils' own totals on BASE. Companies from DGAL's list of local companies; NIFs as IMPIC's open data publishes each buyer, cross-checked with Diário da República notices or the company's site where noted. Councils with none in DGAL's list: Albufeira, Alcoutim, Aljezur, Castro Marim, Lagoa, Monchique, São Brás de Alportel, Silves, Vila do Bispo.",
+ "read_on": "2026-11-18",
+ "by": "civic.b.research.companies@PrompTugal.dinis (Sonnet), checked against IMPIC's open data by civic.b@PrompTugal.dinis",
+ "sources": [
+  {
+   "title": "DGAL, Lista das empresas locais (xlsx, dated 12 February 2025)",
+   "url": "https://portalautarquico.dgal.gov.pt/ficheiros/?schema=f7664ca7-3a1a-4b25-9f46-2056eef44c33&channel=266f4a32-848e-4d2c-99c6-ad5b5511d7fe&content_id=B669C074-A01A-452C-8C35-5AE2B31F71D5&field=storage_image&lang=pt&ver=1&filetype=xlsx&dtestate=2025-02-12162211",
+   "read_on": "2026-11-18"
+  },
+  {
+   "title": "IMPIC open data of the Portal BASE on dados.gov.pt",
+   "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+   "read_on": "2026-11-18"
+  }
+ ],
+ "gaps": [
+  "EMPET's NIF was not found: it has no contract on BASE in 2025 or 2026 and DGAL marks it without activity or in liquidation.",
+  "Portimão Urbis is not in DGAL's list.",
+  "Council shares are DGAL's 'Participação' column where the researcher noted them; others not recorded yet.",
+  "cm-faro.pt and cm-loule.pt reset the connection, so the councils' own pages on their companies were not read."
+ ],
+ "companies": [
+  {
+   "id": "fagar",
+   "name": "FAGAR - Faro, Gestão de Águas e Resíduos, EM",
+   "council": "faro",
+   "kind": "municipal company (empresa local)",
+   "what": "water and waste",
+   "council_share_pct": 51,
+   "nif": "507142217",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026",
+    "https://fagar.pt/"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "ambifaro",
+   "name": "Ambifaro - Gestão de Equipamentos Municipais, EM",
+   "council": "faro",
+   "kind": "municipal company (empresa local)",
+   "what": "municipal market, parking, property and events",
+   "council_share_pct": null,
+   "nif": "504497782",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "emarp",
+   "name": "EMARP - Empresa Municipal de Águas e Resíduos de Portimão, EM, SA",
+   "council": "portimao",
+   "kind": "municipal company (empresa local)",
+   "what": "water, sanitation and waste",
+   "council_share_pct": null,
+   "nif": "505322730",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026",
+    "https://files.diariodarepublica.pt/cp_hora/2026/08/156/419970234.pdf"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "ambiolhao",
+   "name": "Ambiolhão - Empresa Municipal de Ambiente de Olhão, EM",
+   "council": "olhao",
+   "kind": "municipal company (empresa local)",
+   "what": "water, sanitation and waste",
+   "council_share_pct": null,
+   "nif": "509680780",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026",
+    "https://files.diariodarepublica.pt/cp_hora/2026/03/050/419954073.pdf"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "fesnima",
+   "name": "FESNIMA - Empresa Municipal de Olhão, EM",
+   "council": "olhao",
+   "kind": "municipal company (empresa local)",
+   "what": "administrative and support services",
+   "council_share_pct": null,
+   "nif": "504667521",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "listed",
+   "status_note": "In DGAL's list with no note; not otherwise checked."
+  },
+  {
+   "id": "mercados-de-olhao",
+   "name": "Mercados de Olhão, EM",
+   "council": "olhao",
+   "kind": "municipal company (empresa local)",
+   "what": "markets and property",
+   "council_share_pct": null,
+   "nif": "504288865",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "listed",
+   "status_note": "In DGAL's list with no note; not otherwise checked."
+  },
+  {
+   "id": "taviraverde",
+   "name": "Taviraverde - Empresa Municipal de Ambiente, EM",
+   "council": "tavira",
+   "kind": "municipal company (empresa local)",
+   "what": "waste, environment and green spaces",
+   "council_share_pct": 51,
+   "nif": "507236335",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "empet",
+   "name": "EMPET - Parques Empresariais de Tavira, EM, Lda",
+   "council": "tavira",
+   "kind": "municipal company (empresa local)",
+   "what": "business parks",
+   "council_share_pct": 96,
+   "nif": null,
+   "nif_sources": [],
+   "status": "no activity or in liquidation",
+   "status_note": "DGAL's list marks it 'Sem actividade / Em liquidação'."
+  },
+  {
+   "id": "vrsa-sgu",
+   "name": "VRSA - Sociedade de Gestão Urbana, EM, SA",
+   "council": "vila-real-de-santo-antonio",
+   "kind": "municipal company (empresa local)",
+   "what": "urban renewal",
+   "council_share_pct": null,
+   "nif": "508160570",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "no activity or in liquidation",
+   "status_note": "DGAL's list marks it 'Sem actividade / Em liquidação'."
+  },
+  {
+   "id": "lagos-em-forma",
+   "name": "Lagos em Forma - Gestão Desportiva, EM, SA",
+   "council": "lagos",
+   "kind": "municipal company (empresa local)",
+   "what": "sport",
+   "council_share_pct": null,
+   "nif": "507725077",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "loule-concelho-global",
+   "name": "Loulé Concelho Global, EM, Unipessoal, SA",
+   "council": "loule",
+   "kind": "municipal company (empresa local)",
+   "what": "housing",
+   "council_share_pct": null,
+   "nif": "505493870",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "infraquinta",
+   "name": "Infraquinta - Empresa de Infraestruturas da Quinta do Lago, EM, SA",
+   "council": "loule",
+   "kind": "municipal company (empresa local)",
+   "what": "water, sanitation, waste and green spaces in Quinta do Lago",
+   "council_share_pct": 51,
+   "nif": "503830704",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026",
+    "https://files.diariodarepublica.pt/cp_hora/2026/07/131/419966792.pdf"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "inframoura",
+   "name": "Inframoura - Empresa de Infraestruturas de Vilamoura, EM, SA",
+   "council": "loule",
+   "kind": "municipal company (empresa local)",
+   "what": "water, sanitation, waste and infrastructure in Vilamoura",
+   "council_share_pct": 51,
+   "nif": "504915266",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026",
+    "https://files.diariodarepublica.pt/cp_hora/2026/05/087/419960087.pdf"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "infralobo",
+   "name": "Infralobo - Empresa de Infraestruturas de Vale do Lobo, EM, SA",
+   "council": "loule",
+   "kind": "municipal company (empresa local)",
+   "what": "water, sanitation, waste and infrastructure in Vale do Lobo",
+   "council_share_pct": 51,
+   "nif": "504041193",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "active",
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+  },
+  {
+   "id": "teatro-municipal-de-faro",
+   "name": "Teatro Municipal de Faro - Serviços Municipalizados",
+   "council": "faro",
+   "kind": "municipalised service (part of the council, with its own NIF)",
+   "what": "theatre",
+   "council_share_pct": null,
+   "nif": "600086305",
+   "nif_sources": [
+    "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
+   ],
+   "status": "active",
+   "status_note": "Not a company, so not in DGAL's list of local companies; it buys under its own NIF on BASE."
+  }
+ ]
+}
