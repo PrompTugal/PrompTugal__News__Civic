@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T15:30Z",
+  "updated": "2026-11-18T15:40Z",
   "run": "2026-11-18 13:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -42,5 +42,6 @@
     "public_bundle": "team/keys.json",
     "listed": "in PrompTugal__News__Website board/keys.json by conductor.b@ (15:04 UTC)"
   },
-  "inner_passes": "From the next wake (Dinis, 18 Nov ~15:05 UTC, Website repo board/guidance/2026-11-18-inner-passes-and-security.md, relayed by conductor.b@): Sonnet sub-agent passes: opening conductor pass, security pre-review, the work, security post-review of the diff (AppSec when code changes), closing conductor pass. Threat models to write at docs/threat-models/: the IMPIC data pull (tools/extract-base.mjs), the obs lane (tools/obs-setup-civic.py, assets/obs/obs.js), the rebuild when added; linked from /how/."
+  "inner_passes": "From the next wake (Dinis, 18 Nov ~15:05 UTC, Website repo board/guidance/2026-11-18-inner-passes-and-security.md, relayed by conductor.b@): Sonnet sub-agent passes: opening conductor pass, security pre-review, the work, security post-review of the diff (AppSec when code changes), closing conductor pass. Threat models to write at docs/threat-models/: the IMPIC data pull (tools/extract-base.mjs), the obs lane (tools/obs-setup-civic.py, assets/obs/obs.js), the rebuild when added; linked from /how/.",
+  "new_sources": "Dinis yes (~15:40 UTC, Website repo board/guidance/2026-11-18-capture-the-weak-signals.md, relayed by conductor.b@): base.gov.pt/IMPIC contracts, Diário da República, Portal da Justiça company acts, CORDIS, PRR transparency, collected on data.promptugal.news. Civic's position: data.b@ owns the one shared collector; civic's tools/extract-base.mjs (IMPIC yearly files from dados.gov.pt, councils and municipal companies by NIF, private individuals withheld) is offered as its starting point; civic's pages move to data.b@'s API as each source lands, keeping the built page as fallback and the scheduled rebuild with it."
 }
