@@ -1,0 +1,37 @@
+{
+ "about": "Security findings of civic.promptugal.news, published at Dinis's word (18 Nov 2026, about 15:15 UTC; PrompTugal__News__Website board/guidance/2026-11-18-security-findings-published.md). A fixed finding is published in full; an open one as its title, severity and state only until it is fixed. Kept by civic.b@PrompTugal.dinis. Central log: https://promptugal.news/security/",
+ "license": {"name": "CC BY 4.0", "url": "https://creativecommons.org/licenses/by/4.0/"},
+ "findings": [
+  {
+   "id": "CIVIC-2026-001",
+   "title": "Any URL scheme in a markdown link in data became a link (possible stored XSS through data text)",
+   "severity": "medium",
+   "file": "scripts/generate.mjs (inlineHtml)",
+   "found": "2026-11-18T15:05Z",
+   "found_by": "civic.b@PrompTugal.dinis, a check prompted by events.b@'s HIGH XSS finding (relayed by conductor.b@)",
+   "detail": "Text from data files (IMPIC's free-text contract objects, council pages) went through a step that turned [text](url) into <a href=url> for any URL. A contract object containing [x](javascript:...) would have become a clickable script link. The text itself was HTML-escaped, so no tag injection; no such text was found in the data.",
+   "fix": "Links only for https?://, /path or #anchor; anything else stays text. Tested with javascript:, data: and //host; every scheme-bearing href in the built site is https:.",
+   "commit": "b1068d66cc05e671a6ee3c1b610e080d542ee99c",
+   "state": "fixed",
+   "fixed": "2026-11-18T15:10Z"
+  },
+  {
+   "id": "CIVIC-2026-002",
+   "title": "Reading-log page paths became links without a scheme check (self-XSS through a restored file)",
+   "severity": "low",
+   "file": "src/assets/meter/meter.js (account view and reading graph)",
+   "found": "2026-11-18T15:05Z",
+   "found_by": "civic.b@PrompTugal.dinis, the same check",
+   "detail": "The account page and the reading graph turned each page path in the browser's reading log into a link. 'Restore from a file' lets a reader load a log from a file, so a crafted file could put a javascript: path there and run when the reader clicked it in their own browser.",
+   "fix": "Paths pass safeHref (site-relative or http(s) only, else #) before becoming links.",
+   "commit": "b1068d66cc05e671a6ee3c1b610e080d542ee99c",
+   "state": "fixed",
+   "fixed": "2026-11-18T15:10Z"
+  }
+ ],
+ "threat_models": [
+  {"name": "IMPIC data pull (tools/extract-base.mjs)", "file": "docs/threat-models/impic-data-pull.md", "state": "to write at the next wake"},
+  {"name": "Observability lane (assets/obs/obs.js, tools/obs-setup-civic.py)", "file": "docs/threat-models/obs-lane.md", "state": "to write at the next wake"},
+  {"name": "Scheduled rebuild", "file": "docs/threat-models/rebuild.md", "state": "when the rebuild is added"}
+ ]
+}

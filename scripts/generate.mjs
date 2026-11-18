@@ -17,6 +17,7 @@ const portals = read('data/portals.json', { portals: [] });
 const glossary = read('data/glossary.json', { terms: [] });
 // The councils' municipal companies (civic.b@, 18 Nov 2026): they buy under their own NIF, outside the councils' totals.
 const munis = read('data/municipal-companies.json', { companies: [] });
+const security = read('data/security/findings.json', { findings: [], threat_models: [] });
 const coBase = { 2026: read('data/procurement/companies-2026.json', { contracts: [] }), 2025: read('data/procurement/companies-2025.json', { contracts: [] }) };
 
 const COUNCIL_IDS = places.places.map(p => p.id);
@@ -139,7 +140,7 @@ ${html}
 <dl><dt>Code</dt><dd>${inlineHtml(p.code.replace(/`/g, ''))}</dd><dt>Agents</dt><dd>${inlineHtml(p.agents)}</dd><dt>A person</dt><dd>${inlineHtml(p.person)}</dd></dl>
 <p>Markdown twin: <a href="${path}index.md">${path}index.md</a>. Something wrong? The <a href="https://github.com/PrompTugal/PrompTugal__News__Civic">repository</a> holds every source file.</p></section>
 </div></main>
-<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version <a class="ver" href="/version.json">__VERSION__</a>. Code Apache-2.0, text and data <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>; sources keep their own licences, linked on each page. Public data from the sources named on each page. <span class="takedown"><strong>Should we not show something?</strong> If you think a page here should not show your data, <a href="https://github.com/PrompTugal/PrompTugal__News__Civic/issues/new?title=Take-down%20request&amp;labels=take-down">open a public issue</a> naming the page; we take it down while we talk (<a href="/about/#take-down">how</a>).</span></div></footer>
+<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version <a class="ver" href="/version.json">__VERSION__</a>. Code Apache-2.0, text and data <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>; sources keep their own licences, linked on each page. Public data from the sources named on each page. <span class="takedown"><strong>Should we not show something?</strong> If you think a page here should not show your data, <a href="https://github.com/PrompTugal/PrompTugal__News__Civic/issues/new?title=Take-down%20request&amp;labels=take-down">open a public issue</a> naming the page; we take it down while we talk (<a href="/about/#take-down">how</a>). <a href="/security/">Security findings</a>.</span></div></footer>
 </body>
 </html>
 `;
@@ -428,6 +429,26 @@ export function generate() {
   // copy the data so readers can download it
   mkdirSync(join(OUT, 'data'), { recursive: true });
   cpSync('data', join(OUT, 'data'), { recursive: true });
+
+  // security (Dinis, 18 Nov 2026 ~15:15 UTC: every vulnerability, bug and breach is published)
+  {
+    const SEV = { critical: 0, high: 1, medium: 2, low: 3, info: 4 };
+    const fs = [...security.findings].sort((a, b) => (a.state === 'fixed') - (b.state === 'fixed') || SEV[a.severity] - SEV[b.severity]);
+    const blocks = [
+      ['lede', 'Every vulnerability, bug and breach we find on this site is published here: what it was, how serious, which file, when and how we found it, the fix and its commit. An open finding shows only its title, severity and state until it is fixed, then in full.'],
+      ['p', 'All PrompTugal.news sites: [the central security log](https://promptugal.news/security/). Found something? [Open a public issue](https://github.com/PrompTugal/PrompTugal__News__Civic/issues/new?title=Security) (for anything that could be used before it is fixed, say only that you have something and we will find a private way).'],
+      ['h2', 'Findings'],
+      fs.length ? ['table', ['Id', 'Finding', 'Severity', 'State', 'Found', 'Fix'], { rows: fs.map(f => [f.id, f.state === 'fixed' ? f.title : f.title, f.severity, f.state, day(f.found.slice(0, 10)), f.state === 'fixed' ? `[${f.commit.slice(0, 7)}](https://github.com/PrompTugal/PrompTugal__News__Civic/commit/${f.commit})` : 'open']) }] : ['p', 'None recorded yet.'],
+    ];
+    for (const f of fs.filter(f => f.state === 'fixed')) {
+      blocks.push(['h3', `${f.id}: ${f.title}`]);
+      blocks.push(['ul', [`**Severity:** ${f.severity}. **File:** ${f.file}.`, `**Found:** ${f.found} by ${f.found_by}.`, `**What:** ${f.detail}`, `**Fix:** ${f.fix} Commit [${f.commit.slice(0, 7)}](https://github.com/PrompTugal/PrompTugal__News__Civic/commit/${f.commit}), ${f.fixed}.`]]);
+    }
+    blocks.push(['h2', 'Threat models']);
+    blocks.push(['ul', security.threat_models.map(t => `**${t.name}**: ${t.state === 'published' ? `[${t.file}](https://github.com/PrompTugal/PrompTugal__News__Civic/blob/dev/${t.file})` : t.state}.`)]);
+    blocks.push(['p', 'The data behind this page: [data/security/findings.json](/data/security/findings.json).']);
+    page({ path: '/security/', kicker: 'About', title: 'Security findings', description: 'Every vulnerability, bug and breach found on PrompTugal.news Civic, with severity, file, fix and commit, and its threat models. Open findings show title, severity and state only until fixed.', blocks, prov: { code: 'scripts/generate.mjs renders this page from data/security/findings.json.' } });
+  }
 
   // municipal companies
   {
