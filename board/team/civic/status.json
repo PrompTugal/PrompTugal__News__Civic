@@ -3,8 +3,8 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T16:00Z",
-  "run": "2026-11-18 13:23 UTC wake",
+  "updated": "2026-11-18T17:00Z",
+  "run": "2026-11-18 16:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
   "fixes": {
@@ -16,24 +16,23 @@
   },
   "live": "v0.1.4 before this run; this run's push to dev releases the next v0.1.N",
   "next": [
-    "Council pages: a 'latest contracts' section that loads https://data.promptugal.news/api/v1/base-gov-pt/latest.json in the browser (text only, links http(s) only), the built table as fallback; then the scheduled rebuild. At 15:47 UTC the endpoint answered 404 (data.b@'s deploy not out yet).",
-    "Pipeline standard for civic's sources: /sources/ home pages and OpenAPI per source; raw IMPIC files kept with their read time (by data.b@'s collector).",
-    "Government track: Diário da República notices for the 16 councils and their companies, linked to contracts and places (with data.b@ and library.b@); first use case: what the councils buy in tech and AI (CPV 48 and 72).",
-    "Storm items 1 and 2: the incident record and the decisions viz at /cases/storm-charles/, reading data.promptugal.news.",
-    "Link the largest contracts to the minutes (atas) that decided them.",
-    "Put the municipal companies' suppliers on the cross-map."
+    "Ask data.b@ for a per-place feed file (the page now downloads ~1.8 MB for one council).",
+    "A Content-Security-Policy for the site, tested with the meter and the obs lane.",
+    "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
+    "Government track: Diário da República notices for the 16 councils (data.b@ collecting); first use case: tech and AI purchases (CPV 48, 72).",
+    "Storm items 1 and 2: /cases/storm-charles/."
   ],
   "asks": [
     "Dinis: pick front page A, B or C at https://civic.promptugal.news/design/ (not waited on).",
     "Dinis: keep or change the rule that withholds suppliers who are private individuals."
   ],
   "done_after_fixes": "Retried the nine blocked councils once: Castro Marim and Vila do Bispo answered and are mapped (9 of 16 council sites read); 7 still reset the connection.",
-  "this_run": "The councils' municipal companies: 15 bodies (14 from DGAL's list, plus Faro's municipal theatre), 691 contracts in 2026 (about 36.3 million euros) and 799 in 2025, from IMPIC's open data by NIF. New page /money/municipal-companies/, a section on each owner council's page, /api/v1/municipal-companies.json.",
+  "this_run": "Council pages read data.b@'s live contracts feed in the browser (published table as fallback). Inner passes: security pre-review and post-review by civic.b.security@ (Sonnet); 3 threat models published; CIVIC-2026-003 (low) fixed before release. Library requests: none to civic.",
   "storm_items": "Plan in board/team/civic/storm-items.md: civic takes the incident record and the decisions viz first (/cases/storm-charles/), then the stranded guide, entities (public bodies only), ontology and lead-time SVGs, then the stories. Leaves the Wikipedia viz and reader with data.b@. Asks data.b@ to archive data/graph/.",
   "licences": "Done 14:45 UTC: every page source, every data record and every API file carries a license link (ours CC BY 4.0; IMPIC other-pd; councils, ministries and DGAL 'the source's terms'). The gate checks it.",
   "dinis_1455": {
     "keygen": "done with sgit pki at Dinis's word in this session (~14:57 UTC): civic.b-promptugal, public bundle in team/keys.json, indexed in board/keys.json.",
-    "scheduled_rebuild": "Agreed with conductor.b@ (15:05 UTC, within Dinis's 'Yes, we should have a scheduled rebuild'): add a schedule to the existing Pages workflow together with the first page that reads data.promptugal.news (the Storm case page).",
+    "scheduled_rebuild": "Not added: the live data now loads in the browser, so a timed rebuild would change nothing on the pages. It comes with the first page whose built content reads the API.",
     "take_down": "done: a disclaimer on every page and its markdown twin, a section on /about/#take-down, public GitHub issues on this repo; the gate checks it.",
     "observability_tokens": "done: civic's own lane is live. Private vault a334roim, 4 'civic' append lanes, drain key sha256:4f38d59943029b43; credentials sealed to and stored by conductor.b@. src/assets/obs/obs.json holds the public lane config, with a narrow leak-scan allowlist for that one file at Dinis's word in this session ('Those tokens are public by design', ~15:25 UTC). Tested: one headless page view written to a334roim (200), marked agent headless."
   },

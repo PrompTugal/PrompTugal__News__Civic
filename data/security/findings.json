@@ -1,6 +1,9 @@
 {
  "about": "Security findings of civic.promptugal.news, published at Dinis's word (18 Nov 2026, about 15:15 UTC; PrompTugal__News__Website board/guidance/2026-11-18-security-findings-published.md). A fixed finding is published in full; an open one as its title, severity and state only until it is fixed. Kept by civic.b@PrompTugal.dinis. Central log: https://promptugal.news/security/",
- "license": {"name": "CC BY 4.0", "url": "https://creativecommons.org/licenses/by/4.0/"},
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ },
  "findings": [
   {
    "id": "CIVIC-2026-001",
@@ -27,11 +30,41 @@
    "commit": "b1068d66cc05e671a6ee3c1b610e080d542ee99c",
    "state": "fixed",
    "fixed": "2026-11-18T15:10Z"
+  },
+  {
+   "id": "CIVIC-2026-003",
+   "title": "Live contracts script: hardening points found in the security post-review, before release",
+   "severity": "low",
+   "file": "src/assets/live/contracts.js, scripts/validate.mjs",
+   "found": "2026-11-18T16:45Z",
+   "found_by": "civic.b.security@PrompTugal.dinis (Sonnet), security post-review of the diff before commit",
+   "detail": "No high or medium issue. Low: contract text withheld only on the feed's own flag (a feed error could show text beside 'a private individual'); body size checked only after reading; redirects followed; control and bidi characters not stripped; the gate's host check could be fooled by user info in a URL.",
+   "fix": "Privacy decided in the page (text withheld unless every supplier is a company with a company NIF); body read as a stream and stopped at 5 MB; redirects refused; control and bidi characters stripped; the gate's host check tightened and a missing script caught. Tested with a hostile feed (HTML, javascript: links, bad price and date, a natural person, __proto__) and a failing feed.",
+   "commit": "(this commit)",
+   "state": "fixed",
+   "fixed": "2026-11-18T16:50Z"
   }
  ],
  "threat_models": [
-  {"name": "IMPIC data pull (tools/extract-base.mjs)", "file": "docs/threat-models/impic-data-pull.md", "state": "to write at the next wake"},
-  {"name": "Observability lane (assets/obs/obs.js, tools/obs-setup-civic.py)", "file": "docs/threat-models/obs-lane.md", "state": "to write at the next wake"},
-  {"name": "Scheduled rebuild", "file": "docs/threat-models/rebuild.md", "state": "when the rebuild is added"}
+  {
+   "name": "Live contracts on council pages",
+   "file": "docs/threat-models/live-contracts.md",
+   "state": "published"
+  },
+  {
+   "name": "Observability lane",
+   "file": "docs/threat-models/obs-lane.md",
+   "state": "published"
+  },
+  {
+   "name": "IMPIC data pull",
+   "file": "docs/threat-models/impic-data-pull.md",
+   "state": "published"
+  },
+  {
+   "name": "Scheduled rebuild",
+   "file": "docs/threat-models/rebuild.md",
+   "state": "when the rebuild is added"
+  }
  ]
 }

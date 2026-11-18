@@ -41,6 +41,15 @@ for (const f of files.filter(f => f.endsWith('index.html'))) {
   if (!s.includes('Not a government or official site')) fail(`${f}: no independence label`);
 }
 if (!isTemplate && !existsSync('_site/llms.txt')) fail('no llms.txt');
+// civic.b@ (2026-11-18), from civic.b.security@'s pre-review: the live script builds the DOM safely and reaches one host only.
+if (files.some(f => f.endsWith('index.html') && readFileSync(f, 'utf8').includes('/assets/live/contracts.js')) && !existsSync('_site/assets/live/contracts.js')) fail('a page loads /assets/live/contracts.js, which is missing');
+if (existsSync('_site/assets/live/contracts.js')) {
+  const js = readFileSync('_site/assets/live/contracts.js', 'utf8').replace(/^\s*(\/\*[\s\S]*?\*\/|\/\/.*)$/gm, '');
+  // a tripwire, not a boundary: it catches the obvious, not a determined author
+  if (/innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|\bFunction\(|srcdoc|sendBeacon|new Image|\bimport\(|location\s*=/.test(js)) fail('assets/live/contracts.js: unsafe DOM or dynamic code');
+  const hosts = [...new Set([...js.matchAll(/(?:https?|wss?):\/\/([^\/'"`\s?#]+)/gi)].map(m => m[1].toLowerCase()))].filter(h => !['www.base.gov.pt', 'dados.gov.pt'].includes(h));
+  if (hosts.join() !== 'data.promptugal.news') fail(`assets/live/contracts.js: fetches from ${hosts.join(', ') || 'nowhere'}, expected data.promptugal.news only`);
+}
 // civic.b@PrompTugal.dinis (2026-11-18), Dinis's word of 18 Nov 2026 (~14:25 UTC): every piece of data carries a licence link.
 // Each page names the licence of every source it lists, and of our own work; each API file and each of its sources has a license.
 for (const f of files.filter(f => f.endsWith('index.html'))) {
