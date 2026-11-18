@@ -1,10 +1,14 @@
 // Extract the Algarve councils' contracts from IMPIC's open data of the Portal BASE.
 // Source: dados.gov.pt, dataset "Contratos Públicos - Portal Base - IMPIC - Contratos de 2012 a 2026"
 // (https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/), licence other-pd as published.
-// Usage: node --max-old-space-size=8000 tools/extract-base.mjs <ContratosYYYY.json> <out.json> <resource-url> <read-on>
+// Usage: node --max-old-space-size=8000 tools/extract-base.mjs <ContratosYYYY.json> <out.json> <resource-url> <read-on> [<buyers.json>]
+// With <buyers.json> (data/municipal-companies.json; civic.b@PrompTugal.dinis, 18 Nov 2026) it extracts the contracts of
+// those buyers (the councils' municipal companies, by NIF) instead of the councils': each row then also has `buyer` (the NIF)
+// and `council` is the owner council.
 // Node built-ins only. Keeps public facts only: who bought, from whom, what, how, when, how much.
-import { openSync, readSync, closeSync, writeFileSync } from 'node:fs';
-const [inp, out, resource, readOn] = process.argv.slice(2);
+import { openSync, readSync, closeSync, writeFileSync, readFileSync } from 'node:fs';
+const [inp, out, resource, readOn, buyersFile] = process.argv.slice(2);
+const BUYERS = buyersFile ? new Map(JSON.parse(readFileSync(buyersFile, 'utf8')).companies.filter(c => c.nif).map(c => [c.nif, c])) : null;
 const COUNCILS = {
   albufeira: 'Albufeira', alcoutim: 'Alcoutim', aljezur: 'Aljezur', 'castro-marim': 'Castro Marim', faro: 'Faro',
   lagoa: 'Lagoa', lagos: 'Lagos', loule: 'Loulé', monchique: 'Monchique', olhao: 'Olhão', portimao: 'Portimão',
@@ -48,13 +52,16 @@ const contracts = [];
 for (const r of rows) {
   total++;
   for (const a of r.adjudicante || []) {
-    const id = byNif.get(String(a.nifEntContrato || '').trim()) || byName.get(norm(a.descEntContrato));
+    const aNif = String(a.nifEntContrato || '').trim();
+    const co = BUYERS ? BUYERS.get(aNif) : null;
+    const id = BUYERS ? (co && co.council) : (byNif.get(aNif) || byName.get(norm(a.descEntContrato)));
     if (!id) continue;
-    seenNames[id] = { name: `Município de ${COUNCILS[id]}`, nif: NIF[id] };
+    if (BUYERS) seenNames[aNif] = { name: clean(a.descEntContrato), nif: aNif, council: id };
+    else seenNames[id] = { name: `Município de ${COUNCILS[id]}`, nif: NIF[id] };
     const sup = (r.adjudicatarios || []).map(supplier);
     const anyPerson = sup.some(x => x.withheld);
     contracts.push({
-      id: r.idcontrato, council: id,
+      id: r.idcontrato, council: id, ...(BUYERS ? { buyer: aNif } : {}),
       object: anyPerson ? null : clean(r.objectoContrato), // free text may name the person: kept out when a supplier is withheld
       type: r.tipoContrato || [], procedure: r.tipoprocedimento || '',
       suppliers: sup,
@@ -71,6 +78,6 @@ for (const r of rows) {
 contracts.sort((a, b) => (b.published || '').localeCompare(a.published || ''));
 writeFileSync(out, JSON.stringify({
   source: { title: 'Contratos Públicos - Portal Base - IMPIC (open data on dados.gov.pt)', dataset: 'https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/', resource, read_on: readOn, licence: 'other-pd (as published on dados.gov.pt)' },
-  councils: seenNames, count: contracts.length, contracts,
+  [BUYERS ? 'buyers' : 'councils']: seenNames, count: contracts.length, contracts,
 }, null, 1) + '\n');
-console.log(`${contracts.length} contracts from ${Object.keys(seenNames).length} councils of ${total} rows`);
+console.log(`${contracts.length} contracts from ${Object.keys(seenNames).length} ${BUYERS ? 'buyers' : 'councils'} of ${total} rows`);
