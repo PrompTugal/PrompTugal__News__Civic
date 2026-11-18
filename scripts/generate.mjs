@@ -69,7 +69,7 @@ function c0(c) { return (c && c.rows) || []; }
 const slug = s => nodash(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 // ---------------------------------------------------------------- layout
-const NAV = [['/', 'Front'], ['/money/', 'Public money'], ['/councils/', 'Councils'], ['/services/', 'Services'], ['/map/', 'Cross-map'], ['/about/', 'About']];
+const NAV = [['/', 'Front'], ['/money/', 'Public money'], ['/councils/', 'Councils'], ['/services/', 'Services'], ['/map/', 'Cross-map'], ['/api/', 'API'], ['/about/', 'About']];
 const pages = [];
 const PROV_DEFAULT = {
   code: '`scripts/generate.mjs` builds this page from the data files in `data/` (no hand-edited numbers).',
@@ -79,7 +79,7 @@ const PROV_DEFAULT = {
 // The kind of page, for the reading meter (api/v1/billing/meter.json): every page here is reference material, priced at
 // the floor (1p read to the end) or free. Pages built on IPMA data would stay free (Dinis, 18 Nov 2026); this site has none.
 const SITES = [['Weather', 'https://weather.promptugal.news/'], ['Civic', 'https://civic.promptugal.news/'], ['Startups', 'https://startups.promptugal.news/'], ['Travel', 'https://travel.promptugal.news/'], ['Data', 'https://data.promptugal.news/']];
-const pageType = path => path.startsWith('/account/') ? 'account' : /^\/(about|design)\//.test(path) ? 'site' : path.startsWith('/services/') ? 'evidence' : 'data';
+const pageType = path => path.startsWith('/account/') ? 'account' : /^\/(about|design|api)\//.test(path) ? 'site' : path.startsWith('/services/') ? 'evidence' : 'data';
 function page({ path, title, description, kicker, blocks, prov = {}, sources = [] }) {
   const navCur = '/' + (path.split('/')[1] ? path.split('/')[1] + '/' : '');
   const p = { ...PROV_DEFAULT, ...prov };
@@ -396,8 +396,69 @@ export function generate() {
   mkdirSync(join(OUT, 'data'), { recursive: true });
   cpSync('data', join(OUT, 'data'), { recursive: true });
 
+  // ---------------------------------------------------------------- the API: JSON first (Dinis, 15 Nov 2026: "no data only in
+  // HTML ... a REST API of GET calls with a mature Swagger"). Static GET files under /api/v1/, described by /api/v1/openapi.json.
+  const API = join(OUT, 'api', 'v1');
+  const put = (rel, obj) => { const f = join(API, rel); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, JSON.stringify(obj, null, 1) + '\n'); };
+  const meta = { site: 'PrompTugal.news Civic (independent, not a government or official site)', version: '__VERSION__', licence: 'CC BY 4.0 (our text and calculations); public data as each source publishes it' };
+  const baseSrc = { title: BASE_SRC.title, url: BASE_SRC.url, read_on: BASE_SRC.read_on, published_up_to: lastPub };
+  const sumOut = x => ({ contracts: x.n, value_eur: Math.round(x.total), direct_awards: x.direct, direct_award_share: x.n ? +(x.direct / x.n).toFixed(3) : null, open_tenders: x.open, by_procedure: Object.fromEntries(Object.entries(x.byProc).map(([k, v]) => [k, { label_en: procName(k), contracts: v.n, value_eur: Math.round(v.v) }])) });
+  const councilOut = id => {
+    const co = councilOf(id), cs = by26[id];
+    return { id, name: whoName(id), nif: base[2026].councils[id] ? base[2026].councils[id].nif : null, page: `${SITE}/councils/${id}/`,
+      contracts_2026: sumOut(summarise(cs)), contracts_2025: sumOut(summarise(by25[id])),
+      top_suppliers_2026: suppliersOf(cs).sort((a, b) => b.v - a.v).slice(0, 10).map(x => ({ nif: x.nif, name: x.name, contracts: x.n, value_eur: Math.round(x.v), page: companyPages.has(x.nif) ? `${SITE}/map/${x.nif}/` : null })),
+      withheld_private_individuals_2026: cs.filter(c => c.suppliers.some(x => x.withheld)).length,
+      where_published: { site: co.site || null, minutes: co.minutes || null, agendas: co.agendas || null, assembly: co.assembly || null, notices: co.notices || null, budget: co.budget || null, procurement: co.procurement || null, mayor: co.mayor || null, read_on: co.read_on || councilsData.read_on || null, gaps: co.gaps || [] },
+      contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
+  };
+  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/billing/meter.json', '/api/v1/openapi.json'] });
+  put('councils.json', { ...meta, councils: COUNCIL_IDS.map(id => { const x = summarise(by26[id]); return { id, name: whoName(id), contracts_2026: x.n, value_eur_2026: Math.round(x.total), direct_award_share_2026: x.n ? +(x.direct / x.n).toFixed(3) : null, site_read: !!councilOf(id).site, href: `/api/v1/councils/${id}.json` }; }), sources: [baseSrc] });
+  for (const id of COUNCIL_IDS) put(`councils/${id}.json`, { ...meta, ...councilOut(id) });
+  put('companies.json', { ...meta, about: 'Companies with contracts at three or more of the Algarve\'s 16 councils in 2026. Private individuals are never listed.', companies: multi.map(x => ({ nif: x.nif, name: x.name, councils: x.councils.size, contracts: x.n, value_eur: Math.round(x.v), href: `/api/v1/companies/${x.nif}.json` })), sources: [baseSrc] });
+  for (const x of multi) put(`companies/${x.nif}.json`, { ...meta, nif: x.nif, name: x.name, page: `${SITE}/map/${x.nif}/`,
+    by_council: [...x.councils].map(id => { const cs = x.contracts.filter(c => c.council === id); return { council: id, name: whoName(id), contracts: cs.length, value_eur: Math.round(cs.reduce((t, c) => t + (c.price || 0) / Math.max(1, c.suppliers.length), 0)) }; }).sort((a, b) => b.value_eur - a.value_eur),
+    contracts: x.contracts.map(c => ({ id: c.id, council: c.council, object: c.object, procedure: c.procedure, procedure_en: procName(c.procedure), price_eur: c.price, signed: c.signed, published: c.published, base_gov_pt: c.url })),
+    note: 'value_eur splits a contract with several suppliers equally between them (our calculation).', sources: [baseSrc] });
+  put('services.json', { ...meta, read_on: services.read_on, guides: services.guides.map(g => ({ id: g.id, title: g.title, summary: g.summary, page: `${SITE}/services/${g.id}/`, href: `/api/v1/services/${g.id}.json` })), offices: services.offices });
+  for (const g of services.guides) put(`services/${g.id}.json`, { ...meta, ...g, page: `${SITE}/services/${g.id}/`, note: 'Our summary of official pages, not official advice. The official page is the authority.' });
+  put('procurement/summary.json', { ...meta, year_2026: sumOut(all26), year_2025: sumOut(all25), companies_at_three_or_more_councils: multi.length, sources: [baseSrc] });
+  const ref = n => ({ $ref: `#/components/schemas/${n}` }), obj = { type: 'object' };
+  const get = (summary, schema, param) => ({ get: { summary, ...(param ? { parameters: [{ name: param, in: 'path', required: true, schema: { type: 'string' } }] } : {}), responses: { 200: { description: 'OK', content: { 'application/json': { schema } } }, 404: { description: 'Not found' } } } });
+  put('openapi.json', { openapi: '3.1.0',
+    info: { title: 'PrompTugal.news Civic API', version: '__VERSION__', description: 'Read-only GET calls, static JSON files. Independent: not a government or official API. Public procurement of the Algarve\'s 16 councils from IMPIC\'s open data, where each council publishes its decisions, and public-service guides from official pages. Every value carries its source and the date read.', license: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' } },
+    servers: [{ url: SITE }],
+    paths: {
+      '/api/v1/index.json': get('The list of endpoints', obj),
+      '/api/v1/councils.json': get('The 16 Algarve councils, with 2026 totals', obj),
+      '/api/v1/councils/{id}.json': get('One council: contracts 2026 and 2025 by procedure, top suppliers, where its minutes, agendas, notices and budget are published', ref('Council'), 'id'),
+      '/api/v1/companies.json': get('Companies with contracts at three or more councils in 2026', obj),
+      '/api/v1/companies/{nif}.json': get('One company: its contracts with the Algarve councils in 2026', obj, 'nif'),
+      '/api/v1/services.json': get('Public-service guides and which office does what', obj),
+      '/api/v1/services/{id}.json': get('One guide, step by step, with official pages', obj, 'id'),
+      '/api/v1/procurement/summary.json': get('Totals for the 16 councils, 2026 and 2025', obj),
+      '/api/v1/billing/meter.json': get('The reading meter\'s prices for this site', obj),
+      '/data/procurement/base-2026.json': get('Every 2026 contract of the 16 councils (large)', obj),
+    },
+    components: { schemas: { Council: { type: 'object', required: ['id', 'name', 'contracts_2026', 'sources'], properties: { id: { type: 'string' }, name: { type: 'string' }, nif: { type: ['string', 'null'] }, contracts_2026: obj, contracts_2025: obj, top_suppliers_2026: { type: 'array' }, where_published: obj, sources: { type: 'array' } } } } } });
+  page({ path: '/api/', kicker: 'For machines', title: 'The Civic API', description: 'Read-only JSON GET calls for every council, company and service guide on PrompTugal.news Civic, described by OpenAPI 3.1. Independent, not an official API.', blocks: [
+    ['lede', 'Everything on this site is also JSON: one GET call per council, per company and per service guide, as static files. Use them, cite them (CC BY 4.0), and check the official sources each one names.'],
+    ['note', '**Independent.** Not a government or official API. Values come from IMPIC\'s open data and the councils\' own sites, each with the date we read it.'],
+    ['table', ['Call', 'What it returns'], { rows: [
+      ['[/api/v1/openapi.json](/api/v1/openapi.json)', 'The description of every call (OpenAPI 3.1)'],
+      ['[/api/v1/councils.json](/api/v1/councils.json)', 'The 16 councils with their 2026 totals'],
+      [`[/api/v1/councils/faro.json](/api/v1/councils/faro.json)`, 'One council: contracts by procedure (2026, 2025), top suppliers, where its minutes, agendas, notices and budget are published'],
+      ['[/api/v1/companies.json](/api/v1/companies.json)', `The ${multi.length} companies with contracts at three or more councils`],
+      [`[/api/v1/companies/${multi[0].nif}.json](/api/v1/companies/${multi[0].nif}.json)`, 'One company and its contracts'],
+      ['[/api/v1/services.json](/api/v1/services.json)', 'The service guides and which office does what'],
+      ['[/api/v1/procurement/summary.json](/api/v1/procurement/summary.json)', 'Totals for the 16 councils, 2026 and 2025'],
+      ['[/data/procurement/base-2026.json](/data/procurement/base-2026.json)', 'Every 2026 contract (large file)'],
+    ] }],
+    ['p', 'Private individuals who are suppliers are never named, in the API as on the pages; they still count in totals. A contract shared by several suppliers is split equally between them in company totals (our calculation).'],
+  ], prov: { code: 'scripts/generate.mjs writes these JSON files from data/ at every build, with the same numbers as the pages.' } });
+
   // llms.txt and sitemap.xml
-  const llms = `# PrompTugal.news Civic\n\n> Independent (not a government site): public money, public services and bureaucracy in Portugal, explained and cross-mapped, starting with the Algarve's 16 councils. Every page has a markdown twin at <path>index.md. Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${nodash(p.title)}](${SITE}${p.path}index.md): ${nodash(p.description)}`).join('\n')}\n\n## Data\n\n- [Contracts 2026](${SITE}/data/procurement/base-2026.json)\n- [Contracts 2025](${SITE}/data/procurement/base-2025.json)\n- [Councils](${SITE}/data/councils.json)\n- [Services](${SITE}/data/services.json)\n`;
+  const llms = `# PrompTugal.news Civic\n\n> Independent (not a government site): public money, public services and bureaucracy in Portugal, explained and cross-mapped, starting with the Algarve's 16 councils. Every page has a markdown twin at <path>index.md. Version __VERSION__.\n\n## Pages\n\n${pages.filter(p => !p.path.startsWith('/design/')).map(p => `- [${nodash(p.title)}](${SITE}${p.path}index.md): ${nodash(p.description)}`).join('\n')}\n\n## Data\n\n- [Contracts 2026](${SITE}/data/procurement/base-2026.json)\n- [Contracts 2025](${SITE}/data/procurement/base-2025.json)\n- [Councils](${SITE}/data/councils.json)\n- [Services](${SITE}/data/services.json)\n- [API (OpenAPI 3.1)](${SITE}/api/v1/openapi.json): one JSON GET per council, company and service guide\n`;
   writeFileSync(join(OUT, 'llms.txt'), llms);
   writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map(p => `<url><loc>${SITE}${p.path}</loc></url>`).join('\n')}\n</urlset>\n`);
   writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);

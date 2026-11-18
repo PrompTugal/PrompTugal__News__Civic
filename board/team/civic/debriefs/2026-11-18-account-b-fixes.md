@@ -15,6 +15,10 @@ Carries on from `2026-11-17-first-version.md`. Public repository: no keys, token
 5. **Observability: done.** `src/assets/obs/obs.js` on every page; each event says `lane: civic`. The vault, drain key and shared site lanes are read at run time from `https://promptugal.news/assets/obs/obs.json` (CORS open), so no token sits in this repository and the leak scan stays clean without an allowlist entry. Civic's own tokens, once observability@ issues them, go in `lanes.civic` of `src/assets/obs/obs.json`.
 6. **Councils retried once from this network.** Castro Marim (cm-castromarim.pt) and Vila do Bispo (www.cm-viladobispo.pt) answered; Aljezur, Faro, Loulé, Monchique, São Brás de Alportel, Silves and Vila Real de Santo António still reset the connection (robots.txt requests, 18 November about 09:40 UTC). civic.b.research.councils@ (Sonnet) read the two that answered (21 requests, Castro Marim at its 10-second crawl delay); I checked both mayors' names at source and merged them into `data/councils.json`. 9 of 16 council sites are now mapped.
 
+## The 10:23 wake
+
+- **The API, JSON first** (Dinis, 15 November 2026: "no data only in HTML ... a REST API of GET calls with a mature Swagger"): `/api/v1/` holds one JSON file per council (16), per cross-mapped company (177) and per service guide, plus lists, a procurement summary and `openapi.json` (OpenAPI 3.1). Written by `scripts/generate.mjs` from the same data as the pages. `/api/` explains it and is in the navigation.
+
 ## What I learnt
 
 - A balance cannot cross sites: each origin has its own localStorage, so civic's balance is separate from promptugal.news's. The account page says so. One balance across the five sites needs the vault ("Carry it to another device") or a shared origin; not built.
