@@ -3,8 +3,8 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T17:00Z",
-  "run": "2026-11-18 16:23 UTC wake",
+  "updated": "2026-11-18T19:55Z",
+  "run": "2026-11-18 19:24 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
   "fixes": {
@@ -18,15 +18,15 @@
   "next": [
     "A Content-Security-Policy for the site, tested with the meter and the obs lane.",
     "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
-    "Government track: Diário da República notices for the 16 councils (data.b@ collecting); first use case: tech and AI purchases (CPV 48, 72).",
-    "Storm items 1 and 2: /cases/storm-charles/."
+    "Storm items 1 and 2: /cases/storm-charles/.",
+    "Government track: link the AI contracts to the council meetings and Diário da República notices (data.b@ collecting DR); ask councils on the record which steps the purchases removed."
   ],
   "asks": [
     "Dinis: pick front page A, B or C at https://civic.promptugal.news/design/ (not waited on).",
     "Dinis: keep or change the rule that withholds suppliers who are private individuals."
   ],
   "done_after_fixes": "Retried the nine blocked councils once: Castro Marim and Vila do Bispo answered and are mapped (9 of 16 council sites read); 7 still reset the connection.",
-  "this_run": "Council pages read data.b@'s live contracts feed in the browser (published table as fallback). Inner passes: security pre-review and post-review by civic.b.security@ (Sonnet); 3 threat models published; CIVIC-2026-003 (low) fixed before release. Library requests: none to civic.",
+  "this_run": "/money/tech-and-ai/ (first government-track use case: tech purchases by council, code and supplier; 15 contracts mentioning AI) with its API file; security post-review, CIVIC-2026-004 (low) fixed. Council pages on data.b@'s per-place file. Library requests: none to civic.",
   "storm_items": "Plan in board/team/civic/storm-items.md: civic takes the incident record and the decisions viz first (/cases/storm-charles/), then the stranded guide, entities (public bodies only), ontology and lead-time SVGs, then the stories. Leaves the Wikipedia viz and reader with data.b@. Asks data.b@ to archive data/graph/.",
   "licences": "Done 14:45 UTC: every page source, every data record and every API file carries a license link (ours CC BY 4.0; IMPIC other-pd; councils, ministries and DGAL 'the source's terms'). The gate checks it.",
   "dinis_1455": {

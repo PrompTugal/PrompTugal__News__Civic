@@ -200,7 +200,9 @@ const lastPub = y26.reduce((m, c) => (c.published > m ? c.published : m), '');
 const BASE_SRC = { license: IMPIC_LICENCE, title: 'Contratos Públicos, Portal BASE, IMPIC: open data on dados.gov.pt (contracts of 2026 and 2025)', url: base[2026].source.dataset, read_on: base[2026].source.read_on };
 const whoName = id => (placeOf(id) || { name: id }).name;
 const contractLabel = c => c.object || `(object withheld: a supplier is a private individual) ${c.cpv[0] ? c.cpv[0].desc : ''}`;
-const supplierCell = c => c.suppliers.map(s => s.withheld ? 'a private individual (name withheld)' : (companyPages.has(s.nif) ? `[${s.name}](/map/${s.nif}/)` : s.name)).join('; ');
+// Supplier names are data: square brackets and asterisks would read as markdown links or bold, so they are shown as ( ) and · (CIVIC-2026-004).
+const nm = s => String(s ?? '').replace(/\[/g, '(').replace(/\]/g, ')').replace(/\*/g, '·');
+const supplierCell = c => c.suppliers.map(s => s.withheld ? 'a private individual (name withheld)' : (companyPages.has(s.nif) ? `[${nm(s.name)}](/map/${s.nif}/)` : nm(s.name))).join('; ');
 const companyPages = new Set(multi.map(s => s.nif));
 const muniOf = id => munis.companies.filter(c => c.council === id);
 const muniContracts = (nif, y) => coBase[y].contracts.filter(c => c.buyer === nif);
@@ -267,7 +269,7 @@ function moneyBlocks() {
     ['h2', 'Where the decisions are written down'],
     ['p', 'A contract is the end of a chain. Before it, the council\'s executive (the Câmara Municipal) decides in a meeting, minuted in an **ata**; big decisions go to the elected Assembleia Municipal; tenders are announced in the **Diário da República** (2nd series) and the budget is approved each year. Each council page lists where that council publishes its minutes, agendas, notices and budget, as far as we could read them.'],
     ['p', councilsData.diario_da_republica && councilsData.diario_da_republica.how_to ? `**Searching the Diário da República.** ${councilsData.diario_da_republica.how_to}` : '**Searching the Diário da República.** Its site at diariodarepublica.pt is an application that needs JavaScript; search by the issuing entity (Município de ...) in the 2nd series.'],
-    ['note', '**What BASE does not show.** Contracts that are not reported, municipal companies (they buy under their own NIF, not the council\'s) and spending outside contracts (salaries, transfers to parishes and associations). We now map the councils\' [municipal companies](/money/municipal-companies/) separately; transfers and salaries are not in BASE at all.'],
+    ['note', '**What BASE does not show.** Contracts that are not reported, municipal companies (they buy under their own NIF, not the council\'s) and spending outside contracts (salaries, transfers to parishes and associations). We now map the councils\' [municipal companies](/money/municipal-companies/) separately, and [what they buy in tech and AI](/money/tech-and-ai/); transfers and salaries are not in BASE at all.'],
   ];
 }
 
@@ -302,7 +304,7 @@ function councilBlocks(id) {
     ['table', ['What', 'Where'], { rows: where }],
     ['src', co.read_on || councilsData.read_on ? `The council's own website, read ${day(co.read_on || councilsData.read_on)}${co.mayor && co.mayor.source ? `; the mayor's name from [the council's page](${co.mayor.source})` : ''}.` : 'Not yet read.'],
     ['h2', 'Its biggest suppliers in 2026'],
-    sups.length ? ['table', ['Supplier', 'NIF', 'Contracts', 'Value', 'Other Algarve councils'], { right: [2, 3], rows: sups.map(x => [companyPages.has(x.nif) ? `[${x.name}](/map/${x.nif}/)` : x.name, x.nif, int(x.n), meur(x.v), String(x.councils.size - 1 + sup26.find(y => y.nif === x.nif).councils.size - x.councils.size)]) }] : ['p', 'None published yet.'],
+    sups.length ? ['table', ['Supplier', 'NIF', 'Contracts', 'Value', 'Other Algarve councils'], { right: [2, 3], rows: sups.map(x => [companyPages.has(x.nif) ? `[${nm(x.name)}](/map/${x.nif}/)` : nm(x.name), x.nif, int(x.n), meur(x.v), String(x.councils.size - 1 + sup26.find(y => y.nif === x.nif).councils.size - x.councils.size)]) }] : ['p', 'None published yet.'],
     ['small', 'Companies and public bodies only. Contracts with private individuals count in the totals, but we withhold their names. A contract with several suppliers is split equally between them.'],
     ['h2', 'Latest contracts, live'],
     ['raw', `<div id="live-contracts" data-place="${esc(id)}" data-company-pages="${esc([...companyPages].join(' '))}"><p class="live-note small muted">Loading the last 90 days of contracts from data.promptugal.news, PrompTugal.news's data site (your browser asks it directly, so it sees your IP address, as any website does). If this does not load, the table below is our published copy.</p><div class="live-body"></div><noscript><p class="small muted">Without JavaScript only our published table below is shown.</p></noscript></div><script defer src="/assets/live/contracts.js"></script>`, `Live in the web page: the last 90 days of this council's contracts and its municipal companies', from [data.promptugal.news](https://data.promptugal.news/api/v1/base-gov-pt/latest.json) (places.${id}). This markdown copy holds only our published table below.`],
@@ -385,8 +387,8 @@ export function generate() {
   ], sources: [BASE_SRC] });
   for (const x of multi) {
     const cs = [...x.contracts].sort((a, b) => (b.published || '').localeCompare(a.published || ''));
-    page({ path: `/map/${x.nif}/`, kicker: 'Company', title: x.name, description: `${x.name} (NIF ${x.nif}): contracts with ${x.councils.size} Algarve councils in 2026, from IMPIC's open data.`, blocks: [
-      ['lede', `${x.name} (NIF ${x.nif}) holds ${int(x.n)} contracts with ${x.councils.size} of the Algarve's 16 councils in IMPIC's 2026 data, worth ${meur(x.v)} as published.`],
+    page({ path: `/map/${x.nif}/`, kicker: 'Company', title: nm(x.name), description: `${nm(x.name)} (NIF ${x.nif}): contracts with ${x.councils.size} Algarve councils in 2026, from IMPIC's open data.`, blocks: [
+      ['lede', `${nm(x.name)} (NIF ${x.nif}) holds ${int(x.n)} contracts with ${x.councils.size} of the Algarve's 16 councils in IMPIC's 2026 data, worth ${meur(x.v)} as published.`],
       ['table', ['Council', 'Contracts', 'Value'], { right: [1, 2], rows: [...x.councils].map(id => { const c2 = cs.filter(c => c.council === id); return [`[${whoName(id)}](/councils/${id}/)`, int(c2.length), meur(c2.reduce((s, c) => s + (c.price || 0) / Math.max(1, c.suppliers.length), 0))]; }) }],
       ['h2', 'The contracts'],
       ['table', ['Published', 'Council', 'What', 'Procedure', 'Value'], { right: [4], rows: cs.map(c => [`[${day(c.published)}](${c.url})`, whoName(c.council), contractLabel(c), procName(c.procedure), eur(c.price)]) }],
@@ -467,7 +469,7 @@ export function generate() {
       blocks.push(['raw', `<h2 id="${m.id}">${esc(m.name)}</h2>`, `## ${m.name}`]);
       blocks.push(['p', `Owned by [${whoName(m.council)}](/councils/${m.council}/)${m.council_share_pct ? ` (${m.council_share_pct}%)` : ''}. ${m.what[0].toUpperCase() + m.what.slice(1)}. NIF ${m.nif || 'not found'}. ${m.status_note}`]);
       if (cs.length) {
-        blocks.push(['p', `${int(a.n)} contracts in 2026, ${meur(a.total)}; ${pct(a.direct / a.n)} by direct award. Biggest suppliers: ${sups.map(x => companyPages.has(x.nif) ? `[${x.name}](/map/${x.nif}/) (${meur(x.v)})` : `${x.name} (${meur(x.v)})`).join('; ') || 'private individuals only (names withheld)'}.`]);
+        blocks.push(['p', `${int(a.n)} contracts in 2026, ${meur(a.total)}; ${pct(a.direct / a.n)} by direct award. Biggest suppliers: ${sups.map(x => companyPages.has(x.nif) ? `[${nm(x.name)}](/map/${x.nif}/) (${meur(x.v)})` : `${nm(x.name)} (${meur(x.v)})`).join('; ') || 'private individuals only (names withheld)'}.`]);
         blocks.push(['table', ['Published', 'What', 'Supplier', 'Procedure', 'Value'], { right: [4], rows: cs.slice(0, 5).map(c => [`[${day(c.published)}](${c.url})`, contractLabel(c), supplierCell(c), procName(c.procedure), eur(c.price)]) }]);
       } else blocks.push(['p', 'No contract published on BASE in 2026.']);
     }
@@ -492,7 +494,7 @@ export function generate() {
       municipal_companies: muniRows(muniOf(id)).map(({ m, a, b }) => ({ id: m.id, name: m.name, nif: m.nif, what: m.what, status: m.status, contracts_2026: a.n, value_eur_2026: Math.round(a.total), value_eur_2025: Math.round(b.total) })),
       contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
   };
-  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/billing/meter.json', '/api/v1/openapi.json'] });
+  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/billing/meter.json', '/api/v1/openapi.json'] });
   put('councils.json', { ...meta, councils: COUNCIL_IDS.map(id => { const x = summarise(by26[id]); return { id, name: whoName(id), contracts_2026: x.n, value_eur_2026: Math.round(x.total), direct_award_share_2026: x.n ? +(x.direct / x.n).toFixed(3) : null, site_read: !!councilOf(id).site, href: `/api/v1/councils/${id}.json` }; }), sources: [baseSrc] });
   for (const id of COUNCIL_IDS) put(`councils/${id}.json`, { ...meta, ...councilOut(id) });
   put('companies.json', { ...meta, about: 'Companies with contracts at three or more of the Algarve\'s 16 councils in 2026. Private individuals are never listed.', companies: multi.map(x => ({ nif: x.nif, name: x.name, councils: x.councils.size, contracts: x.n, value_eur: Math.round(x.v), href: `/api/v1/companies/${x.nif}.json` })), sources: [baseSrc] });
@@ -503,6 +505,39 @@ export function generate() {
   const withLic = o => o && typeof o === 'object' ? (Array.isArray(o) ? o.map(withLic) : Object.fromEntries(Object.entries(o).map(([k, v]) => [k, withLic(v)]).concat((o.url || o.source) && typeof (o.url || o.source) === 'string' && /^https?:/.test(o.url || o.source) ? [['license', licenceOf(o.url || o.source)]] : []))) : o;
   put('services.json', { ...meta, read_on: services.read_on, guides: services.guides.map(g => ({ id: g.id, title: g.title, summary: g.summary, license: OURS, page: `${SITE}/services/${g.id}/`, href: `/api/v1/services/${g.id}.json` })), offices: withLic(services.offices) });
   for (const g of services.guides) put(`services/${g.id}.json`, { ...meta, ...withLic(g), page: `${SITE}/services/${g.id}/`, note: 'Our summary of official pages, not official advice. The official page is the authority.' });
+  // the government track's first use case: what the councils buy in tech and AI (civic.b@, 18 Nov 2026; Dinis, 16:00 UTC:
+  // "tech, AI ... government and connecting data and reducing bureaucracy")
+  {
+    const TECH = /^(48|72|302)/;   // CPV 48 software packages, 72 IT services, 302 computer equipment
+    const AI = /intelig[eê]ncia artificial|machine learning|aprendizagem autom[aá]tica|chatbot|assistente virtual/i;
+    const AI_ABBR = /(?<!\p{L})IA(?!\p{L})/u;   // "IA" in capitals between non-letters (not Bóia, JÓIA)
+    const isTech = c => (c.cpv || []).some(x => TECH.test(x.id || ''));
+    const isAI = c => !!c.object && !c.suppliers.some(x => x.withheld) && (AI.test(c.object) || AI_ABBR.test(c.object));   // never a withheld contract's text, whatever the data says
+    const t26 = y26.filter(isTech), t25 = y25.filter(isTech);
+    const ai = [...y26, ...y25].filter(isAI).sort((a, b) => (b.published || '').localeCompare(a.published || ''));
+    const per = COUNCIL_IDS.map(id => { const a = summarise(t26.filter(c => c.council === id)), all = summarise(by26[id]), b = summarise(t25.filter(c => c.council === id)); return { id, a, b, share: all.total ? a.total / all.total : 0 }; }).sort((x, y) => y.a.total - x.a.total);
+    const s26 = summarise(t26), s25 = summarise(t25);
+    const sups = suppliersOf(t26).sort((a, b) => b.v - a.v).slice(0, 15);
+    const cpvTop = Object.entries(t26.reduce((m, c) => { for (const x of c.cpv || []) if (TECH.test(x.id || '')) { const k = `${x.id} ${x.desc}`; m[k] = (m[k] || 0) + (c.price || 0) / Math.max(1, c.cpv.filter(y => TECH.test(y.id || '')).length); } return m; }, {})).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    const blocks = [
+      ['lede', `What the Algarve's 16 councils buy in software, IT services and computer equipment, and where they are buying artificial intelligence. In 2026 so far: ${int(s26.n)} contracts, ${meur(s26.total)} (${pct(s26.total / all26.total)} of everything they contracted), ${pct(s26.direct / Math.max(1, s26.n))} of them direct awards. In 2025: ${int(s25.n)} contracts, ${meur(s25.total)}.`],
+      ['note', '**How we count.** A contract counts as tech when one of its CPV codes (the EU\'s common procurement vocabulary, as the council recorded it) starts 48 (software packages and information systems), 72 (IT services: consulting, development, internet and support) or 302 (computer equipment). A contract mentions AI when its published description contains "inteligência artificial", "IA" (in capitals, as a word), "machine learning", "aprendizagem automática", "chatbot" or "assistente virtual" (our search; a description can mention AI in passing). Councils only: their municipal companies are on [their own page](/money/municipal-companies/).'],
+      ['h2', 'By council, 2026'],
+      ['table', ['Council', 'Tech contracts', 'Value', 'Share of all its contracts', 'Direct awards', 'Value 2025'], { right: [1, 2, 3, 4, 5], rows: per.map(({ id, a, b, share }) => [`[${whoName(id)}](/councils/${id}/)`, int(a.n), meur(a.total), pct(share), a.n ? pct(a.direct / a.n) : 'n/a', meur(b.total)]) }],
+      ['h2', 'What they buy'],
+      ['table', ['CPV code and what it means (as recorded)', 'Value 2026'], { right: [1], rows: cpvTop.map(([k, v]) => [k, meur(v)]) }],
+      ['h2', 'Their biggest tech suppliers, 2026'],
+      sups.length ? ['table', ['Supplier', 'NIF', 'Contracts', 'Value', 'Councils'], { right: [2, 3, 4], rows: sups.map(x => [companyPages.has(x.nif) ? `[${nm(x.name)}](/map/${x.nif}/)` : nm(x.name), x.nif, int(x.n), meur(x.v), String(x.councils.size)]) }] : ['p', 'None.'],
+      ['small', 'Companies and public bodies only; contracts with private individuals count in the totals with their names withheld. A contract with several suppliers is split equally between them.'],
+      ['h2', 'Contracts that mention artificial intelligence, 2025 and 2026'],
+      ai.length ? ['table', ['Published', 'Council', 'What', 'Supplier', 'Procedure', 'Value'], { right: [5], rows: ai.map(c => [`[${day(c.published)}](${c.url})`, `[${whoName(c.council)}](/councils/${c.council}/)`, contractLabel(c), supplierCell(c), procName(c.procedure), eur(c.price)]) }] : ['p', 'None found.'],
+      ['h2', 'What this is for'],
+      ['p', 'Councils are buying software and AI to answer people, process applications and run services: the same steps our [service guides](/services/) explain. Knowing who buys what, from whom and how lets a council compare notes with its neighbours, and lets a resident see where the money for "digital" goes. The next step is to link each of these contracts to the council meeting that approved it and the Diário da República notice, and to ask, with each council, which bureaucratic step the purchase removed.'],
+    ];
+    page({ path: '/money/tech-and-ai/', kicker: 'Public money', title: 'What the councils buy in tech and AI', description: `Software, IT services, computer equipment and artificial intelligence bought by the Algarve's 16 councils: ${int(s26.n)} contracts worth ${meur(s26.total)} in 2026, by council, supplier and code, from IMPIC's open data.`, blocks, sources: [BASE_SRC] });
+    put('use-cases/tech-and-ai.json', { ...meta, about: 'Contracts of the 16 Algarve councils with a CPV code starting 48, 72 or 302 (tech), and contracts whose description mentions AI, 2025 and 2026. Our calculation.', year_2026: sumOut(s26), year_2025: sumOut(s25), by_council_2026: per.map(({ id, a, share }) => ({ council: id, contracts: a.n, value_eur: Math.round(a.total), share_of_council_total: +share.toFixed(3) })), top_suppliers_2026: sups.map(x => ({ nif: x.nif, name: x.name, contracts: x.n, value_eur: Math.round(x.v), councils: x.councils.size })), ai_mentions: ai.map(c => ({ license: IMPIC_LICENCE, id: c.id, council: c.council, published: c.published, object: c.object, price_eur: c.price, procedure: c.procedure, base_gov_pt: c.url })), sources: [baseSrc] });
+  }
+
   put('municipal-companies.json', { ...meta, about: munis.about, read_on: munis.read_on, companies: muniRows(munis.companies).map(({ m, a, b }) => ({ ...m, ownership_license: MUNI_SRC.license, contracts_license: IMPIC_LICENCE, contracts_2026: sumOut(a), contracts_2025: sumOut(b) })), contracts: [`${SITE}/data/procurement/companies-2026.json`, `${SITE}/data/procurement/companies-2025.json`], sources: [...(munis.sources || []), baseSrc], gaps: munis.gaps || [] });
   put('procurement/summary.json', { ...meta, year_2026: sumOut(all26), year_2025: sumOut(all25), companies_at_three_or_more_councils: multi.length, sources: [baseSrc] });
   const ref = n => ({ $ref: `#/components/schemas/${n}` }), obj = { type: 'object' };
@@ -519,6 +554,7 @@ export function generate() {
       '/api/v1/services.json': get('Public-service guides and which office does what', obj),
       '/api/v1/services/{id}.json': get('One guide, step by step, with official pages', obj, 'id'),
       '/api/v1/procurement/summary.json': get('Totals for the 16 councils, 2026 and 2025', obj),
+      '/api/v1/use-cases/tech-and-ai.json': get('Tech and AI purchases of the 16 councils: by council, supplier, and contracts that mention AI', obj),
       '/api/v1/municipal-companies.json': get('The councils\' municipal companies, with their contracts by procedure, 2026 and 2025', obj),
       '/api/v1/billing/meter.json': get('The reading meter\'s prices for this site', obj),
       '/data/procurement/base-2026.json': get('Every 2026 contract of the 16 councils (large)', obj),

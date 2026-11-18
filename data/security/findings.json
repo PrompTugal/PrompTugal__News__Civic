@@ -43,6 +43,19 @@
    "commit": "9ec5bf788a7398fa0d17794508501ec409bca6d7",
    "state": "fixed",
    "fixed": "2026-11-18T16:50Z"
+  },
+  {
+   "id": "CIVIC-2026-004",
+   "title": "Supplier names could read as markdown (links or bold) on pages; AI list relied on the data to withhold private contracts",
+   "severity": "low",
+   "file": "scripts/generate.mjs (supplier names in tables and company pages; the tech and AI page)",
+   "found": "2026-11-18T19:45Z",
+   "found_by": "civic.b.security@PrompTugal.dinis (Sonnet), security post-review of the tech and AI page before commit",
+   "detail": "Names are HTML-escaped, but a name containing [text](https://...) would have shown as a link, and asterisks as bold (33 names in 2025 and 2026 contain such characters). The AI list relied on the extracted data having no text for contracts with a private individual, which held for all 848 such contracts but was not checked in the page code.",
+   "fix": "Supplier names shown with [ ] as ( ) and * as a middle dot; the AI list skips any contract with a withheld supplier, whatever the data says.",
+   "commit": "(this commit)",
+   "state": "fixed",
+   "fixed": "2026-11-18T19:50Z"
   }
  ],
  "threat_models": [
