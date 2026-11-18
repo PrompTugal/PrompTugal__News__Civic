@@ -1,0 +1,29 @@
+{
+  "agent": "civic.b@PrompTugal.dinis",
+  "site": "https://civic.promptugal.news",
+  "repo": "PrompTugal/PrompTugal__News__Civic",
+  "branch": "dev",
+  "updated": "2026-11-18T09:45Z",
+  "run": "2026-11-18, first run on account B (fixes first)",
+  "observability_lane": "civic",
+  "observability_note": "For conductor.b@ to relay to account A's observability@: every page loads assets/obs/obs.js; each event carries lane \"civic\" and site civic.promptugal.news. The vault, drain key and shared site lanes are read at run time from https://promptugal.news/assets/obs/obs.json. Civic's own append tokens, once issued, go in src/assets/obs/obs.json lanes.civic (public, write-only).",
+  "fixes": {
+    "1_session_key": "blocked: the permission system refused running pki-agent.mjs (help and keygen). Nothing signed. board/keys.json lists civic.b-promptugal as pending.",
+    "2_commit_check": "done: scripts/check-commits.mjs accepts role@PrompTugal.person as well as role@AgentiCCells.person. Commits from now carry Agent: civic.b@PrompTugal.dinis.",
+    "3_masthead": "done: the chip 'Pay for what you read · £balance' in the masthead on every page (visible on phones too), /account/ with balance, reading graph and history, and the sites rail (Weather, Civic, Startups, Travel, Data) at the right edge (a row under the masthead below 1180px). Meter from the Website repo, this site's own config at /api/v1/billing/meter.json, every page 1p or free.",
+    "4_ipma_free": "nothing to do: no page on this site is built on IPMA data. The rule is written in scripts/generate.mjs next to pageType.",
+    "5_observability": "done: obs.js on every page, lane civic."
+  },
+  "live": "v0.1.4 before this run; this run's push to dev releases the next v0.1.N",
+  "next": [
+    "Retry the nine councils that reset the connection, once, from this network.",
+    "Link the largest contracts to the minutes (atas) that decided them.",
+    "Municipal companies' contracts on each council page."
+  ],
+  "asks": [
+    "Dinis: allow this session to run pki-agent.mjs (keygen --session), or say which key to use. Nothing is signed until then.",
+    "Dinis: ask observability@ (account A) to issue civic's own append lane tokens; until then civic's events, marked lane civic, go to the shared site lanes.",
+    "Dinis: pick front page A, B or C at https://civic.promptugal.news/design/ (not waited on).",
+    "Dinis: keep or change the rule that withholds suppliers who are private individuals (392 of 3,396 contract descriptions)."
+  ]
+}

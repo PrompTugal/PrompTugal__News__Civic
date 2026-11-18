@@ -73,9 +73,13 @@ const NAV = [['/', 'Front'], ['/money/', 'Public money'], ['/councils/', 'Counci
 const pages = [];
 const PROV_DEFAULT = {
   code: '`scripts/generate.mjs` builds this page from the data files in `data/` (no hand-edited numbers).',
-  agents: 'civic@PrompTugal.dinis (Opus 5.5) wrote the text and the code; research by civic.research.services@ and civic.research.councils@ (Sonnet), checked by civic@.',
+  agents: 'civic@PrompTugal.dinis (Opus) wrote the text and the code, and civic.b@PrompTugal.dinis (Opus) carries it on from 18 November 2026; research by civic.research.services@ and civic.research.councils@ (Sonnet), checked by civic@.',
   person: 'Not yet checked by a person.',
 };
+// The kind of page, for the reading meter (api/v1/billing/meter.json): every page here is reference material, priced at
+// the floor (1p read to the end) or free. Pages built on IPMA data would stay free (Dinis, 18 Nov 2026); this site has none.
+const SITES = [['Weather', 'https://weather.promptugal.news/'], ['Civic', 'https://civic.promptugal.news/'], ['Startups', 'https://startups.promptugal.news/'], ['Travel', 'https://travel.promptugal.news/'], ['Data', 'https://data.promptugal.news/']];
+const pageType = path => path.startsWith('/account/') ? 'account' : /^\/(about|design)\//.test(path) ? 'site' : path.startsWith('/services/') ? 'evidence' : 'data';
 function page({ path, title, description, kicker, blocks, prov = {}, sources = [] }) {
   const navCur = '/' + (path.split('/')[1] ? path.split('/')[1] + '/' : '');
   const p = { ...PROV_DEFAULT, ...prov };
@@ -94,21 +98,29 @@ function page({ path, title, description, kicker, blocks, prov = {}, sources = [
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/civic.css">
+<link rel="stylesheet" href="/assets/meter/meter.css">
+<meta name="page-type" content="${pageType(path)}">
+<script defer src="/assets/meter/meter.js"></script>
+<script defer src="/assets/obs/obs.js"></script>
 </head>
 <body>
 <header class="mast"><div class="wrap">
 <a class="brand" href="/" aria-label="PrompTugal.news Civic, front page"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="184" height="30"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="184" height="30"><span class="sub">Civic</span></a>
 <nav class="main" aria-label="Sections">${NAV.map(([h, t]) => `<a href="${h}"${h === navCur ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>
+<div class="tools" id="nr-tools"><a class="tool meter" id="nr-meter-chip" href="/account/"><span class="meter-label">Pay for what you read</span></a></div>
 </div></header>
-<div class="strip"><div class="wrap"><span><strong>Independent.</strong> Not a government or official site.</span><span>Every fact links its source and the date we read it.</span><span>Version __VERSION__</span><a class="pay" href="https://promptugal.news/account/">Pay for what you read</a></div></div>
+<nav class="em-net" aria-label="The PrompTugal.news sites"><span>Also from PrompTugal.news</span>${SITES.map(([n, u]) => `<a href="${u}"${n === 'Civic' ? ' aria-current="page"' : ' target="_blank" rel="noopener"'}>${n}</a>`).join('')}</nav>
+<div class="strip"><div class="wrap"><span><strong>Independent.</strong> Not a government or official site.</span><span>Every fact links its source and the date we read it.</span><span>Version __VERSION__</span></div></div>
 <main><div class="wrap">
 ${kicker ? `<p class="kicker">${esc(kicker)}</p>\n` : ''}<h1>${inlineHtml(title)}</h1>
+<div class="body">
 ${html}
+</div>
 <section class="prov" aria-label="How this page was made"><strong>How this page was made</strong>
 <dl><dt>Code</dt><dd>${inlineHtml(p.code.replace(/`/g, ''))}</dd><dt>Agents</dt><dd>${inlineHtml(p.agents)}</dd><dt>A person</dt><dd>${inlineHtml(p.person)}</dd></dl>
 <p>Markdown twin: <a href="${path}index.md">${path}index.md</a>. Something wrong? The <a href="https://github.com/PrompTugal/PrompTugal__News__Civic">repository</a> holds every source file.</p></section>
 </div></main>
-<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version __VERSION__. Code Apache-2.0, text CC BY 4.0. Public data from the sources named on each page.</div></footer>
+<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version <a class="ver" href="/version.json">__VERSION__</a>. Code Apache-2.0, text CC BY 4.0. Public data from the sources named on each page.</div></footer>
 </body>
 </html>
 `;
@@ -289,8 +301,22 @@ function serviceBlocks(g) {
   return b;
 }
 
+// ---------------------------------------------------------------- the reading account
+function accountBlocks() {
+  return [
+    ['lede', 'Pay for what you read: the same reading credit as promptugal.news. Each page you read here is charged for the share of it you read, at most 1p, from a balance kept in this browser. Nothing is blocked, and your balance and reading history never leave this browser.'],
+    ['raw', '<div id="nr-account" class="nr-mount"><p class="small muted">Your balance, your reading graph and the pages you have read appear here once this page\'s script runs. Without JavaScript nothing is charged.</p></div>', 'Your balance, your reading graph and your history are drawn in your browser from what it keeps; this markdown twin cannot show them.'],
+    ['h2', 'How pages are priced'],
+    ['p', 'Every page on this site is reference material: council pages, contracts, company pages and service guides cost 1p read to the end, the site\'s own pages (about, design) 1p, and this account page nothing. Opening a page costs at least a tenth of its price. A usefulness rating re-prices it (not useful is free, excellent is double), and you can decline any charge and say why. Prices are copied from [promptugal.news\'s meter](https://promptugal.news/api/v1/billing/meter.json); this site\'s config is [api/v1/billing/meter.json](/api/v1/billing/meter.json).'],
+    ['h2', 'Your balance here and on promptugal.news'],
+    ['p', 'The credit is kept in your browser\'s storage for civic.promptugal.news only: a browser keeps each site\'s storage apart, so this balance and the one on promptugal.news are separate. Topping up happens on [promptugal.news](https://promptugal.news/account/top-up.html). Carrying one balance across the PrompTugal.news sites is not built yet.'],
+    ['note', 'The meter is newsroom.sgit.ai\'s sg-meter v1.5.0 as promptugal.news runs it, copied unedited apart from one comment and one button. It reads no account and sets no cookie.'],
+  ];
+}
+
 // ---------------------------------------------------------------- build all pages
 export function generate() {
+  page({ path: '/account/', kicker: 'Your account', title: 'Pay for what you read', description: 'Your reading credit on PrompTugal.news Civic: the balance, the reading graph and the pages read, kept in this browser only.', blocks: accountBlocks(), prov: { code: 'scripts/generate.mjs writes this page; assets/meter/meter.js (from promptugal.news) draws the balance, graph and history in your browser.' } });
   page({ path: '/', title: 'Public money and public services, explained', description: 'Independent: public procurement, council decisions and public services in Portugal, explained and cross-mapped, starting with the Algarve\'s 16 councils. Not a government site.', blocks: frontBlocks(), sources: [BASE_SRC] });
 
   page({ path: '/money/', kicker: 'Public money', title: 'What the Algarve\'s councils buy, and how', description: `Public procurement by the Algarve's 16 councils in 2026, from IMPIC's open data of the Portal BASE: ${int(all26.n)} contracts, procedures explained.`, blocks: moneyBlocks(), sources: [BASE_SRC, { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });

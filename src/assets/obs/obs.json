@@ -1,0 +1,10 @@
+{
+  "about": "civic.promptugal.news's page views and reads, sent by assets/obs/obs.js (copied from PrompTugal__News__Website on 18 November 2026, at Dinis's word: \"add observability to all the other sites\") into PrompTugal.news's observability vault, drained by observability@PrompTugal.dinis on account A. The vault, the drain's public key and the shared write-only lanes are read at run time from promptugal.news's own obs.json (config_from), so none is copied here. This site's lane is 'civic': every event says so, and once observability@ issues civic's own append tokens they go in lanes.civic.",
+  "enabled": true,
+  "lane": "civic",
+  "config_from": "https://promptugal.news/assets/obs/obs.json",
+  "lanes": {
+    "civic": []
+  },
+  "what": "This site counts page views and reading time, with no IP address kept, no cookie and no user-agent string, as promptugal.news does. Do Not Track, Global Privacy Control and the Pause switch in the footer stop it. What is counted: https://promptugal.news/newsroom/observability/index.html"
+}
