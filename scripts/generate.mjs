@@ -2,6 +2,7 @@
 // plus llms.txt and sitemap.xml. Node built-ins only. Called by scripts/build.mjs after src/ is copied.
 // Written by civic@PrompTugal.dinis, 17 November 2026.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'node:fs';
+import { CSP_META } from './csp.mjs';
 import { join, dirname } from 'node:path';
 
 const SITE = 'https://civic.promptugal.news';
@@ -110,6 +111,7 @@ function page({ path, title, description, kicker, blocks, prov = {}, sources = [
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+${CSP_META}
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(nodash(description))}">

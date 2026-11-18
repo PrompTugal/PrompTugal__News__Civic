@@ -4,6 +4,7 @@
 // placeholder check (a seeded site must hold no __SITE_*__ placeholder).
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
+import { CSP_META } from './csp.mjs';
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const problems = [];
 const fail = m => problems.push(m);
@@ -64,6 +65,25 @@ for (const f of files.filter(f => f.startsWith(join('_site', 'api')) && f.endsWi
   if (f.endsWith('openapi.json')) { if (!d.info || !d.info.license) fail(`${f}: no info.license`); continue; }
   if (!d.license) fail(`${f}: no license`);
   for (const x of d.sources || []) if (!x.license) fail(`${f}: a source without a license`);
+}
+// civic.b@PrompTugal.dinis (2026-11-18), from civic.b.security@'s pre- and post-review: every page carries exactly the
+// policy in scripts/csp.mjs, once, before any script, style or link; every script is an external same-origin file under
+// /assets/; no element has an event-handler attribute. Tags are read quote-aware, so '>' inside an attribute does not end one.
+const TAG = /<([a-zA-Z][a-zA-Z0-9-]*)((?:[^>"']|"[^"]*"|'[^']*')*)>/g;
+const ATTR = /([^\s"'>\/=]+)(?:\s*=\s*("[^"]*"|'[^']*'|[^\s"'=<>`]+))?/g;
+for (const f of files.filter(f => f.endsWith('.html'))) {
+  const s = readFileSync(f, 'utf8');
+  const at = s.indexOf(CSP_META);
+  if (at < 0) { fail(`${f}: no Content-Security-Policy, or not the one in scripts/csp.mjs`); continue; }
+  if ((s.match(/http-equiv\s*=\s*["']?content-security-policy/gi) || []).length !== 1) fail(`${f}: more than one Content-Security-Policy`);
+  const first = s.search(/<(script|style|link)\b/i);
+  if (first >= 0 && first < at) fail(`${f}: the Content-Security-Policy comes after a script, style or link`);
+  for (const m of s.matchAll(TAG)) {
+    const name = m[1].toLowerCase(), attrs = {};
+    for (const a of (m[2] || '').matchAll(ATTR)) attrs[a[1].toLowerCase()] = (a[2] || '').replace(/^["']|["']$/g, '');
+    for (const k of Object.keys(attrs)) if (/^on/.test(k)) fail(`${f}: <${name} ${k}=...>: an event-handler attribute (blocked by script-src 'self')`);
+    if (name === 'script' && !/^\/assets\/[a-z0-9\/._-]+\.js$/i.test(attrs.src || '')) fail(`${f}: a <script> that is not an external file under /assets/ (${attrs.src || 'inline'})`);
+  }
 }
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');

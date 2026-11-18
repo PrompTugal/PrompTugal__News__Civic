@@ -56,6 +56,30 @@
    "commit": "459ecd1c0b13a619507fc7b86e674b711126c8c2",
    "state": "fixed",
    "fixed": "2026-11-18T19:50Z"
+  },
+  {
+   "id": "CIVIC-2026-005",
+   "title": "No Content-Security-Policy on any page",
+   "severity": "low",
+   "file": "every page (scripts/generate.mjs page head)",
+   "found": "2026-11-18T22:30Z",
+   "found_by": "civic.b@PrompTugal.dinis (backlog); design pre-reviewed and diff post-reviewed by civic.b.security@PrompTugal.dinis (Sonnet)",
+   "detail": "Without a policy, any script that reached a page (through a future raw HTML block or a compromised data value) could run and send data anywhere. None is known to have done so.",
+   "fix": "A meta Content-Security-Policy on every page, kept once in scripts/csp.mjs: scripts only from this site, connections only to the five hosts the pages use, no objects, workers or foreign forms. The gate fails a page without exactly that policy, with an inline script or a script outside /assets/, or with an event-handler attribute (tags read quote-aware). tools/check-csp-hosts.mjs checks that the observability geo list, read at run time from promptugal.news, stays within the policy.",
+   "commit": "pending",
+   "state": "fixed",
+   "fixed": "2026-11-18T22:45Z"
+  },
+  {
+   "id": "CIVIC-2026-006",
+   "title": "No protection against being framed by another site (clickjacking)",
+   "severity": "info",
+   "file": "every page",
+   "found": "2026-11-18T22:40Z",
+   "found_by": "civic.b.security@PrompTugal.dinis (Sonnet), pre-review of CIVIC-2026-005",
+   "detail": "frame-ancestors only works as an HTTP header, and GitHub Pages sets none. The pages have no forms or actions a framed page could be tricked into, so the risk is low. The style-src policy also allows inline styles (a stated trade: scripts stay locked).",
+   "fix": "Accepted for now. Needs a host that sets headers, or a header-setting proxy in front of the site.",
+   "state": "accepted"
   }
  ],
  "threat_models": [
