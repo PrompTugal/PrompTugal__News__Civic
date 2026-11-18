@@ -41,6 +41,20 @@ for (const f of files.filter(f => f.endsWith('index.html'))) {
   if (!s.includes('Not a government or official site')) fail(`${f}: no independence label`);
 }
 if (!isTemplate && !existsSync('_site/llms.txt')) fail('no llms.txt');
+// civic.b@PrompTugal.dinis (2026-11-18), Dinis's word of 18 Nov 2026 (~14:25 UTC): every piece of data carries a licence link.
+// Each page names the licence of every source it lists, and of our own work; each API file and each of its sources has a license.
+for (const f of files.filter(f => f.endsWith('index.html'))) {
+  const s = readFileSync(f, 'utf8');
+  if (!s.includes('creativecommons.org/licenses/by/4.0/')) fail(`${f}: no link to our licence (CC BY 4.0)`);
+  const m = s.match(/<h2 id="sources">Sources<\/h2>\n<ul>(.*?)<\/ul>/s);
+  if (m) for (const li of m[1].split('<li>').slice(1)) if (!/licence: /.test(li)) fail(`${f}: a source without its licence`);
+}
+for (const f of files.filter(f => f.startsWith(join('_site', 'api')) && f.endsWith('.json'))) {
+  let d; try { d = JSON.parse(readFileSync(f, 'utf8')); } catch (e) { fail(`${f}: not JSON`); continue; }
+  if (f.endsWith('openapi.json')) { if (!d.info || !d.info.license) fail(`${f}: no info.license`); continue; }
+  if (!d.license) fail(`${f}: no license`);
+  for (const x of d.sources || []) if (!x.license) fail(`${f}: a source without a license`);
+}
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {

@@ -6,12 +6,22 @@
   {
    "title": "DGAL, Lista das empresas locais (xlsx, dated 12 February 2025)",
    "url": "https://portalautarquico.dgal.gov.pt/ficheiros/?schema=f7664ca7-3a1a-4b25-9f46-2056eef44c33&channel=266f4a32-848e-4d2c-99c6-ad5b5511d7fe&content_id=B669C074-A01A-452C-8C35-5AE2B31F71D5&field=storage_image&lang=pt&ver=1&filetype=xlsx&dtestate=2025-02-12162211",
-   "read_on": "2026-11-18"
+   "read_on": "2026-11-18",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://portalautarquico.dgal.gov.pt/",
+    "published": false
+   }
   },
   {
    "title": "IMPIC open data of the Portal BASE on dados.gov.pt",
    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-   "read_on": "2026-11-18"
+   "read_on": "2026-11-18",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
   }
  ],
  "gaps": [
@@ -34,7 +44,23 @@
     "https://fagar.pt/"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "ambifaro",
@@ -48,7 +74,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "emarp",
@@ -63,7 +105,23 @@
     "https://files.diariodarepublica.pt/cp_hora/2026/08/156/419970234.pdf"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "ambiolhao",
@@ -78,7 +136,23 @@
     "https://files.diariodarepublica.pt/cp_hora/2026/03/050/419954073.pdf"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "fesnima",
@@ -92,7 +166,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "listed",
-   "status_note": "In DGAL's list with no note; not otherwise checked."
+   "status_note": "In DGAL's list with no note; not otherwise checked.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "mercados-de-olhao",
@@ -106,7 +196,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "listed",
-   "status_note": "In DGAL's list with no note; not otherwise checked."
+   "status_note": "In DGAL's list with no note; not otherwise checked.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "taviraverde",
@@ -120,7 +226,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "empet",
@@ -132,7 +254,23 @@
    "nif": null,
    "nif_sources": [],
    "status": "no activity or in liquidation",
-   "status_note": "DGAL's list marks it 'Sem actividade / Em liquidação'."
+   "status_note": "DGAL's list marks it 'Sem actividade / Em liquidação'.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "vrsa-sgu",
@@ -146,7 +284,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "no activity or in liquidation",
-   "status_note": "DGAL's list marks it 'Sem actividade / Em liquidação'."
+   "status_note": "DGAL's list marks it 'Sem actividade / Em liquidação'.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "lagos-em-forma",
@@ -160,7 +314,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "loule-concelho-global",
@@ -174,7 +344,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "infraquinta",
@@ -189,7 +375,23 @@
     "https://files.diariodarepublica.pt/cp_hora/2026/07/131/419966792.pdf"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "inframoura",
@@ -204,7 +406,23 @@
     "https://files.diariodarepublica.pt/cp_hora/2026/05/087/419960087.pdf"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "infralobo",
@@ -218,7 +436,23 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "active",
-   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity."
+   "status_note": "In DGAL's list with no note; its own site or a 2026 notice shows activity.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   },
   {
    "id": "teatro-municipal-de-faro",
@@ -232,7 +466,27 @@
     "IMPIC open data of the Portal BASE (dados.gov.pt), buyer NIF as published, contracts 2025 and 2026"
    ],
    "status": "active",
-   "status_note": "Not a company, so not in DGAL's list of local companies; it buys under its own NIF on BASE."
+   "status_note": "Not a company, so not in DGAL's list of local companies; it buys under its own NIF on BASE.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "source_licenses": {
+    "ownership": {
+     "name": "the source's terms",
+     "url": "https://portalautarquico.dgal.gov.pt/",
+     "published": false
+    },
+    "nif_and_contracts": {
+     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+     "id": "other-pd"
+    }
+   }
   }
- ]
+ ],
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ }
 }

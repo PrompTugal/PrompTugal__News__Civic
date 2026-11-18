@@ -23,6 +23,20 @@ const COUNCIL_IDS = places.places.map(p => p.id);
 const placeOf = id => places.places.find(p => p.id === id);
 const councilOf = id => (councilsData.councils || []).find(c => c.id === id) || { id };
 
+// ---------------------------------------------------------------- licences (Dinis, 18 Nov 2026, ~14:25 UTC: "Every single piece of data
+// that we get should have a link to the license that it has"; PrompTugal__News__Website board/guidance/2026-11-18-licences-and-submissions.md).
+// Ours is CC BY 4.0. Taken data keeps its source's published licence; where none is published, a link to the source with the words
+// "the source's terms": never blank, never assumed open.
+const OURS = { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
+const IMPIC_LICENCE = { name: 'Outra (Domínio Público), as dados.gov.pt publishes it for this dataset', url: 'https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/', id: 'other-pd' };
+function licenceOf(url) {
+  let host = ''; try { host = new URL(url).host; } catch { return { name: "the source's terms", url: null, published: false }; }
+  if (/(^|\.)dados\.gov\.pt$/.test(host) || /(^|\.)base\.gov\.pt$/.test(host)) return IMPIC_LICENCE;
+  if (host === 'civic.promptugal.news' || host === 'promptugal.news') return OURS;
+  return { name: "the source's terms", url: `https://${host}/`, published: false };
+}
+const licLink = l => l.url ? `[${l.name}](${l.url})` : l.name;
+
 // ---------------------------------------------------------------- formatting
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const eur = n => n == null ? 'n/a' : `${Math.round(n).toLocaleString('en-GB')} €`;
@@ -86,7 +100,7 @@ const pageType = path => path.startsWith('/account/') ? 'account' : /^\/(about|d
 function page({ path, title, description, kicker, blocks, prov = {}, sources = [] }) {
   const navCur = '/' + (path.split('/')[1] ? path.split('/')[1] + '/' : '');
   const p = { ...PROV_DEFAULT, ...prov };
-  const srcBlocks = sources.length ? [['h2', 'Sources'], ['ul', sources.map(s => typeof s === 'string' ? s : `[${s.title}](${s.url})${s.read_on ? `, read ${day(s.read_on)}` : ''}`)]] : [];
+  const srcBlocks = sources.length ? [['h2', 'Sources'], ['ul', sources.map(s => typeof s === 'string' ? s : `[${s.title}](${s.url})${s.read_on ? `, read ${day(s.read_on)}` : ''}; licence: ${licLink(s.license || licenceOf(s.url))}`)], ['small', `Our text, tables and calculations: ${licLink(OURS)}. Each source keeps its own licence, linked above.`]] : [['small', `Our text, tables and calculations: ${licLink(OURS)}.`]];
   const { html, md } = render([...blocks, ...srcBlocks]);
   const fullTitle = path === '/' ? 'PrompTugal.news Civic: public money and public services, explained' : `${title} · PrompTugal.news Civic`;
   const doc = `<!doctype html>
@@ -123,7 +137,7 @@ ${html}
 <dl><dt>Code</dt><dd>${inlineHtml(p.code.replace(/`/g, ''))}</dd><dt>Agents</dt><dd>${inlineHtml(p.agents)}</dd><dt>A person</dt><dd>${inlineHtml(p.person)}</dd></dl>
 <p>Markdown twin: <a href="${path}index.md">${path}index.md</a>. Something wrong? The <a href="https://github.com/PrompTugal/PrompTugal__News__Civic">repository</a> holds every source file.</p></section>
 </div></main>
-<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version <a class="ver" href="/version.json">__VERSION__</a>. Code Apache-2.0, text CC BY 4.0. Public data from the sources named on each page.</div></footer>
+<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version <a class="ver" href="/version.json">__VERSION__</a>. Code Apache-2.0, text and data <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>; sources keep their own licences, linked on each page. Public data from the sources named on each page.</div></footer>
 </body>
 </html>
 `;
@@ -180,7 +194,7 @@ const all26 = summarise(y26), all25 = summarise(y25);
 const sup26 = suppliersOf(y26);
 const multi = sup26.filter(s => s.councils.size >= 3).sort((a, b) => b.councils.size - a.councils.size || b.v - a.v);
 const lastPub = y26.reduce((m, c) => (c.published > m ? c.published : m), '');
-const BASE_SRC = { title: 'Contratos Públicos, Portal BASE, IMPIC: open data on dados.gov.pt (contracts of 2026 and 2025)', url: base[2026].source.dataset, read_on: base[2026].source.read_on };
+const BASE_SRC = { license: IMPIC_LICENCE, title: 'Contratos Públicos, Portal BASE, IMPIC: open data on dados.gov.pt (contracts of 2026 and 2025)', url: base[2026].source.dataset, read_on: base[2026].source.read_on };
 const whoName = id => (placeOf(id) || { name: id }).name;
 const contractLabel = c => c.object || `(object withheld: a supplier is a private individual) ${c.cpv[0] ? c.cpv[0].desc : ''}`;
 const supplierCell = c => c.suppliers.map(s => s.withheld ? 'a private individual (name withheld)' : (companyPages.has(s.nif) ? `[${s.name}](/map/${s.nif}/)` : s.name)).join('; ');
@@ -189,7 +203,7 @@ const muniOf = id => munis.companies.filter(c => c.council === id);
 const muniContracts = (nif, y) => coBase[y].contracts.filter(c => c.buyer === nif);
 const muniRows = list => list.map(m => { const a = summarise(muniContracts(m.nif, 2026)), b = summarise(muniContracts(m.nif, 2025));
   return { m, a, b }; });
-const MUNI_SRC = { title: 'DGAL, list of local companies (Lista das empresas locais), dated 12 February 2025', url: (munis.sources || [{}])[0].url, read_on: munis.read_on };
+const MUNI_SRC = { license: { name: "the source's terms", url: 'https://portalautarquico.dgal.gov.pt/', published: false }, title: 'DGAL, list of local companies (Lista das empresas locais), dated 12 February 2025', url: (munis.sources || [{}])[0].url, read_on: munis.read_on };
 
 // ---------------------------------------------------------------- the front page
 function frontBlocks() {
@@ -342,7 +356,7 @@ export function generate() {
     ['src', `Contracts: [IMPIC open data](${BASE_SRC.url}), read ${day(BASE_SRC.read_on)}. Minutes: each council's own site${councilsData.read_on ? `, read ${day(councilsData.read_on)}` : ''}.`],
     ...(councilsData.amal ? [['h2', 'AMAL, the councils together'], ['p', `${councilsData.amal.what} [amal.pt](${councilsData.amal.url})`]] : []),
   ], sources: [BASE_SRC] });
-  for (const id of COUNCIL_IDS) page({ path: `/councils/${id}/`, kicker: 'Council', title: `${whoName(id)}`, description: `The Câmara Municipal de ${whoName(id)}: contracts in 2026, suppliers, and where its minutes, agendas and notices are published. Independent.`, blocks: councilBlocks(id), sources: [BASE_SRC] });
+  for (const id of COUNCIL_IDS) page({ path: `/councils/${id}/`, kicker: 'Council', title: `${whoName(id)}`, description: `The Câmara Municipal de ${whoName(id)}: contracts in 2026, suppliers, and where its minutes, agendas and notices are published. Independent.`, blocks: councilBlocks(id), sources: [BASE_SRC, ...(councilOf(id).site ? [{ title: `The Câmara Municipal de ${whoName(id)}'s own website (minutes, agendas, notices, budget, mayor)`, url: councilOf(id).site, read_on: councilOf(id).read_on || councilsData.read_on }] : [])] });
 
   page({ path: '/services/', kicker: 'Public services', title: 'How public services work, step by step', description: 'Paying by Multibanco reference, getting a NIF, the SNS, AIMA residency and which office does what in Portugal: step by step, from official pages.', blocks: [
     ['lede', 'The everyday bureaucracy that matters and few explain: each guide is our summary of official pages (gov.pt, ePortugal, the Portal das Finanças, the SNS, AIMA), each step with its source and the date we read it.'],
@@ -437,8 +451,8 @@ export function generate() {
   // HTML ... a REST API of GET calls with a mature Swagger"). Static GET files under /api/v1/, described by /api/v1/openapi.json.
   const API = join(OUT, 'api', 'v1');
   const put = (rel, obj) => { const f = join(API, rel); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, JSON.stringify(obj, null, 1) + '\n'); };
-  const meta = { site: 'PrompTugal.news Civic (independent, not a government or official site)', version: '__VERSION__', licence: 'CC BY 4.0 (our text and calculations); public data as each source publishes it' };
-  const baseSrc = { title: BASE_SRC.title, url: BASE_SRC.url, read_on: BASE_SRC.read_on, published_up_to: lastPub };
+  const meta = { site: 'PrompTugal.news Civic (independent, not a government or official site)', version: '__VERSION__', license: OURS, license_note: 'CC BY 4.0 covers our calculations and text; each source and each record keeps its own license, given beside it.', licence: 'CC BY 4.0 (our text and calculations); public data as each source publishes it' };
+  const baseSrc = { license: IMPIC_LICENCE, title: BASE_SRC.title, url: BASE_SRC.url, read_on: BASE_SRC.read_on, published_up_to: lastPub };
   const sumOut = x => ({ contracts: x.n, value_eur: Math.round(x.total), direct_awards: x.direct, direct_award_share: x.n ? +(x.direct / x.n).toFixed(3) : null, open_tenders: x.open, by_procedure: Object.fromEntries(Object.entries(x.byProc).map(([k, v]) => [k, { label_en: procName(k), contracts: v.n, value_eur: Math.round(v.v) }])) });
   const councilOut = id => {
     const co = councilOf(id), cs = by26[id];
@@ -446,7 +460,7 @@ export function generate() {
       contracts_2026: sumOut(summarise(cs)), contracts_2025: sumOut(summarise(by25[id])),
       top_suppliers_2026: suppliersOf(cs).sort((a, b) => b.v - a.v).slice(0, 10).map(x => ({ nif: x.nif, name: x.name, contracts: x.n, value_eur: Math.round(x.v), page: companyPages.has(x.nif) ? `${SITE}/map/${x.nif}/` : null })),
       withheld_private_individuals_2026: cs.filter(c => c.suppliers.some(x => x.withheld)).length,
-      where_published: { site: co.site || null, minutes: co.minutes || null, agendas: co.agendas || null, assembly: co.assembly || null, notices: co.notices || null, budget: co.budget || null, procurement: co.procurement || null, mayor: co.mayor || null, read_on: co.read_on || councilsData.read_on || null, gaps: co.gaps || [] },
+      where_published: { site: co.site ? { url: co.site, license: licenceOf(co.site) } : null, ...Object.fromEntries(['minutes', 'agendas', 'assembly', 'notices', 'budget', 'procurement'].map(k => [k, co[k] ? { ...co[k], license: licenceOf(co[k].url) } : null])), mayor: co.mayor ? { ...co.mayor, license: licenceOf(co.mayor.source) } : null, read_on: co.read_on || councilsData.read_on || null, gaps: co.gaps || [] },
       municipal_companies: muniRows(muniOf(id)).map(({ m, a, b }) => ({ id: m.id, name: m.name, nif: m.nif, what: m.what, status: m.status, contracts_2026: a.n, value_eur_2026: Math.round(a.total), value_eur_2025: Math.round(b.total) })),
       contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
   };
@@ -456,11 +470,12 @@ export function generate() {
   put('companies.json', { ...meta, about: 'Companies with contracts at three or more of the Algarve\'s 16 councils in 2026. Private individuals are never listed.', companies: multi.map(x => ({ nif: x.nif, name: x.name, councils: x.councils.size, contracts: x.n, value_eur: Math.round(x.v), href: `/api/v1/companies/${x.nif}.json` })), sources: [baseSrc] });
   for (const x of multi) put(`companies/${x.nif}.json`, { ...meta, nif: x.nif, name: x.name, page: `${SITE}/map/${x.nif}/`,
     by_council: [...x.councils].map(id => { const cs = x.contracts.filter(c => c.council === id); return { council: id, name: whoName(id), contracts: cs.length, value_eur: Math.round(cs.reduce((t, c) => t + (c.price || 0) / Math.max(1, c.suppliers.length), 0)) }; }).sort((a, b) => b.value_eur - a.value_eur),
-    contracts: x.contracts.map(c => ({ id: c.id, council: c.council, object: c.object, procedure: c.procedure, procedure_en: procName(c.procedure), price_eur: c.price, signed: c.signed, published: c.published, base_gov_pt: c.url })),
+    contracts: x.contracts.map(c => ({ license: IMPIC_LICENCE, id: c.id, council: c.council, object: c.object, procedure: c.procedure, procedure_en: procName(c.procedure), price_eur: c.price, signed: c.signed, published: c.published, base_gov_pt: c.url })),
     note: 'value_eur splits a contract with several suppliers equally between them (our calculation).', sources: [baseSrc] });
-  put('services.json', { ...meta, read_on: services.read_on, guides: services.guides.map(g => ({ id: g.id, title: g.title, summary: g.summary, page: `${SITE}/services/${g.id}/`, href: `/api/v1/services/${g.id}.json` })), offices: services.offices });
-  for (const g of services.guides) put(`services/${g.id}.json`, { ...meta, ...g, page: `${SITE}/services/${g.id}/`, note: 'Our summary of official pages, not official advice. The official page is the authority.' });
-  put('municipal-companies.json', { ...meta, about: munis.about, read_on: munis.read_on, companies: muniRows(munis.companies).map(({ m, a, b }) => ({ ...m, contracts_2026: sumOut(a), contracts_2025: sumOut(b) })), contracts: [`${SITE}/data/procurement/companies-2026.json`, `${SITE}/data/procurement/companies-2025.json`], sources: [...(munis.sources || []), baseSrc], gaps: munis.gaps || [] });
+  const withLic = o => o && typeof o === 'object' ? (Array.isArray(o) ? o.map(withLic) : Object.fromEntries(Object.entries(o).map(([k, v]) => [k, withLic(v)]).concat((o.url || o.source) && typeof (o.url || o.source) === 'string' && /^https?:/.test(o.url || o.source) ? [['license', licenceOf(o.url || o.source)]] : []))) : o;
+  put('services.json', { ...meta, read_on: services.read_on, guides: services.guides.map(g => ({ id: g.id, title: g.title, summary: g.summary, license: OURS, page: `${SITE}/services/${g.id}/`, href: `/api/v1/services/${g.id}.json` })), offices: withLic(services.offices) });
+  for (const g of services.guides) put(`services/${g.id}.json`, { ...meta, ...withLic(g), page: `${SITE}/services/${g.id}/`, note: 'Our summary of official pages, not official advice. The official page is the authority.' });
+  put('municipal-companies.json', { ...meta, about: munis.about, read_on: munis.read_on, companies: muniRows(munis.companies).map(({ m, a, b }) => ({ ...m, ownership_license: MUNI_SRC.license, contracts_license: IMPIC_LICENCE, contracts_2026: sumOut(a), contracts_2025: sumOut(b) })), contracts: [`${SITE}/data/procurement/companies-2026.json`, `${SITE}/data/procurement/companies-2025.json`], sources: [...(munis.sources || []), baseSrc], gaps: munis.gaps || [] });
   put('procurement/summary.json', { ...meta, year_2026: sumOut(all26), year_2025: sumOut(all25), companies_at_three_or_more_councils: multi.length, sources: [baseSrc] });
   const ref = n => ({ $ref: `#/components/schemas/${n}` }), obj = { type: 'object' };
   const get = (summary, schema, param) => ({ get: { summary, ...(param ? { parameters: [{ name: param, in: 'path', required: true, schema: { type: 'string' } }] } : {}), responses: { 200: { description: 'OK', content: { 'application/json': { schema } } }, 404: { description: 'Not found' } } } });

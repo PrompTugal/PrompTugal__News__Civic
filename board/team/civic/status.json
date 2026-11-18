@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T14:10Z",
+  "updated": "2026-11-18T14:45Z",
   "run": "2026-11-18 13:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "For conductor.b@ to relay to account A's observability@: every page loads assets/obs/obs.js; each event carries lane \"civic\" and site civic.promptugal.news. The vault, drain key and shared site lanes are read at run time from https://promptugal.news/assets/obs/obs.json. Civic's own append tokens, once issued, go in src/assets/obs/obs.json lanes.civic (public, write-only).",
@@ -28,5 +28,6 @@
   ],
   "done_after_fixes": "Retried the nine blocked councils once: Castro Marim and Vila do Bispo answered and are mapped (9 of 16 council sites read); 7 still reset the connection.",
   "this_run": "The councils' municipal companies: 15 bodies (14 from DGAL's list, plus Faro's municipal theatre), 691 contracts in 2026 (about 36.3 million euros) and 799 in 2025, from IMPIC's open data by NIF. New page /money/municipal-companies/, a section on each owner council's page, /api/v1/municipal-companies.json.",
-  "storm_items": "Plan in board/team/civic/storm-items.md: civic takes the incident record and the decisions viz first (/cases/storm-charles/), then the stranded guide, entities (public bodies only), ontology and lead-time SVGs, then the stories. Leaves the Wikipedia viz and reader with data.b@. Asks data.b@ to archive data/graph/."
+  "storm_items": "Plan in board/team/civic/storm-items.md: civic takes the incident record and the decisions viz first (/cases/storm-charles/), then the stranded guide, entities (public bodies only), ontology and lead-time SVGs, then the stories. Leaves the Wikipedia viz and reader with data.b@. Asks data.b@ to archive data/graph/.",
+  "licences": "Done 14:45 UTC: every page source, every data record and every API file carries a license link (ours CC BY 4.0; IMPIC other-pd; councils, ministries and DGAL 'the source's terms'). The gate checks it."
 }

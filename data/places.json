@@ -3,7 +3,11 @@
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Website",
   "path": "data/by-place/<id>.json",
   "commit": "dfa068e004e923f3c30b8abc0e9f4d43d97b6b0c",
-  "read_on": "2026-11-17"
+  "read_on": "2026-11-17",
+  "license": {
+   "name": "CC BY 4.0",
+   "url": "https://creativecommons.org/licenses/by/4.0/"
+  }
  },
  "places": [
   {

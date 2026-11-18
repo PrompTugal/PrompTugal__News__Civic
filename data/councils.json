@@ -9,23 +9,53 @@
    "robots": "allowed",
    "mayor": {
     "name": "Rui Cristina",
-    "source": "https://www.cm-albufeira.pt/presidente-rui-cristina"
+    "source": "https://www.cm-albufeira.pt/presidente-rui-cristina",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-albufeira.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://www.cm-albufeira.pt/atas-das-reunioes-de-camara",
-    "latest": "2026-09-28"
+    "latest": "2026-09-28",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-albufeira.pt/",
+     "published": false
+    }
    },
    "agendas": {
-    "url": "https://www.cm-albufeira.pt/ordem-do-dia-da-reuniao-da-camara"
+    "url": "https://www.cm-albufeira.pt/ordem-do-dia-da-reuniao-da-camara",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-albufeira.pt/",
+     "published": false
+    }
    },
    "assembly": {
-    "url": "https://www.cm-albufeira.pt/atas-da-assembleia-municipal"
+    "url": "https://www.cm-albufeira.pt/atas-da-assembleia-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-albufeira.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://www.cm-albufeira.pt/editais-das-reunioes-da-camara-municipal"
+    "url": "https://www.cm-albufeira.pt/editais-das-reunioes-da-camara-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-albufeira.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://www.cm-albufeira.pt/documentos-financeiros"
+    "url": "https://www.cm-albufeira.pt/documentos-financeiros",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-albufeira.pt/",
+     "published": false
+    }
    },
    "procurement": null,
    "gaps": [
@@ -41,26 +71,61 @@
    "robots": "allowed",
    "mayor": {
     "name": "Paulo Jorge Cavaco Paulino",
-    "source": "https://cm-alcoutim.pt/municipio/camara-municipal/constituicao-da-camara-municipal"
+    "source": "https://cm-alcoutim.pt/municipio/camara-municipal/constituicao-da-camara-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-alcoutim.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://cm-alcoutim.pt/municipio/camara-municipal/reunioes-de-camara/atas-das-reunioes",
-    "latest": null
+    "latest": null,
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-alcoutim.pt/",
+     "published": false
+    }
    },
    "agendas": {
-    "url": "https://cm-alcoutim.pt/municipio/camara-municipal/reunioes-de-camara"
+    "url": "https://cm-alcoutim.pt/municipio/camara-municipal/reunioes-de-camara",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-alcoutim.pt/",
+     "published": false
+    }
    },
    "assembly": {
-    "url": "https://cm-alcoutim.pt/municipio/orgaos-autarquicos-locais/assembleia-municipal/reunioes-de-assembleia/atas-das-reunioes"
+    "url": "https://cm-alcoutim.pt/municipio/orgaos-autarquicos-locais/assembleia-municipal/reunioes-de-assembleia/atas-das-reunioes",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-alcoutim.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://cm-alcoutim.pt/avisos"
+    "url": "https://cm-alcoutim.pt/avisos",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-alcoutim.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://cm-alcoutim.pt/municipio/camara-municipal/documentos-financeiros"
+    "url": "https://cm-alcoutim.pt/municipio/camara-municipal/documentos-financeiros",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-alcoutim.pt/",
+     "published": false
+    }
    },
    "procurement": {
-    "url": "https://cm-alcoutim.pt/municipio/contratacao-publica"
+    "url": "https://cm-alcoutim.pt/municipio/contratacao-publica",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-alcoutim.pt/",
+     "published": false
+    }
    },
    "gaps": [
     "Site is a client-rendered Next.js app: the minutes list is not in the fetched HTML, so the latest minutes date is null. Agendas URL is the meetings section; whether it holds agendas was not confirmed. Notices URL is /avisos (in the site sitemap); editais not confirmed. Mayor shown as 'Presidente' with no party tag on the constitution page. Procurement page has sub-pages contratos celebrados and peças concursais; base.gov.pt link not confirmed."
@@ -92,24 +157,54 @@
    "robots": "allowed except system paths, /site/eventos/ and /site/noticias/ (see gaps); Crawl-delay 10",
    "mayor": {
     "name": "Filomena Pascoal Sintra",
-    "source": "https://cm-castromarim.pt/site/conteudo/camara-municipal"
+    "source": "https://cm-castromarim.pt/site/conteudo/camara-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-castromarim.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://cm-castromarim.pt/site/conteudo/reunioes-da-camara-municipal",
-    "latest": "2026-09-30"
+    "latest": "2026-09-30",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-castromarim.pt/",
+     "published": false
+    }
    },
    "agendas": null,
    "assembly": {
-    "url": "https://cm-castromarim.pt/site/conteudo/sessoes-da-assembleia-municipal"
+    "url": "https://cm-castromarim.pt/site/conteudo/sessoes-da-assembleia-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-castromarim.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://cm-castromarim.pt/site/avisos-editais/Editais"
+    "url": "https://cm-castromarim.pt/site/avisos-editais/Editais",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-castromarim.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://cm-castromarim.pt/site/documentos/documentos-prestacao-de-contas/lf"
+    "url": "https://cm-castromarim.pt/site/documentos/documentos-prestacao-de-contas/lf",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-castromarim.pt/",
+     "published": false
+    }
    },
    "procurement": {
-    "url": "https://cm-castromarim.pt/site/conteudo/contratacao-publica"
+    "url": "https://cm-castromarim.pt/site/conteudo/contratacao-publica",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-castromarim.pt/",
+     "published": false
+    }
    },
    "gaps": [
     "On 2026-11-17 its website reset our connection; on 2026-11-18 it answered. robots.txt sets Crawl-delay 10 (kept) and disallows system paths, /site/eventos/, /site/noticias/, /info/eventos/ and /info/noticias/; none of those were read. Read 2026-11-18.",
@@ -145,21 +240,46 @@
    "robots": "none",
    "mayor": {
     "name": "Ruben Patrício Infante Palma",
-    "source": "https://www.cm-lagoa.pt/municipio/camara-municipal/executivo-municipal"
+    "source": "https://www.cm-lagoa.pt/municipio/camara-municipal/executivo-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagoa.pt/",
+     "published": false
+    }
    },
    "minutes": null,
    "agendas": {
-    "url": "https://www.cm-lagoa.pt/municipio/camara-municipal/apoio-ao-executivo/calendario-de-reunioes-de-camara"
+    "url": "https://www.cm-lagoa.pt/municipio/camara-municipal/apoio-ao-executivo/calendario-de-reunioes-de-camara",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagoa.pt/",
+     "published": false
+    }
    },
    "assembly": {
-    "url": "https://www.cm-lagoa.pt/municipio/assembleia-municipal/sessoes-da-assembleia-municipal"
+    "url": "https://www.cm-lagoa.pt/municipio/assembleia-municipal/sessoes-da-assembleia-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagoa.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://www.cm-lagoa.pt/municipio/arquivo-documental/avisos-e-editais-e-anuncios"
+    "url": "https://www.cm-lagoa.pt/municipio/arquivo-documental/avisos-e-editais-e-anuncios",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagoa.pt/",
+     "published": false
+    }
    },
    "budget": null,
    "procurement": {
-    "url": "https://www.cm-lagoa.pt/balcao-virtual/contratacao-publica"
+    "url": "https://www.cm-lagoa.pt/balcao-virtual/contratacao-publica",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagoa.pt/",
+     "published": false
+    }
    },
    "gaps": [
     "robots.txt exists but contains only comments (no Disallow), recorded as none.",
@@ -174,21 +294,46 @@
    "robots": "allowed",
    "mayor": {
     "name": "Hugo Miguel Marreiros Henrique Pereira",
-    "source": "https://www.cm-lagos.pt/municipio/camara-municipal/composicao-do-executivo"
+    "source": "https://www.cm-lagos.pt/municipio/camara-municipal/composicao-do-executivo",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagos.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/reunioes-de-camara",
-    "latest": "2026-11-04"
+    "latest": "2026-11-04",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagos.pt/",
+     "published": false
+    }
    },
    "agendas": {
-    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/reunioes-de-camara"
+    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/reunioes-de-camara",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagos.pt/",
+     "published": false
+    }
    },
    "assembly": null,
    "notices": {
-    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/editais-avisos-anuncios"
+    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/editais-avisos-anuncios",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagos.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/documentos-financeiros"
+    "url": "https://www.cm-lagos.pt/balcao-virtual/documentos/documentos-financeiros",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-lagos.pt/",
+     "published": false
+    }
    },
    "procurement": null,
    "gaps": [
@@ -240,21 +385,46 @@
    "robots": "allowed",
    "mayor": {
     "name": "Ricardo Calé",
-    "source": "https://cm-olhao.pt/municipio/camara-municipal/executivo"
+    "source": "https://cm-olhao.pt/municipio/camara-municipal/executivo",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-olhao.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://cm-olhao.pt/municipio/camara-municipal/documentos",
-    "latest": null
+    "latest": null,
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-olhao.pt/",
+     "published": false
+    }
    },
    "agendas": null,
    "assembly": {
-    "url": "https://cm-olhao.pt/municipio/assembleia-municipal/documentos"
+    "url": "https://cm-olhao.pt/municipio/assembleia-municipal/documentos",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-olhao.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://cm-olhao.pt/municipio/camara-municipal/documentos"
+    "url": "https://cm-olhao.pt/municipio/camara-municipal/documentos",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-olhao.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://cm-olhao.pt/atendimento/portal-da-transparencia/documentos"
+    "url": "https://cm-olhao.pt/atendimento/portal-da-transparencia/documentos",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-olhao.pt/",
+     "published": false
+    }
    },
    "procurement": null,
    "gaps": [
@@ -269,23 +439,53 @@
    "robots": "allowed",
    "mayor": {
     "name": "Álvaro Miguel Bila",
-    "source": "https://www.cm-portimao.pt/menus/autarquia/camara-municipal/executivo/presidente-da-camara-municipal-de-portimao"
+    "source": "https://www.cm-portimao.pt/menus/autarquia/camara-municipal/executivo/presidente-da-camara-municipal-de-portimao",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-portimao.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://webatas.cm-portimao.pt/",
-    "latest": "2026-06-17"
+    "latest": "2026-06-17",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://webatas.cm-portimao.pt/",
+     "published": false
+    }
    },
    "agendas": {
-    "url": "https://www.cm-portimao.pt/doc-reuniao-de-camara"
+    "url": "https://www.cm-portimao.pt/doc-reuniao-de-camara",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-portimao.pt/",
+     "published": false
+    }
    },
    "assembly": {
-    "url": "https://www.cm-portimao.pt/doc-assembleia-atas"
+    "url": "https://www.cm-portimao.pt/doc-assembleia-atas",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-portimao.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://www.cm-portimao.pt/doc-editais"
+    "url": "https://www.cm-portimao.pt/doc-editais",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-portimao.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://www.cm-portimao.pt/doc-documentos-financeiros"
+    "url": "https://www.cm-portimao.pt/doc-documentos-financeiros",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-portimao.pt/",
+     "published": false
+    }
    },
    "procurement": null,
    "gaps": [
@@ -337,26 +537,61 @@
    "robots": "none",
    "mayor": {
     "name": "Ana Paula Fernandes Martins",
-    "source": "https://cm-tavira.pt/site/camara-municipal/composicao/"
+    "source": "https://cm-tavira.pt/site/camara-municipal/composicao/",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-tavira.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://cm-tavira.pt/site/camara-municipal/reunioes/",
-    "latest": null
+    "latest": null,
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-tavira.pt/",
+     "published": false
+    }
    },
    "agendas": {
-    "url": "https://cm-tavira.pt/site/camara-municipal/reunioes/"
+    "url": "https://cm-tavira.pt/site/camara-municipal/reunioes/",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-tavira.pt/",
+     "published": false
+    }
    },
    "assembly": {
-    "url": "https://cm-tavira.pt/site/assembleia-municipal/sessoes/"
+    "url": "https://cm-tavira.pt/site/assembleia-municipal/sessoes/",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-tavira.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://cm-tavira.pt/site/camara-municipal/anuncios-avisos-editais/"
+    "url": "https://cm-tavira.pt/site/camara-municipal/anuncios-avisos-editais/",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-tavira.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://cm-tavira.pt/site/financas-e-impostos/orcamentos-e-grandes-opcoes-do-plano/"
+    "url": "https://cm-tavira.pt/site/financas-e-impostos/orcamentos-e-grandes-opcoes-do-plano/",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-tavira.pt/",
+     "published": false
+    }
    },
    "procurement": {
-    "url": "https://cm-tavira.pt/site/contratacao-publica/"
+    "url": "https://cm-tavira.pt/site/contratacao-publica/",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://cm-tavira.pt/",
+     "published": false
+    }
    },
    "gaps": [
     "https://www.cm-tavira.pt/robots.txt returned 404, recorded as none. Site redirects to cm-tavira.pt/site/.",
@@ -371,26 +606,61 @@
    "robots": "allowed except /private/",
    "mayor": {
     "name": "Paula Freitas",
-    "source": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/executivo-municipal"
+    "source": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/executivo-municipal",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-viladobispo.pt/",
+     "published": false
+    }
    },
    "minutes": {
     "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/atas",
-    "latest": "2026-10-01"
+    "latest": "2026-10-01",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-viladobispo.pt/",
+     "published": false
+    }
    },
    "agendas": {
-    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/ordens-do-dia"
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/ordens-do-dia",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-viladobispo.pt/",
+     "published": false
+    }
    },
    "assembly": {
-    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/assembleia-municipal/atas"
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/assembleia-municipal/atas",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-viladobispo.pt/",
+     "published": false
+    }
    },
    "notices": {
-    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/editais"
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/editais",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-viladobispo.pt/",
+     "published": false
+    }
    },
    "budget": {
-    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/documentos-financeiros"
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/documentos-financeiros",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-viladobispo.pt/",
+     "published": false
+    }
    },
    "procurement": {
-    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/recursos-humanos/contratacao-publica"
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/recursos-humanos/contratacao-publica",
+    "license": {
+     "name": "the source's terms",
+     "url": "https://www.cm-viladobispo.pt/",
+     "published": false
+    }
    },
    "gaps": [
     "On 2026-11-17 its website reset our connection; on 2026-11-18 it answered. robots.txt allows everything except /private/ (not read) and names a sitemap, which was read to find pages. Read 2026-11-18.",
@@ -423,11 +693,26 @@
   "robots": "none: https://diariodarepublica.pt/robots.txt redirected to an application error page (HTML), no rules found",
   "terms_url": null,
   "how_to": "The Diário da República eletrónico (INCM) offers free universal access with search of acts in the 1.ª and 2.ª séries (Decreto-Lei 83/2016). In the 2.ª série each act names its issuing entity, so a reader searches the 2.ª série by entity name (for example Município de Albufeira) and filters by date. Search interface details were not read directly: the site is a JavaScript app and no terms page URL was seen; gap.",
-  "source": "https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2016-122826417"
+  "source": "https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2016-122826417",
+  "license": {
+   "name": "the source's terms",
+   "url": "https://diariodarepublica.pt/",
+   "published": false
+  }
  },
  "amal": {
   "what": "AMAL, the Comunidade Intermunicipal do Algarve, is the inter-municipal community of the 16 Algarve councils (our description; its home page was read on 2026-11-17).",
   "url": "https://amal.pt",
-  "source": "https://amal.pt/"
- }
+  "source": "https://amal.pt/",
+  "license": {
+   "name": "the source's terms",
+   "url": "https://amal.pt/",
+   "published": false
+  }
+ },
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "license_note": "Our compilation is CC BY 4.0; each linked page keeps its own licence, given beside it."
 }

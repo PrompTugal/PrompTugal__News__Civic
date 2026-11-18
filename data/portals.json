@@ -5,91 +5,151 @@
    "host": "www.base.gov.pt",
    "robots": "none (404)",
    "terms_url": null,
-   "notes": "Its search endpoint answered our named, polite request with a WebKnight application firewall alert (2026-11-17). Respected: we read IMPIC's open data of the same contracts on dados.gov.pt instead, and link each record on base.gov.pt."
+   "notes": "Its search endpoint answered our named, polite request with a WebKnight application firewall alert (2026-11-17). Respected: we read IMPIC's open data of the same contracts on dados.gov.pt instead, and link each record on base.gov.pt.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "dados.gov.pt",
    "robots": "unreadable (500)",
    "terms_url": null,
-   "notes": "The public API and IMPIC's datasets (contracts 2012 to 2026, licence other-pd as published) downloaded normally on 2026-11-17."
+   "notes": "The public API and IMPIC's datasets (contracts 2012 to 2026, licence other-pd as published) downloaded normally on 2026-11-17.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "diariodarepublica.pt",
    "robots": "none (redirects to an error page)",
    "terms_url": null,
-   "notes": "A JavaScript application: pages resolve but show no text without a browser. We link it; we did not machine-read it."
+   "notes": "A JavaScript application: pages resolve but show no text without a browser. We link it; we did not machine-read it.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.portaldasfinancas.gov.pt / info.portaldasfinancas.gov.pt",
    "robots": "none",
    "terms_url": null,
-   "notes": "No robots.txt (404 on info; HTML shell on www). Pages read: NIF page, leaflet, English representative page. No terms page found."
+   "notes": "No robots.txt (404 on info; HTML shell on www). Pages read: NIF page, leaflet, English representative page. No terms page found.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.gov.pt (ePortugal)",
    "robots": "none",
    "terms_url": null,
-   "notes": "robots.txt returned 404 (app shell). Read through WebFetch; eportugal.gov.pt redirects to www.gov.pt. Terms page not found."
+   "notes": "robots.txt returned 404 (app shell). Read through WebFetch; eportugal.gov.pt redirects to www.gov.pt. Terms page not found.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.sns24.gov.pt",
    "robots": "allowed",
    "terms_url": null,
-   "notes": "robots.txt allows public pages; disallows /login/ and /area-reservada/. Terms page not located."
+   "notes": "robots.txt allows public pages; disallows /login/ and /area-reservada/. Terms page not located.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.sns.gov.pt",
    "robots": "unreachable",
    "terms_url": null,
-   "notes": "HTTP 405 with encoded body to the bot; recorded as a gap, not worked around."
+   "notes": "HTTP 405 with encoded body to the bot; recorded as a gap, not worked around.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "aima.gov.pt",
    "robots": "unreachable",
    "terms_url": null,
-   "notes": "TLS verification failed with curl; WebFetch HTTP 503. robots.txt unknown. Not worked around."
+   "notes": "TLS verification failed with curl; WebFetch HTTP 503. robots.txt unknown. Not worked around.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.seg-social.pt",
    "robots": "allowed",
    "terms_url": null,
-   "notes": "robots.txt allows all. Pages are script-rendered; only a cookie notice was readable. Cookie policy linked under terms; URL not captured."
+   "notes": "robots.txt allows all. Pages are script-rendered; only a cookie notice was readable. Cookie policy linked under terms; URL not captured.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.bportugal.pt",
    "robots": "unreachable",
    "terms_url": null,
-   "notes": "Browser-check interstitial returned; not worked around."
+   "notes": "Browser-check interstitial returned; not worked around.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "clientebancario.bportugal.pt",
    "robots": "allowed",
    "terms_url": null,
-   "notes": "robots.txt disallows admin/search paths only; no payer step guide found."
+   "notes": "robots.txt disallows admin/search paths only; no payer step guide found.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.sibs.com",
    "robots": "allowed",
    "terms_url": null,
-   "notes": "robots.txt allows normal pages. docs.pay.sibs.com returned 403 to WebFetch; recorded as a gap."
+   "notes": "robots.txt allows normal pages. docs.pay.sibs.com returned 403 to WebFetch; recorded as a gap.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "justica.gov.pt / irn.justica.gov.pt",
    "robots": "allowed",
    "terms_url": null,
-   "notes": "robots.txt disallows system folders such as /Portals/ and /DesktopModules/; public pages read are allowed."
+   "notes": "robots.txt disallows system folders such as /Portals/ and /DesktopModules/; public pages read are allowed.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "www.ama.gov.pt / www.arte.gov.pt",
    "robots": "allowed",
    "terms_url": null,
-   "notes": "robots.txt disallows wp-admin and similar; pages not read in full."
+   "notes": "robots.txt disallows wp-admin and similar; pages not read in full.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   },
   {
    "host": "16 council sites (cm-*.pt)",
    "robots": "9 read; 7 unreachable",
    "terms_url": null,
-   "notes": "Read: Albufeira, Alcoutim, Lagoa, Lagos, Olhão, Portimão, Tavira (2026-11-17); Castro Marim and Vila do Bispo (2026-11-18, after resetting our connection on 2026-11-17). Connection reset by peer on 2026-11-17 and again on 2026-11-18: Aljezur, Faro, Loulé, Monchique, São Brás de Alportel, Silves, Vila Real de Santo António."
+   "notes": "Read: Albufeira, Alcoutim, Lagoa, Lagos, Olhão, Portimão, Tavira (2026-11-17); Castro Marim and Vila do Bispo (2026-11-18, after resetting our connection on 2026-11-17). Connection reset by peer on 2026-11-17 and again on 2026-11-18: Aljezur, Faro, Loulé, Monchique, São Brás de Alportel, Silves, Vila Real de Santo António.",
+   "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+   }
   }
  ],
  "gaps": [
@@ -103,5 +163,9 @@
   "No terms of use page was found for any portal we read; reuse terms beyond the open data licences are not established.",
   "Some service steps rest on search summaries of official pages we could not read directly; each says so where it does.",
   "civic@ has no published signing key yet: making it was refused by this session's permissions (a question for Dinis)."
- ]
+ ],
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ }
 }

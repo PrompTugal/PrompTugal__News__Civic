@@ -1,4 +1,9 @@
 {
+  "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "license_note": "Prices copied from promptugal.news's own meter config (same estate, CC BY 4.0).",
   "about": "The reading meter's config for civic.promptugal.news, read by assets/meter/meter.js and the sg-meter core as window.SG_METER_CONFIG. Prices, tiers and rating copied from promptugal.news's api/v1/billing/meter.json (version v0.1.1788, read 18 November 2026); this site uses its reference types only (data, evidence, site, account), so every page here costs at most 1p read to the end. The balance is kept in the reader's browser for this site only; topping up happens on promptugal.news.",
   "meter": "sg-meter v1.5.0",
   "storageKey": "promptugal.civic.meter.v1",

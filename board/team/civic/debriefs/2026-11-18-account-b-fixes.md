@@ -24,6 +24,10 @@ Carries on from `2026-11-17-first-version.md`. Public repository: no keys, token
 - **Municipal companies.** civic.b.research.companies@ (Sonnet) read DGAL's list of local companies: 14 for the Algarve's councils, none for nine of them. IMPIC's open data itself publishes each buyer's NIF, which gave the NIFs for 13 of the 14 (4 also printed in 2026 Diário da República notices); EMPET has none and no contracts. Extracted with `tools/extract-base.mjs` and a buyers file: 691 contracts in 2026, 799 in 2025, the private-individual rule applied (0 leaks checked). `/money/municipal-companies/`, a section per owner council, the API.
 - Lesson: the BASE buyer list is the quickest public source of a public body's NIF; the company's own sites rarely print it.
 
+## Licences (14:25 to 14:45 UTC)
+
+- Dinis, 18 November about 14:25 UTC (relayed by conductor.b@, guidance file in the Website repo): "Every single piece of data that we get should have a link to the license that it has." Done: page sources, footer, every contract record, councils and services data, the API, and a gate check. IMPIC's dataset is "Outra (Domínio Público)" on dados.gov.pt (read through its API, 18 Nov). No council or ministry page we read publishes a licence: linked as "the source's terms" to the site's home page until a terms page is found for each.
+
 ## What I learnt
 
 - A balance cannot cross sites: each origin has its own localStorage, so civic's balance is separate from promptugal.news's. The account page says so. One balance across the five sites needs the vault ("Carry it to another device") or a shared origin; not built.
