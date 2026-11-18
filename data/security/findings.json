@@ -40,7 +40,7 @@
    "found_by": "civic.b.security@PrompTugal.dinis (Sonnet), security post-review of the diff before commit",
    "detail": "No high or medium issue. Low: contract text withheld only on the feed's own flag (a feed error could show text beside 'a private individual'); body size checked only after reading; redirects followed; control and bidi characters not stripped; the gate's host check could be fooled by user info in a URL.",
    "fix": "Privacy decided in the page (text withheld unless every supplier is a company with a company NIF); body read as a stream and stopped at 5 MB; redirects refused; control and bidi characters stripped; the gate's host check tightened and a missing script caught. Tested with a hostile feed (HTML, javascript: links, bad price and date, a natural person, __proto__) and a failing feed.",
-   "commit": "(this commit)",
+   "commit": "9ec5bf788a7398fa0d17794508501ec409bca6d7",
    "state": "fixed",
    "fixed": "2026-11-18T16:50Z"
   }
