@@ -1,7 +1,7 @@
 /* assets/meter/meter.js: the reading meter on every page of promptugal.news (brief 7).
  *
  * Copied for civic.promptugal.news by civic.b@PrompTugal.dinis on 18 November 2026 from PrompTugal__News__Website@f261682 (same estate, Apache-2.0).
- * Changes here: the "Carry it to another device" button shows only where the vault script is loaded (this site has none yet).
+ * Changes here: page paths from the reading log pass safeHref before they become links; the "Carry it to another device" button shows only where the vault script is loaded (this site has none yet).
  * The config is this site's own (api/v1/billing/meter.json): its balance is kept in this browser for civic.promptugal.news only.
  *
  * A classic script (the shell loads feature scripts with <script defer>) that:
@@ -49,6 +49,8 @@
     }
     // replaceChildren would print a null as text: drop the nulls first
     function put(el) { var kids = [].slice.call(arguments, 1).filter(function (k) { return k != null && k !== false }); el.replaceChildren.apply(el, kids) }
+    // civic.b@ (18 Nov 2026, AppSec): a page path from the reading log (which 'Restore from a file' can fill) becomes an href only if it is site-relative or http(s)
+    var safeHref = function (u) { u = String(u || ''); return /^(https?:\/\/|\/(?!\/))/i.test(u) ? u : '#' }
     var meta = function (n) { var m = document.querySelector('meta[name="' + n + '"]'); return m ? m.getAttribute('content') || '' : '' }
     var when = function (iso) { try { return new Date(iso).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) } catch (e) { return String(iso || '').slice(0, 16) } }
 
@@ -198,7 +200,7 @@
         var rows = (showAll ? log : log.slice(0, 50)).map(function (e) {
             var cost = e.declined ? h('span', {}, 'declined', h('br'), h('span', { class: 'meta' }, (REASONS.find(function (r) { return r[0] === e.declined.reason }) || ['', ''])[1])) : m.pence(e.cost)
             return h('tr', {},
-                h('td', {}, h('a', { href: e.path }, e.title || e.path), h('br'), h('span', { class: 'meta' }, when(e.at) + (e.device ? ' · from another device' : ''))),
+                h('td', {}, h('a', { href: safeHref(e.path) }, e.title || e.path), h('br'), h('span', { class: 'meta' }, when(e.at) + (e.device ? ' · from another device' : ''))),
                 h('td', {}, kindLabel(e.kind)),
                 h('td', { class: 'num' }, Math.round((e.depth || 0) * 100) + '%'),
                 h('td', { class: 'num' }, e.rating && e.rating.useful ? e.rating.useful + '/5' : '·'),
@@ -260,7 +262,7 @@
         var node = function (id, o) { if (!byId[id]) { o.id = id; o.x = W / 2 + (Math.random() - .5) * W * .6; o.y = H / 2 + (Math.random() - .5) * H * .6; o.vx = 0; o.vy = 0; byId[id] = o; nodes.push(o) } return byId[id] }
         var label = function (seg) { return decodeURIComponent(seg).replace(/\.html$/, '').replace(/-/g, ' ') }
         pages.forEach(function (e, i) {
-            var pn = node('p:' + e.path, { type: 'page', title: e.title || e.path, href: e.path, kind: e.kind })
+            var pn = node('p:' + e.path, { type: 'page', title: e.title || e.path, href: safeHref(e.path), kind: e.kind })
             var segs = String(e.path).replace(/^\/+|\/+$/g, '').split('/').filter(Boolean)
             if (segs.length) {
                 var sec = node('s:' + segs[0], { type: 'concept', title: label(segs[0]) }); links.push([pn, sec, 'c'])

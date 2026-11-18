@@ -48,7 +48,9 @@ const nodash = s => String(s ?? '').replace(/—/g, ',');
 
 // Inline: [text](url) and **bold**. HTML escapes first; markdown passes through.
 const inlineHtml = s => esc(nodash(s))
-  .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => `<a href="${u}">${t}</a>`)
+  // A link only for http(s), site-relative or in-page targets: text from data (IMPIC's free-text contract objects, council
+  // pages) could carry [x](javascript:...) (AppSec, civic.b@, 18 Nov 2026, after events.b@'s finding). Anything else stays text.
+  .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => /^(https?:\/\/|\/(?!\/)|#)/i.test(u.replace(/&amp;/g, '&')) ? `<a href="${u}">${t}</a>` : m)
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 const inlineMd = s => nodash(s);
 const cellMd = s => inlineMd(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
