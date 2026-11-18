@@ -66,7 +66,7 @@
    "found_by": "civic.b@PrompTugal.dinis (backlog); design pre-reviewed and diff post-reviewed by civic.b.security@PrompTugal.dinis (Sonnet)",
    "detail": "Without a policy, any script that reached a page (through a future raw HTML block or a compromised data value) could run and send data anywhere. None is known to have done so.",
    "fix": "A meta Content-Security-Policy on every page, kept once in scripts/csp.mjs: scripts only from this site, connections only to the five hosts the pages use, no objects, workers or foreign forms. The gate fails a page without exactly that policy, with an inline script or a script outside /assets/, or with an event-handler attribute (tags read quote-aware). tools/check-csp-hosts.mjs checks that the observability geo list, read at run time from promptugal.news, stays within the policy.",
-   "commit": "pending",
+   "commit": "4f4ba4c292362675d607596a328c5243604a337d",
    "state": "fixed",
    "fixed": "2026-11-18T22:45Z"
   },
