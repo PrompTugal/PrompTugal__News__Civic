@@ -87,9 +87,9 @@
   },
   {
    "host": "16 council sites (cm-*.pt)",
-   "robots": "7 read; 9 unreachable",
+   "robots": "9 read; 7 unreachable",
    "terms_url": null,
-   "notes": "Read: Albufeira, Alcoutim, Lagoa, Lagos, Olhão, Portimão, Tavira. Connection reset by peer on 2026-11-17: Aljezur, Castro Marim, Faro, Loulé, Monchique, São Brás de Alportel, Silves, Vila do Bispo, Vila Real de Santo António."
+   "notes": "Read: Albufeira, Alcoutim, Lagoa, Lagos, Olhão, Portimão, Tavira (2026-11-17); Castro Marim and Vila do Bispo (2026-11-18, after resetting our connection on 2026-11-17). Connection reset by peer on 2026-11-17 and again on 2026-11-18: Aljezur, Faro, Loulé, Monchique, São Brás de Alportel, Silves, Vila Real de Santo António."
   }
  ],
  "gaps": [

@@ -88,19 +88,37 @@
   {
    "id": "castro-marim",
    "name": "Castro Marim",
-   "site": null,
-   "robots": "unreachable",
-   "mayor": null,
-   "minutes": null,
+   "site": "https://cm-castromarim.pt",
+   "robots": "allowed except system paths, /site/eventos/ and /site/noticias/ (see gaps); Crawl-delay 10",
+   "mayor": {
+    "name": "Filomena Pascoal Sintra",
+    "source": "https://cm-castromarim.pt/site/conteudo/camara-municipal"
+   },
+   "minutes": {
+    "url": "https://cm-castromarim.pt/site/conteudo/reunioes-da-camara-municipal",
+    "latest": "2026-09-30"
+   },
    "agendas": null,
-   "assembly": null,
-   "notices": null,
-   "budget": null,
-   "procurement": null,
+   "assembly": {
+    "url": "https://cm-castromarim.pt/site/conteudo/sessoes-da-assembleia-municipal"
+   },
+   "notices": {
+    "url": "https://cm-castromarim.pt/site/avisos-editais/Editais"
+   },
+   "budget": {
+    "url": "https://cm-castromarim.pt/site/documentos/documentos-prestacao-de-contas/lf"
+   },
+   "procurement": {
+    "url": "https://cm-castromarim.pt/site/conteudo/contratacao-publica"
+   },
    "gaps": [
-    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+    "On 2026-11-17 its website reset our connection; on 2026-11-18 it answered. robots.txt sets Crawl-delay 10 (kept) and disallows system paths, /site/eventos/, /site/noticias/, /info/eventos/ and /info/noticias/; none of those were read. Read 2026-11-18.",
+    "Latest meeting listed on the Reuniões de Câmara page is Ata n.º 20, ordinary meeting of 30 September 2026. Some rows are 'Deliberações' dated up to 12 November 2026, which may be publication dates, so a later meeting may exist. Attachments not opened. Read 2026-11-18.",
+    "No page of meeting agendas (ordem do dia) found on the pages read. The Assembleia page lists deliberations and minutes for 2026 up to the session of 30 September 2026; attachments not opened. Read 2026-11-18.",
+    "Budget link is the Prestação de Contas listing (latest year shown 2025); Documentos Previsionais and Consolidação de Contas are linked from the site, not opened. Read 2026-11-18.",
+    "The council's procurement page points to saphety.com (pre-contractual procedures) and base.gov.pt (contracts); it lists no procedures itself. Read 2026-11-18."
    ],
-   "read_on": "2026-11-17"
+   "read_on": "2026-11-18"
   },
   {
    "id": "faro",
@@ -349,19 +367,38 @@
   {
    "id": "vila-do-bispo",
    "name": "Vila do Bispo",
-   "site": null,
-   "robots": "unreachable",
-   "mayor": null,
-   "minutes": null,
-   "agendas": null,
-   "assembly": null,
-   "notices": null,
-   "budget": null,
-   "procurement": null,
+   "site": "https://www.cm-viladobispo.pt",
+   "robots": "allowed except /private/",
+   "mayor": {
+    "name": "Paula Freitas",
+    "source": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/executivo-municipal"
+   },
+   "minutes": {
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/atas",
+    "latest": "2026-10-01"
+   },
+   "agendas": {
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/ordens-do-dia"
+   },
+   "assembly": {
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/assembleia-municipal/atas"
+   },
+   "notices": {
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/editais"
+   },
+   "budget": {
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/documentos-financeiros"
+   },
+   "procurement": {
+    "url": "https://www.cm-viladobispo.pt/municipio/autarquia/camara-municipal/recursos-humanos/contratacao-publica"
+   },
    "gaps": [
-    "Its website reset our connection (\"connection reset by peer\") on 2026-11-17, on robots.txt, with and without www. Respected, not worked around: minutes, agendas, notices and budget not mapped yet. The site link comes from PrompTugal.news by place."
+    "On 2026-11-17 its website reset our connection; on 2026-11-18 it answered. robots.txt allows everything except /private/ (not read) and names a sitemap, which was read to find pages. Read 2026-11-18.",
+    "The site is client-rendered (Next.js): page text is in embedded page data. Latest minutes from the 2026 atas page: Ata n.º 24, dated 1 October 2026; PDFs not opened. Read 2026-11-18.",
+    "Ordens do Dia, Editais and Documentos Financeiros are year or sub-section indexes; the yearly listings were not opened. The Assembleia atas page lists 2012 to 2026; 2026 not opened. Read 2026-11-18.",
+    "The council's procurement page says contracts are published on base.gov.pt and links Vortal and a municipal public works plan; no procedure list opened. Read 2026-11-18."
    ],
-   "read_on": "2026-11-17"
+   "read_on": "2026-11-18"
   },
   {
    "id": "vila-real-de-santo-antonio",
