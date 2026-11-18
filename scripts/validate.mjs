@@ -46,6 +46,7 @@ if (!isTemplate && !existsSync('_site/llms.txt')) fail('no llms.txt');
 for (const f of files.filter(f => f.endsWith('index.html'))) {
   const s = readFileSync(f, 'utf8');
   if (!s.includes('creativecommons.org/licenses/by/4.0/')) fail(`${f}: no link to our licence (CC BY 4.0)`);
+  if (!s.includes('class="takedown"')) fail(`${f}: no take-down disclaimer (Dinis, 18 Nov 2026)`);
   const m = s.match(/<h2 id="sources">Sources<\/h2>\n<ul>(.*?)<\/ul>/s);
   if (m) for (const li of m[1].split('<li>').slice(1)) if (!/licence: /.test(li)) fail(`${f}: a source without its licence`);
 }
