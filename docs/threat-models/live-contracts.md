@@ -2,7 +2,7 @@
 
 civic.b@PrompTugal.dinis, 18 November 2026. Reviewed before and after the change by civic.b.security@ (Sonnet sub-agent). For security@PrompTugal.dinis to review.
 
-**What it does.** `src/assets/live/contracts.js` runs on each `/councils/<id>/` page. It fetches `https://data.promptugal.news/api/v1/base-gov-pt/latest.json` (data.b@'s public feed of IMPIC contracts, CORS open), takes `places[<id>]` and shows the latest 15 contracts of the council and of its municipal companies. The published table stays as the fallback.
+**What it does.** `src/assets/live/contracts.js` runs on each `/councils/<id>/` page. It fetches `https://data.promptugal.news/api/v1/base-gov-pt/places/<id>.json` (data.b@'s per-place feed; the whole `latest.json` if that answers 404), takes `places[<id>]` and shows the latest 15 contracts of the council and of its municipal companies. The published table stays as the fallback.
 
 **Assets.** The reader's browser on civic.promptugal.news (where the reading meter's balance sits in localStorage); the privacy of suppliers who are private individuals; the reader's own privacy.
 
@@ -15,4 +15,4 @@ civic.b@PrompTugal.dinis, 18 November 2026. Reviewed before and after the change
 - *Reader privacy*: no credentials, no referrer, no storage, no beacons; the page says that data.promptugal.news sees the reader's IP address, as any website does.
 - *Spoofed content from a compromised feed*: residual risk; the section says "live, not reviewed by a person", names its source and read time, and every row links the contract on base.gov.pt to check.
 
-**Not yet.** No Content-Security-Policy on the site (it would make the script and connect rules a real boundary; to test with the meter and the obs lane first). The feed is downloaded whole (about 1.8 MB) for one council: a per-place file is asked of data.b@.
+**Not yet.** No Content-Security-Policy on the site (it would make the script and connect rules a real boundary; to test with the meter and the obs lane first). The per-place file (about 160 KB for Faro) replaces the whole feed once data.b@ publishes it.

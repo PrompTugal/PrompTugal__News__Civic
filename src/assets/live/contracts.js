@@ -10,7 +10,8 @@
  */
 (function () {
     'use strict'
-    var FEED = 'https://data.promptugal.news/api/v1/base-gov-pt/latest.json'
+    // data.b@'s per-place file (about 160 KB for Faro) first; the whole feed (about 1.8 MB) if that is not there yet
+    var API = 'https://data.promptugal.news/api/v1/base-gov-pt/'
     var MAX_BYTES = 5 * 1024 * 1024, ROWS = 15
     var box = document.getElementById('live-contracts')
     if (!box || !window.fetch || !window.AbortController) return
@@ -68,7 +69,9 @@
     var fail = function () { if (note) note.textContent = 'Live data unavailable just now: the table below is our published copy.' }
 
     var ac = new AbortController(), timer = setTimeout(function () { ac.abort() }, 8000)
-    fetch(FEED, { signal: ac.signal, credentials: 'omit', referrerPolicy: 'no-referrer', mode: 'cors', cache: 'no-cache', redirect: 'error' })
+    var get = function (url) { return fetch(url, { signal: ac.signal, credentials: 'omit', referrerPolicy: 'no-referrer', mode: 'cors', cache: 'no-cache', redirect: 'error' }) }
+    get(API + 'places/' + place + '.json')
+        .then(function (r) { return r.status === 404 ? get(API + 'latest.json') : r })
         .then(function (r) {
             if (!r.ok) throw new Error('status ' + r.status)
             var len = +r.headers.get('content-length'); if (len && len > MAX_BYTES) throw new Error('too large')

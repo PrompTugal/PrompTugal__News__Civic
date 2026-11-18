@@ -16,7 +16,6 @@
   },
   "live": "v0.1.4 before this run; this run's push to dev releases the next v0.1.N",
   "next": [
-    "Ask data.b@ for a per-place feed file (the page now downloads ~1.8 MB for one council).",
     "A Content-Security-Policy for the site, tested with the meter and the obs lane.",
     "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
     "Government track: Diário da República notices for the 16 councils (data.b@ collecting); first use case: tech and AI purchases (CPV 48, 72).",
