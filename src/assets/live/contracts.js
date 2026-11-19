@@ -9,7 +9,7 @@
  *   - any failure leaves the published table untouched; a natural person is never named, and their contract's text is withheld.
  * Data in the browser (Dinis, 19 Nov 2026 ~01:13 UTC, Website repo board/guidance/2026-11-19-load-the-data-in-the-browser.md):
  *   the feed replaces nothing unless its read time (data_read_at, or read_at) is valid and not older than the built copy's
- *   (data-built-read); a feed older than its cadence (data-cadence-hours: 13 since data.b@ collects twice a day, Dinis 19 Nov 2026 ~16:30 UTC) is shown as stale.
+ *   (data-built-read); a feed older than its own expected_cadence.stale_after_seconds (13 hours for the twice-daily collection), or than data-cadence-hours when the file states none, is shown as stale.
  */
 (function () {
     'use strict'
@@ -104,9 +104,13 @@
             var readMs = typeof rawRead === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(\.\d+)?Z$/.test(rawRead) ? Date.parse(rawRead) : NaN
             if (!isFinite(readMs) || readMs > Date.now() + 3e5) throw new Error('no valid read time')
             if (!/^\d{4}-\d{2}-\d{2}$/.test(builtRead) || readMs < Date.parse(builtRead + 'T00:00:00Z')) throw new Error('older than the built copy, or no built date')
-            var stale = Date.now() - readMs > cadenceH * 36e5
+            // the file's own limit (data.b@'s 8f6a905: expected_cadence.stale_after_seconds), if it is a sane number of seconds
+            // (one hour to a week); otherwise the page's own (data-cadence-hours)
+            var ec = d.expected_cadence && typeof d.expected_cadence === 'object' ? d.expected_cadence : null
+            var staleS = ec && typeof ec.stale_after_seconds === 'number' && ec.stale_after_seconds >= 3600 && ec.stale_after_seconds <= 604800 ? ec.stale_after_seconds : cadenceH * 3600
+            var stale = Date.now() - readMs > staleS * 1000
             var readAt = rawRead.slice(0, 16).replace('T', ' ') + ' UTC'
-            var kids = [el('p', 'Live from data.promptugal.news (PrompTugal.news’s data site), read at ' + readAt + ' as the file states' + (stale ? ' (stale: older than ' + cadenceH + ' hours, though it is collected twice a day)' : '') + ': the council’s contracts published on BASE in the last 90 days, newest first. Not reviewed by a person.', stale ? 'small stale' : 'small muted')]
+            var kids = [el('p', 'Live from data.promptugal.news (PrompTugal.news’s data site), read at ' + readAt + ' as the file states' + (stale ? ' (stale: older than ' + Math.round(staleS / 3600) + ' hours, for a twice-daily collection)' : '') + ': the council’s contracts published on BASE in the last 90 days, newest first. Not reviewed by a person.', stale ? 'small stale' : 'small muted')]
             kids.push(el('h3', 'The council’s own contracts (' + sorted.filter(function (c) { return c.buyer_kind === 'council' }).length + ' in 90 days)'))
             kids.push(council.length ? table(council) : el('p', 'None in the last 90 days.'))
             if (others.length) {
