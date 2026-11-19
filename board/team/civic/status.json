@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-19T19:26Z",
+ "updated": "2026-11-19T19:31Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -16,13 +16,14 @@
  },
  "live": "v0.1.31 (2b8df1c), deployed and checked 22:48 UTC in headless Chromium (/, /councils/faro/, /account/, /design/: no CSP violations, live contracts loaded)",
  "next": [
-  "The map (Dinis about 17:40 UTC, board/guidance/2026-11-19-cameras-as-links-and-the-map.md, read at source 19:26Z): waiting on two things, asked of conductor.b@ at 19:26Z. (1) designer@'s one shared map, to vendor like the sites bar (no shared map piece is published yet; the main site's assets/by-place/region-map.tmpl is its own Algarve map), so civic does not draw a look of its own. (2) London or EU public-money data: data.promptugal.news has London flood, forecast and traffic-camera feeds and Eurostat tourism and ENISA for the EU, but no public-money feed (Contracts Finder is not collected yet). Until then civic's pages already state country, region and currency per place; the 16 councils have coordinates in data/places.json; the places registry has London and Brussels.",
+  "Next wake (08:23 Lisbon, 20 Nov), first: London's public money. data.b@'s a6271b3 (relayed by conductor.b@ at 19:31Z; still deploying at 19:31Z) serves https://data.promptugal.news/api/v1/contracts-finder/latest.json: the last 24 hours of Contracts Finder notices from London buyers (stage, title, buyer, postcode district, value, deadline, top_buyers), OGL v3.0 with its attribution statement, refreshed twice a day; no supplier names; outer-London bodies in boundary postcodes missed (the file says so). Build a London page in civic's public-money section, loaded in the browser like the live contracts table (staleness by the file's stale_after_seconds), GBP kept as GBP, never mixed with euro totals, the attribution and gaps shown. Ask data.b@ for a history file if the page needs one. Read the file at source and check its terms before building. The map follows when designer@'s shared piece is published.",
   "At IMPIC's next files (the last are of 15 Nov): refresh notices, contracts and changes for both years, so the 9 open forecasts get their outcomes; then add the contract changes to the predictions file (price at signing against price after changes, back-filled), and the council budget against its accounts (DGAL Portal Autárquico), the second named prediction.",
   "Signed commits: SSH signing key with session ID in team/keys.json, every commit signed, scripts/check-signatures.mjs in the gate and CI (Dinis, 19 Nov ~01:10 UTC).",
   "London section once data.b@'s Contracts Finder and London Datastore feeds are on data.promptugal.news.",
   "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
   "Storm items 1 and 2: /cases/storm-charles/.",
-  "Government track: link the AI contracts to the council meetings and Diário da República notices (data.b@ collecting DR); ask councils on the record which steps the purchases removed."
+  "Government track: link the AI contracts to the council meetings and Diário da República notices (data.b@ collecting DR); ask councils on the record which steps the purchases removed.",
+  "The map (Dinis about 17:40 UTC, board/guidance/2026-11-19-cameras-as-links-and-the-map.md, read at source 19:26Z): waiting on two things, asked of conductor.b@ at 19:26Z. (1) designer@'s one shared map, to vendor like the sites bar (no shared map piece is published yet; the main site's assets/by-place/region-map.tmpl is its own Algarve map), so civic does not draw a look of its own. (2, now met for London by data.b@'s Contracts Finder feed, a6271b3) London or EU public-money data: data.promptugal.news has London flood, forecast and traffic-camera feeds and Eurostat tourism and ENISA for the EU, but no public-money feed (Contracts Finder is not collected yet). Until then civic's pages already state country, region and currency per place; the 16 councils have coordinates in data/places.json; the places registry has London and Brussels."
  ],
  "asks": [
   "Dinis: allow this session to make its own SSH signing key (ssh-keygen, private half kept in the session only) so civic can sign every commit as your 19 Nov rule asks; the permission system refused it at the 07:23 UTC wake.",
