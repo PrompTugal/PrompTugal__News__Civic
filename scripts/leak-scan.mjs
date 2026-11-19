@@ -95,11 +95,18 @@ const ALLOW = [
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 
 const PUBLIC_KEY_FILES = (p) => p === 'team/keys.json' || /^team\/keys\/[a-z0-9-]+\.json$/.test(p);
+// security@'s ruling (Website 1acd10498, 19 Nov 2026): an OpenSSH one-line public key (ssh-ed25519, ssh-rsa, ecdsa, and
+// their security-key forms) is allowed only in its published field: a "public_key" value in a public key file, or the
+// signing check's own allowed-signers file. Anywhere else it is flagged (the entropy rule alone missed about 1 in 75).
+const SSH_PUB = /(?:^|[^A-Za-z0-9@.-])(?:sk-)?(?:ssh-ed25519|ssh-rsa|ecdsa-sha2-nistp(?:256|384|521))(?:@openssh\.com)?\s+AAAA[0-9A-Za-z+\/]{20,}={0,3}/;
+const SSH_PUB_FIELD = (p, line) => (PUBLIC_KEY_FILES(p) && /^\s*"public_key"\s*:\s*"/.test(line)) || p === 'team/allowed_signers';
+// kinds that no allowlist entry may ever exempt (security@: a private key header fails everywhere)
+const NEVER_EXEMPT = new Set(['private key block']);
 
 // Returns a list of {line, kind} for one file's text. Never returns the match.
 export function scanText(path, text) {
   const found = [];
-  const add = (line, kind) => { if (!allowed(path, kind)) found.push({ line, kind }); };
+  const add = (line, kind) => { if (NEVER_EXEMPT.has(kind) || !allowed(path, kind)) found.push({ line, kind }); };
   let body = text;
   if (PUBLIC_KEY_FILES(path)) {
     if (/private|passphrase|secret|seed/i.test(text)) add(0, 'public key file mentions a private part');
@@ -110,6 +117,7 @@ export function scanText(path, text) {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);
     if (PUBLIC_BEGIN.test(line)) add(n, 'public key outside team/keys');
+    if (SSH_PUB.test(line) && !SSH_PUB_FIELD(path, line)) add(n, 'ssh public key outside its published field');
     if (vaultPair(line)) add(n, 'sgit vault key shape (passphrase:vault_id)');
     for (const m of line.matchAll(ASSIGN)) {
       const v = m[1];
@@ -186,7 +194,34 @@ function scanHistory() {
   return { errors: [...new Set(errors)], count: commits };
 }
 
+// Self-test, run before every scan (security@: give each rule a test). Every sample is built from parts at run time,
+// so this file never holds the shapes it looks for. A rule that stops catching its sample fails the scan.
+function selfTest() {
+  const D = '-'.repeat(5), B64 = (n, c = 'Qx9') => ('AAAAC3Nza' + c.repeat(Math.ceil(n / c.length))).slice(0, n);
+  const cases = [
+    ['openssh private key header', 'notes.md', `${D}BEGIN OPENSSH PRIVATE KEY${D}`, 'private key block'],
+    ['rsa private key header', 'a.txt', `${D}BEGIN RSA PRIVATE KEY${D}`, 'private key block'],
+    ['ec private key header', 'a.txt', `${D}BEGIN EC PRIVATE KEY${D}`, 'private key block'],
+    ['dsa private key header', 'a.txt', `${D}BEGIN DSA PRIVATE KEY${D}`, 'private key block'],
+    ['encrypted private key header', 'a.txt', `${D}BEGIN ENCRYPTED PRIVATE KEY${D}`, 'private key block'],
+    ['private key header in the keys file', 'team/keys.json', `${D}BEGIN OPENSSH PRIVATE KEY${D}`, 'private key block'],
+    ['private key header in an allowlisted file', 'src/assets/obs/obs.json', `${D}BEGIN PRIVATE KEY${D}`, 'private key block'],
+    ['ssh-ed25519 line in code', 'scripts/x.mjs', `const k = "ssh-${'ed'}25519 ${B64(68)}"`, 'ssh public key outside its published field'],
+    ['ssh-rsa line in a status file', 'board/team/civic/status.json', `"note": "ssh-${'rsa'} ${B64(120)}"`, 'ssh public key outside its published field'],
+    ['ecdsa line in data', 'data/x.json', `ecdsa-sha2-${'nistp'}256 ${B64(140)}`, 'ssh public key outside its published field'],
+    ['ssh key in the keys file but not in public_key', 'team/keys.json', `  "comment": "ssh-${'ed'}25519 ${B64(68)}"`, 'ssh public key outside its published field'],
+  ];
+  const allowedCases = [
+    ['ssh key in its published field', 'team/keys.json', `    "public_key": "ssh-${'ed'}25519 ${B64(68)}"`, 'ssh public key outside its published field'],
+  ];
+  const bad = [];
+  for (const [name, path, text, kind] of cases) if (!scanText(path, text).some(f => f.kind === kind)) bad.push(`self-test: ${name}: not caught`);
+  for (const [name, path, text, kind] of allowedCases) if (scanText(path, text).some(f => f.kind === kind)) bad.push(`self-test: ${name}: wrongly flagged`);
+  return bad;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const st = selfTest(); if (st.length) { console.error(st.join('\n')); console.error('FAILED: the leak scan\'s own rules do not hold'); process.exit(1); }
   const history = process.argv.includes('--history');
   const { errors, count, skipped } = history ? scanHistory() : scanTree();
   if (errors.length) {

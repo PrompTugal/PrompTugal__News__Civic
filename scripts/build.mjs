@@ -32,9 +32,9 @@ let barOk = false, tzOk = false;
   finally { clearTimeout(t); }
   if (reg) {
     // the bar
-    const b = reg.bar || {};
-    if (b.version === BAR_VERSION) {
-      const integ = b.integrity || {};
+    const b = reg.bar || {}, bOwn = b.versions && b.versions[BAR_VERSION];   // dev@'s append-only per-version pins, when present
+    if (b.version === BAR_VERSION || (bOwn && bOwn.integrity)) {
+      const integ = (bOwn && bOwn.integrity) || b.integrity || {};
       for (const k of ['render', 'css', 'js']) {
         if (typeof integ[k] !== 'string' || !SRI.test(integ[k])) { console.error(`sites bar ${BAR_VERSION}: the registry gives no valid integrity for ${k}`); process.exit(1); }
         if (sri(BAR[k]) !== integ[k]) { console.error(`sites bar ${BAR_VERSION}: ${BAR[k]} does not match the registry (same version, other bytes): stop`); process.exit(1); }
@@ -46,14 +46,14 @@ let barOk = false, tzOk = false;
         writeFileSync('data/sites-registry.json', JSON.stringify({ read_at: new Date().toISOString(), from: 'https://promptugal.news/api/v1/sites.json', registry_version: ver, license: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/', by: 'PrompTugal.news' }, registry: { sites: reg.sites } }, null, 1) + '\n');
         console.log(`sites bar ${BAR_VERSION}: the three files match the registry; ${reg.sites.length} sites, ${ver || 'no version'}`);
       } else console.warn('WARNING the renderer refused the registry: no sites bar in this build');
-    } else console.warn(`WARNING the registry names sites bar ${b.version || 'none'}, this site vendors ${BAR_VERSION}: no bar in this build; upgrade at the next wake`);
+    } else console.warn(`sites bar ${BAR_VERSION} off: the registry names ${b.version || 'none'}`);
     // the time-zone table
-    const o = reg.obs_tz || {};
-    if (o.version === TZ_VERSION) {
-      if (typeof o.integrity !== 'string' || !SRI.test(o.integrity)) { console.error('tz-country: the registry gives no valid integrity'); process.exit(1); }
-      if (sri(TZ_FILE) !== o.integrity) { console.error(`tz-country ${TZ_VERSION}: does not match the registry (same version, other bytes): stop`); process.exit(1); }
+    const o = reg.obs_tz || {}, oOwn = o.versions && o.versions[TZ_VERSION], oPin = (oOwn && oOwn.integrity) || (o.version === TZ_VERSION ? o.integrity : null);
+    if (oPin) {
+      if (typeof oPin !== 'string' || !SRI.test(oPin)) { console.error('tz-country: the registry gives no valid integrity'); process.exit(1); }
+      if (sri(TZ_FILE) !== oPin) { console.error(`tz-country ${TZ_VERSION}: does not match the registry (same version, other bytes): stop`); process.exit(1); }
       tzOk = true; console.log(`tz-country ${TZ_VERSION}: matches the registry`);
-    } else console.warn(`WARNING the registry names tz-country ${o.version || 'none'}, this site vendors ${TZ_VERSION}: no country in this build; upgrade at the next wake`);
+    } else console.warn(`tz-country ${TZ_VERSION} off: the registry names ${o.version || 'none'}`);
   }
 }
 globalThis.CIVIC_SITES_BAR = { ok: barOk, version: BAR_VERSION, render: BAR.render };
