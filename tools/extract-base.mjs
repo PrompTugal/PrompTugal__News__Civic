@@ -6,7 +6,7 @@
 // those buyers (the councils' municipal companies, by NIF) instead of the councils': each row then also has `buyer` (the NIF)
 // and `council` is the owner council.
 // Node built-ins only. Keeps public facts only: who bought, from whom, what, how, when, how much.
-import { openSync, readSync, closeSync, writeFileSync, readFileSync } from 'node:fs';
+import { writeFileSync, readFileSync } from 'node:fs';
 const [inp, out, resource, readOn, buyersFile] = process.argv.slice(2);
 const BUYERS = buyersFile ? new Map(JSON.parse(readFileSync(buyersFile, 'utf8')).companies.filter(c => c.nif).map(c => [c.nif, c])) : null;
 const COUNCILS = {
@@ -22,23 +22,7 @@ const NIF = { albufeira: '503539473', alcoutim: '506772446', aljezur: '505932512
   lagoa: '506804240', lagos: '505170876', loule: '502098139', monchique: '506826961', olhao: '506321894', portimao: '505309939',
   'sao-bras-de-alportel': '503219924', silves: '506818837', tavira: '501067191', 'vila-do-bispo': '506730573', 'vila-real-de-santo-antonio': '506833224' };
 const byNif = new Map(Object.entries(NIF).map(([id, n]) => [n, id]));
-// The yearly files pass 512 MB, too long for one string: stream the top-level array object by object.
-function* objects(path) {
-  const fd = openSync(path, 'r'); const buf = Buffer.alloc(1 << 24);
-  let depth = 0, inStr = false, esc = false, start = -1, carry = [];
-  for (let n; (n = readSync(fd, buf, 0, buf.length, null)) > 0;) {
-    let from = 0;
-    for (let i = 0; i < n; i++) {
-      const c = buf[i];
-      if (inStr) { if (esc) esc = false; else if (c === 92) esc = true; else if (c === 34) inStr = false; continue; }
-      if (c === 34) inStr = true;
-      else if (c === 123) { if (++depth === 1) { start = i; from = i; carry = []; } }
-      else if (c === 125) { if (--depth === 0) { carry.push(Buffer.from(buf.subarray(from, i + 1))); yield JSON.parse(Buffer.concat(carry).toString('utf8')); start = -1; } }
-    }
-    if (depth > 0 && start >= 0) { carry.push(Buffer.from(buf.subarray(from, n))); from = 0; }
-  }
-  closeSync(fd);
-}
+import { objects } from './json-stream.mjs';
 // People only as public and professional: a supplier whose NIF is masked in the open data ("-", which IMPIC
 // does for private individuals and some others) or whose NIF marks a natural person (first digit 1, 2 or 3,
 // or 45, or 8 for a sole trader) keeps no name and no NIF here. Companies (5), public bodies (6) and others (9) keep theirs.

@@ -30,6 +30,7 @@ const councilOf = id => (councilsData.councils || []).find(c => c.id === id) || 
 // Ours is CC BY 4.0. Taken data keeps its source's published licence; where none is published, a link to the source with the words
 // "the source's terms": never blank, never assumed open.
 const OURS = { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
+const IMPIC_LICENCE_NOTICES = { name: 'Outra (Domínio Público), as dados.gov.pt publishes it for this dataset', url: 'https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/', id: 'other-pd' };
 const IMPIC_LICENCE = { name: 'Outra (Domínio Público), as dados.gov.pt publishes it for this dataset', url: 'https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/', id: 'other-pd' };
 function licenceOf(url) {
   let host = ''; try { host = new URL(url).host; } catch { return { name: "the source's terms", url: null, published: false }; }
@@ -204,9 +205,12 @@ const multi = sup26.filter(s => s.councils.size >= 3).sort((a, b) => b.councils.
 const lastPub = y26.reduce((m, c) => (c.published > m ? c.published : m), '');
 const BASE_SRC = { license: IMPIC_LICENCE, title: 'Contratos Públicos, Portal BASE, IMPIC: open data on dados.gov.pt (contracts of 2026 and 2025)', url: base[2026].source.dataset, read_on: base[2026].source.read_on };
 const whoName = id => (placeOf(id) || { name: id }).name;
-const contractLabel = c => c.object || `(object withheld: a supplier is a private individual) ${c.cpv[0] ? c.cpv[0].desc : ''}`;
-// Supplier names are data: square brackets and asterisks would read as markdown links or bold, so they are shown as ( ) and · (CIVIC-2026-004).
+// Supplier names and contract and notice texts are data: square brackets and asterisks would read as markdown links or bold,
+// so they are shown as ( ) and · (CIVIC-2026-004; contract and notice texts too since 19 Nov 2026, security pre-review).
 const nm = s => String(s ?? '').replace(/\[/g, '(').replace(/\]/g, ')').replace(/\*/g, '·');
+const contractLabel = c => nm(c.object || `(object withheld: a supplier is a private individual) ${c.cpv[0] ? c.cpv[0].desc : ''}`);
+// The councils' notices (anúncios) of 2026 joined to the contracts that cite them (tools/extract-notices.mjs).
+const notices = read('data/procurement/notices-2026.json', { procedures: [], source: {} });
 const supplierCell = c => c.suppliers.map(s => s.withheld ? 'a private individual (name withheld)' : (companyPages.has(s.nif) ? `[${nm(s.name)}](/map/${s.nif}/)` : nm(s.name))).join('; ');
 const companyPages = new Set(multi.map(s => s.nif));
 const muniOf = id => munis.companies.filter(c => c.council === id);
@@ -496,7 +500,7 @@ export function generate() {
       municipal_companies: muniRows(muniOf(id)).map(({ m, a, b }) => ({ id: m.id, name: m.name, nif: m.nif, what: m.what, status: m.status, contracts_2026: a.n, value_eur_2026: Math.round(a.total), value_eur_2025: Math.round(b.total) })),
       contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
   };
-  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/use-cases/estimates.json', '/api/v1/openapi.json'] });
+  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/use-cases/estimates.json', '/api/v1/use-cases/notices.json', '/api/v1/openapi.json'] });
   // Dinis, 18 Nov 2026 ~22:20 UTC (Website repo board/guidance/2026-11-18-london.md): London is the first place beyond Portugal,
   // so no record assumes a place is Portuguese: each one says its country, region and currency.
   const PLACE_PT = { country: { code: 'PT', name: 'Portugal' }, region: 'Algarve', currency: 'EUR' };
@@ -564,6 +568,33 @@ export function generate() {
     const cmax = Math.max(...per.map(x => x.a.est));
     const above = all.filter(c => both(c) && over(c)).sort((a, b) => (b.published || '').localeCompare(a.published || ''));
     const PAID_TO_COUNCIL = /cess[aã]o|direito (?:de |do )?(?:uso|explora)|concess[aã]o/i;   // the council grants a right and is paid: the base price is a floor
+    // Announced first: the base price published in the Diário da República notice, before any bid, against the contract that
+    // cites the notice. Forecasts made in public before their outcome; the within-10% figure is our calculation.
+    const NREAD = notices.source.read_on || null, P = notices.procedures || [];
+    const DRU = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/, BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
+    const noticeLink = x => DRU.test(x.dr || '') ? `[notice ${x.n}](${x.dr})` : `notice ${x.n}`;
+    const nWhat = x => x.what ? nm(x.what) : `(text withheld: it may name a private individual) ${nm((x.types || [])[0] || '')}`;
+    const isPaid = x => PAID_TO_COUNCIL.test(x.what || '') || (x.types || []).some(t => /concess/i.test(t));
+    const nGot = x => x.contracts.reduce((t, c) => t + (typeof c.price === 'number' ? c.price : NaN), 0);
+    const nOpen = P.filter(x => NREAD && (x.deadline || '') >= NREAD).sort((a, b) => (a.deadline || '').localeCompare(b.deadline || ''));
+    const nDone = P.filter(x => x.contracts.length && typeof x.base_price_last === 'number' && x.base_price_last > 0 && Number.isFinite(nGot(x)));
+    const nPay = nDone.filter(x => !isPaid(x)), nWithin = nPay.filter(x => Math.abs(nGot(x) - x.base_price_last) <= 0.1 * x.base_price_last);
+    const nAbove = nPay.filter(x => nGot(x) > x.base_price_last + 0.5), nWait = P.filter(x => !x.contracts.length && !(NREAD && (x.deadline || '') >= NREAD));
+    const nNoBase = P.filter(x => !(typeof x.base_price_last === 'number' && x.base_price_last > 0));
+    const nRecent = [...nPay].sort((a, b) => (b.contracts[0].published || '').localeCompare(a.contracts[0].published || '')).slice(0, 20);
+    const nDiff = x => { const d = nGot(x) / x.base_price_last - 1; return Math.abs(d) < 0.00005 ? 'exact' : `${d > 0 ? '+' : ''}${(d * 100).toFixed(1)}%`; };
+    const noticeStats = { read_on: NREAD, procedures: P.length, still_open: nOpen.length, with_contract_and_base: nDone.length, council_pays: nPay.length, within_10_percent: nWithin.length, above_base: nAbove.length, council_is_paid: nDone.length - nPay.length, no_contract_yet: nWait.length, no_base_price: nNoBase.length };
+    const noticeBlocks = !P.length ? [] : [
+      ['h2', 'Announced first: the notice, then the contract'],
+      ['p', `When a council opens a public tender, it publishes a notice in the Diário da República that states the base price before anyone bids. That is a forecast made in public before its outcome. In IMPIC's open data of the notices, the 16 councils opened ${int(P.length)} procedures in 2026 (read ${day(NREAD)}). For ${int(nDone.length)} of them a contract citing the notice is on the Portal BASE.`],
+      ['p', `**How close the forecast came (our calculation):** of the ${int(nPay.length)} where the council pays, ${int(nWithin.length)} were contracted within 10% of the notice's base price (${(nWithin.length / Math.max(1, nPay.length) * 100).toFixed(1)}%), ${int(nPay.length - nWithin.length - nAbove.length)} more than 10% under it, and ${int(nAbove.length)} above it. ${nDone.length - nPay.length === 1 ? 'One more is a concession' : `${int(nDone.length - nPay.length)} more are concessions`}, where the council is paid and the base price is a floor. Where a procedure has lots, the contracts of all its lots are added up. A later change notice that moves the base price replaces it.`],
+      ['h3', `Still open on ${day(NREAD)}: ${int(nOpen.length)} forecasts waiting for their outcome`],
+      nOpen.length ? ['table', ['Deadline for bids', 'Council', 'What', 'Base price in the notice', 'Notice'], { right: [3], rows: nOpen.map(x => [day(x.deadline), `[${whoName(x.council)}](/councils/${x.council}/)`, nWhat(x), typeof x.base_price_last === 'number' && x.base_price_last > 0 ? eur(x.base_price_last) : 'no base price', noticeLink(x)]) }] : ['p', 'None.'],
+      ['small', `Each is kept in the predictions file now, before its outcome, and checked when its contract reaches the Portal BASE. "Open" means the deadline for bids was on or after ${day(NREAD)}, the day the data was read; a deadline can be extended by a later notice. In a concession (the council grants a right and is paid) the base price is a floor, not a ceiling.`],
+      ['h3', 'The latest checked'],
+      ['table', ['Notice published', 'Council', 'What', 'Base price in the notice', 'Contracted', 'Difference', 'Records'], { right: [3, 4, 5], rows: nRecent.map(x => [day(x.published), `[${whoName(x.council)}](/councils/${x.council}/)`, nWhat(x), eur(x.base_price_last), eur(nGot(x)), nDiff(x), [noticeLink(x), ...x.contracts.slice(0, 3).filter(c => BGU.test(c.url)).map(c => `[BASE ${c.id}](${c.url})`)].join(' · ')]) }],
+      ['p', `**Gaps, shown as gaps:** ${int(nWait.length)} procedures have closed for bids with no contract citing their notice on the Portal BASE yet (it may not be awarded yet, may be reported later, or may have been abandoned); ${int(nNoBase.length)} notices state no base price. A notice with no outcome is never counted as held.`],
+    ];
     const track = x => `${int(x.e + x.u)} of ${int(x.w)} contracts with a base price came in at or under it (${((x.e + x.u) / Math.max(1, x.w) * 100).toFixed(2)}%); ${int(x.e)} exactly at it; ${int(x.o)} above it (see below); ${int(x.gap)} with no estimate recorded`;
     const blocks = [
       ['lede', `Before a council buys, it records what it expects to pay: the preço base, the estimate. When the contract is signed, the Portal BASE records what it will pay. Both are public, so each contract is a small prediction checked: what the council said, beside what happened. In 2026 so far the 16 councils estimated ${meur(s26.est)} across ${int(s26.w)} contracts and contracted ${meur(s26.got)}.`],
@@ -578,12 +609,17 @@ export function generate() {
       ['h2', 'Contracts recorded above their estimate'],
       above.length ? ['table', ['Published', 'Council', 'What', 'Procedure', 'Base price', 'Contracted', 'Reading', 'Record'], { right: [4, 5], rows: above.map(c => [day(c.published), `[${whoName(c.council)}](/councils/${c.council}/)`, contractLabel(c), procName(c.procedure), eur(c.base_price), eur(c.price), PAID_TO_COUNCIL.test(c.object || '') ? 'the council grants a right and is paid: the base price is a floor, so above it is expected' : 'not explained by the record', `[BASE ${c.id}](${c.url})`]) }] : ['p', 'None.'],
       ['small', 'As the Portal BASE records them; our reading is from each record\'s own description. Each links the record itself.'],
+      ...noticeBlocks,
       ['h2', 'The data'],
       ['p', 'Every pair is kept, as first shown, in [data/predictions/predictions.jsonl](https://github.com/PrompTugal/PrompTugal__News__Civic/blob/dev/data/predictions/predictions.jsonl) (one line for what was estimated, one for what was contracted, never edited), for the library\'s collection of predictions. The figures on this page are also in [/api/v1/use-cases/estimates.json](/api/v1/use-cases/estimates.json).'],
     ];
-    page({ path: '/money/estimates/', kicker: 'Public money', title: 'What the councils estimated, and what they paid', description: `For each contract, what the Algarve's councils estimated it would cost and what they contracted: ${int(s26.w)} contracts in 2026, ${meur(s26.est)} estimated and ${meur(s26.got)} contracted, by procedure and council, from IMPIC's open data.`, blocks, sources: [BASE_SRC, { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });
+    page({ path: '/money/estimates/', kicker: 'Public money', title: 'What the councils estimated, and what they paid', description: `For each contract, what the Algarve's councils estimated it would cost and what they contracted: ${int(s26.w)} contracts in 2026, ${meur(s26.est)} estimated and ${meur(s26.got)} contracted, by procedure and council, from IMPIC's open data.`, blocks, sources: [BASE_SRC, ...(P.length ? [{ license: IMPIC_LICENCE_NOTICES, title: 'Contratos Públicos, Portal BASE, IMPIC: Anúncios (notices) of 2026, open data on dados.gov.pt', url: notices.source.notices_dataset, read_on: NREAD }] : []), { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });
     const so = x => ({ contracts: x.n, with_estimate: x.w, no_estimate: x.gap, at_estimate: x.e, under_estimate: x.u, above_estimate: x.o, estimated_eur: Math.round(x.est), contracted_eur: Math.round(x.got), median_saving_when_under: x.med == null ? null : +x.med.toFixed(4) });
-    put('use-cases/estimates.json', { ...meta, about: "Each council contract's estimated price (preço base, the council's own, recorded before the procedure) against its contracted price, 2025 and 2026. Our calculation from IMPIC's open data.", record_begins: firstDay, year_2026: so(s26), year_2025: so(s25), by_procedure_2026: procs.map(({ k, a }) => ({ procedure: k, procedure_en: procName(k), ...so(a) })), by_council_2026: per.map(({ id, a }) => ({ council: id, ...so(a) })), above_estimate: above.map(c => ({ license: IMPIC_LICENCE, id: c.id, council: c.council, published: c.published, procedure: c.procedure, base_price_eur: c.base_price, price_eur: c.price, base_gov_pt: c.url })), predictions_file: 'https://github.com/PrompTugal/PrompTugal__News__Civic/blob/dev/data/predictions/predictions.jsonl', sources: [baseSrc] });
+    put('use-cases/estimates.json', { ...meta, about: "Each council contract's estimated price (preço base, the council's own, recorded before the procedure) against its contracted price, 2025 and 2026. Our calculation from IMPIC's open data.", record_begins: firstDay, year_2026: so(s26), year_2025: so(s25), by_procedure_2026: procs.map(({ k, a }) => ({ procedure: k, procedure_en: procName(k), ...so(a) })), by_council_2026: per.map(({ id, a }) => ({ council: id, ...so(a) })), above_estimate: above.map(c => ({ license: IMPIC_LICENCE, id: c.id, council: c.council, published: c.published, procedure: c.procedure, base_price_eur: c.base_price, price_eur: c.price, base_gov_pt: c.url })), predictions_file: 'https://github.com/PrompTugal/PrompTugal__News__Civic/blob/dev/data/predictions/predictions.jsonl', notices_2026: noticeStats, sources: [baseSrc] });
+    put('use-cases/notices.json', { ...meta, about: "The 16 Algarve councils' procurement notices of 2026 (anúncios, published in the Diário da República before any bid, with the base price) joined to the contracts that cite them on the Portal BASE. The within-10% figure is our calculation; concessions (the council is paid) are counted apart.", license: IMPIC_LICENCE_NOTICES, summary: noticeStats,
+      still_open: nOpen.map(x => ({ notice: x.n, council: x.council, published: x.published, deadline: x.deadline, what: x.what, base_price_eur: x.base_price_last, diario_da_republica: DRU.test(x.dr || '') ? x.dr : null })),
+      checked: nDone.map(x => ({ notice: x.n, council: x.council, published: x.published, base_price_eur: x.base_price_last, contracted_eur: Math.round(nGot(x) * 100) / 100, council_is_paid: isPaid(x), within_10_percent: !isPaid(x) && Math.abs(nGot(x) - x.base_price_last) <= 0.1 * x.base_price_last, contracts: x.contracts.filter(c => BGU.test(c.url)).map(c => c.url), diario_da_republica: DRU.test(x.dr || '') ? x.dr : null })),
+      data_file: `https://${SITE}/data/procurement/notices-2026.json`, sources: [{ license: IMPIC_LICENCE_NOTICES, title: 'Contratos Públicos, Portal BASE, IMPIC: Anúncios', url: notices.source.notices_dataset, read_on: NREAD }, baseSrc] });
   }
 
 
@@ -605,6 +641,7 @@ export function generate() {
       '/api/v1/procurement/summary.json': get('Totals for the 16 councils, 2026 and 2025', obj),
       '/api/v1/use-cases/tech-and-ai.json': get('Tech and AI purchases of the 16 councils: by council, supplier, and contracts that mention AI', obj),
       '/api/v1/use-cases/estimates.json': get('What each council estimated a contract would cost and what it contracted, 2025 and 2026, by council and procedure', obj),
+      '/api/v1/use-cases/notices.json': get("The councils' 2026 procurement notices (base price published before any bid) against the contracts that cite them; the procedures still open", obj),
       '/api/v1/municipal-companies.json': get('The councils\' municipal companies, with their contracts by procedure, 2026 and 2025', obj),
       '/data/procurement/base-2026.json': get('Every 2026 contract of the 16 councils (large)', obj),
     },

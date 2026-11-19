@@ -97,6 +97,27 @@ for (const f of files.filter(f => f.endsWith('.html'))) {
   else { const age = (Date.now() - Date.parse(JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).read_at)) / 864e5; if (!(age <= 14)) console.warn(`WARNING data/sites-registry.json is ${Math.round(age)} days old`); }
   if (/integrity/i.test(readFileSync('data/sites-registry.json', 'utf8'))) fail('data/sites-registry.json holds a pin: keep the sites only (pins are read from the live registry)');
 }
+// civic.b@PrompTugal.dinis (2026-11-19, security pre-review): the councils' notices keep a fixed set of fields, only
+// validated links (Diário da República PDFs, Portal BASE records), no tender-platform links, and no text where a person may be named.
+if (existsSync('data/procurement/notices-2026.json')) {
+  const N = JSON.parse(readFileSync('data/procurement/notices-2026.json', 'utf8'));
+  const KEYS = new Set(['n', 'council', 'kind', 'published', 'deadline', 'procedure', 'types', 'what', 'base_price', 'base_stated', 'dr', 'changes', 'base_price_last', 'contracts']);
+  const CKEYS = new Set(['id', 'price', 'base_price', 'published', 'signed', 'url']);
+  const DRU = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/, BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
+  const num = v => v === null || (typeof v === 'number' && Number.isFinite(v) && v >= 0 && v < 1e10);
+  for (const x of N.procedures || []) {
+    const at = `notices-2026.json ${String(x.n).slice(0, 20)}`;
+    for (const k of Object.keys(x)) if (!KEYS.has(k)) fail(`${at}: unexpected field ${k.slice(0, 40)}`);
+    if (!/^\d{1,6}\/20\d{2}$/.test(x.n)) fail(`${at}: notice number`);
+    if (x.dr !== null && !DRU.test(x.dr)) fail(`${at}: Diário da República link not allowed`);
+    if (!num(x.base_price) || !num(x.base_price_last)) fail(`${at}: base price`);
+    if (x.what !== null && (typeof x.what !== 'string' || x.what.length > 300 || /[\u0000-\u001f‪-‮⁦-⁩]|@/.test(x.what))) fail(`${at}: text`);
+    for (const c of x.contracts || []) { for (const k of Object.keys(c)) if (!CKEYS.has(k)) fail(`${at}: unexpected contract field ${k.slice(0, 40)}`);
+      if (!BGU.test(c.url) || !num(c.price)) fail(`${at}: contract ${String(c.id).slice(0, 14)}`); }
+    for (const c of x.changes || []) if (c.dr !== null && !DRU.test(c.dr)) fail(`${at}: change notice link not allowed`);
+  }
+  if (/PecasProcedimento|vortal|acingov|anogov|saphety/i.test(readFileSync('data/procurement/notices-2026.json', 'utf8'))) fail('notices-2026.json: a tender-platform link or field is kept');
+}
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {
