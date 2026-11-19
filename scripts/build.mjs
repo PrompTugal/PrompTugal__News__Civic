@@ -13,7 +13,7 @@ cpSync('src', '_site', { recursive: true });
 //     (the rest deploys), and the upgrade waits for the next wake (data.b@'s trap, 19 Nov 2026, relayed by conductor.b@);
 //   - the list of sites the renderer accepts is kept in data/sites-registry.json (sites only, no pins), for the CSP.
 // Data, not code: nothing from the registry is run.
-const BAR_VERSION = '1.1.1', TZ_VERSION = '1.1.0';
+const BAR_VERSION = '1.2.0', TZ_VERSION = '1.1.0';
 const BAR = { render: `vendor/sites-bar/${BAR_VERSION}/sites-bar-render.mjs`, css: `src/assets/sites-bar/${BAR_VERSION}/sites-bar.css`, js: `src/assets/sites-bar/${BAR_VERSION}/sites-bar.js` };
 const TZ_FILE = `vendor/obs/tz-country/${TZ_VERSION}/tz-country.json`;
 const { createHash } = await import('node:crypto');
@@ -32,9 +32,12 @@ let barOk = false, tzOk = false;
   finally { clearTimeout(t); }
   if (reg) {
     // the bar
-    const b = reg.bar || {}, bOwn = b.versions && b.versions[BAR_VERSION];   // dev@'s append-only per-version pins, when present
-    if (b.version === BAR_VERSION || (bOwn && bOwn.integrity)) {
-      const integ = (bOwn && bOwn.integrity) || b.integrity || {};
+    // dev@'s append-only per-version pins: bar.versions["<v>"] is the integrity map itself ({render, css, js}), or
+    // { integrity: {...} }; the piece is switched off only when the registry no longer lists this site's version at all
+    const b = reg.bar || {}, bv = b.versions && Object.prototype.hasOwnProperty.call(b.versions, BAR_VERSION) ? b.versions[BAR_VERSION] : null;
+    const bOwn = bv && typeof bv === 'object' ? (bv.integrity && typeof bv.integrity === 'object' ? bv.integrity : bv) : null;
+    if (bOwn || b.version === BAR_VERSION) {
+      const integ = bOwn || b.integrity || {};
       for (const k of ['render', 'css', 'js']) {
         if (typeof integ[k] !== 'string' || !SRI.test(integ[k])) { console.error(`sites bar ${BAR_VERSION}: the registry gives no valid integrity for ${k}`); process.exit(1); }
         if (sri(BAR[k]) !== integ[k]) { console.error(`sites bar ${BAR_VERSION}: ${BAR[k]} does not match the registry (same version, other bytes): stop`); process.exit(1); }
@@ -46,14 +49,16 @@ let barOk = false, tzOk = false;
         writeFileSync('data/sites-registry.json', JSON.stringify({ read_at: new Date().toISOString(), from: 'https://promptugal.news/api/v1/sites.json', registry_version: ver, license: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/', by: 'PrompTugal.news' }, registry: { sites: reg.sites } }, null, 1) + '\n');
         console.log(`sites bar ${BAR_VERSION}: the three files match the registry; ${reg.sites.length} sites, ${ver || 'no version'}`);
       } else console.warn('WARNING the renderer refused the registry: no sites bar in this build');
-    } else console.warn(`sites bar ${BAR_VERSION} off: the registry names ${b.version || 'none'}`);
+    } else console.warn(`sites bar ${BAR_VERSION} off: the registry names ${b.version || 'none'} and no longer lists ${BAR_VERSION}`);
     // the time-zone table
-    const o = reg.obs_tz || {}, oOwn = o.versions && o.versions[TZ_VERSION], oPin = (oOwn && oOwn.integrity) || (o.version === TZ_VERSION ? o.integrity : null);
+    // obs_tz.versions["<v>"] is { integrity: "sha256-..." } (or the string itself)
+    const o = reg.obs_tz || {}, ov = o.versions && Object.prototype.hasOwnProperty.call(o.versions, TZ_VERSION) ? o.versions[TZ_VERSION] : null;
+    const oPin = (typeof ov === 'string' ? ov : ov && ov.integrity) || (o.version === TZ_VERSION ? o.integrity : null);
     if (oPin) {
       if (typeof oPin !== 'string' || !SRI.test(oPin)) { console.error('tz-country: the registry gives no valid integrity'); process.exit(1); }
       if (sri(TZ_FILE) !== oPin) { console.error(`tz-country ${TZ_VERSION}: does not match the registry (same version, other bytes): stop`); process.exit(1); }
       tzOk = true; console.log(`tz-country ${TZ_VERSION}: matches the registry`);
-    } else console.warn(`tz-country ${TZ_VERSION} off: the registry names ${o.version || 'none'}`);
+    } else console.warn(`tz-country ${TZ_VERSION} off: the registry names ${o.version || 'none'} and no longer lists ${TZ_VERSION}`);
   }
 }
 globalThis.CIVIC_SITES_BAR = { ok: barOk, version: BAR_VERSION, render: BAR.render };
