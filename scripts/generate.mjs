@@ -3,7 +3,6 @@
 // Written by civic@PrompTugal.dinis, 17 November 2026.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'node:fs';
 import { CSP_META } from './csp.mjs';
-import { render as renderSitesBar } from '../vendor/sites-bar/1.1.0/sites-bar-render.mjs';
 import { join, dirname } from 'node:path';
 
 const SITE = 'https://civic.promptugal.news';
@@ -100,10 +99,12 @@ const PROV_DEFAULT = {
 };
 // No billing on this site (Dinis, 18 Nov 2026 ~23:45 UTC, Website repo board/guidance/2026-11-18-billing-only-on-the-main-site.md:
 // "the billing only happens on the main site"): every page is free, the chip says so, and no reading meter is loaded.
-// The PrompTugal sites bar 1.1.0 (dev@'s, vendored and pinned by sha256; Dinis, 18 Nov 2026, the sites bar guidance): rendered
+// The PrompTugal sites bar (dev@'s, vendored; checked against the live registry at build, scripts/build.mjs; Dinis, 18 Nov 2026, the sites bar guidance): rendered
 // once from the last good registry (scripts/build.mjs keeps it in data/sites-registry.json). If the renderer refuses the
 // registry it returns '' and the pages go out without a bar, never a hand-made one. It replaces civic's own sites rail.
-const SITES_BAR = (() => { try { return renderSitesBar(JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).registry, { here: 'civic.promptugal.news' }); } catch { return ''; } })();
+const SITES_BAR = await (async () => { const g = globalThis.CIVIC_SITES_BAR; if (!g || !g.ok) return '';
+  try { const { render } = await import('../' + g.render); return render(JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).registry, { here: 'civic.promptugal.news' }); } catch { return ''; } })();
+const SITES_BAR_VERSION = (globalThis.CIVIC_SITES_BAR || {}).version || '';
 function page({ path, title, description, kicker, blocks, prov = {}, sources = [] }) {
   const navCur = '/' + (path.split('/')[1] ? path.split('/')[1] + '/' : '');
   const p = { ...PROV_DEFAULT, ...prov };
@@ -126,7 +127,7 @@ ${CSP_META}
 <meta property="og:image" content="${SITE}/preview.png">
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta name="twitter:card" content="summary_large_image">
-${SITES_BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.1.0/sites-bar.css">\n<script defer src="/assets/sites-bar/1.1.0/sites-bar.js"></script>\n' : ''}<script defer src="/assets/obs/obs.js"></script>
+${SITES_BAR ? `<link rel="stylesheet" href="/assets/sites-bar/${SITES_BAR_VERSION}/sites-bar.css">\n<script defer src="/assets/sites-bar/${SITES_BAR_VERSION}/sites-bar.js"></script>\n` : ''}<script defer src="/assets/obs/obs.js"></script>
 </head>
 <body>
 ${SITES_BAR}<header class="mast"><div class="wrap">

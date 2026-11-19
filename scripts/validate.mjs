@@ -85,23 +85,18 @@ for (const f of files.filter(f => f.endsWith('.html'))) {
     if (name === 'script' && !/^\/assets\/[a-z0-9\/._-]+\.js$/i.test(attrs.src || '')) fail(`${f}: a <script> that is not an external file under /assets/ (${attrs.src || 'inline'})`);
   }
 }
-// civic.b@PrompTugal.dinis (2026-11-19): the sites bar 1.1.0, vendored byte for byte and pinned (scripts/sites-bar-pin.mjs);
-// the built copies must match too. The registry snapshot must be there; a stale one is a warning (the bar still works).
+// civic.b@PrompTugal.dinis (2026-11-19): the sites bar and the time-zone table are checked against the live registry at build
+// (scripts/build.mjs; no pin is kept in this repository, security@'s option 1). Here: a page that loads the bar loads one
+// vendored version that exists in _site, and the registry snapshot (sites only) is there; a stale one is a warning.
 {
-  const { pinProblems, PIN, blobId } = await import('./sites-bar-pin.mjs');
-  for (const f of pinProblems()) fail(`${f}: not the pinned sites bar 1.1.0 file (never patch the vendored bar)`);
-  for (const [f, id] of Object.entries(PIN)) if (f.startsWith('src/')) { const b = f.replace(/^src\//, '_site/'); if (!existsSync(b) || blobId(readFileSync(b)) !== id) fail(`${b}: the built copy is not the pinned file`); }
-  if (!existsSync('data/sites-registry.json')) fail('data/sites-registry.json missing: the sites bar has no last good registry');
+  const vers = new Set();
+  for (const f of files.filter(f => f.endsWith('.html'))) for (const m of readFileSync(f, 'utf8').matchAll(/\/assets\/sites-bar\/(\d+\.\d+\.\d+)\/sites-bar\.(js|css)/g)) vers.add(m[1]);
+  if (vers.size > 1) fail(`pages load more than one sites bar version: ${[...vers].join(', ')}`);
+  for (const v of vers) for (const x of ['js', 'css']) if (!existsSync(`_site/assets/sites-bar/${v}/sites-bar.${x}`)) fail(`sites bar ${v}: _site/assets/sites-bar/${v}/sites-bar.${x} missing`);
+  if (!existsSync('data/sites-registry.json')) fail('data/sites-registry.json missing: the CSP has no list of sister sites');
   else { const age = (Date.now() - Date.parse(JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).read_at)) / 864e5; if (!(age <= 14)) console.warn(`WARNING data/sites-registry.json is ${Math.round(age)} days old`); }
+  if (/integrity/i.test(readFileSync('data/sites-registry.json', 'utf8'))) fail('data/sites-registry.json holds a pin: keep the sites only (pins are read from the live registry)');
 }
-// civic.b@PrompTugal.dinis (2026-11-19), Dinis ~03:15 UTC: no IP-based location. obs.js keeps the country from the browser's
-// time zone only: no lookup host, no geo list, no region, city or position, nothing read from another site's config.
-if (existsSync('_site/assets/obs/obs.js')) {
-  const code = readFileSync('_site/assets/obs/obs.js', 'utf8').split('\n').filter(l => !/^\s*\/\//.test(l)).join('\n');
-  if (/ipapi|ipwho|ipinfo|geoip|\.geo\b|config_from|\bcity\b|latitude|longitude/i.test(code)) fail('assets/obs/obs.js: an IP-based location lookup or its fields (Dinis, 19 Nov 2026: no IP base)');
-}
-if (existsSync('_site/assets/obs/obs.js') && readFileSync('_site/assets/obs/obs.js', 'utf8').includes('__TZ_ZONES__')) fail('assets/obs/obs.js: the shared time-zone table was not written in');
-if (existsSync('_site/assets/obs/obs.json')) { const o = JSON.parse(readFileSync('_site/assets/obs/obs.json', 'utf8')); if (o.geo || o.config_from) fail('assets/obs/obs.json: geo or config_from (no IP-based location)'); }
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {
