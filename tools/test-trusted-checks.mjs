@@ -163,6 +163,11 @@ test('9: the checks job takes nothing from the build job but the built site, and
   if (/\bnode (scripts|tools)\//.test(job) || /\bnpm\b|\bnpx\b/.test(job)) return 'the checks job runs a script from the checkout';
   if (!/GIT_NO_REPLACE_OBJECTS: '1'/.test(job) || !/NODE_OPTIONS: ''/.test(job)) return 'replace objects or NODE_OPTIONS not cleared';
   if (!/\n  deploy:\n    needs: \[build, checks\]/.test(y)) return 'deploy does not wait for the checks job';
+  // live.b@'s findings (a4c6fce): A counts only from a run whose job named checks passed; the security, deploy and tag jobs run only for dev
+  if (!/select\(\.name == "checks" and \.conclusion == "success"/.test(job)) return 'the anchor does not require the run\'s checks job to have passed';
+  if (!/\n  checks:\n    if: github\.ref == 'refs\/heads\/dev'\n/.test(y)) return 'the checks job is not limited to dev';
+  if (!/\n  deploy:\n    needs: \[build, checks\]\n    if: github\.ref == 'refs\/heads\/dev' && /.test(y)) return 'the deploy job is not limited to dev';
+  if (!/\n  tag:\n    needs: \[build, checks, deploy\]\n    if: \$\{\{ always\(\) && github\.ref == 'refs\/heads\/dev' && /.test(y)) return 'the tag job is not limited to dev';
   return true;
 });
 // The leak scan scans the repository --root names, so A's copy can run from the temporary folder.

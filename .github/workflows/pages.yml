@@ -56,6 +56,7 @@ jobs:
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
   checks:
+    if: github.ref == 'refs/heads/dev'
     # security@'s controls 7 (widened) and 8, 19 Nov 2026 (Website board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md,
     # fae9649db; civic CIVIC-2026-007). A job of its own that runs no code from the pushed tree: the commit check, its exemptions and
     # the leak scan come from the anchor A (security@'s fourth to sixth rulings) and run from RUNNER_TEMP; the built site comes from the build
@@ -102,9 +103,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: |
-          a=$(gh api "repos/$REPO/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=30" \
-            --jq '[.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success")][0].head_sha // ""')
-          if ! printf '%s' "$a" | grep -Eq '^[0-9a-f]{40}$'; then echo "no anchor: no successful push run of this workflow on dev" >&2; exit 1; fi
+          # live.b@'s finding (a4c6fce): a pushed workflow without the checks job would also "succeed", so a run counts only
+          # when its job named checks passed. A workflow that keeps the name but weakens the job is closed by branch protection.
+          a=""
+          for row in $(gh api "repos/$REPO/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=30" \
+            --jq '.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success") | "\(.id):\(.head_sha)"'); do
+            id=${row%%:*}; sha=${row#*:}
+            ok=$(gh api "repos/$REPO/actions/runs/$id/jobs?per_page=100" --jq '[.jobs[] | select(.name == "checks" and .conclusion == "success" and .head_sha == "'"$sha"'")] | length')
+            if [ "$ok" = 1 ]; then a=$sha; break; fi
+          done
+          if ! printf '%s' "$a" | grep -Eq '^[0-9a-f]{40}$'; then echo "no anchor: no successful push run on dev whose checks job passed" >&2; exit 1; fi
           echo "sha=$a" >> "$GITHUB_OUTPUT"
           echo "Anchor A: $a"
       - id: trusted
@@ -136,6 +144,8 @@ jobs:
           mkdir -p scripts; rm -f scripts/commit-exemptions.json
           if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git show "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
           # every config the checks read comes from A too (signals.b@'s finding, 75a59d0): git's own .gitattributes and .gitignore
+          # every pushed .gitattributes goes, at any depth (live.b@'s finding); A's own root files come back
+          find . -path ./.git -prune -o -name .gitattributes -print0 | xargs -0 -r rm -f
           for f in .gitattributes .gitignore; do
             if [ -L "$f" ]; then echo "$f is a symlink: refused" >&2; exit 1; fi
             rm -f "$f"; if git cat-file -e "$A:$f" 2>/dev/null; then git show "$A:$f" > "$f"; fi
@@ -168,7 +178,7 @@ jobs:
           path: _site
   deploy:
     needs: [build, checks]
-    if: needs.build.outputs.deploy == 'true'
+    if: github.ref == 'refs/heads/dev' && needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -184,7 +194,7 @@ jobs:
           artifact_name: pages-checked-${{ github.run_id }}
   tag:
     needs: [build, checks, deploy]
-    if: ${{ always() && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
+    if: ${{ always() && github.ref == 'refs/heads/dev' && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

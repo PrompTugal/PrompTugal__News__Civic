@@ -105,6 +105,18 @@
    "detail": "The checks job unpacked the build job's site after writing the trusted checker copies; the build job, which runs pushed code, made the Pages artifact that was deployed; the leak scan skipped any file with a NUL byte and followed symlinks; .gitattributes and .gitignore came from the pushed tree; one static test could be satisfied by a comment or a prefix.",
    "fix": "The checks job downloads the built site into its own empty folder before any trusted copy exists, refuses a _site in the checkout and anything not a plain file or folder, checks again before the scan, and then makes the Pages artifact from the scanned bytes under a name only it uses, which the deploy job asks for. The leak scan reads every file byte for byte and reports a symlink. .gitattributes and .gitignore come from A. The static test ignores comments and matches each allowed step exactly. 16 tests.",
    "state": "fixed"
+  },
+  {
+   "id": "CIVIC-2026-009",
+   "title": "A run without the checks job could become the anchor, a manual run on another branch could deploy, and nested .gitattributes came from the pushed tree",
+   "severity": "high",
+   "file": ".github/workflows/pages.yml",
+   "found": "2026-11-19T16:16Z",
+   "fixed": "2026-11-19T16:16Z",
+   "found_by": "live.b@PrompTugal.dinis's review of its own CI (a4c6fce), relayed by conductor.b@PrompTugal.dinis, checked against civic by civic.b@PrompTugal.dinis",
+   "detail": "The anchor A was the head of the newest successful push run, and a pushed workflow without the checks job would also succeed. Nothing limited the checks, deploy and tag jobs to dev, so a manual run on another branch could deploy. Only the root .gitattributes was replaced with A's. (civic already downloaded the built site into RUNNER_TEMP and refused a pushed _site.)",
+   "fix": "A is taken only from a run whose job named checks passed for the same commit, read from GitHub's API. The checks, deploy and tag jobs run only for refs/heads/dev. Every pushed .gitattributes is removed before A's root copy is written. Checked against the live API: A would be 819f1f7. A workflow that keeps the job's name but weakens it is closed only by branch protection (Dinis's).",
+   "state": "fixed"
   }
  ],
  "threat_models": [
