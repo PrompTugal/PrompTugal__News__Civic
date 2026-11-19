@@ -7,6 +7,9 @@
  *   - prices through Number.isFinite, dates strictly YYYY-MM-DD in UTC, strings cut, 15 rows at most, sorted here;
  *   - one GET to data.promptugal.news, 8 s timeout, 5 MB cap, no credentials, no referrer, no storage, no beacons;
  *   - any failure leaves the published table untouched; a natural person is never named, and their contract's text is withheld.
+ * Data in the browser (Dinis, 19 Nov 2026 ~01:13 UTC, Website repo board/guidance/2026-11-19-load-the-data-in-the-browser.md):
+ *   the feed replaces nothing unless its read time (data_read_at, or read_at) is valid and not older than the built copy's
+ *   (data-built-read); a feed older than its cadence (data-cadence-hours, 6 for data.b@'s base-gov-pt) is shown as stale.
  */
 (function () {
     'use strict'
@@ -17,6 +20,7 @@
     if (!box || !window.fetch || !window.AbortController) return
     var place = box.getAttribute('data-place') || ''
     if (!/^[a-z0-9-]+$/.test(place)) return
+    var builtRead = box.getAttribute('data-built-read') || '', cadenceH = +box.getAttribute('data-cadence-hours') || 6
     var known = {}
     String(box.getAttribute('data-company-pages') || '').split(' ').forEach(function (n) { if (/^\d{9}$/.test(n)) known[n] = true })
 
@@ -27,7 +31,7 @@
         return d
     }
     var fmtDay = function (d) { return d ? d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : 'n/a' }
-    var eur = function (n) { return (typeof n === 'number' && isFinite(n) && n >= 0) ? n.toLocaleString('en-GB', { maximumFractionDigits: 0 }) + ' €' : 'n/a' }
+    var eur = function (n) { return (typeof n === 'number' && isFinite(n) && n >= 0 && n < 1e10) ? n.toLocaleString('en-GB', { maximumFractionDigits: 0 }) + ' €' : 'n/a' }
     var baseLink = function (u) {
         try { var x = new URL(u); return x.protocol === 'https:' && x.host === 'www.base.gov.pt' && !x.username && !x.password ? x.href : null } catch (e) { return null }
     }
@@ -96,8 +100,13 @@
             var council = sorted.filter(function (c) { return c.buyer_kind === 'council' }).slice(0, ROWS)
             var isOther = function (c) { return c.buyer_kind === 'municipal company' || c.buyer_kind === 'municipal service' }
             var others = sorted.filter(isOther).slice(0, ROWS)
-            var readAt = typeof d.read_at === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(d.read_at) ? d.read_at.slice(0, 16).replace('T', ' ') + ' UTC' : 'unknown'
-            var kids = [el('p', 'Live from data.promptugal.news (PrompTugal.news’s data site), read at ' + readAt + ': the council’s contracts published on BASE in the last 90 days, newest first. Not reviewed by a person.', 'small muted')]
+            var rawRead = typeof d.data_read_at === 'string' ? d.data_read_at : d.read_at
+            var readMs = typeof rawRead === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(\.\d+)?Z$/.test(rawRead) ? Date.parse(rawRead) : NaN
+            if (!isFinite(readMs) || readMs > Date.now() + 3e5) throw new Error('no valid read time')
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(builtRead) || readMs < Date.parse(builtRead + 'T00:00:00Z')) throw new Error('older than the built copy, or no built date')
+            var stale = Date.now() - readMs > cadenceH * 36e5
+            var readAt = rawRead.slice(0, 16).replace('T', ' ') + ' UTC'
+            var kids = [el('p', 'Live from data.promptugal.news (PrompTugal.news’s data site), read at ' + readAt + ' as the file states' + (stale ? ' (stale: older than its ' + cadenceH + '-hourly collection)' : '') + ': the council’s contracts published on BASE in the last 90 days, newest first. Not reviewed by a person.', stale ? 'small stale' : 'small muted')]
             kids.push(el('h3', 'The council’s own contracts (' + sorted.filter(function (c) { return c.buyer_kind === 'council' }).length + ' in 90 days)'))
             kids.push(council.length ? table(council) : el('p', 'None in the last 90 days.'))
             if (others.length) {

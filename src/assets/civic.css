@@ -77,3 +77,4 @@ footer{border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);padd
    Dinis, 18 Nov 2026: a sub-site's chip says it is free. */
 @media (max-width:767px){.mast .tools .tool.meter{display:inline-flex !important}.mast .tools{width:100%}}
 .takedown{display:block;margin-top:.5rem}
+.stale{color:var(--red)}
