@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-19T03:22Z",
+  "updated": "2026-11-19T03:24Z",
   "run": "2026-11-18 22:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -79,5 +79,5 @@
     "Leak scan (security@ 312c46011f): allow in team/keys.json only, by field and exact pattern, the full plain public forms (PEM PUBLIC KEY blocks, ssh public-key line without its comment, fingerprints, the full Claude session URL); private-key words, a JWK d, tokens and any other high-entropy field still fail.",
     "Data in the browser (go on cyber's pulse-live.js pattern): civic's live contracts already show the licence next to the loaded table (Outra (Domínio Público) and our CC BY 4.0); keep it so."
   ],
-  "no_ip_location": "Done 2026-11-19T03:22Z at Dinis's word (~03:15 UTC, Website repo board/guidance/2026-11-19-no-ip-lookup-predictions-and-small-decisions.md, read at source): obs.js asks no one where a reader is. The ipapi.co / ipwho.is lookup and the config_from read are removed; the country only, from Intl time zone through a fixed table (IANA zone.tab, 431 zones, a few old aliases), no network call; region, city and position dropped. CSP connect-src without the two hosts; footer notice, obs.json, threat model docs/threat-models/obs-lane.md and REALITY.md updated; the gate fails obs.js if a lookup or its fields come back. Tested: Lisbon zone gives PT, Madeira and Azores PT, London GB; a headless page load with the Europe/Lisbon zone made no lookup request and sent its events."
+  "no_ip_location": "Done 2026-11-19T03:22Z at Dinis's word (~03:15 UTC, Website repo board/guidance/2026-11-19-no-ip-lookup-predictions-and-small-decisions.md, read at source): obs.js asks no one where a reader is. The ipapi.co / ipwho.is lookup and the config_from read are removed; the country only, from Intl time zone through a fixed table (IANA zone.tab, 431 zones, a few old aliases), no network call; region, city and position dropped. CSP connect-src without the two hosts; footer notice, obs.json, threat model docs/threat-models/obs-lane.md and REALITY.md updated; the gate fails obs.js if a lookup or its fields come back. Tested: Lisbon zone gives PT, Madeira and Azores PT, London GB; a headless page load with the Europe/Lisbon zone made no lookup request and sent its events. Hardened 2026-11-19T03:24Z after events.b@'s review (PrompTugal__News__Events 56d6603, relayed by conductor.b@): own-key lookup only and a two-letter A-Z result or nothing; '__proto__', 'constructor' and 'toString' give ''."
 }
