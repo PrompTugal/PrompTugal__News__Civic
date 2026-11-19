@@ -37,7 +37,9 @@ let barOk = false, tzOk = false;
     const b = reg.bar || {}, bv = b.versions && Object.prototype.hasOwnProperty.call(b.versions, BAR_VERSION) ? b.versions[BAR_VERSION] : null;
     const bOwn = bv && typeof bv === 'object' ? (bv.integrity && typeof bv.integrity === 'object' ? bv.integrity : bv) : null;
     if (bOwn || b.version === BAR_VERSION) {
-      const integ = bOwn || b.integrity || {};
+      const raw = bOwn || b.integrity || {};
+      // keys as the registry gives them today (render, css, js) or by file name (dev@'s planned reshape, integrity.<file>)
+      const integ = { render: raw.render || raw['sites-bar-render.mjs'], css: raw.css || raw['sites-bar.css'], js: raw.js || raw['sites-bar.js'] };
       for (const k of ['render', 'css', 'js']) {
         if (typeof integ[k] !== 'string' || !SRI.test(integ[k])) { console.error(`sites bar ${BAR_VERSION}: the registry gives no valid integrity for ${k}`); process.exit(1); }
         if (sri(BAR[k]) !== integ[k]) { console.error(`sites bar ${BAR_VERSION}: ${BAR[k]} does not match the registry (same version, other bytes): stop`); process.exit(1); }
@@ -53,7 +55,9 @@ let barOk = false, tzOk = false;
     // the time-zone table
     // obs_tz.versions["<v>"] is { integrity: "sha256-..." } (or the string itself)
     const o = reg.obs_tz || {}, ov = o.versions && Object.prototype.hasOwnProperty.call(o.versions, TZ_VERSION) ? o.versions[TZ_VERSION] : null;
-    const oPin = (typeof ov === 'string' ? ov : ov && ov.integrity) || (o.version === TZ_VERSION ? o.integrity : null);
+    // today { integrity: "sha256-..." }; after dev@'s planned reshape { integrity: { "tz-country.json": "sha256-..." } }
+    const pick = x => typeof x === 'string' ? x : x && typeof x === 'object' ? (x['tz-country.json'] || (Object.keys(x).length === 1 ? Object.values(x)[0] : null)) : null;
+    const oPin = (typeof ov === 'string' ? ov : ov && pick(ov.integrity)) || (o.version === TZ_VERSION ? pick(o.integrity) : null);
     if (oPin) {
       if (typeof oPin !== 'string' || !SRI.test(oPin)) { console.error('tz-country: the registry gives no valid integrity'); process.exit(1); }
       if (sri(TZ_FILE) !== oPin) { console.error(`tz-country ${TZ_VERSION}: does not match the registry (same version, other bytes): stop`); process.exit(1); }
