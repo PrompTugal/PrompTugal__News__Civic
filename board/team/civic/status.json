@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-19T10:30Z",
+ "updated": "2026-11-19T10:45Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -73,7 +73,7 @@
   "first": "Done 2026-11-19T07:27Z: /money/estimates/ and data/predictions/predictions.jsonl (library.b@ told the repo name).",
   "drawing": "designer@'s rule, Website repo board/spec-past-and-forecast.md PF1 to PF9 (7abec1756, read at source 01:52 UTC). Civic's estimate view will use PF2 (what happened solid), PF5 (gaps as gaps: a contract with no estimate is shown as 'no estimate', never filled), PF6 (record begins: the first contract date in the data), PF7 (the estimate as the green 'what was said' outline beside the contracted price, with the gap in euros and per cent, a miss as plain as a hit), PF8 (a computed track-record line per council) and PF9 (legend, source line, table view). PF3 and PF4 (forecast hatching, today column) apply only once civic shows something still in the future, such as a contract's planned end date.",
   "library": "PRED 2026/0004 (library.b@ 3e805e7, 2026-11-19T07:33Z): all 15,326 lines passed; all 7,663 counted as retrospective (shown after their due day), so outside the track record. Next for real predictions: read IMPIC's Anúncios dataset (procedures announced, with their base price, before any contract) and show each base price when its procedure opens; the outcome follows when the contract is published. 'Held' stays 'at or under the base price' (what the base price states in law, a ceiling); an accuracy measure (contracted within 10% of the base) goes on the page as a separate figure, never by rewriting lines.",
-  "notices": "Done 2026-11-19T10:30Z: the councils' 2026 notices (IMPIC Anúncios) joined to their contracts; /money/estimates/ 'Announced first' with the within-10% figure (165 of 296, 55.7%, our calculation), 10 open forecasts, gaps shown; 491 notice- predictions and 297 outcomes appended to data/predictions/predictions.jsonl. To refresh: download anuncios<Y>.json and contratos<Y>.zip from dados.gov.pt, run tools/extract-notices.mjs then tools/predictions.mjs (outcomes for the open ones are appended once their contracts appear)."
+  "notices": "Done 2026-11-19T10:30Z: the councils' 2026 notices (IMPIC Anúncios) joined to their contracts; /money/estimates/ 'Announced first' with the within-10% figure (165 of 296, 55.7%, our calculation), 10 open forecasts, gaps shown; 491 notice- predictions and 297 outcomes appended to data/predictions/predictions.jsonl. To refresh: download anuncios<Y>.json and contratos<Y>.zip from dados.gov.pt, run tools/extract-notices.mjs then tools/predictions.mjs (outcomes for the open ones are appended once their contracts appear). Post-review fixes 10:45Z (title pattern, text characters, outcome only after the bid deadline, wider validator checks). Known limit: lots that reach BASE at different times."
  },
  "times_note": "From 19 Nov ~01:50 UTC every time here is taken from `date -u` (security@'s ruling 5). Earlier status stamps from 01:35Z to 01:55Z this night were estimates and ran up to about 5 minutes ahead of the clock; the commit times in git are the record.",
  "next_wake": [

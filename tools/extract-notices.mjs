@@ -20,7 +20,7 @@ const NIF = { albufeira: '503539473', alcoutim: '506772446', aljezur: '505932512
 const byNif = new Map(Object.entries(NIF).map(([id, n]) => [n, id]));
 const NUM = /^\d{1,6}\/20\d{2}$/, DAY = /^(\d{4})-\d{2}-\d{2}/;
 const DR = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/;
-const clean = s => String(s ?? '').replace(/[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]/g, ' ').replace(/\u2014/g, '-').replace(/\s+/g, ' ').trim().slice(0, 300);
+const clean = s => String(s ?? '').replace(/[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]/g, ' ').replace(/\u2014/g, '-').replace(/[<>`]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 300);
 const money = v => { const n = typeof v === 'number' ? v : (typeof v === 'string' && /^\d{1,10}(\.\d{1,2})?$/.test(v.trim()) ? Number(v) : NaN);
   return Number.isFinite(n) && n >= 0 && n < 1e10 ? Math.round(n * 100) / 100 : null; };
 // a day, YYYY-MM-DD, 2025 to 2027 only, and a real date (a value with a time keeps its day)
@@ -29,7 +29,7 @@ const day = v => { const m = typeof v === 'string' && DAY.exec(v.trim()); if (!m
 // People only as public and professional (the rule of tools/extract-base.mjs): a NIF masked or marking a natural person.
 const isPerson = nif => !/^\d{9}$/.test(nif) || /^(1|2|3|45|8)/.test(nif);
 // Free text that may name or reach a private person: a natural person's NIF, a title before a name, an e-mail, a phone number.
-const PERSONISH = /(?:^|\D)(?:[123]\d{8}|45\d{7}|8\d{8})(?:\D|$)|\b(?:Sr|Sra|Dr|Dra|Eng|Enga|Arq)\.?ª?\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ][a-záéíóúâêôãõç]+|@|(?:^|\D)(?:\+351\s?)?[29]\d{2}\s?\d{3}\s?\d{3}(?:\D|$)/;
+const PERSONISH = /(?:^|\D)(?:[123]\d{8}|45\d{7}|8\d{8})(?:\D|$)|\b(?:sr|sra|dr|dra|eng|enga|engº|arq|arqª|prof|profª)\b\.?[ªº]?\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ]|@|(?:^|\D)(?:\+351\s?)?[29]\d{2}\s?\d{3}\s?\d{3}(?:\D|$)/i;   // a title before a name, in any case (post-review)
 const KIND = { 'Anúncio de procedimento': 'procedure', 'Anúncio de concurso urgente': 'urgent', 'Anúncio de Alteração': 'change' };
 
 // 1. The councils' notices (the yearly notices file is small enough to stream the same way).

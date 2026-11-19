@@ -105,13 +105,25 @@ if (existsSync('data/procurement/notices-2026.json')) {
   const CKEYS = new Set(['id', 'price', 'base_price', 'published', 'signed', 'url']);
   const DRU = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/, BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
   const num = v => v === null || (typeof v === 'number' && Number.isFinite(v) && v >= 0 && v < 1e10);
+  const TOP = new Set(['source', 'license', 'councils', 'count', 'procedures']), CHK = new Set(['n', 'published', 'base_price', 'deadline', 'dr']);
+  const COUNCILS = new Set(Object.keys(N.councils || {})), KINDS = new Set(['procedure', 'urgent', 'other']);
+  const dayOk = v => v === null || (typeof v === 'string' && /^20(2[5-7])-\d{2}-\d{2}$/.test(v) && new Date(v + 'T00:00:00Z').toISOString().slice(0, 10) === v);
+  const txt = v => typeof v === 'string' && v.length <= 300 && !/[\u0000-\u001f\u202a-\u202e\u2066-\u2069<>`]|@/.test(v);
+  for (const k of Object.keys(N)) if (!TOP.has(k)) fail(`notices-2026.json: unexpected top-level field ${k.slice(0, 40)}`);
+  if (COUNCILS.size !== 16) fail('notices-2026.json: the 16 councils are not listed');
   for (const x of N.procedures || []) {
     const at = `notices-2026.json ${String(x.n).slice(0, 20)}`;
+    if (!COUNCILS.has(x.council)) fail(`${at}: council`);
+    if (!KINDS.has(x.kind)) fail(`${at}: kind`);
+    if (!dayOk(x.published) || !dayOk(x.deadline)) fail(`${at}: date`);
+    if (!txt(x.procedure) || !Array.isArray(x.types) || x.types.length > 5 || !x.types.every(txt)) fail(`${at}: procedure or types`);
+    for (const c of x.changes || []) { for (const k of Object.keys(c)) if (!CHK.has(k)) fail(`${at}: unexpected change field ${k.slice(0, 40)}`); if (!dayOk(c.published) || !dayOk(c.deadline) || !num(c.base_price)) fail(`${at}: change notice values`); }
+    for (const c of x.contracts || []) if (!dayOk(c.published) || !dayOk(c.signed)) fail(`${at}: contract date`);
     for (const k of Object.keys(x)) if (!KEYS.has(k)) fail(`${at}: unexpected field ${k.slice(0, 40)}`);
     if (!/^\d{1,6}\/20\d{2}$/.test(x.n)) fail(`${at}: notice number`);
     if (x.dr !== null && !DRU.test(x.dr)) fail(`${at}: Diário da República link not allowed`);
     if (!num(x.base_price) || !num(x.base_price_last)) fail(`${at}: base price`);
-    if (x.what !== null && (typeof x.what !== 'string' || x.what.length > 300 || /[\u0000-\u001f‪-‮⁦-⁩]|@/.test(x.what))) fail(`${at}: text`);
+    if (x.what !== null && !txt(x.what)) fail(`${at}: text`);
     for (const c of x.contracts || []) { for (const k of Object.keys(c)) if (!CKEYS.has(k)) fail(`${at}: unexpected contract field ${k.slice(0, 40)}`);
       if (!BGU.test(c.url) || !num(c.price)) fail(`${at}: contract ${String(c.id).slice(0, 14)}`); }
     for (const c of x.changes || []) if (c.dr !== null && !DRU.test(c.dr)) fail(`${at}: change notice link not allowed`);

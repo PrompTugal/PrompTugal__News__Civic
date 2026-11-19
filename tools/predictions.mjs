@@ -43,17 +43,19 @@ const NLIC = { name: LIC.name, url: 'https://dados.gov.pt/pt/datasets/66d72fbc58
 const NOTICES = 'data/procurement/notices-2026.json';
 const DRU = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/, BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
 const PAID = /cess[aã]o|direito (?:de |do )?(?:uso|explora)|concess[aã]o/i;
-if (existsSync(NOTICES)) for (const x of JSON.parse(readFileSync(NOTICES, 'utf8')).procedures) {
+const ND = existsSync(NOTICES) ? JSON.parse(readFileSync(NOTICES, 'utf8')) : { procedures: [], source: {} }, NREAD = ND.source?.read_on || '';
+for (const x of ND.procedures) {
   if (!/^\d{1,6}\/20\d{2}$/.test(x.n) || !DRU.test(x.dr || '') || !/^\d{4}-\d{2}-\d{2}$/.test(x.published || '')) continue;
   const base = x.base_price_last; if (typeof base !== 'number' || !(base > 0)) continue;   // no base price stated: nothing was forecast
   const id = `notice-${x.n.replace('/', '-')}`, who = `Câmara Municipal de ${names[x.council] || x.council}`.slice(0, 80);
   if (!seen.has(id)) { seen.add(id);
     out.push({ type: 'prediction', id, site: SITE, page: PAGE, shown_at: now, said_by: who, source: x.dr, licence: NLIC, kind: 'statement',
-      subject: `${who}: procurement notice ${x.n}, base price`.slice(0, 120), due: x.deadline || x.published,
+      subject: `${who}: procurement notice ${x.n}, base price`.slice(0, 120), due: /^\d{4}-\d{2}-\d{2}$/.test(x.deadline || '') ? x.deadline : x.published,
       said: `Base price (preço base) ${eur(base)}, published in the Diário da República on ${x.published}${x.changes.length ? ', as last changed by a later notice' : ''}`.slice(0, 300),
       value: { quantity: 'base_price', unit: 'EUR', value: base } }); }
   const cs = x.contracts.filter(c => typeof c.price === 'number' && BGU.test(c.url));
-  if (!cs.length || cs.length !== x.contracts.length || seenOut.has(id)) continue;   // no outcome yet: written at a later run
+  // no outcome yet, or bids still open (more lots may follow): written at a later run (post-review)
+  if (!cs.length || cs.length !== x.contracts.length || seenOut.has(id) || !/^\d{4}-\d{2}-\d{2}$/.test(NREAD) || !((x.deadline || '') < NREAD)) continue;
   seenOut.add(id);
   const got = Math.round(cs.reduce((t, c) => t + c.price, 0) * 100) / 100, diff = got - base;
   const paid = PAID.test(x.what || '') || (x.types || []).some(t => /concess/i.test(t)), above = got > base + 0.5;
