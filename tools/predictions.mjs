@@ -40,10 +40,11 @@ for (const y of [2025, 2026]) {
 // outcome when a contract citing the notice reaches the Portal BASE. An open notice gets its prediction line now and its
 // outcome line at a later run, once its contract is published (an outcome is written once, never edited).
 const NLIC = { name: LIC.name, url: 'https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/' };
-const NOTICES = 'data/procurement/notices-2026.json';
+const NOTICES = ['data/procurement/notices-2025.json', 'data/procurement/notices-2026.json'];
 const DRU = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/, BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
 const PAID = /cess[aã]o|direito (?:de |do )?(?:uso|explora)|concess[aã]o/i;
-const ND = existsSync(NOTICES) ? JSON.parse(readFileSync(NOTICES, 'utf8')) : { procedures: [], source: {} }, NREAD = ND.source?.read_on || '';
+for (const NF of NOTICES) { if (!existsSync(NF)) continue;
+const ND = JSON.parse(readFileSync(NF, 'utf8')), NREAD = ND.source?.read_on || '';
 for (const x of ND.procedures) {
   if (!/^\d{1,6}\/20\d{2}$/.test(x.n) || !DRU.test(x.dr || '') || !/^\d{4}-\d{2}-\d{2}$/.test(x.published || '')) continue;
   const base = x.base_price_last; if (typeof base !== 'number' || !(base > 0)) continue;   // no base price stated: nothing was forecast
@@ -64,7 +65,7 @@ for (const x of ND.procedures) {
     value: { quantity: 'contract_price', unit: 'EUR', value: got },
     difference: Math.abs(diff) < 0.5 ? 'exact' : `${diff > 0 ? '+' : '-'}${eur(Math.abs(Math.round(diff * 100) / 100))} (${diff > 0 ? '+' : ''}${(diff / base * 100).toFixed(1)}%)`,
     evidence: cs.slice(0, 10).map(c => c.url) });
-}
+} }
 if (out.length) appendFileSync(FILE, out.map(o => JSON.stringify(o)).join('\n') + '\n');
 const lines = readFileSync(FILE, 'utf8').split('\n').filter(Boolean).length;
 console.log(`predictions: ${out.filter(o => o.type === 'prediction').length} predictions and ${out.filter(o => o.type === 'outcome').length} outcomes appended; ${lines} lines in ${FILE}`);

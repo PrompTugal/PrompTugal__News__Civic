@@ -5,14 +5,17 @@
 // Sources (dados.gov.pt, licence other-pd as published):
 //   notices:   "Contratos Públicos - Portal Base - IMPIC - Anúncios de 2012 a 2026" (dataset 66d72fbc58cd7a63dae28712)
 //   contracts: "Contratos Públicos - Portal Base - IMPIC - Contratos de 2012 a 2026" (dataset 66d72d488ca4b7cb2de28712)
-// Usage: node --max-old-space-size=8000 tools/extract-notices.mjs <anunciosYYYY.json> <ContratosYYYY.json> <out.json> \
-//          <notices-resource-url> <contracts-resource-url> <read-on YYYY-MM-DD>
+// Usage: node --max-old-space-size=8000 tools/extract-notices.mjs <anuncios files,comma-separated> <Contratos files,comma-separated> \
+//          <out pattern with {year}> <notices resource urls,comma-separated> <contracts resource urls,comma-separated> <read-on YYYY-MM-DD>
+// e.g. anuncios2025.json,anuncios2026.json Contratos2025.json,Contratos2026.json data/procurement/notices-{year}.json ...
+// Several years are read together so that a change notice of 2026 finds the 2025 notice it changes, and a contract of 2026
+// finds its 2025 notice. Each procedure is written to the file of the year of its first notice.
 // Node built-ins only. Keeps public facts only: which council, what, when, the base price, the deadline, the notice's
 // Diário da República link, and the contracts that cite it. Tender-platform links (PecasProcedimento) are not kept.
 import { writeFileSync } from 'node:fs';
 import { objects } from './json-stream.mjs';
 const [noticesIn, contractsIn, out, noticesRes, contractsRes, readOn] = process.argv.slice(2);
-if (!readOn || !/^\d{4}-\d{2}-\d{2}$/.test(readOn)) { console.error('usage: see the header'); process.exit(2); }
+if (!readOn || !/^\d{4}-\d{2}-\d{2}$/.test(readOn) || !out.includes('{year}')) { console.error('usage: see the header'); process.exit(2); }
 // Each council's NIF as the BASE data itself gives it (the same table as tools/extract-base.mjs).
 const NIF = { albufeira: '503539473', alcoutim: '506772446', aljezur: '505932512', 'castro-marim': '506801969', faro: '506579425',
   lagoa: '506804240', lagos: '505170876', loule: '502098139', monchique: '506826961', olhao: '506321894', portimao: '505309939',
@@ -34,11 +37,12 @@ const KIND = { 'Anúncio de procedimento': 'procedure', 'Anúncio de concurso ur
 
 // 1. The councils' notices (the yearly notices file is small enough to stream the same way).
 const notices = new Map();   // notice number -> row; a Map, so a crafted number can never touch an object's prototype
-let seenNotices = 0, dropped = 0;
-for (const a of objects(noticesIn)) {
+let seenNotices = 0, dropped = 0, repeats = 0;
+for (const f of noticesIn.split(',')) for (const a of objects(f)) {
   seenNotices++;
   const council = byNif.get(String(a.nifEntidade || '').trim()); if (!council) continue;
-  const n = String(a.nAnuncio || '').trim(); if (!NUM.test(n) || notices.has(n) || !day(a.dataPublicacao)) { dropped++; continue; }
+  const n = String(a.nAnuncio || '').trim(); if (notices.has(n)) { repeats++; continue; }   // IMPIC lists some notices more than once: the first is kept
+  if (!NUM.test(n) || !day(a.dataPublicacao)) { dropped++; continue; }
   const earlier = (Array.isArray(a.anuncioAnterior) ? a.anuncioAnterior.slice(0, 20) : []).map(x => String(x?.antNAnuncio || '').trim()).filter(x => NUM.test(x));
   notices.set(n, {
     n, council, kind: KIND[a.tipoActo] || 'other', published: day(a.dataPublicacao), deadline: day(a.DataLimitePropostas),
@@ -48,13 +52,13 @@ for (const a of objects(noticesIn)) {
   });
 }
 // 2. The contracts that cite one of these notices (streamed: the contracts file passes 600 MB).
-const cited = new Map(); let seenContracts = 0;
-for (const r of objects(contractsIn)) {
+const cited = new Map(), seenIds = new Set(); let seenContracts = 0;
+for (const f of contractsIn.split(',')) for (const r of objects(f)) {
   seenContracts++;
   const n = String(r.nAnuncio || '').trim(); if (!notices.has(n)) continue;
-  const id = String(r.idcontrato || ''); if (!/^\d{1,12}$/.test(id)) continue;
+  const id = String(r.idcontrato || ''); if (!/^\d{1,12}$/.test(id) || seenIds.has(id)) continue;
   if (!(r.adjudicante || []).some(x => String(x.nifEntContrato || '').trim() === notices.get(n).nif)) continue;   // the same council as the notice
-  if (!cited.has(n)) cited.set(n, []);
+  seenIds.add(id); if (!cited.has(n)) cited.set(n, []);
   cited.get(n).push({ id, price: money(r.precoContratual), base_price: money(r.precoBaseProcedimento), published: day(r.dataPublicacao),
     signed: day(r.dataCelebracaoContrato), person: (r.adjudicatarios || []).some(x => isPerson(String(x.nifEntContrato || '').trim())), url: `https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=${id}` });
 }
@@ -80,12 +84,17 @@ for (const { first, changes } of procs.values()) {
     base_price_last: last.base_price, contracts: contracts.map(({ person, ...c }) => c) });
 }
 rows.sort((a, b) => (b.published || '').localeCompare(a.published || '') || a.n.localeCompare(b.n));
-writeFileSync(out, JSON.stringify({
-  source: { title: 'Contratos Públicos - Portal Base - IMPIC: Anúncios and Contratos (open data on dados.gov.pt)',
-    notices_dataset: 'https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/', notices_resource: noticesRes,
-    contracts_dataset: 'https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/', contracts_resource: contractsRes,
-    read_on: readOn, licence: 'other-pd (as published on dados.gov.pt)' },
-  license: { name: 'Outra (Domínio Público), as dados.gov.pt publishes it for this dataset', url: 'https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/', id: 'other-pd' },
-  councils: NIF, count: rows.length, procedures: rows,
-}, null, 1) + '\n');
-console.log(`${rows.length} procedures (${notices.size} council notices of ${seenNotices}; ${dropped} council notices dropped as malformed; ${rows.filter(r => r.what === null).length} texts withheld); ${[...cited.values()].reduce((t, a) => t + a.length, 0)} contracts cite them, of ${seenContracts}`);
+const years = [...new Set(rows.map(r => r.published.slice(0, 4)))].sort();
+for (const y of years) {
+  const ry = rows.filter(r => r.published.startsWith(y));
+  writeFileSync(out.replace('{year}', y), JSON.stringify({
+    source: { title: 'Contratos Públicos - Portal Base - IMPIC: Anúncios and Contratos (open data on dados.gov.pt)',
+      notices_dataset: 'https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/', notices_resource: noticesRes.split(','),
+      contracts_dataset: 'https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/', contracts_resource: contractsRes.split(','),
+      read_on: readOn, licence: 'other-pd (as published on dados.gov.pt)', year: y },
+    license: { name: 'Outra (Domínio Público), as dados.gov.pt publishes it for this dataset', url: 'https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/', id: 'other-pd' },
+    councils: NIF, count: ry.length, procedures: ry,
+  }, null, 1) + '\n');
+  console.log(`${y}: ${ry.length} procedures, ${ry.filter(r => r.contracts.length).length} with a contract, ${ry.filter(r => r.what === null).length} texts withheld`);
+}
+console.log(`${rows.length} procedures (${notices.size} council notices of ${seenNotices}; ${dropped} council notices dropped as malformed, ${repeats} repeated rows skipped); ${[...cited.values()].reduce((t, a) => t + a.length, 0)} contracts cite them, of ${seenContracts}`);

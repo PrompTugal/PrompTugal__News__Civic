@@ -99,8 +99,8 @@ for (const f of files.filter(f => f.endsWith('.html'))) {
 }
 // civic.b@PrompTugal.dinis (2026-11-19, security pre-review): the councils' notices keep a fixed set of fields, only
 // validated links (Diário da República PDFs, Portal BASE records), no tender-platform links, and no text where a person may be named.
-if (existsSync('data/procurement/notices-2026.json')) {
-  const N = JSON.parse(readFileSync('data/procurement/notices-2026.json', 'utf8'));
+for (const NF of ['data/procurement/notices-2025.json', 'data/procurement/notices-2026.json']) if (existsSync(NF)) {
+  const N = JSON.parse(readFileSync(NF, 'utf8')), NB = NF.split('/').pop();
   const KEYS = new Set(['n', 'council', 'kind', 'published', 'deadline', 'procedure', 'types', 'what', 'base_price', 'base_stated', 'dr', 'changes', 'base_price_last', 'contracts']);
   const CKEYS = new Set(['id', 'price', 'base_price', 'published', 'signed', 'url']);
   const DRU = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/, BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
@@ -109,10 +109,10 @@ if (existsSync('data/procurement/notices-2026.json')) {
   const COUNCILS = new Set(Object.keys(N.councils || {})), KINDS = new Set(['procedure', 'urgent', 'other']);
   const dayOk = v => v === null || (typeof v === 'string' && /^20(2[5-7])-\d{2}-\d{2}$/.test(v) && new Date(v + 'T00:00:00Z').toISOString().slice(0, 10) === v);
   const txt = v => typeof v === 'string' && v.length <= 300 && !/[\u0000-\u001f\u202a-\u202e\u2066-\u2069<>`]|@/.test(v);
-  for (const k of Object.keys(N)) if (!TOP.has(k)) fail(`notices-2026.json: unexpected top-level field ${k.slice(0, 40)}`);
-  if (COUNCILS.size !== 16) fail('notices-2026.json: the 16 councils are not listed');
+  for (const k of Object.keys(N)) if (!TOP.has(k)) fail(`${NB}: unexpected top-level field ${k.slice(0, 40)}`);
+  if (COUNCILS.size !== 16) fail(`${NB}: the 16 councils are not listed`);
   for (const x of N.procedures || []) {
-    const at = `notices-2026.json ${String(x.n).slice(0, 20)}`;
+    const at = `${NB} ${String(x.n).slice(0, 20)}`;
     if (!COUNCILS.has(x.council)) fail(`${at}: council`);
     if (!KINDS.has(x.kind)) fail(`${at}: kind`);
     if (!dayOk(x.published) || !dayOk(x.deadline)) fail(`${at}: date`);
@@ -128,7 +128,7 @@ if (existsSync('data/procurement/notices-2026.json')) {
       if (!BGU.test(c.url) || !num(c.price)) fail(`${at}: contract ${String(c.id).slice(0, 14)}`); }
     for (const c of x.changes || []) if (c.dr !== null && !DRU.test(c.dr)) fail(`${at}: change notice link not allowed`);
   }
-  if (/PecasProcedimento|vortal|acingov|anogov|saphety/i.test(readFileSync('data/procurement/notices-2026.json', 'utf8'))) fail('notices-2026.json: a tender-platform link or field is kept');
+  if (/PecasProcedimento|vortal|acingov|anogov|saphety/i.test(readFileSync(NF, 'utf8'))) fail(`${NB}: a tender-platform link or field is kept`);
 }
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
