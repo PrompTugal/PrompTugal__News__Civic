@@ -278,7 +278,7 @@ function moneyBlocks() {
     ['h2', 'Where the decisions are written down'],
     ['p', 'A contract is the end of a chain. Before it, the council\'s executive (the Câmara Municipal) decides in a meeting, minuted in an **ata**; big decisions go to the elected Assembleia Municipal; tenders are announced in the **Diário da República** (2nd series) and the budget is approved each year. Each council page lists where that council publishes its minutes, agendas, notices and budget, as far as we could read them.'],
     ['p', councilsData.diario_da_republica && councilsData.diario_da_republica.how_to ? `**Searching the Diário da República.** ${councilsData.diario_da_republica.how_to}` : '**Searching the Diário da República.** Its site at diariodarepublica.pt is an application that needs JavaScript; search by the issuing entity (Município de ...) in the 2nd series.'],
-    ['note', '**What BASE does not show.** Contracts that are not reported, municipal companies (they buy under their own NIF, not the council\'s) and spending outside contracts (salaries, transfers to parishes and associations). We now map the councils\' [municipal companies](/money/municipal-companies/) separately, [what they buy in tech and AI](/money/tech-and-ai/), and [what they estimated against what they contracted](/money/estimates/); transfers and salaries are not in BASE at all.'],
+    ['note', '**What BASE does not show.** Contracts that are not reported, municipal companies (they buy under their own NIF, not the council\'s) and spending outside contracts (salaries, transfers to parishes and associations). We now map the councils\' [municipal companies](/money/municipal-companies/) separately, [what they buy in tech and AI](/money/tech-and-ai/), and [what they estimated against what they contracted](/money/estimates/), and [what changed after they signed](/money/changes/); transfers and salaries are not in BASE at all.'],
   ];
 }
 
@@ -500,7 +500,7 @@ export function generate() {
       municipal_companies: muniRows(muniOf(id)).map(({ m, a, b }) => ({ id: m.id, name: m.name, nif: m.nif, what: m.what, status: m.status, contracts_2026: a.n, value_eur_2026: Math.round(a.total), value_eur_2025: Math.round(b.total) })),
       contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
   };
-  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/use-cases/estimates.json', '/api/v1/use-cases/notices.json', '/api/v1/openapi.json'] });
+  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/use-cases/estimates.json', '/api/v1/use-cases/notices.json', '/api/v1/use-cases/changes.json', '/api/v1/openapi.json'] });
   // Dinis, 18 Nov 2026 ~22:20 UTC (Website repo board/guidance/2026-11-18-london.md): London is the first place beyond Portugal,
   // so no record assumes a place is Portuguese: each one says its country, region and currency.
   const PLACE_PT = { country: { code: 'PT', name: 'Portugal' }, region: 'Algarve', currency: 'EUR' };
@@ -617,7 +617,7 @@ export function generate() {
       ['small', 'As the Portal BASE records them; our reading is from each record\'s own description. Each links the record itself.'],
       ...noticeBlocks,
       ['h2', 'The data'],
-      ['p', 'Every pair is kept, as first shown, in [data/predictions/predictions.jsonl](https://github.com/PrompTugal/PrompTugal__News__Civic/blob/dev/data/predictions/predictions.jsonl) (one line for what was estimated, one for what was contracted, never edited), for the library\'s collection of predictions. The figures on this page are also in [/api/v1/use-cases/estimates.json](/api/v1/use-cases/estimates.json).'],
+      ['p', 'Every pair is kept, as first shown, in [data/predictions/predictions.jsonl](https://github.com/PrompTugal/PrompTugal__News__Civic/blob/dev/data/predictions/predictions.jsonl) (one line for what was estimated, one for what was contracted, never edited), for the library\'s collection of predictions. The figures on this page are also in [/api/v1/use-cases/estimates.json](/api/v1/use-cases/estimates.json). What happened to the contracts after they were signed is on [/money/changes/](/money/changes/).'],
     ];
     page({ path: '/money/estimates/', kicker: 'Public money', title: 'What the councils estimated, and what they paid', description: `For each contract, what the Algarve's councils estimated it would cost and what they contracted: ${int(s26.w)} contracts in 2026, ${meur(s26.est)} estimated and ${meur(s26.got)} contracted, by procedure and council, from IMPIC's open data.`, blocks, sources: [BASE_SRC, ...(P.length ? [{ license: IMPIC_LICENCE_NOTICES, title: 'Contratos Públicos, Portal BASE, IMPIC: Anúncios (notices) of 2025 and 2026, open data on dados.gov.pt', url: notices.source.notices_dataset, read_on: NREAD }] : []), { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });
     const so = x => ({ contracts: x.n, with_estimate: x.w, no_estimate: x.gap, at_estimate: x.e, under_estimate: x.u, above_estimate: x.o, estimated_eur: Math.round(x.est), contracted_eur: Math.round(x.got), median_saving_when_under: x.med == null ? null : +x.med.toFixed(4) });
@@ -626,6 +626,66 @@ export function generate() {
       still_open: nOpen.map(x => ({ notice: x.n, council: x.council, published: x.published, deadline: x.deadline, what: x.what === null ? null : nm(x.what), base_price_eur: x.base_price_last, diario_da_republica: DRU.test(x.dr || '') ? x.dr : null })),
       checked: nDone.map(x => ({ notice: x.n, council: x.council, published: x.published, base_price_eur: x.base_price_last, contracted_eur: Math.round(nGot(x) * 100) / 100, council_is_paid: isPaid(x), within_10_percent: !isPaid(x) && Math.abs(nGot(x) - x.base_price_last) <= 0.1 * x.base_price_last, contracts: x.contracts.filter(c => BGU.test(c.url)).map(c => c.url), diario_da_republica: DRU.test(x.dr || '') ? x.dr : null })),
       data_files: [`https://${SITE}/data/procurement/notices-2026.json`, `https://${SITE}/data/procurement/notices-2025.json`], sources: [{ license: IMPIC_LICENCE_NOTICES, title: 'Contratos Públicos, Portal BASE, IMPIC: Anúncios', url: notices.source.notices_dataset, read_on: NREAD }, baseSrc] });
+  }
+
+  // what happened after signing: IMPIC's contract modifications (modificações contratuais) joined to the councils' 2025 and 2026
+  // contracts (tools/extract-changes.mjs). The price at signing is a forecast of the cost; the price after the last change is the
+  // outcome so far. Our reading of each legal basis is ours; the record is IMPIC's.
+  {
+    const CH = read('data/procurement/changes.json', { contracts: [], source: {} }), K = CH.contracts || [];
+    if (K.length) {
+      const BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
+      const byId = new Map([...y25, ...y26].map(c => [String(c.id), c]));
+      const BASES = [
+        [/trabalhos complementares|art\.?\s*370/i, 'Complementary works (art. 370 of the CCP)'],
+        [/interesse p[úu]blico|necessidades novas|art\.?\s*312\.?º?,?\s*(al\.?\s*)?c\)/i, 'Public interest, new needs (art. 312 c)'],
+        [/altera[çc][ãa]o anormal|imprevis/i, 'Abnormal, unforeseeable change in circumstances (art. 312 a and b)'],
+        [/cl[áa]usulas contratuais/i, 'Clauses in the contract that allowed it (art. 312 a)'],
+        [/prorroga[çc][ãa]o|prazo/i, 'Extension of the term'],
+        [/revis[ãa]o de pre[çc]os/i, 'Price revision'],
+      ];
+      const basisOf = t => (BASES.find(([re]) => re.test(t || '')) || [null, 'Other or not stated'])[1];
+      const valid = K.filter(k => typeof k.price === 'number' && k.price > 0 && typeof k.price_last === 'number' && BGU.test(k.url));
+      const ties = valid.filter(k => k.order_uncertain === true), rows = valid.filter(k => k.order_uncertain !== true);
+      const up = rows.filter(k => k.price_last > k.price + 0.5), down = rows.filter(k => k.price_last < k.price - 0.5);
+      const ext = rows.filter(k => Number.isInteger(k.term_days) && Number.isInteger(k.term_days_last) && k.term_days_last > k.term_days);
+      const med = a => { const b = [...a].sort((x, y) => x - y); return b.length ? b[Math.floor((b.length - 1) / 2)] : null; };
+      const signed = rows.reduce((t, k) => t + k.price, 0), after = rows.reduce((t, k) => t + k.price_last, 0);
+      const all = y25.length + y26.length, nChanges = rows.reduce((t, k) => t + k.changes.length, 0);
+      const firstDay = rows.flatMap(k => k.changes.map(c => c.date)).sort()[0], lastDay = rows.flatMap(k => k.changes.map(c => c.date)).sort().pop();
+      // by legal basis: each change counted once, with what it added over the price before it
+      const bb = new Map();
+      for (const k of rows) { let prev = k.price; for (const c of k.changes) { const b = basisOf(c.basis), x = bb.get(b) || { n: 0, ids: new Set(), added: 0 }; x.n++; x.ids.add(k.id); x.added += c.price_after - prev; prev = c.price_after; bb.set(b, x); } }
+      const basisRows = [...bb.entries()].sort((a, b) => b[1].added - a[1].added);
+      const perC = COUNCIL_IDS.map(id => { const r = rows.filter(k => k.council === id), n = (by25[id] || []).length + (by26[id] || []).length;
+        return { id, r, n, s: r.reduce((t, k) => t + k.price, 0), a: r.reduce((t, k) => t + k.price_last, 0) }; }).filter(x => x.r.length).sort((x, y) => (y.a - y.s) - (x.a - x.s));
+      const top = [...up].sort((a, b) => (b.price_last - b.price) - (a.price_last - a.price)).slice(0, 20);
+      const what = k => { const c = byId.get(k.id); return c ? contractLabel(c) : '(not in our copy)'; };
+      const pc = x => `${x > 0 ? '+' : ''}${(x * 100).toFixed(1)}%`;
+      const blocks = [
+        ['lede', `A signed contract states a price and a term. Afterwards it can be changed, by agreement or by an administrative act, on a legal basis in the Código dos Contratos Públicos. Of the ${int(all)} contracts the 16 councils published in 2025 and 2026, ${int(rows.length)} had been changed by ${day(CH.source.read_on)} (${int(nChanges)} changes in all): signed for ${meur(signed)}, they stood at ${meur(after)} after their latest change.`],
+        ['note', `**How to read it.** The price at signing is the council's forecast of what a contract will cost; the price after its latest change is the outcome so far. Both are IMPIC's record, not ours, and a contract can still change again. A change that only extends the term leaves the price as it was. The grouping of legal bases is our reading of each record's own wording. Only changes to contracts published in 2025 and 2026 are shown; changes to older contracts are not. ${ties.length ? `${int(ties.length)} more contract${ties.length > 1 ? 's' : ''} had two changes recorded on the same day at different prices, and IMPIC's data does not say which came last, so ${ties.length > 1 ? 'they are' : 'it is'} left out of every figure here (in the data file, flagged order_uncertain).` : ''} Record of changes: ${day(firstDay)} to ${day(lastDay)}.`],
+        ['h2', 'The record so far'],
+        ['p', `**Price raised:** ${int(up.length)} contracts (median rise ${up.length ? pc(med(up.map(k => k.price_last / k.price - 1))) : 'n/a'}, the largest ${up.length ? pc(Math.max(...up.map(k => k.price_last / k.price - 1))) : 'n/a'}). **Price lowered:** ${int(down.length)}. **Price unchanged** (the term or other terms changed): ${int(rows.length - up.length - down.length)}. **Term extended:** ${int(ext.length)} contracts, by a median of ${ext.length ? int(med(ext.map(k => k.term_days_last - k.term_days))) : 'n/a'} days.`],
+        ['h2', 'On what legal basis'],
+        ['table', ['Legal basis (our grouping)', 'Changes', 'Contracts', 'Value added'], { right: [1, 2, 3], rows: basisRows.map(([b, x]) => [b, int(x.n), int(x.ids.size), meur(Math.round(x.added))]) }],
+        ['small', 'Value added: what each change added to the price before it, summed. A change can also lower a price, so a basis can add less than its rises.'],
+        ['h2', 'By council'],
+        ['table', ['Council', 'Contracts changed', 'Of its contracts', 'Signed for', 'After changes', 'Difference'], { right: [1, 2, 3, 4, 5], rows: perC.map(x => [`[${whoName(x.id)}](/councils/${x.id}/)`, int(x.r.length), x.n ? pct(x.r.length / x.n) : 'n/a', meur(x.s), meur(x.a), x.s ? pc(x.a / x.s - 1) : 'n/a']) }],
+        ['h2', 'The largest rises'],
+        ['table', ['Signed', 'Council', 'What', 'Signed for', 'After changes', 'Difference', 'Changes', 'Record'], { right: [3, 4, 5, 6], rows: top.map(k => [day(k.signed || k.published), `[${whoName(k.council)}](/councils/${k.council}/)`, what(k), eur(k.price), eur(k.price_last), pc(k.price_last / k.price - 1), int(k.changes.length), `[BASE ${k.id}](${k.url})`]) }],
+        ['small', 'As the Portal BASE records them; each links the record itself, where every change is listed.'],
+        ['h2', 'The data'],
+        ['p', `Every changed contract, with each change's date, legal basis, act, price and term, is in [data/procurement/changes.json](/data/procurement/changes.json); the figures on this page are in [/api/v1/use-cases/changes.json](/api/v1/use-cases/changes.json). What each council estimated before the procedure, and what it signed for, is on [/money/estimates/](/money/estimates/).`],
+      ];
+      const CH_SRC = { license: { name: CH.license?.name, url: CH.license?.url, id: CH.license?.id }, title: 'Contratos Públicos, Portal BASE, IMPIC: Modificações Contratuais (contract changes), open data on dados.gov.pt', url: CH.source.changes_dataset, read_on: CH.source.read_on };
+      page({ path: '/money/changes/', kicker: 'Public money', title: 'What changed after the councils signed', description: `${int(rows.length)} of the Algarve councils' ${int(all)} contracts of 2025 and 2026 were changed after signing: ${meur(signed)} signed, ${meur(after)} after the latest change. By legal basis and council, from IMPIC's open data.`, blocks, sources: [CH_SRC, BASE_SRC, { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });
+      put('use-cases/changes.json', { ...meta, about: "The 16 Algarve councils' contracts of 2025 and 2026 changed after signing (IMPIC's contract modifications): the price at signing against the price after the latest change, and the term. The grouping of legal bases is our reading.", license: CH_SRC.license, read_on: CH.source.read_on,
+        summary: { contracts_2025_2026: all, changed: rows.length, left_out_order_uncertain: ties.length, changes: nChanges, price_raised: up.length, price_lowered: down.length, term_extended: ext.length, signed_eur: Math.round(signed), after_changes_eur: Math.round(after) },
+        by_basis: basisRows.map(([b, x]) => ({ basis: b, changes: x.n, contracts: x.ids.size, value_added_eur: Math.round(x.added) })),
+        by_council: perC.map(x => ({ council: x.id, changed: x.r.length, contracts: x.n, signed_eur: Math.round(x.s), after_changes_eur: Math.round(x.a) })),
+        data_file: `https://${SITE}/data/procurement/changes.json`, sources: [CH_SRC, baseSrc] });
+    }
   }
 
 
@@ -647,6 +707,7 @@ export function generate() {
       '/api/v1/procurement/summary.json': get('Totals for the 16 councils, 2026 and 2025', obj),
       '/api/v1/use-cases/tech-and-ai.json': get('Tech and AI purchases of the 16 councils: by council, supplier, and contracts that mention AI', obj),
       '/api/v1/use-cases/estimates.json': get('What each council estimated a contract would cost and what it contracted, 2025 and 2026, by council and procedure', obj),
+      '/api/v1/use-cases/changes.json': get("The councils' 2025 and 2026 contracts changed after signing: price at signing against the price after the latest change, by legal basis and council", obj),
       '/api/v1/use-cases/notices.json': get("The councils' 2026 procurement notices (base price published before any bid) against the contracts that cite them; the procedures still open", obj),
       '/api/v1/municipal-companies.json': get('The councils\' municipal companies, with their contracts by procedure, 2026 and 2025', obj),
       '/data/procurement/base-2026.json': get('Every 2026 contract of the 16 councils (large)', obj),

@@ -131,6 +131,33 @@ for (const NF of readdirSync('data/procurement').filter(f => /^notices-20\d{2}\.
   }
   if (/PecasProcedimento|vortal|acingov|anogov|saphety/i.test(readFileSync(NF, 'utf8'))) fail(`${NB}: a tender-platform link or field is kept`);
 }
+// civic.b@PrompTugal.dinis (2026-11-19): the councils' contract changes keep a fixed set of fields, Portal BASE links only, and no text
+// but each change's legal basis and act (short, plain); money, terms and dates are bounded.
+if (existsSync('data/procurement/changes.json')) {
+  const D = JSON.parse(readFileSync('data/procurement/changes.json', 'utf8'));
+  const TOP = new Set(['source', 'license', 'count', 'contracts']);
+  const K = new Set(['id', 'council', 'published', 'signed', 'procedure', 'price', 'base_price', 'term_days', 'changes', 'price_last', 'term_days_last', 'url', 'order_uncertain']);
+  const CK = new Set(['date', 'published', 'basis', 'act', 'price_after', 'term_days_after']);
+  const BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
+  const num = v => v === null || (typeof v === 'number' && Number.isFinite(v) && v >= 0 && v < 1e10);
+  const dur = v => v === null || (Number.isInteger(v) && v >= 0 && v < 36500);
+  const dayOk = v => v === null || (typeof v === 'string' && /^20[12]\d-\d{2}-\d{2}$/.test(v) && new Date(v + 'T00:00:00Z').toISOString().slice(0, 10) === v);
+  const txt = (v, n) => typeof v === 'string' && v.length <= n && !/[\u0000-\u001f\u202a-\u202e\u2066-\u2069<>`]|@/.test(v);
+  const councils = new Set(Object.keys(JSON.parse(readFileSync('data/procurement/notices-2026.json', 'utf8')).councils || {}));
+  for (const k of Object.keys(D)) if (!TOP.has(k)) fail(`changes.json: unexpected top-level field ${k.slice(0, 40)}`);
+  if (D.count !== (D.contracts || []).length) fail('changes.json: count does not match');
+  for (const x of D.contracts || []) {
+    const at = `changes.json ${String(x.id).slice(0, 14)}`;
+    for (const k of Object.keys(x)) if (!K.has(k)) fail(`${at}: unexpected field ${k.slice(0, 40)}`);
+    if (!/^\d{1,12}$/.test(x.id) || !BGU.test(x.url) || !x.url.endsWith(`id=${x.id}`)) fail(`${at}: id or link`);
+    if (!councils.has(x.council)) fail(`${at}: council`);
+    if (!num(x.price) || !num(x.base_price) || !num(x.price_last) || !dur(x.term_days) || !dur(x.term_days_last) || !dayOk(x.published) || !dayOk(x.signed) || !txt(x.procedure, 80)) fail(`${at}: values`);
+    if (!Array.isArray(x.changes) || !x.changes.length) fail(`${at}: no changes`);
+    if (typeof x.order_uncertain !== 'boolean') fail(`${at}: order_uncertain`);
+    for (const c of x.changes || []) { for (const k of Object.keys(c)) if (!CK.has(k)) fail(`${at}: unexpected change field ${k.slice(0, 40)}`);
+      if (!dayOk(c.date) || !dayOk(c.published) || !num(c.price_after) || !dur(c.term_days_after) || !txt(c.basis, 200) || !txt(c.act, 40)) fail(`${at}: change values`); }
+  }
+}
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {

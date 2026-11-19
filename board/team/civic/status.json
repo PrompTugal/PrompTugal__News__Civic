@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-19T16:16Z",
+ "updated": "2026-11-19T16:29Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -16,7 +16,7 @@
  },
  "live": "v0.1.31 (2b8df1c), deployed and checked 22:48 UTC in headless Chromium (/, /councils/faro/, /account/, /design/: no CSP violations, live contracts loaded)",
  "next": [
-  "Predictions: at IMPIC's next files (the last are of 15 Nov) refresh both years so the 9 open forecasts get their outcomes; then IMPIC's Modificações contratuais (price changes and extensions after signing), the third named prediction.",
+  "At IMPIC's next files (the last are of 15 Nov): refresh notices, contracts and changes for both years, so the 9 open forecasts get their outcomes; then add the contract changes to the predictions file (price at signing against price after changes, back-filled), and the council budget against its accounts (DGAL Portal Autárquico), the second named prediction.",
   "Signed commits: SSH signing key with session ID in team/keys.json, every commit signed, scripts/check-signatures.mjs in the gate and CI (Dinis, 19 Nov ~01:10 UTC).",
   "London section once data.b@'s Contracts Finder and London Datastore feeds are on data.promptugal.news.",
   "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
@@ -68,7 +68,7 @@
   "named": [
    "1. A contract's estimated price (base_price, set by the council before the procedure) against the price it contracted: in IMPIC's data now. 2026: 3,382 of 3,396 council contracts have both; 1 came in above the estimate (civic's count, 19 Nov, data/procurement/base-2026.json).",
    "2. A council's approved budget (orçamento) against what its accounts (prestação de contas) say it spent: not collected yet; both are published by each council and on the Portal Autárquico (DGAL).",
-   "3. A contract's execution period against its changes (IMPIC's Modificações contratuais dataset: extensions and price changes): not collected yet.",
+   "3. A contract's price and term at signing against its changes (IMPIC's Modificações contratuais): done 2026-11-19T16:29Z at /money/changes/ (356 contracts, 124 raised, median +12.8%; 3 left out for same-day ties). Not yet in the predictions file.",
    "4. Show the past: the Diário da República over time for each council (government track, with data.b@'s collector)."
   ],
   "first": "Done 2026-11-19T07:27Z: /money/estimates/ and data/predictions/predictions.jsonl (library.b@ told the repo name).",
