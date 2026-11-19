@@ -1,5 +1,5 @@
-// Tests for security@'s controls 7 and 8 on civic's commit check (civic.b@PrompTugal.dinis, 19 Nov 2026; third ruling,
-// Website 3724c9ca2: the checker comes from BEFORE, the commit dev pointed to before the push).
+// Tests for security@'s controls 7 and 8 on civic's commit check (civic.b@PrompTugal.dinis, 19 Nov 2026; fourth ruling,
+// Website 948820a7e: the range is A..AFTER and the checker comes from A, the newest commit a passing run deployed).
 // Each test builds a throw-away repository and runs the `trusted` step of .github/workflows/pages.yml itself (its shell
 // block, read from the workflow file), then the commit check over the range that step chose, as CI does. Each asserts the
 // outcome and its reason. Node built-ins, bash and git only.
@@ -34,11 +34,12 @@ function repo() {
   git('tag', 'v0.1.0');
   return { d, git, env, base, release, commit };
 }
-// CI: the trusted step with BEFORE and AFTER, then BEFORE's checker over the range it chose.
-function ci(r, before, after = r.git('rev-parse', 'HEAD'), extraEnv = {}) {
+// CI: the trusted step with the anchor A and AFTER, then A's checker over the range it chose. (The anchor step itself reads
+// GitHub's deployments API and cannot run here; each test hands the trusted step its A.)
+function ci(r, A, after = r.git('rev-parse', 'HEAD'), extraEnv = {}) {
   r.git('checkout', '-q', '-f', after);
   const out = join(r.d, '.gh-output'); writeFileSync(out, '');
-  const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: r.d, env: { ...r.env, BEFORE: before, AFTER: after, GITHUB_OUTPUT: out }, encoding: 'utf8' });
+  const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: r.d, env: { ...r.env, A, AFTER: after, GITHUB_OUTPUT: out }, encoding: 'utf8' });
   if (step.status !== 0) return { stage: 'step', status: step.status, text: step.stdout + step.stderr };
   const o = Object.fromEntries(readFileSync(out, 'utf8').split('\n').filter(Boolean).map(l => l.split('=')));
   const p = spawnSync('node', ['scripts/check-commits.mjs', o.from, after], { cwd: r.d, env: { ...r.env, CHECK_COMMITS_TRUSTED_BASE: r.base, ...extraEnv }, encoding: 'utf8' });
@@ -70,7 +71,7 @@ test('8: a backdated orphan pushed as the new head fails', r => {
   const o = r.commit(`orphan${AGENT}`, { 'scripts/check-commits.mjs': "console.log('OK')\n", 'scripts/leak-scan.mjs': '' }, { GIT_AUTHOR_DATE: '2020-01-01T00:00:00Z', GIT_COMMITTER_DATE: '2020-01-01T00:00:00Z' });
   return expect(ci(r, r.release, o), 'step', /not an ancestor of AFTER/);
 });
-// Control 7: the checker is BEFORE's, not the pushed tree's.
+// Control 7: the checker is A's, not the pushed tree's.
 test('7: a push that weakens the checker and adds an unsigned commit still fails', r => {
   r.commit(`weaken the checker${AGENT}`, { 'scripts/check-commits.mjs': "console.log('OK')\n" });
   r.commit('unsigned change', { 'c.txt': '3' });
@@ -78,29 +79,36 @@ test('7: a push that weakens the checker and adds an unsigned commit still fails
   if (pushed.status !== 0) return 'the weakened checker should pass on its own, or the test proves nothing';
   return expect(ci(r, r.release), 'check', /unsigned change: no readable Agent/);
 });
-// The ruling's first test: BEFORE has no copy of the checker.
-test('7: BEFORE with no copy of the checker fails closed', r => {
-  r.git('rm', '-q', 'scripts/check-commits.mjs'); const before = r.commit(`drop the checker${AGENT}`);
+test('7: an anchor A with no copy of the checker fails closed', r => {
+  r.git('rm', '-q', 'scripts/check-commits.mjs'); const a = r.commit(`drop the checker${AGENT}`);
   r.commit(`next${AGENT}`, { 'scripts/check-commits.mjs': CHECKER, 'd.txt': '4' });
-  return expect(ci(r, before), 'step', /BEFORE has no copy of scripts\/check-commits\.mjs/);
+  return expect(ci(r, a), 'step', /the anchor A has no copy of scripts\/check-commits\.mjs/);
 });
-// The ruling's second test: a force push.
-test('7: BEFORE not an ancestor of AFTER (a force push) fails', r => {
-  const before = r.commit(`pushed earlier${AGENT}`, { 'e.txt': '5' });
+test('7: an anchor A that is not an ancestor of AFTER (a force push) fails', r => {
+  const a = r.commit(`deployed earlier${AGENT}`, { 'e.txt': '5' });
   r.git('reset', '-q', '--hard', r.release); r.commit(`rewritten${AGENT}`, { 'e.txt': '6' });
-  return expect(ci(r, before), 'step', /not an ancestor of AFTER \(a force push\)/);
+  return expect(ci(r, a), 'step', /not an ancestor of AFTER \(a force push/);
 });
-test('7: no BEFORE (a zero id or a new branch) fails', r => {
+// The fourth ruling's third test: a missing A.
+test('7: a missing anchor A (empty or zero) fails', r => {
   r.commit(`x${AGENT}`, { 'f.txt': '7' });
   const a = ci(r, '0000000000000000000000000000000000000000'), b = ci(r, '');
-  return expect(a, 'step', /no BEFORE commit/) === true && expect(b, 'step', /no BEFORE commit/) === true ? true : `${a.text} | ${b.text}`;
+  return expect(a, 'step', /no anchor A/) === true && expect(b, 'step', /no anchor A/) === true ? true : `${a.text} | ${b.text}`;
 });
-// Finding 3b: the commits of a dropped run are still checked, with BEFORE's checker.
-test('3b: an unsigned commit whose run was dropped is caught by the next run', r => {
-  const dropped = r.commit('dropped run, no trailer', { 'g.txt': '8' });
+// The fourth ruling's first test: an unsigned commit from a dropped run, between A and BEFORE (finding 3b).
+test('3b: an unsigned commit from a dropped run (between A and BEFORE) fails', r => {
+  r.commit('dropped run, no trailer', { 'g.txt': '8' });
   r.commit(`next push${AGENT}`, { 'h.txt': '9' });
-  const x = ci(r, dropped);
-  return x.from === r.release ? expect(x, 'check', /dropped run, no trailer: no readable Agent/) : `range began at ${x.from}, not the release`;
+  const x = ci(r, r.release);
+  return x.from === r.release ? expect(x, 'check', /dropped run, no trailer: no readable Agent/) : `range began at ${x.from}, not A`;
+});
+// The fourth ruling's second test: a pushed tag on an unverified commit is not used.
+test('7: a pushed release tag on an unverified commit is not used', r => {
+  r.commit(`weaken the checker${AGENT}`, { 'scripts/check-commits.mjs': "console.log('OK')\n" });
+  r.commit('unverified, no trailer', { 'l.txt': '13' }); r.git('tag', 'v0.1.9');
+  r.commit(`after the tag${AGENT}`, { 'm.txt': '14' });
+  const x = ci(r, r.release);
+  return x.from === r.release ? expect(x, 'check', /unverified, no trailer: no readable Agent/) : `range began at ${x.from}, not A`;
 });
 // Low finding: the trusted base cannot be overridden in CI.
 test('low: CHECK_COMMITS_TRUSTED_BASE is refused when CI or GITHUB_ACTIONS is set', r => {
@@ -115,12 +123,12 @@ test('6: a shallow clone is refused', r => {
   try {
     execFileSync('git', ['clone', '-q', '--depth', '1', '--no-local', `file://${r.d}`, s], { env: r.env, stdio: 'ignore' });
     const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: s, encoding: 'utf8' }).trim();
-    const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: s, env: { ...r.env, BEFORE: head, AFTER: head, GITHUB_OUTPUT: join(s, '.o') }, encoding: 'utf8' });
+    const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: s, env: { ...r.env, A: head, AFTER: head, GITHUB_OUTPUT: join(s, '.o') }, encoding: 'utf8' });
     const p = spawnSync('node', ['scripts/check-commits.mjs', '', 'HEAD'], { cwd: s, env: { ...r.env, CHECK_COMMITS_TRUSTED_BASE: head }, encoding: 'utf8' });
     return step.status !== 0 && /shallow checkout refused/.test(step.stderr) && p.status === 1 && /refused on a shallow clone/.test(p.stderr) ? true : `step ${step.status} ${step.stderr} | check ${p.status} ${p.stderr}`;
   } finally { rmSync(s, { recursive: true, force: true }); }
 });
-// And the control: a clean push passes, with BEFORE's checker.
+// And the control: a clean push passes, with A's checker.
 test('a signed push passes', r => {
   r.commit(`fine${AGENT}`, { 'k.txt': '12' });
   const x = ci(r, r.release);
