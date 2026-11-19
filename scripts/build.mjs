@@ -13,7 +13,7 @@ cpSync('src', '_site', { recursive: true });
 //     (the rest deploys), and the upgrade waits for the next wake (data.b@'s trap, 19 Nov 2026, relayed by conductor.b@);
 //   - the list of sites the renderer accepts is kept in data/sites-registry.json (sites only, no pins), for the CSP.
 // Data, not code: nothing from the registry is run.
-const BAR_VERSION = '1.2.0', TZ_VERSION = '1.1.0';
+const BAR_VERSION = '1.2.1', TZ_VERSION = '1.1.0';
 const BAR = { render: `vendor/sites-bar/${BAR_VERSION}/sites-bar-render.mjs`, css: `src/assets/sites-bar/${BAR_VERSION}/sites-bar.css`, js: `src/assets/sites-bar/${BAR_VERSION}/sites-bar.js` };
 const TZ_FILE = `vendor/obs/tz-country/${TZ_VERSION}/tz-country.json`;
 const { createHash } = await import('node:crypto');
