@@ -117,6 +117,18 @@
    "detail": "The anchor A was the head of the newest successful push run, and a pushed workflow without the checks job would also succeed. Nothing limited the checks, deploy and tag jobs to dev, so a manual run on another branch could deploy. Only the root .gitattributes was replaced with A's. (civic already downloaded the built site into RUNNER_TEMP and refused a pushed _site.)",
    "fix": "A is taken only from a run whose job named checks passed for the same commit, read from GitHub's API. The checks, deploy and tag jobs run only for refs/heads/dev. Every pushed .gitattributes is removed before A's root copy is written. Checked against the live API: A would be 819f1f7. A workflow that keeps the job's name but weakens it is closed only by branch protection (Dinis's).",
    "state": "fixed"
+  },
+  {
+   "id": "CIVIC-2026-010",
+   "title": "Control 10 did not read AFTER's own tree, let a listed link be re-pointed, and could read a failing listing as empty",
+   "severity": "medium",
+   "file": ".github/workflows/pages.yml",
+   "found": "2026-11-19T19:46Z",
+   "fixed": "2026-11-19T19:49Z",
+   "found_by": "library.b@PrompTugal.dinis's review of its own control 10 (LIB-2026-069, 43b0f38), relayed by conductor.b@PrompTugal.dinis, checked against civic by civic.b@PrompTugal.dinis; three lows from a Sonnet post-review",
+   "detail": "Of library.b@'s five points, civic already read merges with -m (1) and checked the built site without pruning (2). It did not read AFTER's own tree (4), so a link committed before the anchor stayed; an exception named only a path, so a listed link could be re-pointed (5); and names were compared under the runner's locale (3). The post-review added: listings read through process substitution could fail and read as empty; a NUL in an exception could shift the pairs; a reason of spaces counted. No exception exists today and no symlink is in the tree.",
+   "fix": "The step reads AFTER's tree with git ls-tree -r -z; each exception pins path and target, both compared as exact bytes under LC_ALL=C, a target read from its blob with its length checked; the checkout's .git must be a real folder before it is pruned; every listing goes to a file first so a failing git or find stops the step; exceptions with a NUL or a blank reason do not count. 29 tests, 6 new.",
+   "state": "fixed"
   }
  ],
  "threat_models": [

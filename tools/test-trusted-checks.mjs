@@ -231,30 +231,69 @@ test('10: a pushed symlink fails', r => {
   return x.status !== 0 && /adds or changes a symlink: docs\/link/.test(x.text) && /checkout holds a symlink: docs\/link/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
 });
 test('10: a symlink listed in A\'s exceptions passes', r => {
-  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', reason: 'test: a listed link' }]) });
+  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', target: 'a.txt', reason: 'test: a listed link' }]) });
   link(r, 'docs/link'); r.commit(`the listed symlink${AGENT}`);
   const x = sym(r, a);
   return x.status === 0 && /no symlinks/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
 });
 test('10: a symlink listed only in the pushed tree fails', r => {
-  r.commit(`exceptions pushed${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', reason: 'pushed' }]) });
+  r.commit(`exceptions pushed${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', target: 'a.txt', reason: 'pushed' }]) });
   link(r, 'docs/link'); r.commit(`the symlink${AGENT}`);
   const x = sym(r, r.release);
   return x.status !== 0 && /adds or changes a symlink: docs\/link/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
 });
 test('10: a symlink whose name holds a newline cannot pass on part of its name', r => {
-  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'evil', reason: 'test' }, { path: 'x', reason: 'test' }]) });
+  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'evil', target: 'a.txt', reason: 'test' }, { path: 'x', target: 'a.txt', reason: 'test' }]) });
   link(r, 'evil\nx'); r.commit(`newline name${AGENT}`);
   const x = sym(r, a);
   return x.status !== 0 && /symlinks refused/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
 });
 test('10: a symlink deleted in the range does not fail, and an exception without a reason does not count', r => {
-  link(r, 'old/link'); const a0 = r.commit(`old link${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'old/link', reason: 'test' }, { path: 'noreason' }]) });
+  link(r, 'old/link'); const a0 = r.commit(`old link${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'old/link', target: 'a.txt', reason: 'test' }, { path: 'noreason', target: 'a.txt' }]) });
   r.git('rm', '-q', 'old/link'); r.commit(`remove it${AGENT}`);
   const ok = sym(r, a0);
   link(r, 'noreason'); r.commit(`unexplained${AGENT}`);
   const bad = sym(r, a0);
   return ok.status === 0 && bad.status !== 0 && /noreason/.test(bad.text) ? true : `ok ${ok.status} ${ok.text} | bad ${bad.status} ${bad.text}`;
+});
+// library.b@'s LIB-2026-069: a merge, AFTER's own tree, a re-pointed exception, a target with a trailing newline, a .git link.
+test('10: a symlink added only in a merge fails', r => {
+  const a = r.release; r.git('checkout', '-q', '-b', 'side'); r.commit(`side${AGENT}`, { 's.txt': '1' });
+  r.git('checkout', '-q', '-'); r.commit(`main${AGENT}`, { 'm.txt': '1' });
+  r.git('merge', '-q', '--no-commit', '--no-ff', 'side'); link(r, 'merged/link'); r.git('add', '-A'); r.git('commit', '-q', '-m', `merge${AGENT}`);
+  const x = sym(r, a);
+  return x.status !== 0 && /adds or changes a symlink: merged\/link/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: a symlink already in AFTER\'s tree before A fails', r => {
+  link(r, 'early/link'); r.commit(`early link${AGENT}`); const a = r.commit(`later${AGENT}`, { 'l.txt': '1' });
+  const x = sym(r, a);
+  return x.status !== 0 && /AFTER's tree holds a symlink: early\/link/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: a listed link re-pointed elsewhere fails', r => {
+  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', target: 'a.txt', reason: 'test' }]) });
+  link(r, 'docs/link', '/etc/passwd'); r.commit(`re-pointed${AGENT}`);
+  const x = sym(r, a);
+  return x.status !== 0 && /adds or changes a symlink: docs\/link/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: a target with a trailing newline does not match the pinned one', r => {
+  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', target: 'a.txt', reason: 'test' }]) });
+  link(r, 'docs/link', 'a.txt\n'); r.commit(`newline target${AGENT}`);
+  const x = sym(r, a);
+  return x.status !== 0 && /symlinks refused/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: the step refuses a checkout whose .git is a symlink', () => {
+  const blk = SYMSTEP.split('\n').filter(l => /\[ -L \.git \]/.test(l)).join('\n');
+  const d = mkdtempSync(join(tmpdir(), 'gitlink-')); mkdirSync(join(d, 'real')); execFileSync('ln', ['-s', 'real', join(d, '.git')]);
+  const p = spawnSync('bash', ['-c', `bad=0\n${blk}\necho "bad=$bad"`], { cwd: d, encoding: 'utf8' });
+  return blk && /bad=1/.test(p.stdout) && /not a plain folder/.test(p.stderr) ? true : `block ${!!blk}: ${p.stdout}${p.stderr}`;
+});
+test('10: an exception whose reason is only spaces does not count, and a failing listing stops the step', r => {
+  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', target: 'a.txt', reason: '   ' }]) });
+  link(r, 'docs/link'); r.commit(`blank reason${AGENT}`);
+  const blank = sym(r, a);
+  const after = r.git('rev-parse', 'HEAD');
+  const p = spawnSync('bash', ['-e', '-c', SYMSTEP], { cwd: r.d, env: { ...r.env, A: '0'.repeat(40), AFTER: after }, encoding: 'utf8' });
+  return blank.status !== 0 && /docs\/link/.test(blank.text) && p.status !== 0 && !/no symlinks/.test(p.stdout) ? true : `blank ${blank.status} ${blank.text} | bad range ${p.status} ${p.stdout}${p.stderr}`;
 });
 // And the control: a clean push passes, with A's checker.
 test('a signed push passes', r => {

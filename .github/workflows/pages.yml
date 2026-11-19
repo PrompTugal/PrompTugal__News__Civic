@@ -164,37 +164,58 @@ jobs:
           { echo "sha=$A"; echo "from=$A"; echo "node=$node_bin"; echo "commits=$t/check-commits.mjs"; echo "leak=$leak"; } >> "$GITHUB_OUTPUT"
       - id: symlinks
         name: No symlinks in A..AFTER or in the checkout (control 10)
-        # security@'s control 10 (ed70bd996): refuse any symlink (mode 120000) added or changed in any commit of A..AFTER, and any
-        # symlink in the checked-out tree; the downloaded site is vetted above. The only exceptions are whole paths listed in
-        # scripts/symlink-exceptions.json in A's tree ([{"path": ..., "reason": ...}]), so a new one counts from the next anchor.
-        # Paths are read NUL-separated and compared as whole strings (events.b@'s 44d5402), never line by line.
+        # security@'s control 10 (ed70bd996): refuse any symlink (mode 120000) added or changed in any commit of A..AFTER, in
+        # AFTER's own tree, and in the checked-out tree; the downloaded site is vetted above and again below, without pruning.
+        # The only exceptions are whole paths with their pinned target, listed in scripts/symlink-exceptions.json in A's tree
+        # ([{"path": ..., "target": ..., "reason": ...}]), so a new one counts from the next anchor and a listed link cannot be
+        # re-pointed (library.b@'s LIB-2026-069, point 5). Paths and targets are read NUL-separated and compared as whole byte
+        # strings under LC_ALL=C (events.b@'s 44d5402; LIB-2026-069 point 3); merges are read with -m (point 1).
         env:
           AFTER: ${{ github.sha }}
           A: ${{ steps.anchor.outputs.sha }}
         run: |
+          export LC_ALL=C
           allowed=()
           if git cat-file -e "$A:scripts/symlink-exceptions.json" 2>/dev/null; then
-            mapfile -d '' allowed < <(git cat-file blob "$A:scripts/symlink-exceptions.json" | jq -j '.[] | select((.path|type) == "string" and (.reason|type) == "string" and (.reason|length) > 0) | .path + "\u0000"')
+            mapfile -d '' allowed < <(git cat-file blob "$A:scripts/symlink-exceptions.json" | jq -j '.[] | select((.path|type) == "string" and (.target|type) == "string" and (.reason|type) == "string" and (.reason|test("\\S")) and (.path|contains("\u0000")|not) and (.target|contains("\u0000")|not)) | .path + "\u0000" + .target + "\u0000"')
+            [ $(( ${#allowed[@]} % 2 )) = 0 ] || { echo "symlink exceptions unreadable" >&2; exit 1; }
           fi
-          ok() { local p=$1 x; for x in "${allowed[@]}"; do [ "$x" == "$p" ] && return 0; done; return 1; }
+          # every git and find listing goes to a file first, so a failing command stops the step instead of reading as empty
+          out=$(mktemp)
+          ok() { local i; for ((i = 0; i + 1 < ${#allowed[@]}; i += 2)); do [ "${allowed[$i]}" == "$1" ] && [ "${allowed[$((i+1))]}" == "$2" ] && return 0; done; return 1; }
+          # a link's target from its blob into $tgt, exactly (a NUL or a trailing newline cannot be lost: the length must match)
+          target() { tgt=$(git cat-file blob "$1"; printf x); tgt=${tgt%x}; [ "${#tgt}" = "$(git cat-file -s "$1")" ] || tgt=$'\001unreadable'; }
           bad=0
+          revs=$(git rev-list "$A..$AFTER")
           while IFS= read -r c; do
-            mapfile -d '' f < <(git diff-tree -r -z --raw -m --no-commit-id --root "$c")
+            [ -n "$c" ] || continue
+            git diff-tree -r -z --raw -m --no-commit-id --root "$c" > "$out"
+            mapfile -d '' f < "$out"
             i=0
             while [ $i -lt ${#f[@]} ]; do
               meta=${f[$i]}; i=$((i+1))
               [[ $meta == :* ]] || continue
-              read -r _ newmode _ _ status <<< "${meta#:}"
+              read -r _ newmode _ newsha status <<< "${meta#:}"
               path=${f[$i]}; i=$((i+1))
               if [[ $status == R* || $status == C* ]]; then path=${f[$i]}; i=$((i+1)); fi
-              if [ "$newmode" = 120000 ] && [[ $status != D* ]] && ! ok "$path"; then printf 'commit %s adds or changes a symlink: %q\n' "${c:0:7}" "$path" >&2; bad=1; fi
+              if [ "$newmode" = 120000 ] && [[ $status != D* ]] && { target "$newsha"; ! ok "$path" "$tgt"; }; then printf 'commit %s adds or changes a symlink: %q\n' "${c:0:7}" "$path" >&2; bad=1; fi
             done
-          done < <(git rev-list "$A..$AFTER")
+          done <<< "$revs"
+          # AFTER's own tree (LIB-2026-069 point 4): a link already there, whatever the range shows
+          git ls-tree -r -z --full-tree "$AFTER" > "$out"
+          while IFS= read -r -d '' e; do
+            m=${e%% *}; rest=${e#* }; sha=${rest#* }; sha=${sha%%$'\t'*}; path=${e#*$'\t'}
+            if [ "$m" = 120000 ] && { target "$sha"; ! ok "$path" "$tgt"; }; then printf "AFTER's tree holds a symlink: %q\n" "$path" >&2; bad=1; fi
+          done < "$out"
+          # the checkout: .git must be a real folder before it is pruned (LIB-2026-069 point 2)
+          if [ -L .git ] || [ ! -d .git ]; then echo "the checkout's .git is not a plain folder" >&2; bad=1; fi
+          find . -path ./.git -prune -o -type l -print0 > "$out"
           while IFS= read -r -d '' l; do
-            l=${l#./}; if ! ok "$l"; then printf 'the checkout holds a symlink: %q\n' "$l" >&2; bad=1; fi
-          done < <(find . -path ./.git -prune -o -type l -print0)
+            l=${l#./}; t=$(readlink -n -- "$l"; printf x); t=${t%x}
+            if ! ok "$l" "$t"; then printf 'the checkout holds a symlink: %q\n' "$l" >&2; bad=1; fi
+          done < "$out"
           if [ $bad != 0 ]; then echo "symlinks refused (control 10)" >&2; exit 1; fi
-          echo "no symlinks in A..AFTER or in the checkout"
+          echo "no symlinks in A..AFTER, in AFTER's tree or in the checkout"
       - name: Every commit in A..AFTER carries an Agent trailer (A's checker)
         # From A, not github.event.before: GitHub drops a pending run when a newer one queues, and the surviving run's
         # "before" is the dropped push's head, never checked (specialist.code@ finding 3b; security@'s fourth ruling).
