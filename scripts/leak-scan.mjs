@@ -208,11 +208,18 @@ function selfTest() {
     ['private key header in an allowlisted file', 'src/assets/obs/obs.json', `${D}BEGIN PRIVATE KEY${D}`, 'private key block'],
     ['ssh-ed25519 line in code', 'scripts/x.mjs', `const k = "ssh-${'ed'}25519 ${B64(68)}"`, 'ssh public key outside its published field'],
     ['ssh-rsa line in a status file', 'board/team/civic/status.json', `"note": "ssh-${'rsa'} ${B64(120)}"`, 'ssh public key outside its published field'],
-    ['ecdsa line in data', 'data/x.json', `ecdsa-sha2-${'nistp'}256 ${B64(140)}`, 'ssh public key outside its published field'],
+    ['ecdsa nistp256 line in data', 'data/x.json', `ecdsa-sha2-${'nistp'}256 ${B64(140)}`, 'ssh public key outside its published field'],
+    ['ecdsa nistp384 line in a page', 'src/x.html', `<p>ecdsa-sha2-${'nistp'}384 ${B64(180)}</p>`, 'ssh public key outside its published field'],
+    ['ecdsa nistp521 line in notes', 'docs/x.md', `key: ecdsa-sha2-${'nistp'}521 ${B64(220)}`, 'ssh public key outside its published field'],
+    ['sk-ecdsa security key line', 'scripts/x.mjs', `'${'sk'}-ecdsa-sha2-${'nistp'}256@openssh.com ${B64(160)}'`, 'ssh public key outside its published field'],
+    ['sk-ssh-ed25519 security key line', 'board/x.md', `${'sk'}-ssh-${'ed'}25519@openssh.com ${B64(90)}`, 'ssh public key outside its published field'],
+    ['ecdsa key in the keys file but not in public_key', 'team/keys.json', `  "note": "ecdsa-sha2-${'nistp'}256 ${B64(140)}"`, 'ssh public key outside its published field'],
     ['ssh key in the keys file but not in public_key', 'team/keys.json', `  "comment": "ssh-${'ed'}25519 ${B64(68)}"`, 'ssh public key outside its published field'],
   ];
   const allowedCases = [
     ['ssh key in its published field', 'team/keys.json', `    "public_key": "ssh-${'ed'}25519 ${B64(68)}"`, 'ssh public key outside its published field'],
+    ['ecdsa key in its published field', 'team/keys.json', `    "public_key": "ecdsa-sha2-${'nistp'}256 ${B64(140)}"`, 'ssh public key outside its published field'],
+    ['sk-ecdsa key in its published field', 'team/keys.json', `    "public_key": "${'sk'}-ecdsa-sha2-${'nistp'}256@openssh.com ${B64(160)}"`, 'ssh public key outside its published field'],
   ];
   const bad = [];
   for (const [name, path, text, kind] of cases) if (!scanText(path, text).some(f => f.kind === kind)) bad.push(`self-test: ${name}: not caught`);
