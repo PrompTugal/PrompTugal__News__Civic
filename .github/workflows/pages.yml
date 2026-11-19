@@ -41,30 +41,77 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Every commit since the last release carries an Agent trailer
-        # From the last release tag, not github.event.before: GitHub drops a pending run when a
-        # newer one queues, and the surviving run's "before" is the dropped push's head, so the
-        # dropped push's commits were never checked (specialist.code@ finding 3b).
-        env:
-          BEFORE: ${{ github.event.before }}
-          AFTER: ${{ github.sha }}
-        run: |
-          last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER" 2>/dev/null || true)
-          node scripts/check-commits.mjs "${last:-$BEFORE}" "$AFTER"
+      - name: Tests of the trusted-check controls (7 widened, 8, the CI override refusal, the shallow refusal)
+        run: node tools/test-trusted-checks.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
       - run: node scripts/validate.mjs
-      - name: Leak scan (tracked files and the built site)
-        run: node scripts/leak-scan.mjs
+      - name: The built site, for the security job to scan as data
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-for-checks
+          path: _site
+          retention-days: 1
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-  deploy:
+  checks:
+    # security@'s controls 7 (widened) and 8, 19 Nov 2026 (Website board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md,
+    # fae9649db; civic CIVIC-2026-007). A job of its own that runs no code from the pushed tree: the commit check, its exemptions and
+    # the leak scan come from the last release tag's commit and run in place; the built site comes from the build job as data.
+    # Fails closed: no release tag, or a checker missing from it, stops the release. Deploy waits for this job.
+    # Limits (Dinis's to close): this workflow file and the v0.1.* tags can be changed by anyone who can push; only branch
+    # protection with a required check and a tag ruleset close that.
     needs: build
+    runs-on: ubuntu-latest
+    env:
+      GIT_NO_REPLACE_OBJECTS: '1'
+      NODE_OPTIONS: ''
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: trusted
+        name: The trusted checkers, from the last release
+        env:
+          AFTER: ${{ github.sha }}
+        run: |
+          if [ "$(git rev-parse --is-shallow-repository)" != false ]; then echo "shallow checkout refused" >&2; exit 1; fi
+          if [ -L scripts ] || { [ -e scripts ] && [ ! -d scripts ]; }; then echo "scripts/ is not a plain folder" >&2; exit 1; fi
+          tag=$(git describe --tags --abbrev=0 --match "v0.1.*" "$AFTER" 2>/dev/null || true)
+          if [ -z "$tag" ]; then echo "no release tag: the trusted checkers cannot be found" >&2; exit 1; fi
+          sha=$(git rev-parse --verify "${tag}^{commit}")
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "Trusted checkers from $tag ($sha)"
+          mkdir -p scripts
+          rm -rf scripts/check-commits.mjs scripts/commit-exemptions.json scripts/leak-scan.mjs
+          git show "$sha:scripts/check-commits.mjs" > scripts/check-commits.mjs
+          git show "$sha:scripts/leak-scan.mjs" > scripts/leak-scan.mjs
+          if git cat-file -e "$sha:scripts/commit-exemptions.json" 2>/dev/null; then git show "$sha:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
+      - name: Every commit since the last release carries an Agent trailer (the trusted copy)
+        # From the last release tag, not github.event.before: GitHub drops a pending run when a
+        # newer one queues, and the surviving run's "before" is the dropped push's head, so the
+        # dropped push's commits were never checked (specialist.code@ finding 3b).
+        env:
+          AFTER: ${{ github.sha }}
+          TRUSTED: ${{ steps.trusted.outputs.sha }}
+        run: node scripts/check-commits.mjs "$TRUSTED" "$AFTER"
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-for-checks
+          path: _site
+      - name: Leak scan of the tracked files and the built site (the trusted copy)
+        run: node scripts/leak-scan.mjs
+  deploy:
+    needs: [build, checks]
     if: needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     permissions:
@@ -77,8 +124,8 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
   tag:
-    needs: [build, deploy]
-    if: ${{ always() && needs.build.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
+    needs: [build, checks, deploy]
+    if: ${{ always() && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

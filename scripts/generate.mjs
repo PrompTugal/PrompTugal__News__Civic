@@ -448,11 +448,11 @@ export function generate() {
       ['lede', 'Every vulnerability, bug and breach we find on this site is published here: what it was, how serious, which file, when and how we found it, the fix and its commit. An open finding shows only its title, severity and state until it is fixed, then in full.'],
       ['p', 'All PrompTugal.news sites: [the central security log](https://promptugal.news/security/). Found something? [Open a public issue](https://github.com/PrompTugal/PrompTugal__News__Civic/issues/new?title=Security) (for anything that could be used before it is fixed, say only that you have something and we will find a private way).'],
       ['h2', 'Findings'],
-      fs.length ? ['table', ['Id', 'Finding', 'Severity', 'State', 'Found', 'Fix'], { rows: fs.map(f => [f.id, f.state === 'fixed' ? f.title : f.title, f.severity, f.state, day(f.found.slice(0, 10)), f.state === 'fixed' ? `[${f.commit.slice(0, 7)}](https://github.com/PrompTugal/PrompTugal__News__Civic/commit/${f.commit})` : 'open']) }] : ['p', 'None recorded yet.'],
+      fs.length ? ['table', ['Id', 'Finding', 'Severity', 'State', 'Found', 'Fix'], { rows: fs.map(f => [f.id, f.state === 'fixed' ? f.title : f.title, f.severity, f.state, day(f.found.slice(0, 10)), f.state === 'fixed' ? (/^[0-9a-f]{40}$/.test(f.commit || '') ? `[${f.commit.slice(0, 7)}](https://github.com/PrompTugal/PrompTugal__News__Civic/commit/${f.commit})` : 'fixed in this release (its commit is added at the next)') : 'open']) }] : ['p', 'None recorded yet.'],
     ];
     for (const f of fs.filter(f => f.state === 'fixed')) {
       blocks.push(['h3', `${f.id}: ${f.title}`]);
-      blocks.push(['ul', [`**Severity:** ${f.severity}. **File:** ${f.file}.`, `**Found:** ${f.found} by ${f.found_by}.`, `**What:** ${f.detail}`, `**Fix:** ${f.fix} Commit [${f.commit.slice(0, 7)}](https://github.com/PrompTugal/PrompTugal__News__Civic/commit/${f.commit}), ${f.fixed}.`]]);
+      blocks.push(['ul', [`**Severity:** ${f.severity}. **File:** ${f.file}.`, `**Found:** ${f.found} by ${f.found_by}.`, `**What:** ${f.detail}`, `**Fix:** ${f.fix} ${/^[0-9a-f]{40}$/.test(f.commit || '') ? `Commit [${f.commit.slice(0, 7)}](https://github.com/PrompTugal/PrompTugal__News__Civic/commit/${f.commit}), ${f.fixed}.` : `Fixed in this release${f.fixed ? `, ${f.fixed}` : ''}; its commit is added at the next.`}`]]);
     }
     blocks.push(['h2', 'Threat models']);
     blocks.push(['ul', security.threat_models.map(t => `**${t.name}**: ${t.state === 'published' ? `[${t.file}](https://github.com/PrompTugal/PrompTugal__News__Civic/blob/dev/${t.file})` : t.state}.`)]);

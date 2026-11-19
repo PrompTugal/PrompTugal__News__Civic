@@ -1,8 +1,10 @@
 // ACC-015: every non-merge commit a push adds to dev must carry a readable Agent: trailer,
 // read the way git reads it: git log --format=%(trailers:key=Agent,valueonly).
 // Usage: node scripts/check-commits.mjs <before> <after>   (the pushed range, before..after)
-// Commits older than this check are skipped: those that neither descend from the commit
-// that added this file nor were committed after it. History is not rewritten (ACC-015).
+// Only commits that are ancestors of the trusted base are skipped (security@'s control 8, 19 Nov 2026, Website fae9649db):
+// a skip is never decided by what a tree holds or by a commit's own dates, so deleting this file, or merging in an old-dated
+// history, skips nothing. The trusted base is pinned below by its full id. History is not rewritten (ACC-015).
+// CI runs this file from the last release tag, never from the pushed tree (control 7 widened; .github/workflows/pages.yml).
 // Prints OK or lists each commit that fails and exits 1.
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
@@ -15,16 +17,22 @@ const [beforeArg, afterArg] = process.argv.slice(2);
 const after = afterArg || 'HEAD';
 if (!tryGit('rev-parse', '--verify', '--quiet', `${after}^{commit}`)) { console.error(`check-commits: unknown commit ${after}`); process.exit(1); }
 
-const first = lines(git('log', '--format=%H', '--diff-filter=A', '--reverse', after, '--', 'scripts/check-commits.mjs'))[0];
-if (!first) { console.error('check-commits: cannot find the commit that added scripts/check-commits.mjs'); process.exit(1); }
-const firstTime = Number(git('log', '-1', '--format=%ct', first));
+// The trusted base: the commit civic was seeded from (it holds the first copy of this check). A test may name another base
+// in CHECK_COMMITS_TRUSTED_BASE, but never in CI, where a pushed workflow could set it (security@'s low finding).
+const PINNED_BASE = 'e23a9a27d6eca3a958f369674b307fcee31e1033';
+const override = process.env.CHECK_COMMITS_TRUSTED_BASE;
+if (override && (process.env.CI || process.env.GITHUB_ACTIONS)) { console.error('check-commits: CHECK_COMMITS_TRUSTED_BASE is refused in CI'); process.exit(1); }
+const BASE = override || PINNED_BASE;
+if (!/^[0-9a-f]{40}$/.test(BASE) || tryGit('cat-file', '-t', BASE) !== 'commit') { console.error(`check-commits: the trusted base ${BASE.slice(0, 40)} is not a commit in this clone`); process.exit(1); }
+// A shallow clone hides history, so an ancestor test could not be trusted (CI checks out with fetch-depth 0).
+if (tryGit('rev-parse', '--is-shallow-repository') !== 'false') { console.error('check-commits: refused on a shallow clone'); process.exit(1); }
+const isAncestorOfBase = c => { try { execFileSync('git', ['merge-base', '--is-ancestor', c, BASE], { stdio: 'ignore' }); return true; } catch { return false; } };
 
 // A new branch, a forced push or a manual run has no usable "before": check everything since the check began.
 const zero = /^0+$/;
 const before = beforeArg && !zero.test(beforeArg) && tryGit('rev-parse', '--verify', '--quiet', `${beforeArg}^{commit}`);
 const range = before ? [`${before}..${after}`] : [after];
 const added = lines(git('rev-list', '--no-merges', ...range));
-const descendants = new Set([first, ...lines(git('rev-list', '--ancestry-path', `${first}..${after}`))]);
 
 // A role may be dotted, role.speciality (Dinis, 16 Nov 2026: "we definitely should allow dots because that's our terminology").
 // The estate's agents (Dinis, 18 Nov 2026, via conductor.b@PrompTugal.dinis, board/guidance/2026-11-18-five-sites-on-account-b.md
@@ -51,8 +59,7 @@ if (existsSync(EX)) {
 const errors = [];
 let checked = 0, exempted = 0;
 for (const c of added) {
-  const ct = Number(git('log', '-1', '--format=%ct', c));
-  if (!descendants.has(c) && ct < firstTime) continue;
+  if (isAncestorOfBase(c)) continue;
   if (exempt.has(c)) { exempted++; continue; }
   checked++;
   const agents = lines(git('log', '-1', '--format=%(trailers:key=Agent,valueonly)', c)).map((s) => s.trim());
@@ -66,4 +73,4 @@ if (errors.length) {
   console.error(`FAILED (${errors.length} of ${checked} commits checked)`);
   process.exit(1);
 }
-console.log(`OK (${checked} commits checked, ${exempted} exempted, ${added.length - checked - exempted} older than the check skipped)`);
+console.log(`OK (${checked} commits checked, ${exempted} exempted, ${added.length - checked - exempted} before the trusted base skipped)`);
