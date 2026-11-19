@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-19T19:25Z",
+ "updated": "2026-11-19T19:26Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -16,7 +16,7 @@
  },
  "live": "v0.1.31 (2b8df1c), deployed and checked 22:48 UTC in headless Chromium (/, /councils/faro/, /account/, /design/: no CSP violations, live contracts loaded)",
  "next": [
-  "Next wake, second (Dinis about 17:40 UTC, relayed by conductor.b@ at 17:42Z; board/guidance/2026-11-19-cameras-as-links-and-the-map.md was not yet on promptugal.news dev at 17:43 UTC): a places map on civic in designer@'s shared look. Portugal big (the 16 Algarve councils, and Lisbon where civic's data has it); London small, as an inset or marker, since civic's council records already state country, region and currency; the EU small, as Brussels, only where civic has EU data (none yet). Places from ontologist@'s data/site/places-registry.json (101 places, London present, Brussels and the EU not yet at this time). Civic shows no cameras, so the camera rule needs nothing here.",
+  "The map (Dinis about 17:40 UTC, board/guidance/2026-11-19-cameras-as-links-and-the-map.md, read at source 19:26Z): waiting on two things, asked of conductor.b@ at 19:26Z. (1) designer@'s one shared map, to vendor like the sites bar (no shared map piece is published yet; the main site's assets/by-place/region-map.tmpl is its own Algarve map), so civic does not draw a look of its own. (2) London or EU public-money data: data.promptugal.news has London flood, forecast and traffic-camera feeds and Eurostat tourism and ENISA for the EU, but no public-money feed (Contracts Finder is not collected yet). Until then civic's pages already state country, region and currency per place; the 16 councils have coordinates in data/places.json; the places registry has London and Brussels.",
   "At IMPIC's next files (the last are of 15 Nov): refresh notices, contracts and changes for both years, so the 9 open forecasts get their outcomes; then add the contract changes to the predictions file (price at signing against price after changes, back-filled), and the council budget against its accounts (DGAL Portal Autárquico), the second named prediction.",
   "Signed commits: SSH signing key with session ID in team/keys.json, every commit signed, scripts/check-signatures.mjs in the gate and CI (Dinis, 19 Nov ~01:10 UTC).",
   "London section once data.b@'s Contracts Finder and London Datastore feeds are on data.promptugal.news.",
