@@ -140,12 +140,26 @@ test('9: a symlink on a checker path is refused', r => {
 // Control 9: the checks job runs no pushed code and takes nothing from the build job but its built site, so a pushed
 // build step that writes GITHUB_ENV or GITHUB_PATH (which act only within its own job) cannot change the result.
 test('9: the checks job takes nothing from the build job but the built site, and runs no checkout script', () => {
-  const y = readFileSync('.github/workflows/pages.yml', 'utf8'), at = y.indexOf('\n  checks:\n'), end = y.indexOf('\n  deploy:\n');
+  // comments are removed first, so no test can be satisfied by a comment (library.b@'s LIB-2026-067)
+  const y = readFileSync('.github/workflows/pages.yml', 'utf8').split('\n').filter(l => !/^\s*#/.test(l)).join('\n'), at = y.indexOf('\n  checks:\n'), end = y.indexOf('\n  deploy:\n');
   if (at < 0 || end < at) return 'no checks job before deploy';
   const job = y.slice(at, end);
   if (/needs\.build\.outputs|\$\{\{\s*env\./.test(job)) return 'the checks job reads the build job\'s outputs or env';
   const runs = [...job.matchAll(/^\s+run: (.*)$/gm)].map(m => m[1]).filter(x => x !== '|');
-  if (runs.some(x => !/^'"\$NODE_BIN" "\$(CHECKER|LEAK)"/.test(x))) return `a one-line run step outside the trusted copies: ${runs.join(' | ')}`;
+  // each one-line run step must be exactly one of these (post-review: a prefix match let anything follow)
+  const ALLOWED = new Set([`'"$NODE_BIN" "$CHECKER" "$FROM" "$AFTER"'`, `'"$NODE_BIN" "$LEAK" --root "$GITHUB_WORKSPACE"'`,
+    `'bad=$(find _site ! -type f ! -type d -print -quit); if [ -n "$bad" ]; then echo "not a plain file or folder: $bad" >&2; exit 1; fi'`]);
+  const odd = runs.filter(x => !ALLOWED.has(x.trim()));
+  if (odd.length) return `a one-line run step outside the allowed ones: ${odd.join(' | ')}`;
+  const vet = job.indexOf('name: Only plain files and folders in the built site');
+  if (vet < 0 || vet > job.indexOf('- id: trusted')) return 'the built site is not vetted before the trusted copies are written';
+  if (!/name: pages-checked-\$\{\{ github\.run_id \}\}/.test(job) || !/artifact_name: pages-checked-\$\{\{ github\.run_id \}\}/.test(y)) return 'the Pages artifact is not deployed by the checks job\'s own name';
+  // the Pages artifact is made in this job, from the scanned bytes, after the leak scan; the build job makes none
+  const build = y.slice(y.indexOf('\n  build:\n'), at);
+  if (/upload-pages-artifact/.test(build)) return 'the build job uploads the Pages artifact';
+  const up = job.indexOf('uses: actions/upload-pages-artifact'), scan = job.indexOf('"$NODE_BIN" "$LEAK"'), dl = job.indexOf('uses: actions/download-artifact'), tr = job.indexOf('- id: trusted');
+  if (up < 0 || scan < 0 || up < scan) return 'the Pages artifact is not made in the checks job after the leak scan';
+  if (dl < 0 || tr < 0 || dl > tr) return 'the built site is not downloaded before the trusted copies are written';
   if (/\bnode (scripts|tools)\//.test(job) || /\bnpm\b|\bnpx\b/.test(job)) return 'the checks job runs a script from the checkout';
   if (!/GIT_NO_REPLACE_OBJECTS: '1'/.test(job) || !/NODE_OPTIONS: ''/.test(job)) return 'replace objects or NODE_OPTIONS not cleared';
   if (!/\n  deploy:\n    needs: \[build, checks\]/.test(y)) return 'deploy does not wait for the checks job';
@@ -157,6 +171,22 @@ test('9: the leak scan scans the folder --root names', r => {
   const bad = spawnSync('node', [copy, '--root', r.temp], { encoding: 'utf8', env: r.env });
   const good = spawnSync('node', [copy, '--root', process.cwd()], { encoding: 'utf8', env: r.env });
   return bad.status === 1 && /is not a repository/.test(bad.stderr) && good.status === 0 && /^OK \(/.test(good.stdout) ? true : `bad ${bad.status} ${bad.stderr} | good ${good.status} ${good.stdout}${good.stderr}`;
+});
+// The leak scan reads a file with a NUL byte and refuses a symlink (library.b@'s LIB-2026-067).
+test('9: the leak scan catches a secret in a binary file and refuses a symlink in the site', r => {
+  const site = join(r.temp, 'repo'); mkdirSync(join(site, '_site'), { recursive: true });
+  execFileSync('git', ['init', '-q'], { cwd: site });
+  writeFileSync(join(site, '_site/index.html'), '<p>ok</p>');
+  const copy = join(r.temp, 'leak-scan.mjs'); writeFileSync(copy, readFileSync('scripts/leak-scan.mjs'));
+  const clean = spawnSync('node', [copy, '--root', site], { encoding: 'utf8', env: r.env });
+  if (clean.status !== 0) return `a clean site should pass: ${clean.stdout}${clean.stderr}`;
+  const key = ['-----BEGIN', 'OPENSSH PRIVATE KEY-----'].join(' ');
+  writeFileSync(join(site, '_site/img.bin'), Buffer.concat([Buffer.from([0, 1, 2, 0]), Buffer.from(`\n${key}\nAAAA\n`)]));
+  const bin = spawnSync('node', [copy, '--root', site], { encoding: 'utf8', env: r.env });
+  rmSync(join(site, '_site/img.bin'));
+  execFileSync('ln', ['-s', '/etc/hostname', join(site, '_site/link')]);
+  const link = spawnSync('node', [copy, '--root', site], { encoding: 'utf8', env: r.env });
+  return bin.status === 1 && /img\.bin:\d+: private key block/.test(bin.stderr) && link.status === 1 && /_site\/link: a symlink/.test(link.stderr) ? true : `binary ${bin.status} ${bin.stderr} | link ${link.status} ${link.stderr}`;
 });
 // And the control: a clean push passes, with A's checker.
 test('a signed push passes', r => {

@@ -91,7 +91,20 @@
    "detail": "A push could change the checkers it was checked with. The commit check also skipped a commit that did not descend from the commit that added it if its committer date was older, and a committer date is set by whoever makes the commit, so a merged-in, back-dated history could pass unchecked.",
    "fix": "A `checks` job that runs no code from the pushed tree takes the commit check, its exemptions and the leak scan from the anchor A, the head of the newest successful push run of this workflow on dev (read from GitHub's API; security@'s sixth ruling), checks the range A..AFTER, and fails closed when A is missing, is not an ancestor of the pushed head, or has no checker, on a shallow clone, or when scripts/ is not a plain folder; git replace objects are off and NODE_OPTIONS is cleared. The built site reaches it from the build job as data, and deploy waits for it. The commit check skips only ancestors of a trusted base pinned by its full id, refuses a shallow clone, and refuses a base override in CI. tools/test-trusted-checks.mjs tests each case. Limits: the workflow file can be changed by anyone who can push; branch protection with a required check (Dinis's) closes that.",
    "state": "fixed",
-   "fixed": "2026-11-19T14:12Z"
+   "fixed": "2026-11-19T14:12Z",
+   "commit": "01b661a833aa41c8ff057ed2cb0469c6667142d0"
+  },
+  {
+   "id": "CIVIC-2026-008",
+   "title": "The built site reached the checks after the trusted copies, the deployed bytes were not the scanned bytes, and the leak scan skipped binary files and followed symlinks",
+   "severity": "medium",
+   "file": ".github/workflows/pages.yml, scripts/leak-scan.mjs",
+   "found": "2026-11-19T14:34Z",
+   "fixed": "2026-11-19T14:34Z",
+   "found_by": "peers' reviews relayed by conductor.b@PrompTugal.dinis (events.b@ 188bcf8, library.b@ 37621a6 LIB-2026-067, signals.b@ 75a59d0), checked against civic by civic.b@PrompTugal.dinis; Sonnet post-review",
+   "detail": "The checks job unpacked the build job's site after writing the trusted checker copies; the build job, which runs pushed code, made the Pages artifact that was deployed; the leak scan skipped any file with a NUL byte and followed symlinks; .gitattributes and .gitignore came from the pushed tree; one static test could be satisfied by a comment or a prefix.",
+   "fix": "The checks job downloads the built site into its own empty folder before any trusted copy exists, refuses a _site in the checkout and anything not a plain file or folder, checks again before the scan, and then makes the Pages artifact from the scanned bytes under a name only it uses, which the deploy job asks for. The leak scan reads every file byte for byte and reports a symlink. .gitattributes and .gitignore come from A. The static test ignores comments and matches each allowed step exactly. 16 tests.",
+   "state": "fixed"
   }
  ],
  "threat_models": [

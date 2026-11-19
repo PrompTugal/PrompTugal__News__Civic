@@ -55,10 +55,6 @@ jobs:
           retention-days: 1
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
-      - if: steps.mode.outputs.deploy == 'true'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
   checks:
     # security@'s controls 7 (widened) and 8, 19 Nov 2026 (Website board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md,
     # fae9649db; civic CIVIC-2026-007). A job of its own that runs no code from the pushed tree: the commit check, its exemptions and
@@ -82,6 +78,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: The built site, downloaded before any trusted copy exists
+        # events.b@'s finding (188bcf8): unpack first, so no member of the archive can write into the trusted copies.
+        uses: actions/download-artifact@v4
+        with:
+          name: site-for-checks
+          path: ${{ runner.temp }}/site-in
+      - name: Only plain files and folders in the built site
+        env:
+          SITE_IN: ${{ runner.temp }}/site-in
+        run: |
+          if [ -e _site ] || [ -L _site ]; then echo "the checkout holds a _site: refused" >&2; exit 1; fi
+          bad=$(find "$SITE_IN" ! -type f ! -type d -print -quit)
+          if [ -n "$bad" ]; then echo "the built site holds something that is not a plain file or folder: $bad" >&2; exit 1; fi
+          mv "$SITE_IN" _site
       - id: anchor
         name: The anchor A, the head of the newest successful push run of this workflow on dev
         # security@'s sixth ruling (Website 0ba439611): A is the head_sha of the newest run of this workflow (its path) on
@@ -125,6 +135,11 @@ jobs:
           # the commit check reads its exemptions from scripts/ in the checkout: A's copy, or none
           mkdir -p scripts; rm -f scripts/commit-exemptions.json
           if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git show "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
+          # every config the checks read comes from A too (signals.b@'s finding, 75a59d0): git's own .gitattributes and .gitignore
+          for f in .gitattributes .gitignore; do
+            if [ -L "$f" ]; then echo "$f is a symlink: refused" >&2; exit 1; fi
+            rm -f "$f"; if git cat-file -e "$A:$f" 2>/dev/null; then git show "$A:$f" > "$f"; fi
+          done
           # A's leak scan runs from the temporary folder once it takes --root (civic 19 Nov 2026); an older one runs in place
           if grep -q -- "--root" "$t/leak-scan.mjs"; then leak="$t/leak-scan.mjs"; else rm -f scripts/leak-scan.mjs; cp "$t/leak-scan.mjs" scripts/leak-scan.mjs; leak=scripts/leak-scan.mjs; fi
           { echo "sha=$A"; echo "from=$A"; echo "node=$node_bin"; echo "commits=$t/check-commits.mjs"; echo "leak=$leak"; } >> "$GITHUB_OUTPUT"
@@ -137,15 +152,20 @@ jobs:
           NODE_BIN: ${{ steps.trusted.outputs.node }}
           CHECKER: ${{ steps.trusted.outputs.commits }}
         run: '"$NODE_BIN" "$CHECKER" "$FROM" "$AFTER"'
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-for-checks
-          path: _site
+      - name: Still only plain files and folders in the built site
+        run: 'bad=$(find _site ! -type f ! -type d -print -quit); if [ -n "$bad" ]; then echo "not a plain file or folder: $bad" >&2; exit 1; fi'
       - name: Leak scan of the tracked files and the built site (A's copy)
         env:
           NODE_BIN: ${{ steps.trusted.outputs.node }}
           LEAK: ${{ steps.trusted.outputs.leak }}
         run: '"$NODE_BIN" "$LEAK" --root "$GITHUB_WORKSPACE"'
+      - name: The Pages artifact, made from the very bytes just scanned
+        # library.b@'s finding (37621a6): the deployed bytes are the scanned bytes. Made on every run (the template, which
+        # never deploys, uploads it unused), so this job reads nothing the build job decides.
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: pages-checked-${{ github.run_id }}
+          path: _site
   deploy:
     needs: [build, checks]
     if: needs.build.outputs.deploy == 'true'
@@ -159,6 +179,9 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # the checks job's artifact, by a name only it uses, so an artifact from the build job cannot take its place
+          artifact_name: pages-checked-${{ github.run_id }}
   tag:
     needs: [build, checks, deploy]
     if: ${{ always() && needs.build.result == 'success' && needs.checks.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
