@@ -100,6 +100,7 @@ if (existsSync('_site/assets/obs/obs.js')) {
   const code = readFileSync('_site/assets/obs/obs.js', 'utf8').split('\n').filter(l => !/^\s*\/\//.test(l)).join('\n');
   if (/ipapi|ipwho|ipinfo|geoip|\.geo\b|config_from|\bcity\b|latitude|longitude/i.test(code)) fail('assets/obs/obs.js: an IP-based location lookup or its fields (Dinis, 19 Nov 2026: no IP base)');
 }
+if (existsSync('_site/assets/obs/obs.js') && readFileSync('_site/assets/obs/obs.js', 'utf8').includes('__TZ_ZONES__')) fail('assets/obs/obs.js: the shared time-zone table was not written in');
 if (existsSync('_site/assets/obs/obs.json')) { const o = JSON.parse(readFileSync('_site/assets/obs/obs.json', 'utf8')); if (o.geo || o.config_from) fail('assets/obs/obs.json: geo or config_from (no IP-based location)'); }
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');

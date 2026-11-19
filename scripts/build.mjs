@@ -33,6 +33,26 @@ cpSync('src', '_site', { recursive: true });
   } catch (e) { console.warn(`WARNING sites registry: kept the last good copy in data/sites-registry.json (${e.message})`); }
   finally { clearTimeout(t); }
 }
+// the shared time-zone-to-country table (dev@'s tz-country.json 1.0.0, pinned in scripts/sites-bar-pin.mjs): checked against
+// the registry's obs_tz.integrity when the registry was read, then written into assets/obs/obs.js, so the page asks no one.
+{
+  const raw = readFileSync('vendor/obs/tz-country/1.0.0/tz-country.json');
+  try {
+    const reg = await (await fetch('https://promptugal.news/api/v1/sites.json', { redirect: 'error' })).json();
+    if (reg.obs_tz && reg.obs_tz.version === '1.0.0') {
+      const { createHash } = await import('node:crypto');
+      const sri = 'sha256-' + createHash('sha256').update(raw).digest('base64');
+      if (sri !== reg.obs_tz.integrity) { console.error("tz-country.json 1.0.0 does not match the registry's obs_tz.integrity"); process.exit(1); }
+      console.log("tz-country 1.0.0: matches the registry's integrity");
+    }
+  } catch (e) { console.warn(`WARNING tz-country: registry not read (${e.message}); the git pin still holds`); }
+  const zones = JSON.parse(raw.toString('utf8')).zones;
+  const clean = {}; for (const [k, v] of Object.entries(zones || {})) if (typeof k === 'string' && /^[A-Za-z0-9_+\/-]{1,64}$/.test(k) && typeof v === 'string' && /^[A-Z]{2}$/.test(v)) clean[k] = v;
+  const f = '_site/assets/obs/obs.js', js = readFileSync(f, 'utf8');
+  if (!js.includes('__TZ_ZONES__')) { console.error('obs.js: no __TZ_ZONES__ to fill'); process.exit(1); }
+  writeFileSync(f, js.replace('__TZ_ZONES__', JSON.stringify(clean)));
+  console.log(`tz-country: ${Object.keys(clean).length} zones written into assets/obs/obs.js`);
+}
 const { generate } = await import('./generate.mjs');
 console.log(`generated ${generate()} pages`);
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
