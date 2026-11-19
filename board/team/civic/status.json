@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-19T03:24Z",
+  "updated": "2026-11-19T03:25Z",
   "run": "2026-11-18 22:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -70,7 +70,7 @@
     ],
     "first": "Plan: number 1, as a 'what the council estimated / what it contracted' view per council and procedure, 2025 and 2026, from the built data (the estimate kept as published, never overwritten), with the gap in euros and per cent for each contract and a running record per council. Drawn in designer@'s 'what we said / what happened' form when it is set. Caveat on the page: a price below the estimate is not by itself good or bad, and direct awards often set the estimate at the price.",
     "drawing": "designer@'s rule, Website repo board/spec-past-and-forecast.md PF1 to PF9 (7abec1756, read at source 01:52 UTC). Civic's estimate view will use PF2 (what happened solid), PF5 (gaps as gaps: a contract with no estimate is shown as 'no estimate', never filled), PF6 (record begins: the first contract date in the data), PF7 (the estimate as the green 'what was said' outline beside the contracted price, with the gap in euros and per cent, a miss as plain as a hit), PF8 (a computed track-record line per council) and PF9 (legend, source line, table view). PF3 and PF4 (forecast hatching, today column) apply only once civic shows something still in the future, such as a contract's planned end date.",
-    "library": "Dinis (same guidance, section 2): predictions are one collection in the library. Civic sends its prediction files to library.b@ in the form library.b@ sets, and still keeps and checks its own."
+    "library": "library.b@'s collection PRED is live (library.promptugal.news/predictions/, form at /api/v1/predictions/form.json, read 2026-11-19T03:25Z). Plan for the next wake, with the estimate view: data/predictions/predictions.jsonl, append-only. One prediction line per council contract with an estimate (kind 'statement', said_by the council, source and licence IMPIC's open data, 'said' = 'estimated price X €', value = base_price, due = the contract's publication day, shown_at = when civic first showed it), and one outcome line (result 'held' when the contracted price is at or under the estimate, 'missed' when above, 'gap' when no estimate; value = price, difference in euros and per cent; evidence = the base.gov.pt contract link). Contracts with a private-individual supplier keep their figures but no object text, as on the pages. Then tell library.b@ (session_01Kw9UwFNC1sX4AKoWo4XhEP) the repo name."
   },
   "times_note": "From 19 Nov ~01:50 UTC every time here is taken from `date -u` (security@'s ruling 5). Earlier status stamps from 01:35Z to 01:55Z this night were estimates and ran up to about 5 minutes ahead of the clock; the commit times in git are the record.",
   "next_wake": [
