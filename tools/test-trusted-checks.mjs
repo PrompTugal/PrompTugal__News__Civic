@@ -214,6 +214,48 @@ test('the trusted step turns attributes off and its git version check fails clos
   const old = fake('git version 2.41.0'), odd = fake('git version x.y'), none = fake(''), ok = fake('git version 2.56.1');
   return /older than 2\.42/.test(old.stderr) && /unreadable/.test(odd.stderr) && /unreadable/.test(none.stderr) && /passed/.test(ok.stdout) ? true : `old ${old.stderr} | odd ${odd.stderr} | none ${none.stderr} | ok ${ok.stdout}${ok.stderr}`;
 });
+// Control 10 (security@'s ed70bd996): the workflow's own symlinks step, run in throw-away repositories.
+const SYMSTEP = (() => {
+  const L = readFileSync('.github/workflows/pages.yml', 'utf8').split('\n');
+  const at = L.findIndex(l => l.trim() === '- id: symlinks'); if (at < 0) throw new Error('no symlinks step in pages.yml');
+  const r = L.findIndex((l, i) => i > at && l.trim() === 'run: |'); const ind = L[r].indexOf('run') + 2;
+  const out = []; for (let i = r + 1; i < L.length; i++) { if (L[i].trim() && L[i].search(/\S/) < ind) break; out.push(L[i].slice(ind)); }
+  return out.join('\n');
+})();
+const sym = (r, A) => { const after = r.git('rev-parse', 'HEAD'); r.git('checkout', '-q', '-f', after);
+  const p = spawnSync('bash', ['-e', '-c', SYMSTEP], { cwd: r.d, env: { ...r.env, A, AFTER: after }, encoding: 'utf8' }); return { status: p.status, text: p.stdout + p.stderr }; };
+const link = (r, name, target = 'a.txt') => { mkdirSync(join(r.d, name, '..'), { recursive: true }); execFileSync('ln', ['-s', target, join(r.d, name)]); };
+test('10: a pushed symlink fails', r => {
+  link(r, 'docs/link'); r.commit(`a symlink${AGENT}`);
+  const x = sym(r, r.release);
+  return x.status !== 0 && /adds or changes a symlink: docs\/link/.test(x.text) && /checkout holds a symlink: docs\/link/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: a symlink listed in A\'s exceptions passes', r => {
+  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', reason: 'test: a listed link' }]) });
+  link(r, 'docs/link'); r.commit(`the listed symlink${AGENT}`);
+  const x = sym(r, a);
+  return x.status === 0 && /no symlinks/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: a symlink listed only in the pushed tree fails', r => {
+  r.commit(`exceptions pushed${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'docs/link', reason: 'pushed' }]) });
+  link(r, 'docs/link'); r.commit(`the symlink${AGENT}`);
+  const x = sym(r, r.release);
+  return x.status !== 0 && /adds or changes a symlink: docs\/link/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: a symlink whose name holds a newline cannot pass on part of its name', r => {
+  const a = r.commit(`exceptions${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'evil', reason: 'test' }, { path: 'x', reason: 'test' }]) });
+  link(r, 'evil\nx'); r.commit(`newline name${AGENT}`);
+  const x = sym(r, a);
+  return x.status !== 0 && /symlinks refused/.test(x.text) ? true : `exit ${x.status}: ${x.text}`;
+});
+test('10: a symlink deleted in the range does not fail, and an exception without a reason does not count', r => {
+  link(r, 'old/link'); const a0 = r.commit(`old link${AGENT}`, { 'scripts/symlink-exceptions.json': JSON.stringify([{ path: 'old/link', reason: 'test' }, { path: 'noreason' }]) });
+  r.git('rm', '-q', 'old/link'); r.commit(`remove it${AGENT}`);
+  const ok = sym(r, a0);
+  link(r, 'noreason'); r.commit(`unexplained${AGENT}`);
+  const bad = sym(r, a0);
+  return ok.status === 0 && bad.status !== 0 && /noreason/.test(bad.text) ? true : `ok ${ok.status} ${ok.text} | bad ${bad.status} ${bad.text}`;
+});
 // And the control: a clean push passes, with A's checker.
 test('a signed push passes', r => {
   r.commit(`fine${AGENT}`, { 'k.txt': '12' });

@@ -162,6 +162,39 @@ jobs:
           # A's leak scan runs from the temporary folder once it takes --root (civic 19 Nov 2026); an older one runs in place
           if grep -q -- "--root" "$t/leak-scan.mjs"; then leak="$t/leak-scan.mjs"; else rm -f scripts/leak-scan.mjs; cp "$t/leak-scan.mjs" scripts/leak-scan.mjs; leak=scripts/leak-scan.mjs; fi
           { echo "sha=$A"; echo "from=$A"; echo "node=$node_bin"; echo "commits=$t/check-commits.mjs"; echo "leak=$leak"; } >> "$GITHUB_OUTPUT"
+      - id: symlinks
+        name: No symlinks in A..AFTER or in the checkout (control 10)
+        # security@'s control 10 (ed70bd996): refuse any symlink (mode 120000) added or changed in any commit of A..AFTER, and any
+        # symlink in the checked-out tree; the downloaded site is vetted above. The only exceptions are whole paths listed in
+        # scripts/symlink-exceptions.json in A's tree ([{"path": ..., "reason": ...}]), so a new one counts from the next anchor.
+        # Paths are read NUL-separated and compared as whole strings (events.b@'s 44d5402), never line by line.
+        env:
+          AFTER: ${{ github.sha }}
+          A: ${{ steps.anchor.outputs.sha }}
+        run: |
+          allowed=()
+          if git cat-file -e "$A:scripts/symlink-exceptions.json" 2>/dev/null; then
+            mapfile -d '' allowed < <(git cat-file blob "$A:scripts/symlink-exceptions.json" | jq -j '.[] | select((.path|type) == "string" and (.reason|type) == "string" and (.reason|length) > 0) | .path + "\u0000"')
+          fi
+          ok() { local p=$1 x; for x in "${allowed[@]}"; do [ "$x" == "$p" ] && return 0; done; return 1; }
+          bad=0
+          while IFS= read -r c; do
+            mapfile -d '' f < <(git diff-tree -r -z --raw -m --no-commit-id --root "$c")
+            i=0
+            while [ $i -lt ${#f[@]} ]; do
+              meta=${f[$i]}; i=$((i+1))
+              [[ $meta == :* ]] || continue
+              read -r _ newmode _ _ status <<< "${meta#:}"
+              path=${f[$i]}; i=$((i+1))
+              if [[ $status == R* || $status == C* ]]; then path=${f[$i]}; i=$((i+1)); fi
+              if [ "$newmode" = 120000 ] && [[ $status != D* ]] && ! ok "$path"; then printf 'commit %s adds or changes a symlink: %q\n' "${c:0:7}" "$path" >&2; bad=1; fi
+            done
+          done < <(git rev-list "$A..$AFTER")
+          while IFS= read -r -d '' l; do
+            l=${l#./}; if ! ok "$l"; then printf 'the checkout holds a symlink: %q\n' "$l" >&2; bad=1; fi
+          done < <(find . -path ./.git -prune -o -type l -print0)
+          if [ $bad != 0 ]; then echo "symlinks refused (control 10)" >&2; exit 1; fi
+          echo "no symlinks in A..AFTER or in the checkout"
       - name: Every commit in A..AFTER carries an Agent trailer (A's checker)
         # From A, not github.event.before: GitHub drops a pending run when a newer one queues, and the surviving run's
         # "before" is the dropped push's head, never checked (specialist.code@ finding 3b; security@'s fourth ruling).
