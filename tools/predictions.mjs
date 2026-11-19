@@ -5,7 +5,7 @@
 // Append only: a contract already in the file is never written again, a line is never edited or removed. A correction would
 // be a new line naming the one it corrects (`corrects`). No private individual is named; no contract text is copied.
 // Run:  node tools/predictions.mjs   (after tools/extract-base.mjs refreshes data/procurement/base-<year>.json)
-import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync, readdirSync } from 'node:fs';
 const SITE = 'civic.promptugal.news', PAGE = `https://${SITE}/money/estimates/`, FILE = 'data/predictions/predictions.jsonl';
 const LIC = { name: 'Outra (Domínio Público), as dados.gov.pt publishes it for this dataset', url: 'https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/' };
 const now = new Date().toISOString().slice(0, 16) + 'Z';
@@ -38,9 +38,12 @@ for (const y of [2025, 2026]) {
 }
 // The councils' notices (anúncios, 19 Nov 2026): the base price published in the Diário da República before any bid, the
 // outcome when a contract citing the notice reaches the Portal BASE. An open notice gets its prediction line now and its
-// outcome line at a later run, once its contract is published (an outcome is written once, never edited).
+// outcome line at a later run, once its contract is published (an outcome is written once, never edited). A notice whose
+// contract was already published when it was first recorded (all of 2025's, and 2026's closed ones on 19 Nov 2026) is a
+// back-filled record: the council's figure was public before the outcome, but civic recorded it after. Only notices recorded
+// while their bids were open are forecasts on record before their outcome; /money/estimates/ says which.
 const NLIC = { name: LIC.name, url: 'https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/' };
-const NOTICES = ['data/procurement/notices-2025.json', 'data/procurement/notices-2026.json'];
+const NOTICES = readdirSync('data/procurement').filter(f => /^notices-20\d{2}\.json$/.test(f)).sort().map(f => `data/procurement/${f}`);   // every year's file
 const DRU = /^https:\/\/files\.diariodarepublica\.pt\/[A-Za-z0-9_\/.-]{1,200}\.pdf$/, BGU = /^https:\/\/www\.base\.gov\.pt\/Base4\/pt\/detalhe\/\?type=contratos&id=\d{1,12}$/;
 const PAID = /cess[aã]o|direito (?:de |do )?(?:uso|explora)|concess[aã]o/i;
 for (const NF of NOTICES) { if (!existsSync(NF)) continue;

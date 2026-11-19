@@ -99,7 +99,8 @@ for (const f of files.filter(f => f.endsWith('.html'))) {
 }
 // civic.b@PrompTugal.dinis (2026-11-19, security pre-review): the councils' notices keep a fixed set of fields, only
 // validated links (Diário da República PDFs, Portal BASE records), no tender-platform links, and no text where a person may be named.
-for (const NF of ['data/procurement/notices-2025.json', 'data/procurement/notices-2026.json']) if (existsSync(NF)) {
+// every year's file, found by name, so a new year is never left unchecked (post-review, 19 Nov 2026)
+for (const NF of readdirSync('data/procurement').filter(f => /^notices-20\d{2}\.json$/.test(f)).sort().map(f => `data/procurement/${f}`)) {
   const N = JSON.parse(readFileSync(NF, 'utf8')), NB = NF.split('/').pop();
   const KEYS = new Set(['n', 'council', 'kind', 'published', 'deadline', 'procedure', 'types', 'what', 'base_price', 'base_stated', 'dr', 'changes', 'base_price_last', 'contracts']);
   const CKEYS = new Set(['id', 'price', 'base_price', 'published', 'signed', 'url']);
