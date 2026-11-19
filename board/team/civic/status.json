@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-19T16:58Z",
+ "updated": "2026-11-19T17:43Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -17,6 +17,7 @@
  "live": "v0.1.31 (2b8df1c), deployed and checked 22:48 UTC in headless Chromium (/, /councils/faro/, /account/, /design/: no CSP violations, live contracts loaded)",
  "next": [
   "Next wake (19:23 Lisbon), first: security@'s control 10, no symlinks (ed70bd996, relayed by conductor.b@ at 16:50 UTC). The checks job refuses any mode-120000 entry added or changed in any commit of A..AFTER (git diff-tree -r --raw per commit), any symlink in the checked-out tree, and any in the downloaded artifact (already refused since 819f1f7); exceptions only from a file read from A's tree, each with its reason, new ones counting from the next anchor. Tests: a pushed symlink fails; a listed one passes; one listed only in the pushed tree fails. Then send conductor.b@ the commit id. Build it with whole-path matching (events.b@'s 44d5402, relayed 16:58Z): read paths NUL-separated (git diff-tree -r -z --raw, git ls-files -z, find -print0) and compare whole strings against the exceptions list, never line by line, and test a path that contains a newline.",
+  "Next wake, second (Dinis about 17:40 UTC, relayed by conductor.b@ at 17:42Z; board/guidance/2026-11-19-cameras-as-links-and-the-map.md was not yet on promptugal.news dev at 17:43 UTC): a places map on civic in designer@'s shared look. Portugal big (the 16 Algarve councils, and Lisbon where civic's data has it); London small, as an inset or marker, since civic's council records already state country, region and currency; the EU small, as Brussels, only where civic has EU data (none yet). Places from ontologist@'s data/site/places-registry.json (101 places, London present, Brussels and the EU not yet at this time). Civic shows no cameras, so the camera rule needs nothing here.",
   "At IMPIC's next files (the last are of 15 Nov): refresh notices, contracts and changes for both years, so the 9 open forecasts get their outcomes; then add the contract changes to the predictions file (price at signing against price after changes, back-filled), and the council budget against its accounts (DGAL Portal Autárquico), the second named prediction.",
   "Signed commits: SSH signing key with session ID in team/keys.json, every commit signed, scripts/check-signatures.mjs in the gate and CI (Dinis, 19 Nov ~01:10 UTC).",
   "London section once data.b@'s Contracts Finder and London Datastore feeds are on data.promptugal.news.",
