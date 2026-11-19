@@ -41,12 +41,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Tests of the trusted-check controls (7 widened, 8, the CI override refusal, the shallow refusal)
-        run: node tools/test-trusted-checks.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}
       - run: node scripts/validate.mjs
+      - name: Tests of the trusted-check controls 6 to 9 (they need the built site)
+        run: node tools/test-trusted-checks.mjs
       - name: The built site, for the security job to scan as data
         uses: actions/upload-artifact@v4
         with:
@@ -117,26 +117,38 @@ jobs:
           for f in scripts/check-commits.mjs scripts/leak-scan.mjs; do
             if ! git cat-file -e "$A:$f" 2>/dev/null; then echo "the anchor A has no copy of $f: refused" >&2; exit 1; fi
           done
-          echo "sha=$A" >> "$GITHUB_OUTPUT"
-          echo "from=$A" >> "$GITHUB_OUTPUT"
-          mkdir -p scripts
-          rm -rf scripts/check-commits.mjs scripts/commit-exemptions.json scripts/leak-scan.mjs
-          git show "$A:scripts/check-commits.mjs" > scripts/check-commits.mjs
-          git show "$A:scripts/leak-scan.mjs" > scripts/leak-scan.mjs
+          for p in scripts/check-commits.mjs scripts/commit-exemptions.json scripts/leak-scan.mjs; do
+            if [ -L "$p" ]; then echo "$p is a symlink: refused" >&2; exit 1; fi
+          done
+          node_bin=$(readlink -f "$(command -v node)")
+          if [ ! -x "$node_bin" ]; then echo "no node binary" >&2; exit 1; fi
+          t="${RUNNER_TEMP:-$PWD/.trusted}/trusted"; rm -rf "$t"; mkdir -p "$t"
+          git show "$A:scripts/check-commits.mjs" > "$t/check-commits.mjs"
+          git show "$A:scripts/leak-scan.mjs" > "$t/leak-scan.mjs"
+          # the commit check reads its exemptions from scripts/ in the checkout: A's copy, or none
+          mkdir -p scripts; rm -f scripts/commit-exemptions.json
           if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git show "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
+          # A's leak scan runs from the temporary folder once it takes --root (civic 19 Nov 2026); an older one runs in place
+          if grep -q -- "--root" "$t/leak-scan.mjs"; then leak="$t/leak-scan.mjs"; else rm -f scripts/leak-scan.mjs; cp "$t/leak-scan.mjs" scripts/leak-scan.mjs; leak=scripts/leak-scan.mjs; fi
+          { echo "sha=$A"; echo "from=$A"; echo "node=$node_bin"; echo "commits=$t/check-commits.mjs"; echo "leak=$leak"; } >> "$GITHUB_OUTPUT"
       - name: Every commit in A..AFTER carries an Agent trailer (A's checker)
         # From A, not github.event.before: GitHub drops a pending run when a newer one queues, and the surviving run's
         # "before" is the dropped push's head, never checked (specialist.code@ finding 3b; security@'s fourth ruling).
         env:
           AFTER: ${{ github.sha }}
           FROM: ${{ steps.trusted.outputs.from }}
-        run: node scripts/check-commits.mjs "$FROM" "$AFTER"
+          NODE_BIN: ${{ steps.trusted.outputs.node }}
+          CHECKER: ${{ steps.trusted.outputs.commits }}
+        run: '"$NODE_BIN" "$CHECKER" "$FROM" "$AFTER"'
       - uses: actions/download-artifact@v4
         with:
           name: site-for-checks
           path: _site
-      - name: Leak scan of the tracked files and the built site (the trusted copy)
-        run: node scripts/leak-scan.mjs
+      - name: Leak scan of the tracked files and the built site (A's copy)
+        env:
+          NODE_BIN: ${{ steps.trusted.outputs.node }}
+          LEAK: ${{ steps.trusted.outputs.leak }}
+        run: '"$NODE_BIN" "$LEAK" --root "$GITHUB_WORKSPACE"'
   deploy:
     needs: [build, checks]
     if: needs.build.outputs.deploy == 'true'

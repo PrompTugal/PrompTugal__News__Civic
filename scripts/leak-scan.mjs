@@ -20,11 +20,15 @@
 // when those files hold no private part. Any change to the allowlist below must
 // be narrow (one path, one kind) and say why.
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+// --root <dir> names the repository to scan, so CI can run a trusted copy of this file from outside the checkout
+// (security@'s control 9, 19 Nov 2026); without it, the repository is the one this file sits in.
+const rootArg = process.argv.indexOf('--root');
+const root = rootArg > 0 ? resolve(process.argv[rootArg + 1] || '') : join(dirname(fileURLToPath(import.meta.url)), '..');
+if (rootArg > 0 && !existsSync(join(root, '.git'))) { console.error(`leak-scan: --root ${root} is not a repository`); process.exit(1); }
 
 // Built from parts so that this file does not match its own patterns.
 const DASHES = '-'.repeat(5);

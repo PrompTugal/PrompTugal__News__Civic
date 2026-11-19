@@ -28,21 +28,24 @@ function repo() {
   const git = (...a) => execFileSync('git', a, { cwd: d, env, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
   const commit = (msg, files = {}, extra = {}) => { for (const [f, c] of Object.entries(files)) { mkdirSync(join(d, f, '..'), { recursive: true }); writeFileSync(join(d, f), c); }
     git('add', '-A'); execFileSync('git', ['commit', '-q', '--allow-empty', '-m', msg], { cwd: d, env: { ...env, ...extra } }); return git('rev-parse', 'HEAD'); };
+  const temp = mkdtempSync(join(tmpdir(), 'civic-runner-temp-'));
   git('init', '-q', '-b', 'dev');
   const base = commit(`base${AGENT}`, { 'scripts/check-commits.mjs': CHECKER, 'scripts/leak-scan.mjs': "console.log('OK')\n" });
   const release = commit(`release${AGENT}`, { 'a.txt': '1' });
   git('tag', 'v0.1.0');
-  return { d, git, env, base, release, commit };
+  return { d, git, env, base, release, commit, temp };
 }
 // CI: the trusted step with the anchor A and AFTER, then A's checker over the range it chose. (The anchor step itself reads
 // GitHub's deployments API and cannot run here; each test hands the trusted step its A.)
 function ci(r, A, after = r.git('rev-parse', 'HEAD'), extraEnv = {}) {
   r.git('checkout', '-q', '-f', after);
   const out = join(r.d, '.gh-output'); writeFileSync(out, '');
-  const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: r.d, env: { ...r.env, A, AFTER: after, GITHUB_OUTPUT: out }, encoding: 'utf8' });
+  const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: r.d, env: { ...r.env, A, AFTER: after, GITHUB_OUTPUT: out, RUNNER_TEMP: r.temp }, encoding: 'utf8' });
   if (step.status !== 0) return { stage: 'step', status: step.status, text: step.stdout + step.stderr };
-  const o = Object.fromEntries(readFileSync(out, 'utf8').split('\n').filter(Boolean).map(l => l.split('=')));
-  const p = spawnSync('node', ['scripts/check-commits.mjs', o.from, after], { cwd: r.d, env: { ...r.env, CHECK_COMMITS_TRUSTED_BASE: r.base, ...extraEnv }, encoding: 'utf8' });
+  const o = Object.fromEntries(readFileSync(out, 'utf8').split('\n').filter(Boolean).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1)]));
+  // as CI runs it: the absolute node the step found, A's checker from the temporary folder, the checkout as the working folder
+  if (!o.node.startsWith('/') || !o.commits.startsWith(r.temp)) return { stage: 'step', status: 99, text: `node ${o.node} or checker ${o.commits} not as control 9 asks` };
+  const p = spawnSync(o.node, [o.commits, o.from, after], { cwd: r.d, env: { ...r.env, CHECK_COMMITS_TRUSTED_BASE: r.base, ...extraEnv }, encoding: 'utf8' });
   return { stage: 'check', status: p.status, text: p.stdout + p.stderr, from: o.from, sha: o.sha };
 }
 const expect = (x, stage, re) => x.status !== 0 && x.stage === stage && re.test(x.text) ? true : `${x.stage} exit ${x.status}: ${x.text.slice(0, 300)}`;
@@ -50,7 +53,7 @@ function test(name, fn) {
   let r;
   try { r = repo(); const why = fn(r); results.push(why === true ? [name, true] : [name, false, why]); }
   catch (e) { results.push([name, false, String(e.message).slice(0, 300)]); }
-  finally { if (r) rmSync(r.d, { recursive: true, force: true }); }
+  finally { if (r) { rmSync(r.d, { recursive: true, force: true }); rmSync(r.temp, { recursive: true, force: true }); } }
 }
 
 // Control 8: deleting the checker skips nothing.
@@ -123,10 +126,37 @@ test('6: a shallow clone is refused', r => {
   try {
     execFileSync('git', ['clone', '-q', '--depth', '1', '--no-local', `file://${r.d}`, s], { env: r.env, stdio: 'ignore' });
     const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: s, encoding: 'utf8' }).trim();
-    const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: s, env: { ...r.env, A: head, AFTER: head, GITHUB_OUTPUT: join(s, '.o') }, encoding: 'utf8' });
+    const step = spawnSync('bash', ['-e', '-c', STEP], { cwd: s, env: { ...r.env, A: head, AFTER: head, GITHUB_OUTPUT: join(s, '.o'), RUNNER_TEMP: r.temp }, encoding: 'utf8' });
     const p = spawnSync('node', ['scripts/check-commits.mjs', '', 'HEAD'], { cwd: s, env: { ...r.env, CHECK_COMMITS_TRUSTED_BASE: head }, encoding: 'utf8' });
     return step.status !== 0 && /shallow checkout refused/.test(step.stderr) && p.status === 1 && /refused on a shallow clone/.test(p.stderr) ? true : `step ${step.status} ${step.stderr} | check ${p.status} ${p.stderr}`;
   } finally { rmSync(s, { recursive: true, force: true }); }
+});
+// Control 9: a symlink on a checker path is refused, not followed.
+test('9: a symlink on a checker path is refused', r => {
+  r.git('rm', '-q', 'scripts/leak-scan.mjs'); execFileSync('ln', ['-s', '/etc/hostname', join(r.d, 'scripts/leak-scan.mjs')]);
+  r.commit(`symlink${AGENT}`);
+  return expect(ci(r, r.release), 'step', /scripts\/leak-scan\.mjs is a symlink: refused/);
+});
+// Control 9: the checks job runs no pushed code and takes nothing from the build job but its built site, so a pushed
+// build step that writes GITHUB_ENV or GITHUB_PATH (which act only within its own job) cannot change the result.
+test('9: the checks job takes nothing from the build job but the built site, and runs no checkout script', () => {
+  const y = readFileSync('.github/workflows/pages.yml', 'utf8'), at = y.indexOf('\n  checks:\n'), end = y.indexOf('\n  deploy:\n');
+  if (at < 0 || end < at) return 'no checks job before deploy';
+  const job = y.slice(at, end);
+  if (/needs\.build\.outputs|\$\{\{\s*env\./.test(job)) return 'the checks job reads the build job\'s outputs or env';
+  const runs = [...job.matchAll(/^\s+run: (.*)$/gm)].map(m => m[1]).filter(x => x !== '|');
+  if (runs.some(x => !/^'"\$NODE_BIN" "\$(CHECKER|LEAK)"/.test(x))) return `a one-line run step outside the trusted copies: ${runs.join(' | ')}`;
+  if (/\bnode (scripts|tools)\//.test(job) || /\bnpm\b|\bnpx\b/.test(job)) return 'the checks job runs a script from the checkout';
+  if (!/GIT_NO_REPLACE_OBJECTS: '1'/.test(job) || !/NODE_OPTIONS: ''/.test(job)) return 'replace objects or NODE_OPTIONS not cleared';
+  if (!/\n  deploy:\n    needs: \[build, checks\]/.test(y)) return 'deploy does not wait for the checks job';
+  return true;
+});
+// The leak scan scans the repository --root names, so A's copy can run from the temporary folder.
+test('9: the leak scan scans the folder --root names', r => {
+  const copy = join(r.temp, 'leak-scan.mjs'); writeFileSync(copy, readFileSync('scripts/leak-scan.mjs'));
+  const bad = spawnSync('node', [copy, '--root', r.temp], { encoding: 'utf8', env: r.env });
+  const good = spawnSync('node', [copy, '--root', process.cwd()], { encoding: 'utf8', env: r.env });
+  return bad.status === 1 && /is not a repository/.test(bad.stderr) && good.status === 0 && /^OK \(/.test(good.stdout) ? true : `bad ${bad.status} ${bad.stderr} | good ${good.status} ${good.stdout}${good.stderr}`;
 });
 // And the control: a clean push passes, with A's checker.
 test('a signed push passes', r => {
