@@ -193,6 +193,27 @@ test('9: the leak scan catches a secret in a binary file and refuses a symlink i
   const link = spawnSync('node', [copy, '--root', site], { encoding: 'utf8', env: r.env });
   return bin.status === 1 && /img\.bin:\d+: private key block/.test(bin.stderr) && link.status === 1 && /_site\/link: a symlink/.test(link.stderr) ? true : `binary ${bin.status} ${bin.stderr} | link ${link.status} ${link.stderr}`;
 });
+// cyber.b@'s finding (4dd8500): every run step of the workflow parses as bash (a stray quote breaks a run)
+test('every run step in the workflow is valid bash', () => {
+  const L = readFileSync('.github/workflows/pages.yml', 'utf8').split('\n'), steps = [];
+  for (let i = 0; i < L.length; i++) {
+    const m = /^(\s*)(?:- )?run: (.*)$/.exec(L[i]); if (!m) continue;
+    if (m[2] === '|') { const ind = m[1].length + 2, b = []; for (let j = i + 1; j < L.length; j++) { if (L[j].trim() && L[j].search(/\S/) < ind) break; b.push(L[j].slice(ind)); } steps.push([i + 1, b.join('\n')]); }
+    else if (/^'.*'$/.test(m[2])) steps.push([i + 1, m[2].slice(1, -1).replace(/''/g, "'")]);
+    else steps.push([i + 1, m[2]]);
+  }
+  if (steps.length < 8) return `only ${steps.length} run steps found`;
+  const bad = steps.map(([n, src]) => [n, spawnSync('bash', ['-n', '-c', src], { encoding: 'utf8' })]).filter(([, p]) => p.status !== 0);
+  return bad.length ? bad.map(([n, p]) => `line ${n}: ${p.stderr.trim()}`).join(' | ') : true;
+});
+// events.b@'s and videos.b@'s findings: attributes are off, and the git version check refuses what it cannot read
+test('the trusted step turns attributes off and its git version check fails closed', r => {
+  if (!/export GIT_ATTR_SOURCE=\$empty/.test(STEP) || !/core\.attributesFile \/dev\/null/.test(STEP) || /git show "\$A:/.test(STEP)) return 'attributes are not turned off, or a trusted file is read with git show';
+  const check = STEP.split('\n').filter(l => /^\s*(v=\$\(git --version|if ! \[\[ \$ma|if \[ "\$ma" -lt 2 \])/.test(l)).join('\n');
+  const fake = v => spawnSync('bash', ['-e', '-c', `git() { echo "${v}"; }\n${check}\necho passed`], { encoding: 'utf8' });
+  const old = fake('git version 2.41.0'), odd = fake('git version x.y'), none = fake(''), ok = fake('git version 2.56.1');
+  return /older than 2\.42/.test(old.stderr) && /unreadable/.test(odd.stderr) && /unreadable/.test(none.stderr) && /passed/.test(ok.stdout) ? true : `old ${old.stderr} | odd ${odd.stderr} | none ${none.stderr} | ok ${ok.stdout}${ok.stderr}`;
+});
 // And the control: a clean push passes, with A's checker.
 test('a signed push passes', r => {
   r.commit(`fine${AGENT}`, { 'k.txt': '12' });

@@ -124,6 +124,15 @@ jobs:
           AFTER: ${{ github.sha }}
           A: ${{ steps.anchor.outputs.sha }}
         run: |
+          # events.b@'s finding (e774ff9): a pushed .gitattributes is still read from the index, so attributes are turned off
+          # (GIT_ATTR_SOURCE = the empty tree, git 2.42 or later, numeric check first so a bad version fails closed: videos.b@'s
+          # 7d1e31b), core.attributesFile is /dev/null, and every trusted file is read with git cat-file blob (no filters, no textconv)
+          v=$(git --version | sed -n 's/^git version \([0-9]*\)\.\([0-9]*\).*/\1 \2/p'); ma=${v% *}; mi=${v#* }
+          if ! [[ $ma =~ ^[0-9]+$ && $mi =~ ^[0-9]+$ ]]; then echo "git version unreadable: refused" >&2; exit 1; fi
+          if [ "$ma" -lt 2 ] || { [ "$ma" -eq 2 ] && [ "$mi" -lt 42 ]; }; then echo "git $ma.$mi is older than 2.42: refused" >&2; exit 1; fi
+          empty=$(git hash-object -t tree /dev/null)
+          echo "GIT_ATTR_SOURCE=$empty" >> "${GITHUB_ENV:-/dev/null}"; export GIT_ATTR_SOURCE=$empty
+          git config --local core.attributesFile /dev/null
           if [ "$(git rev-parse --is-shallow-repository)" != false ]; then echo "shallow checkout refused" >&2; exit 1; fi
           if [ -L scripts ] || { [ -e scripts ] && [ ! -d scripts ]; }; then echo "scripts/ is not a plain folder" >&2; exit 1; fi
           if ! printf '%s' "$A" | grep -Eq '^[0-9a-f]{40}$' || printf '%s' "$A" | grep -Eq '^0+$'; then echo "no anchor A: refused" >&2; exit 1; fi
@@ -138,17 +147,17 @@ jobs:
           node_bin=$(readlink -f "$(command -v node)")
           if [ ! -x "$node_bin" ]; then echo "no node binary" >&2; exit 1; fi
           t="${RUNNER_TEMP:-$PWD/.trusted}/trusted"; rm -rf "$t"; mkdir -p "$t"
-          git show "$A:scripts/check-commits.mjs" > "$t/check-commits.mjs"
-          git show "$A:scripts/leak-scan.mjs" > "$t/leak-scan.mjs"
+          git cat-file blob "$A:scripts/check-commits.mjs" > "$t/check-commits.mjs"
+          git cat-file blob "$A:scripts/leak-scan.mjs" > "$t/leak-scan.mjs"
           # the commit check reads its exemptions from scripts/ in the checkout: A's copy, or none
           mkdir -p scripts; rm -f scripts/commit-exemptions.json
-          if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git show "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
+          if git cat-file -e "$A:scripts/commit-exemptions.json" 2>/dev/null; then git cat-file blob "$A:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
           # every config the checks read comes from A too (signals.b@'s finding, 75a59d0): git's own .gitattributes and .gitignore
           # every pushed .gitattributes goes, at any depth (live.b@'s finding); A's own root files come back
           find . -path ./.git -prune -o -name .gitattributes -print0 | xargs -0 -r rm -f
           for f in .gitattributes .gitignore; do
             if [ -L "$f" ]; then echo "$f is a symlink: refused" >&2; exit 1; fi
-            rm -f "$f"; if git cat-file -e "$A:$f" 2>/dev/null; then git show "$A:$f" > "$f"; fi
+            rm -f "$f"; if git cat-file -e "$A:$f" 2>/dev/null; then git cat-file blob "$A:$f" > "$f"; fi
           done
           # A's leak scan runs from the temporary folder once it takes --root (civic 19 Nov 2026); an older one runs in place
           if grep -q -- "--root" "$t/leak-scan.mjs"; then leak="$t/leak-scan.mjs"; else rm -f scripts/leak-scan.mjs; cp "$t/leak-scan.mjs" scripts/leak-scan.mjs; leak=scripts/leak-scan.mjs; fi
