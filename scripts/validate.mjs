@@ -85,6 +85,15 @@ for (const f of files.filter(f => f.endsWith('.html'))) {
     if (name === 'script' && !/^\/assets\/[a-z0-9\/._-]+\.js$/i.test(attrs.src || '')) fail(`${f}: a <script> that is not an external file under /assets/ (${attrs.src || 'inline'})`);
   }
 }
+// civic.b@PrompTugal.dinis (2026-11-19): the sites bar 1.1.0, vendored byte for byte and pinned (scripts/sites-bar-pin.mjs);
+// the built copies must match too. The registry snapshot must be there; a stale one is a warning (the bar still works).
+{
+  const { pinProblems, PIN, blobId } = await import('./sites-bar-pin.mjs');
+  for (const f of pinProblems()) fail(`${f}: not the pinned sites bar 1.1.0 file (never patch the vendored bar)`);
+  for (const [f, id] of Object.entries(PIN)) if (f.startsWith('src/')) { const b = f.replace(/^src\//, '_site/'); if (!existsSync(b) || blobId(readFileSync(b)) !== id) fail(`${b}: the built copy is not the pinned file`); }
+  if (!existsSync('data/sites-registry.json')) fail('data/sites-registry.json missing: the sites bar has no last good registry');
+  else { const age = (Date.now() - Date.parse(JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).read_at)) / 864e5; if (!(age <= 14)) console.warn(`WARNING data/sites-registry.json is ${Math.round(age)} days old`); }
+}
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {

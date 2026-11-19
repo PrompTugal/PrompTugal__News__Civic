@@ -3,20 +3,19 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-18T23:55Z",
+  "updated": "2026-11-19T01:20Z",
   "run": "2026-11-18 22:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
   "fixes": {
     "1_session_key": "blocked: the permission system refused running pki-agent.mjs (help and keygen). Nothing signed. board/keys.json lists civic.b-promptugal as pending.",
     "2_commit_check": "done: scripts/check-commits.mjs accepts role@PrompTugal.person as well as role@AgentiCCells.person. Commits from now carry Agent: civic.b@PrompTugal.dinis.",
-    "3_masthead": "Superseded by Dinis ~23:45 UTC (Website repo board/guidance/2026-11-18-billing-only-on-the-main-site.md): only promptugal.news bills. The reading meter is removed from civic (meter.js, the sg-meter core, api/v1/billing/meter.json); the masthead chip says 'Free to read' and links /account/, which now explains that every page is free. The sites rail stays.",
+    "3_masthead": "Superseded by Dinis ~23:45 UTC (Website repo board/guidance/2026-11-18-billing-only-on-the-main-site.md): only promptugal.news bills. The reading meter is removed from civic (meter.js, the sg-meter core, api/v1/billing/meter.json); the masthead chip says 'Free to read' and links /account/, which now explains that every page is free. The sites rail gave way to the shared sites bar 1.1.0 (19 Nov).",
     "4_ipma_free": "nothing to do: no page on this site is built on IPMA data. The rule is written in scripts/generate.mjs next to pageType.",
     "5_observability": "done: obs.js on every page, lane civic."
   },
   "live": "v0.1.31 (2b8df1c), deployed and checked 22:48 UTC in headless Chromium (/, /councils/faro/, /account/, /design/: no CSP violations, live contracts loaded)",
   "next": [
-    "Install the shared sites bar when conductor.b@ publishes it (vendored, pinned by version and sha256, registry rendered with escaping, https *.promptugal.news only), replacing the current rail.",
     "London section once data.b@'s Contracts Finder and London Datastore feeds are on data.promptugal.news.",
     "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
     "Storm items 1 and 2: /cases/storm-charles/.",
@@ -51,5 +50,10 @@
   "preview": "Dinis ~22:00 UTC, relayed by conductor.b@: /preview.svg at each build, an infographic of civic's own numbers with provenance and licence, plus /preview.png. Done in v0.1.28: /preview.svg (1200x630, six figures: 3,396 council contracts in 2026, 304.3 M€ with 51% direct awards, 177 firms at 3+ councils, 14 municipal companies, 9/16 council sites read, 5 guides; source IMPIC open data read 17 Nov 2026, Outra (Domínio Público); our calculation CC BY 4.0), /api/v1/preview.json with the same figures and sources, /preview.png rendered by tools/preview-png.mjs, og:image on every page. /version.json current. Shared sites bar: waiting for conductor.b@ to publish it.",
   "london": "Dinis ~22:20 UTC (Website repo board/guidance/2026-11-18-london.md, read at source 22:25 UTC): London is the first place beyond Portugal. Civic's part: (1) done now: every council record in the API says its country (PT, Portugal), region and currency, so a place is not assumed Portuguese; (2) when data.b@'s UK feeds land (London Datastore, Contracts Finder, data.police.uk area totals, London Air Quality Network), a London section: public contracts of the London boroughs and the GLA from Contracts Finder (Open Government Licence, attributed), with the same rules as the Algarve (public bodies and companies only, no private individuals). Checked 22:27 UTC: no UK source on data.promptugal.news yet.",
   "billing": "None on civic (Dinis, 18 Nov ~23:45 UTC). Civic may show any public data with its licence and provenance.",
-  "releases": "Every commit is a release with a tag (Dinis, same guidance). The Pages workflow already tags each deployed head; civic now pushes one commit at a time so every commit gets its own release and tag."
+  "releases": "Every commit is a release with a tag (Dinis, same guidance). The Pages workflow already tags each deployed head; civic now pushes one commit at a time so every commit gets its own release and tag.",
+  "sites_bar": "sites bar 1.1.0 installed (Dinis, 18 Nov ~22:00 UTC, Website repo board/guidance/2026-11-18-the-sites-bar.md; cleared by conductor.b@ 19 Nov 00:55 UTC after security@'s go in 90dfdd3baf). The three files vendored byte for byte (sha256s checked against conductor.b@'s list and the registry; pinned by git blob id in scripts/sites-bar-pin.mjs, checked before the renderer is imported and by the gate). Registry read at build, last good copy in data/sites-registry.json (sites only). Bar first in <body>, CSS in <head>, JS deferred from this host. Replaces civic's own rail. CSP: the 13 sister hosts listed exactly in img-src and connect-src (no wildcard). /preview.svg is now 320 by 180 from designer@'s template; the 1200 by 630 picture is /card.svg (rendered to /preview.png). Post-reviewed by civic.b.security@ (Sonnet): two medium and three low points fixed before commit.",
+  "notes_for_conductor": [
+    "GitHub Pages serves /preview.svg as image/svg+xml but sends no X-Content-Type-Options: nosniff, and a static site cannot add the header; the SVG has no script or external reference. Needs a host that sets headers, if nosniff is required.",
+    "The registry's preview_spec says /preview.svg is 1200 by 630; the install note and conductor.b@ say 320 by 180 from designer@'s template. Civic follows the install note (320 by 180) and keeps the 1200 by 630 picture at /card.svg. dev@ may want to align the registry text."
+  ]
 }

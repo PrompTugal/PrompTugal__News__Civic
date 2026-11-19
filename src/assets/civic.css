@@ -65,17 +65,11 @@ footer{border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);padd
 .tag{display:inline-block;font:.72rem var(--mono);border:1px solid var(--rule);padding:0 .4rem;margin:0 .2rem .2rem 0}
 @media (max-width:40rem){body{font-size:16px}nav.main{margin-left:0;width:100%}.strip .pay{margin-left:0}}
 /* The masthead from promptugal.news (civic.b@PrompTugal.dinis, 18 Nov 2026): the reading-credit chip ("Pay for what you read
-   · balance") and the sites rail at the right edge (Website's assets/top/top.css .em-net), in this site's tokens. */
+   · balance"), in this site's tokens; the sites rail gave way to the shared sites bar 1.1.0 on 19 Nov 2026. */
 .mast .tools{margin-left:0}
 .tool.meter{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:1px solid var(--ink);border-radius:999px;background:var(--card);color:var(--ink);font:400 .8rem/1 var(--mono);text-decoration:none;white-space:nowrap}
 .tool.meter .meter-label{display:inline;font-family:var(--sans);color:var(--muted)}
 .tool.meter:hover{border-color:var(--red)}
-.em-net{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:2px;padding:8px 6px;background:var(--paper);border:1px solid var(--rule);border-right:0;border-radius:10px 0 0 10px;font:600 12px var(--sans)}
-.em-net span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);align-self:center;margin-bottom:6px}
-.em-net a{color:var(--ink);text-decoration:none;padding:5px 6px;border-radius:6px}
-.em-net a:hover,.em-net a:focus-visible{background:var(--rule)}
-.em-net a[aria-current]{color:var(--green)}
-@media (max-width:1180px){.em-net{position:static;transform:none;flex-direction:row;flex-wrap:wrap;justify-content:center;border:0;border-bottom:1px solid var(--rule);border-radius:0;padding:4px 1rem}.em-net span{writing-mode:horizontal-tb;transform:none;margin:0 6px 0 0}}
 .nr-graph-fig svg{width:100%;height:auto;max-height:420px;border:1px solid var(--rule);background:var(--card)}
 .nr-graph-fig svg text{fill:var(--ink)}
 .tbl,.table{overflow-x:auto}

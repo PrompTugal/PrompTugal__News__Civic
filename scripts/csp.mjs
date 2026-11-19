@@ -6,14 +6,23 @@
 //   connect-src: data.promptugal.news (live contracts), promptugal.news (obs config_from), dev.send.sgraph.ai (obs append),
 //     ipapi.co and ipwho.is (the obs geo list as promptugal.news's obs.json gives it, read 18 Nov 2026). A new host there
 //     fails closed: obs.js records no place, and the page works.
+//   The sister sites' exact hosts in img-src and connect-src (no wildcard): the sites bar 1.1.0 shows each site's /preview.svg
+//     as an <img> and reads its /version.json; the list comes from the registry snapshot data/sites-registry.json, each
+//     host already checked by the vendored renderer (https, promptugal.news or a subdomain, no port).
 //   Limits of a meta policy: frame-ancestors, report-uri and sandbox are ignored, so there is no clickjacking protection here.
+import { readFileSync } from 'node:fs';
+const SISTERS = (() => { try {
+  return [...new Set(JSON.parse(readFileSync(new URL('../data/sites-registry.json', import.meta.url), 'utf8')).registry.sites
+    .map(x => new URL(x.url)).filter(u => u.protocol === 'https:' && !u.port && /^([a-z0-9-]+\.)*promptugal\.news$/.test(u.hostname)).map(u => 'https://' + u.hostname))].sort();
+} catch { return []; } })();
+const HOSTS = [...new Set(['https://promptugal.news', 'https://data.promptugal.news', ...SISTERS])];
 export const CSP = [
   "default-src 'self'",
   "script-src 'self'",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self'",
+  ["img-src 'self'", ...SISTERS].join(' '),
   "font-src 'self'",
-  "connect-src 'self' https://data.promptugal.news https://promptugal.news https://dev.send.sgraph.ai https://ipapi.co https://ipwho.is",
+  ["connect-src 'self'", ...HOSTS, 'https://dev.send.sgraph.ai', 'https://ipapi.co', 'https://ipwho.is'].join(' '),
   "frame-src 'self'",
   "worker-src 'none'",
   "manifest-src 'self'",

@@ -5,7 +5,9 @@
 import { readFileSync } from 'node:fs';
 import { CSP } from '../scripts/csp.mjs';
 const connect = (CSP.split('; ').find(d => d.startsWith('connect-src ')) || '').split(' ').slice(1);
-const allowed = new Set(connect.filter(x => x.startsWith('https://')).map(x => new URL(x).host));
+const exact = new Set(connect.filter(x => x.startsWith('https://') && !x.includes('*')).map(x => new URL(x).host));
+const wild = connect.filter(x => x.startsWith('https://*.')).map(x => x.slice('https://*'.length));   // e.g. '.promptugal.news'
+const allowed = { has: h => exact.has(h) || wild.some(w => h.endsWith(w)) };
 const own = JSON.parse(readFileSync(new URL('../src/assets/obs/obs.json', import.meta.url), 'utf8'));
 const need = new Map([[new URL(own.endpoint).host, 'obs endpoint'], [new URL(own.config_from).host, 'obs config_from'], ['data.promptugal.news', 'live contracts']]);
 const r = await fetch(own.config_from, { cache: 'no-cache' }); if (!r.ok) { console.error(`could not read ${own.config_from}: ${r.status}`); process.exit(2); }

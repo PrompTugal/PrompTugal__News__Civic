@@ -3,6 +3,7 @@
 // Written by civic@PrompTugal.dinis, 17 November 2026.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'node:fs';
 import { CSP_META } from './csp.mjs';
+import { render as renderSitesBar } from '../vendor/sites-bar/1.1.0/sites-bar-render.mjs';
 import { join, dirname } from 'node:path';
 
 const SITE = 'https://civic.promptugal.news';
@@ -99,7 +100,10 @@ const PROV_DEFAULT = {
 };
 // No billing on this site (Dinis, 18 Nov 2026 ~23:45 UTC, Website repo board/guidance/2026-11-18-billing-only-on-the-main-site.md:
 // "the billing only happens on the main site"): every page is free, the chip says so, and no reading meter is loaded.
-const SITES = [['Weather', 'https://weather.promptugal.news/'], ['Civic', 'https://civic.promptugal.news/'], ['Startups', 'https://startups.promptugal.news/'], ['Travel', 'https://travel.promptugal.news/'], ['Data', 'https://data.promptugal.news/']];
+// The PrompTugal sites bar 1.1.0 (dev@'s, vendored and pinned by sha256; Dinis, 18 Nov 2026, the sites bar guidance): rendered
+// once from the last good registry (scripts/build.mjs keeps it in data/sites-registry.json). If the renderer refuses the
+// registry it returns '' and the pages go out without a bar, never a hand-made one. It replaces civic's own sites rail.
+const SITES_BAR = (() => { try { return renderSitesBar(JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).registry, { here: 'civic.promptugal.news' }); } catch { return ''; } })();
 function page({ path, title, description, kicker, blocks, prov = {}, sources = [] }) {
   const navCur = '/' + (path.split('/')[1] ? path.split('/')[1] + '/' : '');
   const p = { ...PROV_DEFAULT, ...prov };
@@ -122,15 +126,14 @@ ${CSP_META}
 <meta property="og:image" content="${SITE}/preview.png">
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta name="twitter:card" content="summary_large_image">
-<script defer src="/assets/obs/obs.js"></script>
+${SITES_BAR ? '<link rel="stylesheet" href="/assets/sites-bar/1.1.0/sites-bar.css">\n<script defer src="/assets/sites-bar/1.1.0/sites-bar.js"></script>\n' : ''}<script defer src="/assets/obs/obs.js"></script>
 </head>
 <body>
-<header class="mast"><div class="wrap">
+${SITES_BAR}<header class="mast"><div class="wrap">
 <a class="brand" href="/" aria-label="PrompTugal.news Civic, front page"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="184" height="30"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="184" height="30"><span class="sub">Civic</span></a>
 <nav class="main" aria-label="Sections">${NAV.map(([h, t]) => `<a href="${h}"${h === navCur ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>
 <div class="tools" id="nr-tools"><a class="tool meter" id="nr-meter-chip" href="/account/" title="Every page here is free: no meter, no charge"><span class="meter-label">Free to read</span></a></div>
 </div></header>
-<nav class="em-net" aria-label="The PrompTugal.news sites"><span>Also from PrompTugal.news</span>${SITES.map(([n, u]) => `<a href="${u}"${n === 'Civic' ? ' aria-current="page"' : ' target="_blank" rel="noopener"'}>${n}</a>`).join('')}</nav>
 <div class="strip"><div class="wrap"><span><strong>Independent.</strong> Not a government or official site.</span><span>Every fact links its source and the date we read it.</span><span>Version __VERSION__</span></div></div>
 <main><div class="wrap">
 ${kicker ? `<p class="kicker">${esc(kicker)}</p>\n` : ''}<h1>${inlineHtml(title)}</h1>
@@ -578,7 +581,9 @@ export function generate() {
   ], prov: { code: 'scripts/generate.mjs writes these JSON files from data/ at every build, with the same numbers as the pages.' } });
 
   // the sites bar's preview (Dinis, 18 Nov 2026 ~22:00 UTC: an infographic of each site's own live numbers, with provenance
-  // and licence): /preview.svg at every build; /preview.png from it by tools/preview-png.mjs (a social card).
+  // and licence). /preview.svg is the sites bar's pop-up preview, 320 by 180, filled into designer@'s template
+  // (Website repo design/sites-bar/preview-template.svg.txt, as of 19 Nov 2026) with this site's accent from the registry.
+  // /card.svg is the 1200 by 630 picture; tools/preview-png.mjs renders it to /preview.png (the social card).
   {
     const xe = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     const mc = munis.companies.filter(m => m.nif).length;
@@ -606,8 +611,27 @@ ${cells}
 <text x="60" y="598" font-family="Arial,sans-serif" font-size="18" fill="#666">and the councils' own sites. Our calculation, CC BY 4.0. civic.promptugal.news, version __VERSION__.</text>
 </svg>
 `;
-    writeFileSync(join(OUT, 'preview.svg'), svg);
-    put('preview.json', { ...meta, about: 'The figures in /preview.svg, for the PrompTugal.news sites bar.', figures: figs.map(([value, label]) => ({ value, label })), sources: [baseSrc] });
+    writeFileSync(join(OUT, 'card.svg'), svg);
+    // the template's fields, all escaped; no script, no external reference, no font file (system fonts named only)
+    const accent = (() => { try { const a = JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).registry.sites.find(x => x.id === 'civic').accent; return /^#[0-9a-f]{6}$/i.test(a) ? a : '#121317'; } catch { return '#121317'; } })();
+    const small = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-labelledby="pt pd">
+  <title id="pt">Civic: public money and public services, explained</title>
+  <desc id="pd">${xe(figs.slice(0, 3).map(f => f.join(' ')).join('; '))}. Source: IMPIC open data (dados.gov.pt, Outra (Domínio Público)), read ${xe(day(BASE_SRC.read_on))}; our calculation, CC BY 4.0. civic.promptugal.news, version __VERSION__. Not an official site.</desc>
+  <rect width="320" height="180" rx="6" fill="#f6f3ec"/>
+  <rect x="0" y="0" width="320" height="4" fill="${accent}"/>
+  <text x="16" y="30" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2" fill="#666860">CIVIC · NOW</text>
+  <text x="16" y="84" font-family="Newsreader, Georgia, serif" font-size="46" fill="#121317">${xe(figs[0][0])}</text>
+  <text x="16" y="104" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#3a3b40">council contracts, 2026</text>
+  <text x="176" y="72" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${xe(figs[1][0])}</text>
+  <text x="176" y="88" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">contracted, ${xe(pct(all26.direct / all26.n))} direct</text>
+  <text x="176" y="120" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${xe(figs[2][0])}</text>
+  <text x="176" y="136" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">firms at 3+ councils</text>
+  <line x1="16" y1="150" x2="304" y2="150" stroke="#d8d4cb"/>
+  <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read ${xe(day(BASE_SRC.read_on))} · IMPIC open data · CC BY 4.0</text>
+</svg>
+`;
+    writeFileSync(join(OUT, 'preview.svg'), small);
+    put('preview.json', { ...meta, about: 'The figures in /preview.svg (the sites bar pop-up, 320 by 180) and /card.svg (1200 by 630, rendered to /preview.png for social cards).', figures: figs.map(([value, label]) => ({ value, label })), sources: [baseSrc] });
   }
 
   // llms.txt and sitemap.xml
