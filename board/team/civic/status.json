@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-19T13:30Z",
+ "updated": "2026-11-19T14:01Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -59,7 +59,7 @@
   "GitHub Pages serves /preview.svg as image/svg+xml but sends no X-Content-Type-Options: nosniff, and a static site cannot add the header; the SVG has no script or external reference. Needs a host that sets headers, if nosniff is required.",
   "The registry's preview_spec says /preview.svg is 1200 by 630; the install note and conductor.b@ say 320 by 180 from designer@'s template. Civic follows the install note (320 by 180) and keeps the 1200 by 630 picture at /card.svg. dev@ may want to align the registry text."
  ],
- "signed_commits": "Blocked 2026-11-19T07:24Z: the permission system refused generating the session's SSH signing key (ssh-keygen into ~/.ssh, outside the repository). Not worked around. Nothing else in the plan can start without a key (the check's tests also make throwaway keys). Plan unchanged: key with session ID in team/keys.json, repo-local signing, scripts/check-signatures.mjs with security@'s five controls and data.b@'s test pitfalls.",
+ "signed_commits": "Blocked 2026-11-19T07:24Z: the permission system refused generating the session's SSH signing key (ssh-keygen into ~/.ssh, outside the repository). Not worked around. Nothing else in the plan can start without a key (the check's tests also make throwaway keys). Plan unchanged: key with session ID in team/keys.json, repo-local signing, scripts/check-signatures.mjs with security@'s five controls and data.b@'s test pitfalls. Controls 6 and 7 (conductor.b@ 14:01Z, from videos.b@'s pre-review of the shared pattern): 6, refuse a commit with no parent except the one recorded trusted base; 7, run the check from the trusted base's or the last release's copy of the checker, never from the pushed tree. Civic has no signature check yet (key not allowed), so both go into its first version, each with a test.",
  "data_in_browser": "Dinis (19 Nov ~01:13 UTC, Website repo board/guidance/2026-11-19-load-the-data-in-the-browser.md, read at source): data in the browser. Civic's changing figures are the council pages' live contracts, already loaded in the browser from data.promptugal.news only (no cookie, no referrer, textContent, built table as fallback, licence shown). Added: the feed is used only if its read time (data_read_at or read_at) is valid, at most 5 minutes in the future and not older than the built copy (IMPIC read date); it is marked stale when older than its 6-hourly collection; prices bounded. The yearly totals stay built from yearly files (they do not come from the 90-day feed). Post-reviewed by civic.b.security@ (Sonnet): no blocking findings, the cheap low points fixed. Note: freshness is the feed's own claim, and the page says so.",
  "predictions": {
   "guidance": "Dinis, 19 Nov ~01:17 UTC, Website repo board/guidance/2026-11-19-show-the-past.md (read at source 01:45 UTC): show the past beside what is coming; every prediction kept as shown and checked, misses as plainly as hits.",
