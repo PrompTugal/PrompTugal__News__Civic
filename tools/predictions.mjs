@@ -25,7 +25,7 @@ for (const y of [2025, 2026]) {
     out.push({ type: 'prediction', id, site: SITE, page: PAGE, shown_at: now, said_by: who, source: c.url, licence: LIC, kind: 'statement',
       subject: `${who}: contract BASE ${c.id}, base price`.slice(0, 120), due: c.published,
       said: `Base price (preço base) ${eur(c.base_price)}, as recorded on the Portal BASE`.slice(0, 300),
-      value: { quantity: 'base_price', unit: 'EUR', value: c.base_price } });
+      value: { quantity: 'base_price', unit: 'EUR', value: c.base_price }, backfilled: true });   // written with its outcome (library form, 19 Nov 2026)
     const diff = c.price - c.base_price, exact = Math.abs(diff) < 0.5;
     // when the council grants a right and is paid (a concession, the use or running of public property), the base price is a floor
     const paid = /cess[aã]o|direito (?:de |do )?(?:uso|explora)|concess[aã]o/i.test(c.object || ''), above = c.price > c.base_price + 0.5;
@@ -53,10 +53,12 @@ for (const x of ND.procedures) {
   const base = x.base_price_last; if (typeof base !== 'number' || !(base > 0)) continue;   // no base price stated: nothing was forecast
   const id = `notice-${x.n.replace('/', '-')}`, who = `Câmara Municipal de ${names[x.council] || x.council}`.slice(0, 80);
   if (!seen.has(id)) { seen.add(id);
+    // back-filled when, at first record, its bids had closed or a contract citing it was already published (library form, 19 Nov 2026)
+    const backfilled = x.contracts.length > 0 || !(NREAD && (x.deadline || '') > NREAD);
     out.push({ type: 'prediction', id, site: SITE, page: PAGE, shown_at: now, said_by: who, source: x.dr, licence: NLIC, kind: 'statement',
       subject: `${who}: procurement notice ${x.n}, base price`.slice(0, 120), due: /^\d{4}-\d{2}-\d{2}$/.test(x.deadline || '') ? x.deadline : x.published,
       said: `Base price (preço base) ${eur(base)}, published in the Diário da República on ${x.published}${x.changes.length ? ', as last changed by a later notice' : ''}`.slice(0, 300),
-      value: { quantity: 'base_price', unit: 'EUR', value: base } }); }
+      value: { quantity: 'base_price', unit: 'EUR', value: base }, ...(backfilled ? { backfilled: true } : {}) }); }
   const cs = x.contracts.filter(c => typeof c.price === 'number' && BGU.test(c.url));
   // no outcome yet, or bids still open (more lots may follow): written at a later run (post-review)
   if (!cs.length || cs.length !== x.contracts.length || seenOut.has(id) || !/^\d{4}-\d{2}-\d{2}$/.test(NREAD) || !((x.deadline || '') < NREAD)) continue;
