@@ -78,3 +78,7 @@ footer{border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);padd
 @media (max-width:767px){.mast .tools .tool.meter{display:inline-flex !important}.mast .tools{width:100%}}
 .takedown{display:block;margin-top:.5rem}
 .stale{color:var(--red)}
+/* what was said / what happened (designer@'s PF rules): the estimate as an outline, what was contracted solid */
+.pf-said,.pf-got{display:block;height:7px;border-radius:2px;margin:1px 0}
+.pf-said{border:1.5px solid var(--green);background:transparent;box-sizing:border-box}
+.pf-got{background:var(--ink)}

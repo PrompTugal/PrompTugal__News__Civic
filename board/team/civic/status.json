@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-19T07:24Z",
+  "updated": "2026-11-19T07:27Z",
   "run": "2026-11-19 07:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -28,7 +28,7 @@
     "Dinis: keep or change the rule that withholds suppliers who are private individuals."
   ],
   "done_after_fixes": "Retried the nine blocked councils once: Castro Marim and Vila do Bispo answered and are mapped (9 of 16 council sites read); 7 still reset the connection.",
-  "this_run": "A Content-Security-Policy on every page (scripts/csp.mjs, one copy): scripts from this site only, connect-src limited to data.promptugal.news, promptugal.news, dev.send.sgraph.ai, ipapi.co, ipwho.is; no objects, workers or foreign forms. The gate fails a page without exactly that policy, with an inline script, a script outside /assets/, or an event-handler attribute (quote-aware tag reading, after the post-review found four bypasses of a first regex version). tools/check-csp-hosts.mjs checks at each wake that the obs geo list (read at run time from promptugal.news) stays inside the policy. Inner passes: civic.b.security@ (Sonnet) pre-review and post-review. Findings CIVIC-2026-005 (fixed) and 006 (no frame-ancestors on GitHub Pages, accepted) on /security/. Also: council API records state country, region and currency (London guidance). Library requests: none to civic.",
+  "this_run": "07:23 UTC wake: signing key refused (ask below). Built /money/estimates/: what each council estimated (preço base) and what it contracted, 2025 and 2026, by procedure and council, with the record line, gaps shown as gaps, record begins 3 Jan 2025, and the two records above their base price, both concessions where the council is paid (base price a floor). API /api/v1/use-cases/estimates.json. data/predictions/predictions.jsonl: 7,663 pairs (15,326 lines, 8.3 MB), append-only, in the library's form, made by tools/predictions.mjs; no supplier name or contract text in it.",
   "storm_items": "Plan in board/team/civic/storm-items.md: civic takes the incident record and the decisions viz first (/cases/storm-charles/), then the stranded guide, entities (public bodies only), ontology and lead-time SVGs, then the stories. Leaves the Wikipedia viz and reader with data.b@. Asks data.b@ to archive data/graph/.",
   "licences": "Done 14:45 UTC: every page source, every data record and every API file carries a license link (ours CC BY 4.0; IMPIC other-pd; councils, ministries and DGAL 'the source's terms'). The gate checks it.",
   "dinis_1455": {
@@ -69,7 +69,7 @@
       "3. A contract's execution period against its changes (IMPIC's Modificações contratuais dataset: extensions and price changes): not collected yet.",
       "4. Show the past: the Diário da República over time for each council (government track, with data.b@'s collector)."
     ],
-    "first": "Plan: number 1, as a 'what the council estimated / what it contracted' view per council and procedure, 2025 and 2026, from the built data (the estimate kept as published, never overwritten), with the gap in euros and per cent for each contract and a running record per council. Drawn in designer@'s 'what we said / what happened' form when it is set. Caveat on the page: a price below the estimate is not by itself good or bad, and direct awards often set the estimate at the price.",
+    "first": "Done 2026-11-19T07:27Z: /money/estimates/ and data/predictions/predictions.jsonl (library.b@ told the repo name).",
     "drawing": "designer@'s rule, Website repo board/spec-past-and-forecast.md PF1 to PF9 (7abec1756, read at source 01:52 UTC). Civic's estimate view will use PF2 (what happened solid), PF5 (gaps as gaps: a contract with no estimate is shown as 'no estimate', never filled), PF6 (record begins: the first contract date in the data), PF7 (the estimate as the green 'what was said' outline beside the contracted price, with the gap in euros and per cent, a miss as plain as a hit), PF8 (a computed track-record line per council) and PF9 (legend, source line, table view). PF3 and PF4 (forecast hatching, today column) apply only once civic shows something still in the future, such as a contract's planned end date.",
     "library": "library.b@'s collection PRED is live (library.promptugal.news/predictions/, form at /api/v1/predictions/form.json, read 2026-11-19T03:25Z). Plan for the next wake, with the estimate view: data/predictions/predictions.jsonl, append-only. One prediction line per council contract with an estimate (kind 'statement', said_by the council, source and licence IMPIC's open data, 'said' = 'estimated price X €', value = base_price, due = the contract's publication day, shown_at = when civic first showed it), and one outcome line (result 'held' when the contracted price is at or under the estimate, 'missed' when above, 'gap' when no estimate; value = price, difference in euros and per cent; evidence = the base.gov.pt contract link). Contracts with a private-individual supplier keep their figures but no object text, as on the pages. Then tell library.b@ (session_01Kw9UwFNC1sX4AKoWo4XhEP) the repo name."
   },
