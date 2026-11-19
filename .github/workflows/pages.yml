@@ -62,10 +62,10 @@ jobs:
   checks:
     # security@'s controls 7 (widened) and 8, 19 Nov 2026 (Website board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md,
     # fae9649db; civic CIVIC-2026-007). A job of its own that runs no code from the pushed tree: the commit check, its exemptions and
-    # the leak scan come from the last release tag's commit and run in place; the built site comes from the build job as data.
-    # Fails closed: no release tag, or a checker missing from it, stops the release. Deploy waits for this job.
-    # Limits (Dinis's to close): this workflow file and the v0.1.* tags can be changed by anyone who can push; only branch
-    # protection with a required check and a tag ruleset close that.
+    # the leak scan come from BEFORE (security@'s third ruling, 3724c9ca2) and run in place; the built site comes from the build
+    # job as data. Fails closed (see the trusted step). Deploy waits for this job.
+    # Limit (Dinis's to close): this workflow file can be changed by anyone who can push; only branch protection with a
+    # required check closes that.
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -80,30 +80,42 @@ jobs:
         with:
           node-version: 22
       - id: trusted
-        name: The trusted checkers, from the last release
+        name: The trusted checkers, from BEFORE (the commit dev pointed to before this push)
+        # security@'s third ruling (Website 3724c9ca2): the checkers come from BEFORE only, never from a tag, the trusted base
+        # or the pushed tree. Fails closed when BEFORE is missing or zero (a new branch, a manual run), when BEFORE is not an
+        # ancestor of AFTER (a force push), or when BEFORE has no copy of a checker. The range checked still starts at the last
+        # release at or before BEFORE, so the commits of a run GitHub dropped are checked too: a tag can only widen the range.
+        # tools/test-trusted-checks.mjs runs this very block in throw-away repositories.
         env:
           AFTER: ${{ github.sha }}
+          BEFORE: ${{ github.event.before }}
         run: |
           if [ "$(git rev-parse --is-shallow-repository)" != false ]; then echo "shallow checkout refused" >&2; exit 1; fi
           if [ -L scripts ] || { [ -e scripts ] && [ ! -d scripts ]; }; then echo "scripts/ is not a plain folder" >&2; exit 1; fi
-          tag=$(git describe --tags --abbrev=0 --match "v0.1.*" "$AFTER" 2>/dev/null || true)
-          if [ -z "$tag" ]; then echo "no release tag: the trusted checkers cannot be found" >&2; exit 1; fi
-          sha=$(git rev-parse --verify "${tag}^{commit}")
-          echo "sha=$sha" >> "$GITHUB_OUTPUT"
-          echo "Trusted checkers from $tag ($sha)"
+          if ! printf '%s' "$BEFORE" | grep -Eq '^[0-9a-f]{40}$' || printf '%s' "$BEFORE" | grep -Eq '^0+$'; then echo "no BEFORE commit (a new branch or a manual run): refused" >&2; exit 1; fi
+          if [ "$(git cat-file -t "$BEFORE" 2>/dev/null)" != commit ]; then echo "BEFORE is not a commit in this clone" >&2; exit 1; fi
+          if ! git merge-base --is-ancestor "$BEFORE" "$AFTER"; then echo "BEFORE is not an ancestor of AFTER (a force push): refused" >&2; exit 1; fi
+          for f in scripts/check-commits.mjs scripts/leak-scan.mjs; do
+            if ! git cat-file -e "$BEFORE:$f" 2>/dev/null; then echo "BEFORE has no copy of $f: refused" >&2; exit 1; fi
+          done
+          from=$(git describe --tags --abbrev=0 --match "v0.1.*" "$BEFORE" 2>/dev/null || true)
+          from=${from:+$(git rev-parse --verify "${from}^{commit}")}
+          echo "sha=$BEFORE" >> "$GITHUB_OUTPUT"
+          echo "from=${from:-$BEFORE}" >> "$GITHUB_OUTPUT"
+          echo "Trusted checkers from BEFORE $BEFORE; range from ${from:-$BEFORE}"
           mkdir -p scripts
           rm -rf scripts/check-commits.mjs scripts/commit-exemptions.json scripts/leak-scan.mjs
-          git show "$sha:scripts/check-commits.mjs" > scripts/check-commits.mjs
-          git show "$sha:scripts/leak-scan.mjs" > scripts/leak-scan.mjs
-          if git cat-file -e "$sha:scripts/commit-exemptions.json" 2>/dev/null; then git show "$sha:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
-      - name: Every commit since the last release carries an Agent trailer (the trusted copy)
-        # From the last release tag, not github.event.before: GitHub drops a pending run when a
-        # newer one queues, and the surviving run's "before" is the dropped push's head, so the
-        # dropped push's commits were never checked (specialist.code@ finding 3b).
+          git show "$BEFORE:scripts/check-commits.mjs" > scripts/check-commits.mjs
+          git show "$BEFORE:scripts/leak-scan.mjs" > scripts/leak-scan.mjs
+          if git cat-file -e "$BEFORE:scripts/commit-exemptions.json" 2>/dev/null; then git show "$BEFORE:scripts/commit-exemptions.json" > scripts/commit-exemptions.json; fi
+      - name: Every commit since the last release at or before BEFORE carries an Agent trailer (BEFORE's checker)
+        # The range starts at the last release at or before BEFORE, not at BEFORE: GitHub drops a pending run when a
+        # newer one queues, and the surviving run's "before" is the dropped push's head, so the dropped push's
+        # commits would otherwise go unchecked (specialist.code@ finding 3b). The checker itself is BEFORE's.
         env:
           AFTER: ${{ github.sha }}
-          TRUSTED: ${{ steps.trusted.outputs.sha }}
-        run: node scripts/check-commits.mjs "$TRUSTED" "$AFTER"
+          FROM: ${{ steps.trusted.outputs.from }}
+        run: node scripts/check-commits.mjs "$FROM" "$AFTER"
       - uses: actions/download-artifact@v4
         with:
           name: site-for-checks
