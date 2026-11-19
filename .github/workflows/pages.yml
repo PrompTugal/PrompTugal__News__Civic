@@ -62,7 +62,7 @@ jobs:
   checks:
     # security@'s controls 7 (widened) and 8, 19 Nov 2026 (Website board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md,
     # fae9649db; civic CIVIC-2026-007). A job of its own that runs no code from the pushed tree: the commit check, its exemptions and
-    # the leak scan come from the anchor A (security@'s fourth ruling, 948820a7e) and run in place; the built site comes from the build
+    # the leak scan come from the anchor A (security@'s fourth to sixth rulings) and run from RUNNER_TEMP; the built site comes from the build
     # job as data. Fails closed (see the trusted step). Deploy waits for this job.
     # Limit (Dinis's to close): this workflow file can be changed by anyone who can push; only branch protection with a
     # required check closes that.
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      deployments: read
+      actions: read
     env:
       GIT_NO_REPLACE_OBJECTS: '1'
       NODE_OPTIONS: ''
@@ -83,21 +83,18 @@ jobs:
         with:
           node-version: 22
       - id: anchor
-        name: The anchor A, the newest commit a passing run deployed
-        # security@'s fourth ruling (Website 948820a7e): A is CI's own record of a passed run, which a pusher cannot write:
-        # the sha of the newest successful github-pages deployment, read with this run's own read token. Deploy waits for
-        # this job, so a deployment exists only for a commit whose checks passed. Tags are not used.
+        name: The anchor A, the head of the newest successful push run of this workflow on dev
+        # security@'s sixth ruling (Website 0ba439611): A is the head_sha of the newest run of this workflow (its path) on
+        # dev, from a push, that concluded success, read from GitHub's API with this run's own read token. Only GitHub Actions
+        # creates runs; a deployment record can be made by anyone with write access (civic's finding), so it is not used.
+        # A run concludes success only when its checks job passed. Tags are not used.
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: |
-          a=""
-          for id in $(gh api "repos/$REPO/deployments?environment=github-pages&per_page=30" --jq '.[].id'); do
-            if gh api "repos/$REPO/deployments/$id/statuses?per_page=100" --jq '.[].state' | grep -qx success; then
-              a=$(gh api "repos/$REPO/deployments/$id" --jq .sha); break
-            fi
-          done
-          if ! printf '%s' "$a" | grep -Eq '^[0-9a-f]{40}$'; then echo "no anchor: no successful github-pages deployment found" >&2; exit 1; fi
+          a=$(gh api "repos/$REPO/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=30" \
+            --jq '[.workflow_runs[] | select(.path == ".github/workflows/pages.yml" and .head_branch == "dev" and .event == "push" and .conclusion == "success")][0].head_sha // ""')
+          if ! printf '%s' "$a" | grep -Eq '^[0-9a-f]{40}$'; then echo "no anchor: no successful push run of this workflow on dev" >&2; exit 1; fi
           echo "sha=$a" >> "$GITHUB_OUTPUT"
           echo "Anchor A: $a"
       - id: trusted
