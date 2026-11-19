@@ -94,6 +94,13 @@ for (const f of files.filter(f => f.endsWith('.html'))) {
   if (!existsSync('data/sites-registry.json')) fail('data/sites-registry.json missing: the sites bar has no last good registry');
   else { const age = (Date.now() - Date.parse(JSON.parse(readFileSync('data/sites-registry.json', 'utf8')).read_at)) / 864e5; if (!(age <= 14)) console.warn(`WARNING data/sites-registry.json is ${Math.round(age)} days old`); }
 }
+// civic.b@PrompTugal.dinis (2026-11-19), Dinis ~03:15 UTC: no IP-based location. obs.js keeps the country from the browser's
+// time zone only: no lookup host, no geo list, no region, city or position, nothing read from another site's config.
+if (existsSync('_site/assets/obs/obs.js')) {
+  const code = readFileSync('_site/assets/obs/obs.js', 'utf8').split('\n').filter(l => !/^\s*\/\//.test(l)).join('\n');
+  if (/ipapi|ipwho|ipinfo|geoip|\.geo\b|config_from|\bcity\b|latitude|longitude/i.test(code)) fail('assets/obs/obs.js: an IP-based location lookup or its fields (Dinis, 19 Nov 2026: no IP base)');
+}
+if (existsSync('_site/assets/obs/obs.json')) { const o = JSON.parse(readFileSync('_site/assets/obs/obs.json', 'utf8')); if (o.geo || o.config_from) fail('assets/obs/obs.json: geo or config_from (no IP-based location)'); }
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {

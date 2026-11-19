@@ -1,8 +1,7 @@
 {
-  "about": "civic.promptugal.news's page views and reads, sent by assets/obs/obs.js into civic's own observability vault, made by civic.b@PrompTugal.dinis on 18 November 2026 at Dinis Cruz's word (tools/obs-setup-civic.py). Public on purpose (Dinis: 'Those tokens are public by design'): each append token can only append to its lane, and the key can only encrypt. The drain is conductor.b@PrompTugal.dinis's (credentials sealed to its key). The geo lookup list is read from promptugal.news's obs.json (config_from).",
+  "about": "civic.promptugal.news's page views and reads, sent by assets/obs/obs.js into civic's own observability vault, made by civic.b@PrompTugal.dinis on 18 November 2026 at Dinis Cruz's word (tools/obs-setup-civic.py). Public on purpose (Dinis: 'Those tokens are public by design'): each append token can only append to its lane, and the key can only encrypt. The drain is conductor.b@PrompTugal.dinis's (credentials sealed to its key). Since 19 Nov 2026 there is no IP-based location: the country only, from the browser's own time zone, with no lookup.",
   "enabled": true,
   "lane": "civic",
-  "config_from": "https://promptugal.news/assets/obs/obs.json",
   "lanes": {
     "civic": [
       "b246467831172805837d8d56a6efa39323a71bea1e2c5522d938c14b6a06e51d",
@@ -11,7 +10,7 @@
       "f59cd48b6eb21ccecefdf38c3c0529f29e1b67c4f6f79b2cbc4918f3ae26cf35"
     ]
   },
-  "what": "This site counts page views and reading time, with no IP address kept, no cookie and no user-agent string, as promptugal.news does. Do Not Track, Global Privacy Control and the Pause switch in the footer stop it. What is counted: https://promptugal.news/newsroom/observability/index.html",
+  "what": "This site counts page views and reading time, with the country taken from the browser's time zone (no IP lookup), no IP address kept, no cookie and no user-agent string. Do Not Track, Global Privacy Control and the Pause switch in the footer stop it. What is counted: https://promptugal.news/newsroom/observability/index.html",
   "endpoint": "https://dev.send.sgraph.ai",
   "vault_id": "a334roim",
   "recipient": {

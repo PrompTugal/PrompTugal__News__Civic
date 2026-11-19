@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-19T02:15Z",
+  "updated": "2026-11-19T03:22Z",
   "run": "2026-11-18 22:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -69,7 +69,8 @@
       "4. Show the past: the Diário da República over time for each council (government track, with data.b@'s collector)."
     ],
     "first": "Plan: number 1, as a 'what the council estimated / what it contracted' view per council and procedure, 2025 and 2026, from the built data (the estimate kept as published, never overwritten), with the gap in euros and per cent for each contract and a running record per council. Drawn in designer@'s 'what we said / what happened' form when it is set. Caveat on the page: a price below the estimate is not by itself good or bad, and direct awards often set the estimate at the price.",
-    "drawing": "designer@'s rule, Website repo board/spec-past-and-forecast.md PF1 to PF9 (7abec1756, read at source 01:52 UTC). Civic's estimate view will use PF2 (what happened solid), PF5 (gaps as gaps: a contract with no estimate is shown as 'no estimate', never filled), PF6 (record begins: the first contract date in the data), PF7 (the estimate as the green 'what was said' outline beside the contracted price, with the gap in euros and per cent, a miss as plain as a hit), PF8 (a computed track-record line per council) and PF9 (legend, source line, table view). PF3 and PF4 (forecast hatching, today column) apply only once civic shows something still in the future, such as a contract's planned end date."
+    "drawing": "designer@'s rule, Website repo board/spec-past-and-forecast.md PF1 to PF9 (7abec1756, read at source 01:52 UTC). Civic's estimate view will use PF2 (what happened solid), PF5 (gaps as gaps: a contract with no estimate is shown as 'no estimate', never filled), PF6 (record begins: the first contract date in the data), PF7 (the estimate as the green 'what was said' outline beside the contracted price, with the gap in euros and per cent, a miss as plain as a hit), PF8 (a computed track-record line per council) and PF9 (legend, source line, table view). PF3 and PF4 (forecast hatching, today column) apply only once civic shows something still in the future, such as a contract's planned end date.",
+    "library": "Dinis (same guidance, section 2): predictions are one collection in the library. Civic sends its prediction files to library.b@ in the form library.b@ sets, and still keeps and checks its own."
   },
   "times_note": "From 19 Nov ~01:50 UTC every time here is taken from `date -u` (security@'s ruling 5). Earlier status stamps from 01:35Z to 01:55Z this night were estimates and ran up to about 5 minutes ahead of the clock; the commit times in git are the record.",
   "next_wake": [
@@ -77,5 +78,6 @@
     "Signed commits with security@'s five controls: no exemption by name (civic's CI makes no commits, so none); keys from the parent commit's team/keys.json; every commit in the range, merges and side branches included; one failure refuses the whole range and nothing deploys from it; Agent: and the full Claude-Session: must match the key. Tests first, as data.b@'s 12 in PrompTugal__News__Data f68beb3 (scripts/test-check-signatures.mjs), run in CI and before the check: each throwaway test repo sets gpg.ssh.program=ssh-keygen locally (the global config points at the environment's own signer), and every failing case asserts its reason, not only that it fails.",
     "Leak scan (security@ 312c46011f): allow in team/keys.json only, by field and exact pattern, the full plain public forms (PEM PUBLIC KEY blocks, ssh public-key line without its comment, fingerprints, the full Claude session URL); private-key words, a JWK d, tokens and any other high-entropy field still fail.",
     "Data in the browser (go on cyber's pulse-live.js pattern): civic's live contracts already show the licence next to the loaded table (Outra (Domínio Público) and our CC BY 4.0); keep it so."
-  ]
+  ],
+  "no_ip_location": "Done 2026-11-19T03:22Z at Dinis's word (~03:15 UTC, Website repo board/guidance/2026-11-19-no-ip-lookup-predictions-and-small-decisions.md, read at source): obs.js asks no one where a reader is. The ipapi.co / ipwho.is lookup and the config_from read are removed; the country only, from Intl time zone through a fixed table (IANA zone.tab, 431 zones, a few old aliases), no network call; region, city and position dropped. CSP connect-src without the two hosts; footer notice, obs.json, threat model docs/threat-models/obs-lane.md and REALITY.md updated; the gate fails obs.js if a lookup or its fields come back. Tested: Lisbon zone gives PT, Madeira and Azores PT, London GB; a headless page load with the Europe/Lisbon zone made no lookup request and sent its events."
 }

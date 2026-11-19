@@ -3,9 +3,8 @@
 // it into every page head and validate.mjs fails a page without exactly this policy.
 //   script-src 'self': no inline script, no eval; the two scripts (obs.js, live/contracts.js) are same origin.
 //   style-src 'unsafe-inline': a known trade (inline width bars, obs.js's notice button); CSS cannot run code with scripts locked.
-//   connect-src: data.promptugal.news (live contracts), promptugal.news (obs config_from), dev.send.sgraph.ai (obs append),
-//     ipapi.co and ipwho.is (the obs geo list as promptugal.news's obs.json gives it, read 18 Nov 2026). A new host there
-//     fails closed: obs.js records no place, and the page works.
+//   connect-src: data.promptugal.news (live contracts), dev.send.sgraph.ai (obs append) and the sister sites (below).
+//     No location-lookup host: since 19 Nov 2026 obs.js takes the country from the browser's time zone (Dinis: no IP base).
 //   The sister sites' exact hosts in img-src and connect-src (no wildcard): the sites bar 1.1.0 shows each site's /preview.svg
 //     as an <img> and reads its /version.json; the list comes from the registry snapshot data/sites-registry.json, each
 //     host already checked by the vendored renderer (https, promptugal.news or a subdomain, no port).
@@ -22,7 +21,7 @@ export const CSP = [
   "style-src 'self' 'unsafe-inline'",
   ["img-src 'self'", ...SISTERS].join(' '),
   "font-src 'self'",
-  ["connect-src 'self'", ...HOSTS, 'https://dev.send.sgraph.ai', 'https://ipapi.co', 'https://ipwho.is'].join(' '),
+  ["connect-src 'self'", ...HOSTS, 'https://dev.send.sgraph.ai'].join(' '),
   "frame-src 'self'",
   "worker-src 'none'",
   "manifest-src 'self'",
