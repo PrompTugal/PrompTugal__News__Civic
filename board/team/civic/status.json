@@ -3,7 +3,7 @@
   "site": "https://civic.promptugal.news",
   "repo": "PrompTugal/PrompTugal__News__Civic",
   "branch": "dev",
-  "updated": "2026-11-19T01:50Z",
+  "updated": "2026-11-19T01:55Z",
   "run": "2026-11-18 22:23 UTC wake",
   "observability_lane": "civic",
   "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -68,6 +68,7 @@
       "3. A contract's execution period against its changes (IMPIC's Modificações contratuais dataset: extensions and price changes): not collected yet.",
       "4. Show the past: the Diário da República over time for each council (government track, with data.b@'s collector)."
     ],
-    "first": "Plan: number 1, as a 'what the council estimated / what it contracted' view per council and procedure, 2025 and 2026, from the built data (the estimate kept as published, never overwritten), with the gap in euros and per cent for each contract and a running record per council. Drawn in designer@'s 'what we said / what happened' form when it is set. Caveat on the page: a price below the estimate is not by itself good or bad, and direct awards often set the estimate at the price."
+    "first": "Plan: number 1, as a 'what the council estimated / what it contracted' view per council and procedure, 2025 and 2026, from the built data (the estimate kept as published, never overwritten), with the gap in euros and per cent for each contract and a running record per council. Drawn in designer@'s 'what we said / what happened' form when it is set. Caveat on the page: a price below the estimate is not by itself good or bad, and direct awards often set the estimate at the price.",
+    "drawing": "designer@'s rule, Website repo board/spec-past-and-forecast.md PF1 to PF9 (7abec1756, read at source 01:52 UTC). Civic's estimate view will use PF2 (what happened solid), PF5 (gaps as gaps: a contract with no estimate is shown as 'no estimate', never filled), PF6 (record begins: the first contract date in the data), PF7 (the estimate as the green 'what was said' outline beside the contracted price, with the gap in euros and per cent, a miss as plain as a hit), PF8 (a computed track-record line per council) and PF9 (legend, source line, table view). PF3 and PF4 (forecast hatching, today column) apply only once civic shows something still in the future, such as a contract's planned end date."
   }
 }
