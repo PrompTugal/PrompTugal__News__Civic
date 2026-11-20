@@ -259,6 +259,7 @@ function moneyBlocks() {
       { cls: 'money', title: 'Open tenders', stat: pct(all26.open / all26.n), text: `of contracts, but ${pct(all26.openV / all26.total)} of the value: big works go to open tender.` },
     ]],
     ['src', `[IMPIC open data on dados.gov.pt](${BASE_SRC.url}), files contratos2026 and contratos2025, read ${day(BASE_SRC.read_on)}. Our calculation; the code is tools/extract-base.mjs and scripts/generate.mjs in the repository.`],
+    ...(LONDON && LONDON.notices.length ? [['p', `**Beyond Portugal: London.** [London buyers' contract notices](/money/london/), ${int(LONDON.notices.length)} in the 24 hours to ${LONDON.source.read_at.slice(0, 16).replace('T', ' ')} UTC, from the UK government's Contracts Finder, in pounds and kept apart from these figures.`]] : []),
     ['h2', 'How a council buys'],
     ['p', 'The Código dos Contratos Públicos (the public contracts code, Decreto-Lei 18/2008, as amended) sets the procedures. Which one a council may use depends mostly on the value and the kind of contract; the value limits are in articles 19 to 21 of the code. The four you will see most:'],
     ['table', ['Procedure', 'What it means', 'Contracts', 'Share', 'Value'], { right: [2, 3, 4], rows: procRows }],
@@ -284,6 +285,41 @@ function moneyBlocks() {
 
 // ---------------------------------------------------------------- councils
 const CIVIC_GAP = /(minut|atas?\b|procure|base\.gov|contract|council|câmara|camara|agenda|budget|tender|deliber)/i;
+// London's public contracts (Dinis, 18 Nov 22:20 UTC, "London: the first place beyond Portugal"; 19 Nov 17:40 UTC, "every
+// site adds London"): data.b@'s Contracts Finder file, OGL v3.0, read live in the browser by assets/live/london.js; the built
+// table is the dated copy in data/london/contracts-finder.json (tools/snapshot-london.mjs). Pounds stay pounds: never added
+// to, or set beside, the Algarve's euro totals as if they were one measure.
+const LONDON = (() => { try { return JSON.parse(readFileSync('data/london/contracts-finder.json', 'utf8')); } catch { return null; } })();
+const gbp = n => typeof n === 'number' ? `£${n.toLocaleString('en-GB', { maximumFractionDigits: 0 })}` : 'n/a';
+const mdCell = s => String(s ?? '').replace(/[\[\]()*_|\\#<>`]/g, ' ').replace(/:\/\//g, ': ').replace(/\bwww\./gi, 'www ').replace(/\s+/g, ' ').trim();   // no link, markup or autolink from the feed (post-review low 2)
+const STAGE = { planning: 'Planned', tender: 'Open for bids', award: 'Awarded', contract: 'Contract signed', implementation: 'Under way' };
+const METHOD = { open: 'open (anyone may bid)', selective: 'selective (invited or qualified bidders)', limited: 'limited (direct, one or few suppliers)', direct: 'direct' };
+function londonBlocks() {
+  const L = LONDON, ns = L.notices, read = L.source.read_at.slice(0, 16).replace('T', ' ') + ' UTC';
+  const byStage = {}; for (const n of ns) for (const st of n.stage) byStage[st] = (byStage[st] || 0) + 1;
+  const byMethod = {}; for (const n of ns) { const m = n.method || 'not stated'; byMethod[m] = (byMethod[m] || 0) + 1; }
+  const buyers = {}; for (const n of ns) buyers[n.buyer] = (buyers[n.buyer] || 0) + 1;
+  const listed = ns.reduce((t, n) => t + (n.award_gbp ?? n.value_gbp ?? 0), 0);
+  const rows = ns.map(n => [`[${day(n.published.slice(0, 10))}](${n.notice})`, mdCell(n.title), mdCell(n.buyer) + (n.district ? ` (${n.district})` : ''), n.stage.map(x => STAGE[x] || x).join(', ') || 'n/a', gbp(n.award_gbp ?? n.value_gbp)]);
+  return [
+    ['lede', `Public bodies in England, and UK-wide bodies, publish contract opportunities and awards on Contracts Finder, the UK government's service. These are the notices published by buyers based in London in the 24 hours to ${read}: ${int(ns.length)} of ${L.counts.all_notices_in_window != null ? int(L.counts.all_notices_in_window) : 'the'} notices published across the country in that time.`],
+    ['p', `**Read with care.** "Based in London" means the buyer's stated locality is London or its postcode is in central London (one HMRC notice today gives a Southend postcode, SS99, with London as its locality), and many such buyers are national bodies: a London-based ministry's notice can be for work anywhere in the world, such as guards for an embassy. It is not London's own spending, and it is one day of notices, not a year. Values are in pounds sterling as published, and are not comparable with the Algarve councils' contracts in euros on [Public money](/money/): different law, different thresholds, different bodies.`],
+    ['raw', `<div id="live-london" data-built-read="${esc(L.source.read_at)}" data-cadence-hours="13"><p class="live-note small muted">Loading the latest notices from data.promptugal.news, PrompTugal.news's data site (your browser asks it directly, so it sees your IP address, as any website does). If this does not load, the table below is our copy of ${esc(read)}.</p><div class="live-body"></div><noscript><p class="small muted">Without JavaScript only our copy below is shown.</p></noscript></div><script defer src="/assets/live/london.js"></script>`, `Live in the web page: the latest notices from [data.promptugal.news](${L.source.file}). This markdown copy holds only our copy of ${read} below.`],
+    ['h2', `Our copy: the 24 hours to ${read}`],
+    ['cards', [
+      { cls: 'money', title: 'London buyers\' notices', stat: int(ns.length), text: `from ${int(Object.keys(buyers).length)} buyers, in one day.` },
+      { cls: 'money', title: 'Awarded', stat: int(byStage.award || 0), text: `notices name an award; ${int(byStage.tender || 0)} were open for bids.` },
+      { cls: 'money', title: 'Value listed', stat: gbp(listed), text: 'the award value where given, else the stated value: as published, in pounds, one day.' },
+    ]],
+    ['table', ['Published', 'What', 'Buyer (postcode district)', 'Stage', 'Value'], { right: [4], rows }],
+    ['src', `Each date links the notice on Contracts Finder. ${L.license.attribution} Copied ${read} from [data.promptugal.news](${L.source.file}).`],
+    ['h2', 'How the buyers bought'],
+    ['table', ['Procedure, as Contracts Finder records it', 'Notices'], { right: [1], rows: Object.entries(byMethod).sort((a, b) => b[1] - a[1]).map(([k, v]) => [METHOD[k] || k, int(v)]) }],
+    ['p', 'The plain-English meanings are ours. In Portugal the same question, how many contracts went to one invited supplier, is answered for the Algarve\'s councils on [Public money](/money/); the two systems name their procedures differently, so the shares are not set side by side here.'],
+    ['h2', 'What is not here'],
+    ['ul', ['Suppliers and contact details: not kept (some suppliers are sole traders, people in their own name).', 'Buyers in outer London whose postcode area reaches beyond Greater London are not counted: the file keeps only the E, EC, N, NW, SE, SW, W and WC areas and buyers whose locality says London.', 'Older days: this is the last 24 hours only, and we keep no history yet.', 'A person has not reviewed these notices. A weak signal, not an audit.']],
+  ];
+}
 // The shared map (designer@'s ptmap, vendored and checked against the registry at build, scripts/build.mjs): mainland Portugal
 // big, the 16 councils as dots sized by their 2026 contracts, the current council ringed. No London or Brussels inset yet:
 // civic has no London or EU data on its pages (Dinis, 19 Nov 17:40 UTC: "where we have the data"). Without the map (registry
@@ -294,7 +330,8 @@ function mapBlock(current) {
   const pts = places.places.filter(p => Array.isArray(p.at) && p.at.length === 2 && p.at.every(Number.isFinite))
     .map(p => ({ id: p.id, name: whoName(p.id), at: [p.at[0], p.at[1]], href: `${SITE}/councils/${p.id}/`, n: (by26[p.id] || []).length }));
   const label = current ? `Map of the Algarve's 16 councils, ${whoName(current)} marked` : "Map of the Algarve's 16 councils, by contracts in 2026";
-  return [['raw', `<figure class="ptmap-fig"><link rel="stylesheet" href="/assets/ptmap/${MAP_V}/ptmap.css"><div class="ptmap-box" data-places="${esc(JSON.stringify(pts))}"${current ? ` data-current="${esc(current)}"` : ''} data-label="${esc(label)}"><div class="ptmap-draw"></div></div><figcaption class="small muted">The Algarve's councils on the shared PrompTugal map (mainland Portugal), each dot sized by its contracts in 2026 and linked to its page. Outline: Natural Earth (public domain) via world-atlas (ISC licence, in the map file).</figcaption><script defer src="/assets/ptmap/${MAP_V}/ptmap.js"></script><script defer src="/assets/ptmap/init.js"></script></figure>`, '']];
+  const lon = LONDON && LONDON.notices.length ? ` data-london="${SITE}/money/london/" data-london-n="${LONDON.notices.length}"` : '';
+  return [['raw', `<figure class="ptmap-fig"><link rel="stylesheet" href="/assets/ptmap/${MAP_V}/ptmap.css"><div class="ptmap-box" data-places="${esc(JSON.stringify(pts))}"${current ? ` data-current="${esc(current)}"` : ''}${lon} data-label="${esc(label)}"><div class="ptmap-draw"></div></div><figcaption class="small muted">The Algarve's councils on the shared PrompTugal map (mainland Portugal), each dot sized by its contracts in 2026 and linked to its page. ${lon ? ' The London box links to London buyers\' contract notices (a different country, in pounds).' : ''} Outline: Natural Earth (public domain) via world-atlas (ISC licence, in the map file).</figcaption><script defer src="/assets/ptmap/${MAP_V}/ptmap.js"></script><script defer src="/assets/ptmap/init.js"></script></figure>`, '']];
 }
 function councilBlocks(id) {
   const pl = placeOf(id), co = councilOf(id), cs = by26[id], s = summarise(cs), s25 = summarise(by25[id]);
@@ -374,6 +411,7 @@ export function generate() {
   page({ path: '/', title: 'Public money and public services, explained', description: 'Independent: public procurement, council decisions and public services in Portugal, explained and cross-mapped, starting with the Algarve\'s 16 councils. Not a government site.', blocks: frontBlocks(), sources: [BASE_SRC] });
 
   page({ path: '/money/', kicker: 'Public money', title: 'What the Algarve\'s councils buy, and how', description: `Public procurement by the Algarve's 16 councils in 2026, from IMPIC's open data of the Portal BASE: ${int(all26.n)} contracts, procedures explained.`, blocks: moneyBlocks(), sources: [BASE_SRC, { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });
+  if (LONDON && LONDON.notices.length) page({ path: '/money/london/', kicker: 'Public money · Beyond Portugal: London', title: 'London buyers\' contract notices, today', description: `The ${LONDON.notices.length} contract notices published on Contracts Finder by buyers based in London in the 24 hours to ${LONDON.source.read_at.slice(0, 16).replace('T', ' ')} UTC: what, who, stage and value in pounds. Read live from data.promptugal.news.`, blocks: londonBlocks(), sources: [{ title: 'Contracts Finder (Cabinet Office, UK government), through data.promptugal.news', url: LONDON.source.page, read_on: LONDON.source.read_at.slice(0, 10), license: { name: LONDON.license.name, url: LONDON.license.url } }] });
 
   const rows = COUNCIL_IDS.map(id => { const s = summarise(by26[id]); const co = councilOf(id); return [`[${whoName(id)}](/councils/${id}/)`, int(s.n), meur(s.total), pct(s.direct / s.n), co.minutes && co.minutes.url ? `[yes](${co.minutes.url})` : 'not found yet']; });
   page({ path: '/councils/', kicker: 'Councils', title: 'The Algarve\'s 16 councils', description: 'One page per Algarve council: its 2026 contracts, biggest suppliers, and where its minutes, agendas, notices and budget are published.', blocks: [

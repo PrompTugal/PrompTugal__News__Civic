@@ -1,0 +1,278 @@
+{
+ "source": {
+  "title": "London public contracts (Contracts Finder)",
+  "file": "https://data.promptugal.news/api/v1/contracts-finder/latest.json",
+  "read_at": "2026-11-20T18:04:39Z",
+  "window_from": "2026-11-19T18:04:39Z",
+  "window_to": "2026-11-20T18:04:39Z",
+  "publisher": "Cabinet Office, Contracts Finder (UK government)",
+  "page": "https://www.contractsfinder.service.gov.uk/",
+  "about": "Procurement notices that London public bodies published on Contracts Finder in the 24 hours before the read: each with its notice page, stage, title, buyer (as published: mostly public bodies, sometimes an agent publishing for one), the buyer's postcode district, value, award value and deadline, as published. London means the buyer's locality says London or its postcode area lies wholly inside Greater London (E, EC, N, NW, SE, SW, W, WC); bodies in the outer areas that straddle the boundary are not counted. Suppliers and contacts are not kept. Source: Cabinet Office, Contracts Finder; OGL v3.0. A weak signal, not an audit.",
+  "by": "data.b@PrompTugal.dinis, collected by code; copied here by tools/snapshot-london.mjs"
+ },
+ "license": {
+  "name": "Open Government Licence v3.0",
+  "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+  "holder": "Crown copyright (Crown Commercial Service)",
+  "attribution": "Contains public sector information licensed under the Open Government Licence v3.0."
+ },
+ "counts": {
+  "london_notices": 17,
+  "all_notices_in_window": 116
+ },
+ "notices": [
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/1e57f29a-b739-4b60-bbff-bb7f58f756e1",
+   "published": "2026-11-20T17:28:15Z",
+   "stage": [
+    "award"
+   ],
+   "title": "Central - AOMR Lot 1 Incident Response Direct Award- 2026-27 - WMD - Land &Water",
+   "buyer": "DEFRA",
+   "district": "SW1P",
+   "status": "complete",
+   "value_gbp": 50000,
+   "award_gbp": 50000,
+   "deadline": "2026-10-05T12:00:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/b28c9dbd-8b68-4c1b-a196-001b8402d860",
+   "published": "2026-11-20T17:22:30Z",
+   "stage": [
+    "award"
+   ],
+   "title": "UKHSA_ICT_10Gbps Cloud Connect - Network Services",
+   "buyer": "UK Health Security Agency",
+   "district": "E14",
+   "status": "complete",
+   "value_gbp": 302700,
+   "award_gbp": 302700,
+   "deadline": "2026-11-02T12:00:00Z",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/a7bc1d2a-3823-4a98-8d51-82101fd81119",
+   "published": "2026-11-20T16:59:23Z",
+   "stage": [
+    "award"
+   ],
+   "title": "Plate Centrifuge Purchase",
+   "buyer": "UK Health Security Agency",
+   "district": "E14",
+   "status": "complete",
+   "value_gbp": 16991,
+   "award_gbp": 16991,
+   "deadline": "2026-11-05T12:00:00Z",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/d778e97d-acf8-4964-9cb5-8521f69f8429",
+   "published": "2026-11-20T15:49:02Z",
+   "stage": [],
+   "title": "Integrated Vehicle Fit-Out",
+   "buyer": "H M REVENUE & CUSTOMS",
+   "district": "SS99",
+   "status": "complete",
+   "value_gbp": 2568160,
+   "award_gbp": 2568160,
+   "deadline": "2026-10-02T12:00:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/2ff056b4-a514-4992-be98-72d052c37dfe",
+   "published": "2026-11-20T15:34:43Z",
+   "stage": [
+    "award"
+   ],
+   "title": "ASP - Contract Award Notice",
+   "buyer": "Home Office",
+   "district": "SW1P",
+   "status": "complete",
+   "value_gbp": 15479000,
+   "award_gbp": 15479000,
+   "deadline": "2026-09-22T17:00:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/b970b631-df33-4c13-9d62-2512ede937de",
+   "published": "2026-11-20T15:00:14Z",
+   "stage": [
+    "award"
+   ],
+   "title": "The Appointment of a contractor to deliver, supply and install a compliant fall arrest system and to carry out pitched roofs repairs at Kensington Central Library",
+   "buyer": "Royal Borough of Kensington and Chelsea",
+   "district": "W8",
+   "status": "complete",
+   "value_gbp": 567382.56,
+   "award_gbp": 567382.56,
+   "deadline": "2026-04-09T00:00:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/cdbfa005-4f32-4856-9e78-c1016aaa6240",
+   "published": "2026-11-20T15:00:03Z",
+   "stage": [
+    "award"
+   ],
+   "title": "GB-London: Climate Resilience Principles",
+   "buyer": "The Royal Parks Ltd",
+   "district": "W2",
+   "status": "complete",
+   "value_gbp": 250000,
+   "award_gbp": 250000,
+   "deadline": "2026-09-24T00:00:00+01:00",
+   "method": ""
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/47dd8f75-0860-48d6-9a80-20caf88e0097",
+   "published": "2026-11-20T14:57:57Z",
+   "stage": [
+    "award"
+   ],
+   "title": "KnowBe4 Defend licences",
+   "buyer": "National Institute for Health and Care Excellence",
+   "district": "E20",
+   "status": "complete",
+   "value_gbp": 25812.5,
+   "award_gbp": 25812.5,
+   "deadline": "2026-11-02T12:00:00Z",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/211e152e-f0ae-42b6-9c45-e542c481feae",
+   "published": "2026-11-20T14:50:02Z",
+   "stage": [
+    "tender"
+   ],
+   "title": "MOPAC Children and Young People Victim Service (MOPAC 969)",
+   "buyer": "The Mayor's Office for Policing and Crime",
+   "district": "SE1",
+   "status": "active",
+   "value_gbp": 5500000,
+   "award_gbp": null,
+   "deadline": "2024-05-03T00:00:00+01:00",
+   "method": "open"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/ba923597-3877-49a9-8cf3-c36bbb58d67a",
+   "published": "2026-11-20T13:50:25Z",
+   "stage": [
+    "award"
+   ],
+   "title": "SS Richard Montgomery Client Side Technical Adviser",
+   "buyer": "DfTc - Department for Transport",
+   "district": "SW1P",
+   "status": "complete",
+   "value_gbp": 300000,
+   "award_gbp": 300000,
+   "deadline": "2025-09-08T10:00:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/6164d7e2-95d3-4110-8a7f-cc918e310413",
+   "published": "2026-11-20T13:37:58Z",
+   "stage": [
+    "award"
+   ],
+   "title": "WHT Sanctuary Courtyard Garden Works",
+   "buyer": "Whittington Health NHS Trust",
+   "district": "N19",
+   "status": "complete",
+   "value_gbp": 441574,
+   "award_gbp": 441574,
+   "deadline": "2026-06-08T12:00:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/c212d10c-4c0e-48df-ac72-015592e5ae36",
+   "published": "2026-11-20T13:10:03Z",
+   "stage": [
+    "tender"
+   ],
+   "title": "Appropriate Adult Service for Vulnerable Adults in London - MOPAC 991 & 1068",
+   "buyer": "Mayor's Office for Policing and Crime",
+   "district": "SE1",
+   "status": "active",
+   "value_gbp": 5438000,
+   "award_gbp": null,
+   "deadline": "2024-07-22T00:00:00+01:00",
+   "method": "open"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/3519a9ac-39a8-4d1b-adc3-85700dfbbaea",
+   "published": "2026-11-20T12:50:55Z",
+   "stage": [
+    "award"
+   ],
+   "title": "Legal Advice Regarding Lease",
+   "buyer": "UK EXPORT FINANCE",
+   "district": "SW1A",
+   "status": "complete",
+   "value_gbp": 60000,
+   "award_gbp": 60000,
+   "deadline": "2026-10-31T23:59:00Z",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/b22ad8f2-7330-4378-83dd-feaf9b73968f",
+   "published": "2026-11-20T12:02:59Z",
+   "stage": [
+    "award"
+   ],
+   "title": "Islamabad Office Compound Design & PM Services",
+   "buyer": "Foreign Commonwealth and Development Office",
+   "district": "SW1A",
+   "status": "complete",
+   "value_gbp": null,
+   "award_gbp": 2439909.22,
+   "deadline": "2026-07-22T17:00:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/d4e676a6-dbbb-4a87-a4ea-fe83cef03596",
+   "published": "2026-11-20T11:32:41Z",
+   "stage": [
+    "award"
+   ],
+   "title": "Launchpad - Third Party Content and Services",
+   "buyer": "Ministry of Justice",
+   "district": "SW1H",
+   "status": "complete",
+   "value_gbp": 22800,
+   "award_gbp": 22800,
+   "deadline": "2026-08-21T23:59:00+01:00",
+   "method": "selective"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/137153d1-da88-42bd-acec-a04ecb08c160",
+   "published": "2026-11-20T06:37:38Z",
+   "stage": [
+    "award"
+   ],
+   "title": "Provision of Contracted Guards for British Embassy Dakar",
+   "buyer": "Foreign Commonwealth and Development Office",
+   "district": "SW1A",
+   "status": "complete",
+   "value_gbp": 74811.67,
+   "award_gbp": 74811.67,
+   "deadline": "2026-11-13T14:00:00Z",
+   "method": "open"
+  },
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/523a8e27-7c24-419d-b2d5-9765ce5a1561",
+   "published": "2026-11-19T18:04:52Z",
+   "stage": [
+    "award"
+   ],
+   "title": "End user computing support and related services",
+   "buyer": "Financial Conduct Authority",
+   "district": "E20",
+   "status": "complete",
+   "value_gbp": 150000,
+   "award_gbp": 115710,
+   "deadline": "2026-08-19T17:00:00+01:00",
+   "method": "selective"
+  }
+ ]
+}

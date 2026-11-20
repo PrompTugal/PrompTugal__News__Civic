@@ -51,6 +51,35 @@ if (existsSync('_site/assets/live/contracts.js')) {
   const hosts = [...new Set([...js.matchAll(/(?:https?|wss?):\/\/([^\/'"`\s?#]+)/gi)].map(m => m[1].toLowerCase()))].filter(h => !['www.base.gov.pt', 'dados.gov.pt'].includes(h));
   if (hosts.join() !== 'data.promptugal.news') fail(`assets/live/contracts.js: fetches from ${hosts.join(', ') || 'nowhere'}, expected data.promptugal.news only`);
 }
+// civic.b@ (2026-11-20): London. The live script builds the DOM safely, fetches from data.promptugal.news only and links
+// only to Contracts Finder; our copy keeps the checked fields only, in pounds; the page shows the OGL v3.0 attribution.
+if (existsSync('_site/assets/live/london.js')) {
+  const js = readFileSync('_site/assets/live/london.js', 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+  if (/innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|\bFunction\(|srcdoc|sendBeacon|new Image|\bimport\(|location\s*=|localStorage|sessionStorage|cookie/.test(js)) fail('assets/live/london.js: unsafe DOM, dynamic code or storage');
+  // hosts as written, and as written inside a regular expression (https:\/\/www\.host)
+  const hosts = [...new Set([...js.replace(/\\([\/.])/g, '$1').matchAll(/(?:https?|wss?):\/\/([^\/'"`\s?#\\]+)/gi)].map(m => m[1].toLowerCase()))].sort();
+  if (hosts.join() !== 'data.promptugal.news,www.contractsfinder.service.gov.uk') fail(`assets/live/london.js: names hosts ${hosts.join(', ')}`);
+  if ((js.match(/fetch\(/g) || []).length !== 1) fail('assets/live/london.js: more than one fetch');
+}
+if (existsSync('data/london/contracts-finder.json')) {
+  const L = JSON.parse(readFileSync('data/london/contracts-finder.json', 'utf8'));
+  if (L.license?.name !== 'Open Government Licence v3.0' || !/Open Government Licence v3\.0/.test(L.license?.attribution || '')) fail('data/london: not OGL v3.0, or no attribution');
+  const keys = 'notice,published,stage,title,buyer,district,status,value_gbp,award_gbp,deadline,method';
+  for (const n of L.notices || []) {
+    if (Object.keys(n).join() !== keys) fail(`data/london: a notice with fields ${Object.keys(n).join()}`);
+    if (!/^https:\/\/www\.contractsfinder\.service\.gov\.uk\/Notice\/[0-9a-f-]{36}$/.test(n.notice)) fail('data/london: a notice link off Contracts Finder');
+    for (const k of ['title', 'buyer']) if (/[<>`]/.test(n[k])) fail(`data/london: ${k} holds markup`);
+    for (const k of ['value_gbp', 'award_gbp']) if (n[k] !== null && !(Number.isFinite(n[k]) && n[k] >= 0)) fail(`data/london: ${k} not a sum`);
+  }
+  // the copy holds notices, so the page and its live script must exist (post-review low 1)
+  if (L.notices && L.notices.length && (!existsSync('_site/money/london/index.html') || !existsSync('_site/assets/live/london.js'))) fail('data/london holds notices but /money/london/ or assets/live/london.js is missing');
+  if (existsSync('_site/money/london/index.html')) {
+    const h = readFileSync('_site/money/london/index.html', 'utf8');
+    if (!h.includes('class="body"')) fail('/money/london/: no page body');
+    if (!h.includes(L.license.attribution)) fail('/money/london/: the OGL attribution statement is missing');
+    if (/€/.test(h.replace(/<a [^>]*href="\/money\/"[^>]*>[^<]*<\/a>/g, '').split('<section class="prov"')[0].split('class="body"')[1] || '')) fail('/money/london/: a euro sign on the London page');
+  }
+}
 // civic.b@ (2026-11-20): the shared map. Every ptmap file a page loads exists; the init script builds no HTML, runs no code
 // from data and calls no host; each map's places parse as JSON and link only to this site's council pages.
 {

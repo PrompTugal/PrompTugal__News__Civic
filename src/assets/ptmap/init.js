@@ -23,9 +23,12 @@
       // the current place drawn last, so its neighbours' dots do not cover it
       var cur = box.getAttribute('data-current') || ''
       places.sort(function (a, b) { return (a.id === cur) - (b.id === cur) })
+      // the London box, only when the page has London data (ptmap keeps the link only if it is on a promptugal.news host)
+      var lh = box.getAttribute('data-london'), ln = +box.getAttribute('data-london-n')
+      var london = lh ? { href: lh.slice(0, 200), n: isFinite(ln) && ln > 0 ? Math.min(999, Math.round(ln)) : 0 } : undefined
       var host = box.querySelector('.ptmap-draw')
       if (!host || !places.length) continue
-      window.PTMap.render(host, { places: places, current: cur || undefined, label: (box.getAttribute('data-label') || 'Map').slice(0, 120) })
+      window.PTMap.render(host, { places: places, current: cur || undefined, label: (box.getAttribute('data-label') || 'Map').slice(0, 120), london: london })
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go()

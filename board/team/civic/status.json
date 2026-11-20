@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-20T08:28Z",
+ "updated": "2026-11-20T19:29Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -16,7 +16,8 @@
  },
  "live": "v0.1.31 (2b8df1c), deployed and checked 22:48 UTC in headless Chromium (/, /councils/faro/, /account/, /design/: no CSP violations, live contracts loaded)",
  "next": [
-  "London's public money, when the feed has notices: data.promptugal.news/api/v1/contracts-finder/latest.json (read 07:04Z on 20 Nov) held 0 notices of any buyer with complete: true, and Contracts Finder's OCDS search itself answered releases: [] for every query civic tried at 08:24Z (its echoed uri drops publishedFrom and limit). Reported to data.b@ through conductor.b@ at 08:27Z. Then build the London page (OGL v3.0 attribution, GBP never mixed with euros, the gaps stated, loaded in the browser) and add the map's London inset linking to it.",
+  "Each wake: refresh our London copy (node tools/snapshot-london.mjs on the live file) so the built table stays within a day; ask data.b@ for a dated history of the London file (days kept, not only the last 24 hours) so the page can show more than one day.",
+  "London's services next to its money, when data.b@ has a feed (London Datastore); the Brussels inset only with EU public-money data.",
   "The map's next steps: the map on the front page and the money pages where it helps; ptmap 1.1 (finer outline, the islands) when listed; the Brussels inset only with EU public-money data.",
   "At IMPIC's next files (the last are of 15 Nov): refresh notices, contracts and changes for both years, so the 9 open forecasts get their outcomes; then add the contract changes to the predictions file (price at signing against price after changes, back-filled), and the council budget against its accounts (DGAL Portal Autárquico), the second named prediction.",
   "Signed commits: SSH signing key with session ID in team/keys.json, every commit signed, scripts/check-signatures.mjs in the gate and CI (Dinis, 19 Nov ~01:10 UTC).",
@@ -53,7 +54,14 @@
  "government_track": "Dinis (~16:00 UTC, Website repo board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md): civic.b@ leads the government track: the Diário da República and other public records linked as a semantic graph to the places we track (data.b@ collects, library.b@ links), use cases on tech, AI and reducing bureaucracy. Plan: (1) a /sources/ home page per civic source (IMPIC contracts, councils' sites, DGAL list, service pages) under the pipeline standard: raw kept and timestamped, JSON, visualisation, analysis, OpenAPI; (2) ask data.b@ for the Diário da República collector (2nd series notices by entity: the 16 municipalities and their companies); (3) a graph view council - contract - company - DR notice - place; (4) use cases: where the councils buy tech and AI (CPV 48, 72), and where a bureaucratic step could be removed.",
  "every_wake": "Twice a day (Dinis, 19 Nov 2026 ~16:30 UTC, relayed by conductor.b@; the guidance file 2026-11-19-twice-a-day.md was not yet on promptugal.news dev at 16:37 UTC): scheduled task at 08:23 and 19:23 Lisbon, one whole piece released per wake.",
  "preview": "Dinis ~22:00 UTC, relayed by conductor.b@: /preview.svg at each build, an infographic of civic's own numbers with provenance and licence, plus /preview.png. Done in v0.1.28: /preview.svg (1200x630, six figures: 3,396 council contracts in 2026, 304.3 M€ with 51% direct awards, 177 firms at 3+ councils, 14 municipal companies, 9/16 council sites read, 5 guides; source IMPIC open data read 17 Nov 2026, Outra (Domínio Público); our calculation CC BY 4.0), /api/v1/preview.json with the same figures and sources, /preview.png rendered by tools/preview-png.mjs, og:image on every page. /version.json current. Shared sites bar: waiting for conductor.b@ to publish it.",
- "london": "Dinis ~22:20 UTC (Website repo board/guidance/2026-11-18-london.md, read at source 22:25 UTC): London is the first place beyond Portugal. Civic's part: (1) done now: every council record in the API says its country (PT, Portugal), region and currency, so a place is not assumed Portuguese; (2) when data.b@'s UK feeds land (London Datastore, Contracts Finder, data.police.uk area totals, London Air Quality Network), a London section: public contracts of the London boroughs and the GLA from Contracts Finder (Open Government Licence, attributed), with the same rules as the Algarve (public bodies and companies only, no private individuals). Checked 22:27 UTC: no UK source on data.promptugal.news yet.",
+ "london": {
+  "page": "/money/london/",
+  "from": "https://data.promptugal.news/api/v1/contracts-finder/latest.json (data.b@, OGL v3.0)",
+  "copy": "data/london/contracts-finder.json, read 2026-11-20T18:04:39Z, 17 notices",
+  "live": "assets/live/london.js",
+  "released": "2026-11-20T19:29Z",
+  "rules": "pounds as published, never set beside euro totals; buyers based in London, many national; attribution statement shown"
+ },
  "billing": "None on civic (Dinis, 18 Nov ~23:45 UTC). Civic may show any public data with its licence and provenance.",
  "releases": "Every commit is a release with a tag (Dinis, same guidance). The Pages workflow already tags each deployed head; civic now pushes one commit at a time so every commit gets its own release and tag.",
  "sites_bar": "sites bar 1.2.1 installed (2026-11-19T07:54Z; security@'s go relayed by conductor.b@ at 07:54Z, Website 2d812d6da). Three files vendored byte for byte, checked against the registry's bar.versions['1.2.1'].integrity at each build; 1.2.0 removed. 375 and 390 px: no sideways scroll on five pages, no console errors. Same handling as 1.2.0: switched off only if the registry stops listing 1.2.1. sites bar 1.2.0 installed (2026-11-19T07:17Z; security@'s go, Website 055e6c1430): the switcher Dinis asked for at 03:18 (a sideways row on a phone with the current site centred, same-tab links, every site on desktop, promptugal.news first). Vendored from Website dev, its three files checked against the registry's bar.versions['1.2.0'] at each build; 1.1.1 removed. Civic has no rail or 'other sites' list of its own (removed with 1.1.0).",
@@ -87,7 +95,7 @@
   "version": "1.0.2",
   "where": "/councils/ and each /councils/<id>/ page",
   "checked": "at build against the live registry's map.versions[\"1.0.2\"] (sha384 of both files; review exactly \"passed\" or \"passed (security@ <commit>)\"); otherwise left out",
-  "insets": "none yet: civic has no London or EU data on its pages",
+  "insets": "London (to /money/london/); no Brussels yet",
   "released": "2026-11-20T08:28Z"
  }
 }
