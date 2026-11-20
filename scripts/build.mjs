@@ -14,12 +14,19 @@ cpSync('src', '_site', { recursive: true });
 //   - the list of sites the renderer accepts is kept in data/sites-registry.json (sites only, no pins), for the CSP.
 // Data, not code: nothing from the registry is run.
 const BAR_VERSION = '1.2.1', TZ_VERSION = '1.1.0';
+// designer@'s shared map, ptmap (Dinis, 19 Nov 17:40 UTC: "the map is Portugal big with London and the EU small"), vendored
+// from the Website repository's design/shared-map/v<MAP_VERSION>/ into src/assets/ptmap/<MAP_VERSION>/ and used only when
+// the registry's map.versions["<v>"] gives its sha384 pins, the files match them, and its review reads "passed"
+// (it reads "passed (security@ <commit>)"); the same version with other bytes stops the build. The pins are compared
+// here at build, never written into the pages (events.b@'s pitfall, 5bf4a93: high-entropy attributes on every page).
+const MAP_VERSION = '1.0.2';
+const MAP = { js: `src/assets/ptmap/${MAP_VERSION}/ptmap.js`, css: `src/assets/ptmap/${MAP_VERSION}/ptmap.css` };
 const BAR = { render: `vendor/sites-bar/${BAR_VERSION}/sites-bar-render.mjs`, css: `src/assets/sites-bar/${BAR_VERSION}/sites-bar.css`, js: `src/assets/sites-bar/${BAR_VERSION}/sites-bar.js` };
 const TZ_FILE = `vendor/obs/tz-country/${TZ_VERSION}/tz-country.json`;
 const { createHash } = await import('node:crypto');
 const sri = f => 'sha256-' + createHash('sha256').update(readFileSync(f)).digest('base64');
 const SRI = /^sha(256|384|512)-[A-Za-z0-9+/]{43,86}={0,2}$/;
-let barOk = false, tzOk = false;
+let barOk = false, tzOk = false, mapOk = false;
 {
   let reg = null;
   const ac = new AbortController(), t = setTimeout(() => ac.abort(), 10000);   // covers the headers and the whole body
@@ -52,6 +59,22 @@ let barOk = false, tzOk = false;
         console.log(`sites bar ${BAR_VERSION}: the three files match the registry; ${reg.sites.length} sites, ${ver || 'no version'}`);
       } else console.warn('WARNING the renderer refused the registry: no sites bar in this build');
     } else console.warn(`sites bar ${BAR_VERSION} off: the registry names ${b.version || 'none'} and no longer lists ${BAR_VERSION}`);
+    // the shared map
+    {
+      const m = reg.map || {}, mv = m.versions && Object.prototype.hasOwnProperty.call(m.versions, MAP_VERSION) ? m.versions[MAP_VERSION] : null;
+      const integ = mv && typeof mv === 'object' && mv.integrity && typeof mv.integrity === 'object' ? mv.integrity : null;
+      const review = mv && typeof mv.review === 'string' ? mv.review : '';   // this version's own review only (post-review low 2)
+      const sri384 = f => 'sha384-' + createHash('sha384').update(readFileSync(f)).digest('base64');
+      if (integ) {
+        for (const [k, f] of [['ptmap.js', MAP.js], ['ptmap.css', MAP.css]]) {
+          if (typeof integ[k] !== 'string' || !/^sha384-[A-Za-z0-9+/]{64}$/.test(integ[k])) { console.error(`ptmap ${MAP_VERSION}: the registry gives no valid sha384 for ${k}`); process.exit(1); }
+          if (sri384(f) !== integ[k]) { console.error(`ptmap ${MAP_VERSION}: ${f} does not match the registry (same version, other bytes): stop`); process.exit(1); }
+        }
+        if (/^passed(?: \(security@ [0-9a-f]{7,40}\))?$/.test(review))   // "passed" or "passed (security@ <commit>)", nothing else (post-review low 1)
+          { mapOk = true; console.log(`ptmap ${MAP_VERSION}: both files match the registry; review ${review.slice(0, 60)}`); }
+        else console.warn(`WARNING ptmap ${MAP_VERSION}: review reads "${review.slice(0, 60)}", not passed: no map in this build`);
+      } else console.warn(`ptmap ${MAP_VERSION} off: the registry does not list it`);
+    }
     // the time-zone table
     // obs_tz.versions["<v>"] is { integrity: "sha256-..." } (or the string itself)
     const o = reg.obs_tz || {}, ov = o.versions && Object.prototype.hasOwnProperty.call(o.versions, TZ_VERSION) ? o.versions[TZ_VERSION] : null;
@@ -66,6 +89,8 @@ let barOk = false, tzOk = false;
   }
 }
 globalThis.CIVIC_SITES_BAR = { ok: barOk, version: BAR_VERSION, render: BAR.render };
+globalThis.CIVIC_MAP = { ok: mapOk, version: MAP_VERSION };
+if (!mapOk) rmSync('_site/assets/ptmap', { recursive: true, force: true });
 // the time-zone table written into assets/obs/obs.js, so the page asks no one; an empty table (no country) when not verified
 {
   const clean = {};

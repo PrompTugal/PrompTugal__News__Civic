@@ -284,6 +284,18 @@ function moneyBlocks() {
 
 // ---------------------------------------------------------------- councils
 const CIVIC_GAP = /(minut|atas?\b|procure|base\.gov|contract|council|câmara|camara|agenda|budget|tender|deliber)/i;
+// The shared map (designer@'s ptmap, vendored and checked against the registry at build, scripts/build.mjs): mainland Portugal
+// big, the 16 councils as dots sized by their 2026 contracts, the current council ringed. No London or Brussels inset yet:
+// civic has no London or EU data on its pages (Dinis, 19 Nov 17:40 UTC: "where we have the data"). Without the map (registry
+// not read, or review not passed) the block is left out and the list of councils stays.
+const MAP_ON = !!(globalThis.CIVIC_MAP && globalThis.CIVIC_MAP.ok), MAP_V = (globalThis.CIVIC_MAP || {}).version || '';
+function mapBlock(current) {
+  if (!MAP_ON) return [];
+  const pts = places.places.filter(p => Array.isArray(p.at) && p.at.length === 2 && p.at.every(Number.isFinite))
+    .map(p => ({ id: p.id, name: whoName(p.id), at: [p.at[0], p.at[1]], href: `${SITE}/councils/${p.id}/`, n: (by26[p.id] || []).length }));
+  const label = current ? `Map of the Algarve's 16 councils, ${whoName(current)} marked` : "Map of the Algarve's 16 councils, by contracts in 2026";
+  return [['raw', `<figure class="ptmap-fig"><link rel="stylesheet" href="/assets/ptmap/${MAP_V}/ptmap.css"><div class="ptmap-box" data-places="${esc(JSON.stringify(pts))}"${current ? ` data-current="${esc(current)}"` : ''} data-label="${esc(label)}"><div class="ptmap-draw"></div></div><figcaption class="small muted">The Algarve's councils on the shared PrompTugal map (mainland Portugal), each dot sized by its contracts in 2026 and linked to its page. Outline: Natural Earth (public domain) via world-atlas (ISC licence, in the map file).</figcaption><script defer src="/assets/ptmap/${MAP_V}/ptmap.js"></script><script defer src="/assets/ptmap/init.js"></script></figure>`, '']];
+}
 function councilBlocks(id) {
   const pl = placeOf(id), co = councilOf(id), cs = by26[id], s = summarise(cs), s25 = summarise(by25[id]);
   const sups = suppliersOf(cs).sort((a, b) => b.v - a.v).slice(0, 10);
@@ -303,6 +315,7 @@ function councilBlocks(id) {
   const gaps = [...(co.gaps || []), ...(pl.gaps || []).filter(g => CIVIC_GAP.test(g)).map(g => `${g} (from [PrompTugal.news ${pl.name}](${pl.promptugal_page}))`)];
   return [
     ['lede', `The Câmara Municipal de ${pl.name}: what it has contracted in 2026, from whom and how, and where its decisions are published.${co.mayor && co.mayor.name ? ` Its mayor (Presidente da Câmara), as the council's own site names them: ${co.mayor.name}.` : ''}`],
+    ...mapBlock(id),
     ['cards', [
       { cls: 'money', title: 'Contracts in 2026', stat: int(s.n), text: `against ${int(s25.n)} in all of 2025.` },
       { cls: 'money', title: 'Value', stat: meur(s.total), text: `as published (${meur(s25.total)} in 2025).` },
@@ -365,6 +378,7 @@ export function generate() {
   const rows = COUNCIL_IDS.map(id => { const s = summarise(by26[id]); const co = councilOf(id); return [`[${whoName(id)}](/councils/${id}/)`, int(s.n), meur(s.total), pct(s.direct / s.n), co.minutes && co.minutes.url ? `[yes](${co.minutes.url})` : 'not found yet']; });
   page({ path: '/councils/', kicker: 'Councils', title: 'The Algarve\'s 16 councils', description: 'One page per Algarve council: its 2026 contracts, biggest suppliers, and where its minutes, agendas, notices and budget are published.', blocks: [
     ['lede', 'Each council (Câmara Municipal) is run by an executive, elected every four years with the municipal assembly. It decides in minuted meetings and buys through public contracts. Pick a council.'],
+    ...mapBlock(),
     ['table', ['Council', 'Contracts 2026', 'Value', 'Direct award', 'Minutes online'], { right: [1, 2, 3], rows }],
     ['src', `Contracts: [IMPIC open data](${BASE_SRC.url}), read ${day(BASE_SRC.read_on)}. Minutes: each council's own site${councilsData.read_on ? `, read ${day(councilsData.read_on)}` : ''}.`],
     ...(councilsData.amal ? [['h2', 'AMAL, the councils together'], ['p', `${councilsData.amal.what} [amal.pt](${councilsData.amal.url})`]] : []),

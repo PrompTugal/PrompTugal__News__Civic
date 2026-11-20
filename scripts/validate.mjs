@@ -51,6 +51,25 @@ if (existsSync('_site/assets/live/contracts.js')) {
   const hosts = [...new Set([...js.matchAll(/(?:https?|wss?):\/\/([^\/'"`\s?#]+)/gi)].map(m => m[1].toLowerCase()))].filter(h => !['www.base.gov.pt', 'dados.gov.pt'].includes(h));
   if (hosts.join() !== 'data.promptugal.news') fail(`assets/live/contracts.js: fetches from ${hosts.join(', ') || 'nowhere'}, expected data.promptugal.news only`);
 }
+// civic.b@ (2026-11-20): the shared map. Every ptmap file a page loads exists; the init script builds no HTML, runs no code
+// from data and calls no host; each map's places parse as JSON and link only to this site's council pages.
+{
+  const usesMap = files.filter(f => f.endsWith('index.html') && readFileSync(f, 'utf8').includes('/assets/ptmap/'));
+  for (const f of usesMap) {
+    const h = readFileSync(f, 'utf8');
+    for (const m of h.matchAll(/\/assets\/ptmap\/(\d+\.\d+\.\d+)\/ptmap\.(js|css)/g)) if (!existsSync(`_site/assets/ptmap/${m[1]}/ptmap.${m[2]}`)) fail(`${f}: loads ptmap ${m[1]} ${m[2]}, which is missing`);
+    if (!existsSync('_site/assets/ptmap/init.js')) fail(`${f}: loads the map without assets/ptmap/init.js`);
+    for (const m of h.matchAll(/data-places="([^"]*)"/g)) {
+      let pts; try { pts = JSON.parse(m[1].replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')); } catch { fail(`${f}: map places are not JSON`); continue; }
+      if (!Array.isArray(pts) || !pts.length || pts.length > 400) fail(`${f}: map places missing or too many`);
+      for (const p of pts || []) if (!/^https:\/\/civic\.promptugal\.news\/councils\/[a-z-]+\/$/.test(p.href) || !p.at || !p.at.every(Number.isFinite)) fail(`${f}: map place ${String(p && p.id).slice(0, 40)} has a link or position out of bounds`);
+    }
+  }
+  if (existsSync('_site/assets/ptmap/init.js')) {
+    const js = readFileSync('_site/assets/ptmap/init.js', 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+    if (/innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|\bFunction\(|srcdoc|sendBeacon|fetch\(|XMLHttpRequest|new Image|\bimport\(|location\s*=|https?:\/\//.test(js)) fail('assets/ptmap/init.js: unsafe DOM, dynamic code or a network call');
+  }
+}
 // civic.b@PrompTugal.dinis (2026-11-18), Dinis's word of 18 Nov 2026 (~14:25 UTC): every piece of data carries a licence link.
 // Each page names the licence of every source it lists, and of our own work; each API file and each of its sources has a license.
 for (const f of files.filter(f => f.endsWith('index.html'))) {

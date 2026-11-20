@@ -82,3 +82,7 @@ footer{border-top:1px solid var(--rule);font-size:.82rem;color:var(--muted);padd
 .pf-said,.pf-got{display:block;height:7px;border-radius:2px;margin:1px 0}
 .pf-said{border:1.5px solid var(--green);background:transparent;box-sizing:border-box}
 .pf-got{background:var(--ink)}
+
+/* the shared map (ptmap): a column, not the page width (civic.b@, 20 Nov 2026) */
+.ptmap-fig{margin:1.2rem 0}
+.ptmap-fig .ptm{max-width:280px}
