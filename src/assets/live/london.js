@@ -58,7 +58,7 @@
                 })
                 t2.appendChild(body); var wrap = el('div', null, 'tbl'); wrap.appendChild(t2); kids.push(wrap)   // the site's scrolling table box: no sideways page scroll on a phone
             } else kids.push(el('p', 'No notices by London buyers in that window.'))
-            kids.push(el('p', 'Source: Contracts Finder (Cabinet Office), through data.promptugal.news. ' + cut(d.license.attribution, 200) + ' Each time links the notice.', 'src'))
+            kids.push(el('p', 'Source: Contracts Finder (UK government; Crown Commercial Service, as its licence names), through data.promptugal.news. ' + cut(d.license.attribution, 200) + ' Each time links the notice.', 'src'))
             var live = box.querySelector('.live-body'); if (live) { live.replaceChildren.apply(live, kids); if (note) note.textContent = 'Your browser loaded this from data.promptugal.news, which sees your IP address as any website does. Our dated copy follows.' }
         })
         .catch(function () { clearTimeout(timer); fail() })

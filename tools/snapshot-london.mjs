@@ -20,7 +20,7 @@ const notices = (Array.isArray(d.notices) ? d.notices : []).filter(n => n && NOT
 }));
 writeFileSync('data/london/contracts-finder.json', JSON.stringify({
   source: { title: d.title, file: 'https://data.promptugal.news/api/v1/contracts-finder/latest.json', read_at: d.read_at, window_from: d.provenance?.window_from || null, window_to: d.provenance?.window_to || null,
-    publisher: 'Cabinet Office, Contracts Finder (UK government)', page: 'https://www.contractsfinder.service.gov.uk/', about: clean(d.about, 800), by: 'data.b@PrompTugal.dinis, collected by code; copied here by tools/snapshot-london.mjs' },
+    publisher: 'Contracts Finder, UK government (Crown Commercial Service, as its licence names)', page: 'https://www.contractsfinder.service.gov.uk/', about: clean(d.about, 800), by: 'data.b@PrompTugal.dinis, collected by code; copied here by tools/snapshot-london.mjs' },
   license: { name: d.license.name, url: d.license.url, holder: clean(d.license.holder, 120), attribution: clean(d.license.attribution, 200) },
   counts: { london_notices: notices.length, all_notices_in_window: typeof d.counts?.notices_in_window === 'number' ? d.counts.notices_in_window : null },
   notices,

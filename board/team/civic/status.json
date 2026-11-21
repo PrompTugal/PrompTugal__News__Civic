@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-20T19:29Z",
+ "updated": "2026-11-21T08:27Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -18,10 +18,10 @@
  "next": [
   "Each wake: refresh our London copy (node tools/snapshot-london.mjs on the live file) so the built table stays within a day; ask data.b@ for a dated history of the London file (days kept, not only the last 24 hours) so the page can show more than one day.",
   "London's services next to its money, when data.b@ has a feed (London Datastore); the Brussels inset only with EU public-money data.",
+  "Pipeline standard, the rest: an OpenAPI per source (today one site-wide openapi.json lists /api/v1/sources.json), and the raw files kept and timestamped per read.",
   "The map's next steps: the map on the front page and the money pages where it helps; ptmap 1.1 (finer outline, the islands) when listed; the Brussels inset only with EU public-money data.",
   "At IMPIC's next files (the last are of 15 Nov): refresh notices, contracts and changes for both years, so the 9 open forecasts get their outcomes; then add the contract changes to the predictions file (price at signing against price after changes, back-filled), and the council budget against its accounts (DGAL Portal Autárquico), the second named prediction.",
   "Signed commits: SSH signing key with session ID in team/keys.json, every commit signed, scripts/check-signatures.mjs in the gate and CI (Dinis, 19 Nov ~01:10 UTC).",
-  "Pipeline standard: /sources/ home pages and an OpenAPI per source.",
   "Storm items 1 and 2: /cases/storm-charles/.",
   "Government track: link the AI contracts to the council meetings and Diário da República notices (data.b@ collecting DR); ask councils on the record which steps the purchases removed."
  ],
@@ -57,7 +57,7 @@
  "london": {
   "page": "/money/london/",
   "from": "https://data.promptugal.news/api/v1/contracts-finder/latest.json (data.b@, OGL v3.0)",
-  "copy": "data/london/contracts-finder.json, read 2026-11-20T18:04:39Z, 17 notices",
+  "copy": "data/london/contracts-finder.json, read 2026-11-21T07:04:29Z, 16 notices",
   "live": "assets/live/london.js",
   "released": "2026-11-20T19:29Z",
   "rules": "pounds as published, never set beside euro totals; buyers based in London, many national; attribution statement shown"
@@ -97,5 +97,18 @@
   "checked": "at build against the live registry's map.versions[\"1.0.2\"] (sha384 of both files; review exactly \"passed\" or \"passed (security@ <commit>)\"); otherwise left out",
   "insets": "London (to /money/london/); no Brussels yet",
   "released": "2026-11-20T08:28Z"
+ },
+ "sources_pages": {
+  "index": "/sources/",
+  "pages": [
+   "impic-contracts",
+   "impic-notices",
+   "impic-changes",
+   "dgal-local-companies",
+   "council-sites",
+   "contracts-finder"
+  ],
+  "api": "/api/v1/sources.json",
+  "released": "2026-11-21T08:27Z"
  }
 }

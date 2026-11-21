@@ -2,12 +2,12 @@
  "source": {
   "title": "London public contracts (Contracts Finder)",
   "file": "https://data.promptugal.news/api/v1/contracts-finder/latest.json",
-  "read_at": "2026-11-20T18:04:39Z",
-  "window_from": "2026-11-19T18:04:39Z",
-  "window_to": "2026-11-20T18:04:39Z",
-  "publisher": "Cabinet Office, Contracts Finder (UK government)",
+  "read_at": "2026-11-21T07:04:29Z",
+  "window_from": "2026-11-20T07:04:29Z",
+  "window_to": "2026-11-21T07:04:29Z",
+  "publisher": "Contracts Finder, UK government (Crown Commercial Service, as its licence names)",
   "page": "https://www.contractsfinder.service.gov.uk/",
-  "about": "Procurement notices that London public bodies published on Contracts Finder in the 24 hours before the read: each with its notice page, stage, title, buyer (as published: mostly public bodies, sometimes an agent publishing for one), the buyer's postcode district, value, award value and deadline, as published. London means the buyer's locality says London or its postcode area lies wholly inside Greater London (E, EC, N, NW, SE, SW, W, WC); bodies in the outer areas that straddle the boundary are not counted. Suppliers and contacts are not kept. Source: Cabinet Office, Contracts Finder; OGL v3.0. A weak signal, not an audit.",
+  "about": "Procurement notices that London public bodies published on Contracts Finder in the 24 hours before the read: each with its notice page, stage, title, buyer (as published: mostly public bodies, sometimes an agent publishing for one), the buyer's postcode district, value, award value and deadline, as published. London means the buyer's locality says London or its postcode area lies wholly inside Greater London (E, EC, N, NW, SE, SW, W, WC); bodies in the outer areas that straddle the boundary are not counted. When the locality says London it counts even if the postcode lies outside London: some national bodies publish a non-geographic postcode (HMRC uses SS99, Southend) with a London address. Suppliers and contacts are not kept. Source: Contracts Finder (Crown Commercial Service); OGL v3.0. ",
   "by": "data.b@PrompTugal.dinis, collected by code; copied here by tools/snapshot-london.mjs"
  },
  "license": {
@@ -17,10 +17,25 @@
   "attribution": "Contains public sector information licensed under the Open Government Licence v3.0."
  },
  "counts": {
-  "london_notices": 17,
-  "all_notices_in_window": 116
+  "london_notices": 16,
+  "all_notices_in_window": 110
  },
  "notices": [
+  {
+   "notice": "https://www.contractsfinder.service.gov.uk/Notice/d991582b-b97f-48c9-a726-a12bba6aa933",
+   "published": "2026-11-20T20:21:31Z",
+   "stage": [
+    "award"
+   ],
+   "title": "Provision of Laptops",
+   "buyer": "Nursing And Midwifery Council",
+   "district": "W1B",
+   "status": "complete",
+   "value_gbp": 241000,
+   "award_gbp": 241000,
+   "deadline": "2026-10-12T17:00:00+01:00",
+   "method": "selective"
+  },
   {
    "notice": "https://www.contractsfinder.service.gov.uk/Notice/1e57f29a-b739-4b60-bbff-bb7f58f756e1",
    "published": "2026-11-20T17:28:15Z",
@@ -242,36 +257,6 @@
    "value_gbp": 22800,
    "award_gbp": 22800,
    "deadline": "2026-08-21T23:59:00+01:00",
-   "method": "selective"
-  },
-  {
-   "notice": "https://www.contractsfinder.service.gov.uk/Notice/137153d1-da88-42bd-acec-a04ecb08c160",
-   "published": "2026-11-20T06:37:38Z",
-   "stage": [
-    "award"
-   ],
-   "title": "Provision of Contracted Guards for British Embassy Dakar",
-   "buyer": "Foreign Commonwealth and Development Office",
-   "district": "SW1A",
-   "status": "complete",
-   "value_gbp": 74811.67,
-   "award_gbp": 74811.67,
-   "deadline": "2026-11-13T14:00:00Z",
-   "method": "open"
-  },
-  {
-   "notice": "https://www.contractsfinder.service.gov.uk/Notice/523a8e27-7c24-419d-b2d5-9765ce5a1561",
-   "published": "2026-11-19T18:04:52Z",
-   "stage": [
-    "award"
-   ],
-   "title": "End user computing support and related services",
-   "buyer": "Financial Conduct Authority",
-   "district": "E20",
-   "status": "complete",
-   "value_gbp": 150000,
-   "award_gbp": 115710,
-   "deadline": "2026-08-19T17:00:00+01:00",
    "method": "selective"
   }
  ]

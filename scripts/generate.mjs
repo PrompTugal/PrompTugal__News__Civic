@@ -146,7 +146,7 @@ ${html}
 <dl><dt>Code</dt><dd>${inlineHtml(p.code.replace(/`/g, ''))}</dd><dt>Agents</dt><dd>${inlineHtml(p.agents)}</dd><dt>A person</dt><dd>${inlineHtml(p.person)}</dd></dl>
 <p>Markdown twin: <a href="${path}index.md">${path}index.md</a>. Something wrong? The <a href="https://github.com/PrompTugal/PrompTugal__News__Civic">repository</a> holds every source file.</p></section>
 </div></main>
-<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version <a class="ver" href="/version.json">__VERSION__</a>. Code Apache-2.0, text and data <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>; sources keep their own licences, linked on each page. Public data from the sources named on each page. <span class="takedown"><strong>Should we not show something?</strong> If you think a page here should not show your data, <a href="https://github.com/PrompTugal/PrompTugal__News__Civic/issues/new?title=Take-down%20request&amp;labels=take-down">open a public issue</a> naming the page; we take it down while we talk (<a href="/about/#take-down">how</a>). <a href="/security/">Security findings</a>.</span></div></footer>
+<footer><div class="wrap">PrompTugal.news Civic, part of <a href="https://promptugal.news/">PrompTugal.news</a>: Portugal, town by town. Independent: not affiliated with, and not speaking for, any government body, council or public portal. Version <a class="ver" href="/version.json">__VERSION__</a>. Code Apache-2.0, text and data <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>; sources keep their own licences, linked on each page. Public data from the sources named on each page. <span class="takedown"><strong>Should we not show something?</strong> If you think a page here should not show your data, <a href="https://github.com/PrompTugal/PrompTugal__News__Civic/issues/new?title=Take-down%20request&amp;labels=take-down">open a public issue</a> naming the page; we take it down while we talk (<a href="/about/#take-down">how</a>). <a href="/security/">Security findings</a>. <a href="/sources/">Sources</a>.</span></div></footer>
 </body>
 </html>
 `;
@@ -411,7 +411,7 @@ export function generate() {
   page({ path: '/', title: 'Public money and public services, explained', description: 'Independent: public procurement, council decisions and public services in Portugal, explained and cross-mapped, starting with the Algarve\'s 16 councils. Not a government site.', blocks: frontBlocks(), sources: [BASE_SRC] });
 
   page({ path: '/money/', kicker: 'Public money', title: 'What the Algarve\'s councils buy, and how', description: `Public procurement by the Algarve's 16 councils in 2026, from IMPIC's open data of the Portal BASE: ${int(all26.n)} contracts, procedures explained.`, blocks: moneyBlocks(), sources: [BASE_SRC, { title: 'Código dos Contratos Públicos, consolidated (Diário da República)', url: 'https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2008-34455475', read_on: '2026-11-17' }] });
-  if (LONDON && LONDON.notices.length) page({ path: '/money/london/', kicker: 'Public money · Beyond Portugal: London', title: 'London buyers\' contract notices, today', description: `The ${LONDON.notices.length} contract notices published on Contracts Finder by buyers based in London in the 24 hours to ${LONDON.source.read_at.slice(0, 16).replace('T', ' ')} UTC: what, who, stage and value in pounds. Read live from data.promptugal.news.`, blocks: londonBlocks(), sources: [{ title: 'Contracts Finder (Cabinet Office, UK government), through data.promptugal.news', url: LONDON.source.page, read_on: LONDON.source.read_at.slice(0, 10), license: { name: LONDON.license.name, url: LONDON.license.url } }] });
+  if (LONDON && LONDON.notices.length) page({ path: '/money/london/', kicker: 'Public money · Beyond Portugal: London', title: 'London buyers\' contract notices, today', description: `The ${LONDON.notices.length} contract notices published on Contracts Finder by buyers based in London in the 24 hours to ${LONDON.source.read_at.slice(0, 16).replace('T', ' ')} UTC: what, who, stage and value in pounds. Read live from data.promptugal.news.`, blocks: londonBlocks(), sources: [{ title: 'Contracts Finder (UK government), through data.promptugal.news, PrompTugal.news\'s data site', url: LONDON.source.page, read_on: LONDON.source.read_at.slice(0, 10), license: { name: LONDON.license.name, url: LONDON.license.url } }] });
 
   const rows = COUNCIL_IDS.map(id => { const s = summarise(by26[id]); const co = councilOf(id); return [`[${whoName(id)}](/councils/${id}/)`, int(s.n), meur(s.total), pct(s.direct / s.n), co.minutes && co.minutes.url ? `[yes](${co.minutes.url})` : 'not found yet']; });
   page({ path: '/councils/', kicker: 'Councils', title: 'The Algarve\'s 16 councils', description: 'One page per Algarve council: its 2026 contracts, biggest suppliers, and where its minutes, agendas, notices and budget are published.', blocks: [
@@ -552,7 +552,7 @@ export function generate() {
       municipal_companies: muniRows(muniOf(id)).map(({ m, a, b }) => ({ id: m.id, name: m.name, nif: m.nif, what: m.what, status: m.status, contracts_2026: a.n, value_eur_2026: Math.round(a.total), value_eur_2025: Math.round(b.total) })),
       contracts_list: `${SITE}/data/procurement/base-2026.json`, sources: [baseSrc] };
   };
-  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/use-cases/estimates.json', '/api/v1/use-cases/notices.json', '/api/v1/use-cases/changes.json', '/api/v1/openapi.json'] });
+  put('index.json', { ...meta, about: 'Every GET call of this site. Described by openapi.json.', endpoints: ['/api/v1/councils.json', '/api/v1/councils/{id}.json', '/api/v1/companies.json', '/api/v1/companies/{nif}.json', '/api/v1/services.json', '/api/v1/services/{id}.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json', '/api/v1/use-cases/tech-and-ai.json', '/api/v1/use-cases/estimates.json', '/api/v1/use-cases/notices.json', '/api/v1/use-cases/changes.json', '/api/v1/sources.json', '/api/v1/openapi.json'] });
   // Dinis, 18 Nov 2026 ~22:20 UTC (Website repo board/guidance/2026-11-18-london.md): London is the first place beyond Portugal,
   // so no record assumes a place is Portuguese: each one says its country, region and currency.
   const PLACE_PT = { country: { code: 'PT', name: 'Portugal' }, region: 'Algarve', currency: 'EUR' };
@@ -755,6 +755,7 @@ export function generate() {
       '/api/v1/companies.json': get('Companies with contracts at three or more councils in 2026', obj),
       '/api/v1/companies/{nif}.json': get('One company: its contracts with the Algarve councils in 2026', obj, 'nif'),
       '/api/v1/services.json': get('Public-service guides and which office does what', obj),
+      '/api/v1/sources.json': get('The sources behind every figure: publisher, licence, last read, what we keep and leave out, our files and pages', obj),
       '/api/v1/services/{id}.json': get('One guide, step by step, with official pages', obj, 'id'),
       '/api/v1/procurement/summary.json': get('Totals for the 16 councils, 2026 and 2025', obj),
       '/api/v1/use-cases/tech-and-ai.json': get('Tech and AI purchases of the 16 councils: by council, supplier, and contracts that mention AI', obj),
@@ -765,6 +766,76 @@ export function generate() {
       '/data/procurement/base-2026.json': get('Every 2026 contract of the 16 councils (large)', obj),
     },
     components: { schemas: { Council: { type: 'object', required: ['id', 'name', 'contracts_2026', 'sources'], properties: { id: { type: 'string' }, name: { type: 'string' }, nif: { type: ['string', 'null'] }, contracts_2026: obj, contracts_2025: obj, top_suppliers_2026: { type: 'array' }, where_published: obj, sources: { type: 'array' } } } } } });
+  // The sources, one home page each (Dinis, 18 Nov 2026 ~16:00 UTC, the pipeline standard: "a home page per source"; Website
+  // repo board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md): who publishes it, its licence, when we read
+  // it, what we keep and what we leave out, the code that reads it, our files and the pages built from it. From the files'
+  // own source blocks, so a page cannot claim a read the data does not record. Also /api/v1/sources.json.
+  {
+    const chg = read('data/procurement/changes.json', { source: {}, license: {} });
+    const b26 = base[2026].source, b25 = base[2025].source;
+    const L = LONDON;
+    const SRCS = [
+      { id: 'impic-contracts', name: 'IMPIC: contracts published on the Portal BASE', publisher: 'IMPIC, Instituto dos Mercados Públicos, do Imobiliário e da Construção (Portugal)', country: 'Portugal',
+        url: b26.dataset, files: [b26.resource, b25.resource].filter(Boolean), read_on: b26.read_on, license: IMPIC_LICENCE,
+        what: 'Every public contract that Portuguese public bodies publish on the Portal BASE, as yearly open-data files on dados.gov.pt. We read 2025 and 2026 and keep the 16 Algarve councils\' contracts and their municipal companies\'.',
+        keep: 'contract id, buyer, supplier name and NIF (companies only), what was bought (withheld where a supplier is a private individual), procedure, price, base price, dates, the record\'s link on base.gov.pt.',
+        leave: 'suppliers who are private individuals are never named (they still count in totals); contract documents; anything outside the 16 councils and their companies.',
+        code: 'tools/extract-base.mjs', ours: ['/data/procurement/base-2026.json', '/data/procurement/base-2025.json', '/api/v1/councils.json', '/api/v1/procurement/summary.json', '/api/v1/municipal-companies.json'],
+        pages: ['/money/', '/councils/', '/map/', '/money/tech-and-ai/', '/money/municipal-companies/'],
+        gaps: 'A contract can appear on BASE some time after it is signed, and IMPIC refreshes the open-data files from time to time (the files we read are dated 15 Nov 2026). The live tables on the council pages read the twice-daily copy on PrompTugal.news\'s data site (data.promptugal.news) instead.' },
+      { id: 'impic-notices', name: 'IMPIC: procurement notices (Anúncios)', publisher: 'IMPIC (Portugal)', country: 'Portugal',
+        url: notices.source.notices_dataset, files: notices.source.notices_resource || [], read_on: notices.source.read_on, license: IMPIC_LICENCE_NOTICES,
+        what: 'The notices a body publishes in the Diário da República when it opens a procedure, with the base price: the most it will pay, stated before any bid. Joined to the contracts that cite them.',
+        keep: 'notice number, council, kind, dates, deadline, base price, the Diário da República link, the contracts that cite the notice.',
+        leave: 'tender-platform links; a notice\'s text where it may name a private person, or where a contract that cites it went to one.',
+        code: 'tools/extract-notices.mjs', ours: ['/data/procurement/notices-2026.json', '/data/procurement/notices-2025.json', '/api/v1/use-cases/notices.json', '/api/v1/use-cases/estimates.json'],
+        pages: ['/money/estimates/'],
+        gaps: 'A notice and its contracts are joined by the notice number; contracts that cite no notice (most direct awards) have none.' },
+      { id: 'impic-changes', name: 'IMPIC: contract changes (Modificações contratuais)', publisher: 'IMPIC (Portugal)', country: 'Portugal',
+        url: chg.source.changes_dataset, files: chg.source.changes_resource || [], read_on: chg.source.read_on, license: chg.license && chg.license.url ? { name: chg.license.name, url: chg.license.url } : IMPIC_LICENCE,
+        what: 'Changes agreed after a contract was signed: the price and term after each change, and the legal basis.',
+        keep: 'contract id, date, legal basis, price and term after the change.',
+        leave: 'the change documents; when a contract\'s last two changes share their date and publication date but not their price, which came last is unknown (IMPIC gives no change number), and that contract is left out of the totals.',
+        code: 'tools/extract-changes.mjs', ours: ['/data/procurement/changes.json', '/api/v1/use-cases/changes.json'], pages: ['/money/changes/'],
+        gaps: 'IMPIC records the full price after each change, not the amount changed.' },
+      { id: 'dgal-local-companies', name: 'DGAL: the list of local companies', publisher: 'DGAL, Direção-Geral das Autarquias Locais (Portugal)', country: 'Portugal',
+        url: (munis.sources || [{}])[0].url || 'https://portalautarquico.dgal.gov.pt/', files: [], read_on: munis.read_on, license: { name: "the source's terms (no open licence stated)", url: 'https://portalautarquico.dgal.gov.pt/' },
+        what: 'Which companies each council owns (water, waste, sport, markets, housing), dated 12 February 2025.',
+        keep: 'company name, NIF, owner council, what it does, status; their contracts come from IMPIC.', leave: 'the list\'s other columns.',
+        code: 'data/municipal-companies.json (kept by hand from the list; each company\'s NIF as IMPIC\'s open data publishes it as a buyer)', ours: ['/api/v1/municipal-companies.json'], pages: ['/money/municipal-companies/'],
+        gaps: 'The list is from February 2025; a company created or closed since may be missing.' },
+      { id: 'council-sites', name: 'The 16 councils\' own websites', publisher: 'Each Câmara Municipal of the Algarve', country: 'Portugal',
+        url: `${SITE}/councils/`, sites: COUNCIL_IDS.map(id => councilOf(id).site).filter(Boolean), files: [], read_on: councilsData.read_on, license: { name: "each council site's own terms (no open licence stated)" }, where_note: 'each council\'s own site, listed council by council on [Councils](/councils/)',
+        what: 'Where each council publishes its meeting minutes, agendas, assembly papers, public notices and budget, and who its mayor is.',
+        keep: 'links to those listings, the date of the latest minutes listed, the mayor\'s name as each council publishes it.', leave: 'the documents themselves: we link, we do not copy.',
+        code: 'data/councils.json (read by hand, robots.txt checked per site)', ours: ['/api/v1/councils/faro.json'], pages: ['/councils/'],
+        gaps: 'Where we could not find a listing on a council\'s site, its page says "not found yet".' },
+      ...(L ? [{ id: 'contracts-finder', name: 'Contracts Finder: London buyers\' notices', publisher: L.source.publisher, country: 'United Kingdom',
+        url: L.source.page, files: [L.source.file], read_on: L.source.read_at.slice(0, 10), license: { name: L.license.name, url: L.license.url },
+        what: 'Contract opportunities and awards published by public bodies in England and UK-wide bodies; we show those whose buyer is based in London, the last 24 hours, through PrompTugal.news\'s data site (data.promptugal.news).',
+        keep: 'notice link, date, stage, title, buyer and its postcode district, value and award value in pounds, deadline, procedure.', leave: 'suppliers and contacts (the data site\'s file keeps none); outer-London buyers whose postcode area reaches beyond London.',
+        code: 'tools/snapshot-london.mjs, assets/live/london.js', ours: ['/data/london/contracts-finder.json'], pages: ['/money/london/'],
+        gaps: 'One day only; no history kept yet. Values are as published, in pounds, and are never added to the Algarve\'s euro figures.', attribution: L.license.attribution }] : []),
+    ];
+    for (const x of SRCS) if (!x.url || !x.read_on || !x.license || !x.license.name) throw new Error(`source ${x.id}: missing url, read date or licence`);
+    page({ path: '/sources/', kicker: 'Sources', title: 'Where every figure comes from', description: `The ${SRCS.length} sources behind PrompTugal.news Civic: who publishes each, its licence, when we read it, what we keep and leave out, and the pages built from it.`, blocks: [
+      ['lede', 'Every figure on this site comes from a public source, read on a date we record. One page per source: who publishes it, under what licence, what we keep, what we leave out, and which of our pages use it. None of these bodies makes or endorses this site.'],
+      ['table', ['Source', 'Publisher', 'Country', 'Last read', 'Licence'], { rows: SRCS.map(x => [`[${x.name}](/sources/${x.id}/)`, x.publisher, x.country, day(x.read_on), licLink(x.license)]) }],
+      ['p', 'The same list as JSON: [/api/v1/sources.json](/api/v1/sources.json). Portals we checked but do not machine-read (for example the Diário da República, a JavaScript application) are on [About](/about/).'],
+    ], prov: { code: 'scripts/generate.mjs writes these pages from the source block of each data file.' } });
+    for (const x of SRCS) page({ path: `/sources/${x.id}/`, kicker: 'Sources', title: x.name, description: `${x.name}: who publishes it, its licence, when we read it, what we keep and leave out, and the pages built from it.`, blocks: [
+      ['lede', x.what],
+      ['table', ['', ''], { rows: [
+        ['Publisher', x.publisher], ['Where', x.where_note || `[${x.url.replace(/^https?:\/\//, '').slice(0, 70)}](${x.url})`], ['Last read', day(x.read_on)], ['Licence', licLink(x.license)],
+        ...(x.attribution ? [['Attribution', x.attribution]] : []),
+        ['What we keep', x.keep], ['What we leave out', x.leave], ['The code that reads it', x.code],
+      ] }],
+      ...(x.files.length ? [['h2', 'The files we read'], ['ul', x.files.map(f => `[${f.split('/').pop()}](${f})`)]] : []),
+      ['h2', 'Our copies and pages'], ['ul', [...x.ours.map(f => `[${f}](${f})`), ...x.pages.map(f => `[${(pages.find(q => q.path === f) || { title: f }).title}](${f})`)]],
+      ['h2', 'Gaps'], ['p', x.gaps],
+    ], sources: x.id === 'council-sites' ? COUNCIL_IDS.filter(id => councilOf(id).site).map(id => ({ title: `The Câmara Municipal de ${whoName(id)}'s website`, url: councilOf(id).site, read_on: councilOf(id).read_on || x.read_on, license: x.license })) : [{ title: x.name, url: x.url, read_on: x.read_on, license: x.license }] });
+    put('sources.json', { ...meta, about: 'The sources behind this site, one entry each: publisher, licence, last read, what we keep and leave out, our files and pages.', sources: SRCS.map(x => ({ ...x, page: `${SITE}/sources/${x.id}/` })) });
+  }
   page({ path: '/api/', kicker: 'For machines', title: 'The Civic API', description: 'Read-only JSON GET calls for every council, company and service guide on PrompTugal.news Civic, described by OpenAPI 3.1. Independent, not an official API.', blocks: [
     ['lede', 'Everything on this site is also JSON: one GET call per council, per company and per service guide, as static files. Use them, cite them (CC BY 4.0), and check the official sources each one names.'],
     ['note', '**Independent.** Not a government or official API. Values come from IMPIC\'s open data and the councils\' own sites, each with the date we read it.'],
@@ -775,6 +846,7 @@ export function generate() {
       ['[/api/v1/companies.json](/api/v1/companies.json)', `The ${multi.length} companies with contracts at three or more councils`],
       [`[/api/v1/companies/${multi[0].nif}.json](/api/v1/companies/${multi[0].nif}.json)`, 'One company and its contracts'],
       ['[/api/v1/services.json](/api/v1/services.json)', 'The service guides and which office does what'],
+      ['[/api/v1/sources.json](/api/v1/sources.json)', 'The sources behind every figure: publisher, licence, last read, what we keep'],
       ['[/api/v1/procurement/summary.json](/api/v1/procurement/summary.json)', 'Totals for the 16 councils, 2026 and 2025'],
       ['[/api/v1/municipal-companies.json](/api/v1/municipal-companies.json)', 'The councils\' municipal companies and their contracts by procedure'],
       ['[/data/procurement/base-2026.json](/data/procurement/base-2026.json)', 'Every 2026 contract (large file)'],
