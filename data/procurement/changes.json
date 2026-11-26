@@ -3,11 +3,11 @@
   "title": "Contratos Públicos - Portal Base - IMPIC: Modificações Contratuais, joined to the councils' contracts (open data on dados.gov.pt)",
   "changes_dataset": "https://dados.gov.pt/pt/datasets/668d65dbcb1b953e80198435/",
   "changes_resource": [
-   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-modificacoes-contratuais-de-2012-a-2026/20261115-101004-ca10dc01/modcontrats2025.json",
-   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-modificacoes-contratuais-de-2012-a-2026/20261115-101003-e3c4424f/modcontrats2026.json"
+   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-modificacoes-contratuais-de-2012-a-2026/20261122-100944-09b30d4b/modcontrats2025.json",
+   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-modificacoes-contratuais-de-2012-a-2026/20261122-100943-d205e81a/modcontrats2026.json"
   ],
   "contracts_dataset": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-  "read_on": "2026-11-19",
+  "read_on": "2026-11-26",
   "licence": "other-pd (as published on dados.gov.pt)",
   "covers": "contracts of the 16 Algarve councils published in 2025 and 2026 (data/procurement/base-2025.json and base-2026.json)"
  },
@@ -16,8 +16,104 @@
   "url": "https://dados.gov.pt/pt/datasets/668d65dbcb1b953e80198435/",
   "id": "other-pd"
  },
- "count": 359,
+ "count": 369,
  "contracts": [
+  {
+   "id": "11481253",
+   "council": "albufeira",
+   "published": "2025-06-04",
+   "signed": "2025-05-23",
+   "procedure": "Concurso público",
+   "price": 1299000,
+   "base_price": 1365753.93,
+   "term_days": 150,
+   "changes": [
+    {
+     "date": "2026-11-18",
+     "published": "2026-11-20",
+     "basis": "Trabalhos Complementares (art. 370.º do CCP)",
+     "act": "Acordo entre as partes",
+     "price_after": 1377919.18,
+     "term_days_after": 150
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 1377919.18,
+   "term_days_last": 150,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11481253"
+  },
+  {
+   "id": "15259185",
+   "council": "alcoutim",
+   "published": "2026-07-08",
+   "signed": "2026-07-08",
+   "procedure": "Ajuste Direto Regime Geral",
+   "price": 42000,
+   "base_price": 42000,
+   "term_days": 23,
+   "changes": [
+    {
+     "date": "2026-11-18",
+     "published": "2026-11-20",
+     "basis": "Interesse público (art. 312.º, al. c) do CCP",
+     "act": "Acordo entre as partes",
+     "price_after": 42000,
+     "term_days_after": 166
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 42000,
+   "term_days_last": 166,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15259185"
+  },
+  {
+   "id": "11297276",
+   "council": "castro-marim",
+   "published": "2025-03-20",
+   "signed": "2025-03-19",
+   "procedure": "Concurso público",
+   "price": 353006.7,
+   "base_price": 383500,
+   "term_days": 214,
+   "changes": [
+    {
+     "date": "2026-11-17",
+     "published": "2026-11-19",
+     "basis": "Prorrogação de Prazo contratual (art.º 13.º do D.L. n.º 06/2004, 06-01, na sua redação atual)",
+     "act": "Acordo entre as partes",
+     "price_after": 353006.7,
+     "term_days_after": 352
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 353006.7,
+   "term_days_last": 352,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11297276"
+  },
+  {
+   "id": "15800444",
+   "council": "sao-bras-de-alportel",
+   "published": "2026-10-21",
+   "signed": "2026-04-02",
+   "procedure": "Ajuste Direto Regime Geral",
+   "price": 23027.92,
+   "base_price": 23100,
+   "term_days": 60,
+   "changes": [
+    {
+     "date": "2026-11-16",
+     "published": "2026-11-17",
+     "basis": "Trabalhos Complementares (art. 370.º do CCP)",
+     "act": "Acordo entre as partes",
+     "price_after": 24609.72,
+     "term_days_after": 60
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 24609.72,
+   "term_days_last": 60,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15800444"
+  },
   {
    "id": "15888998",
    "council": "castro-marim",
@@ -41,6 +137,30 @@
    "price_last": 987622.39,
    "term_days_last": 365,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15888998"
+  },
+  {
+   "id": "12970414",
+   "council": "monchique",
+   "published": "2026-01-29",
+   "signed": "2026-01-23",
+   "procedure": "Consulta Prévia",
+   "price": 139814.51,
+   "base_price": 147000,
+   "term_days": 90,
+   "changes": [
+    {
+     "date": "2026-11-12",
+     "published": "2026-11-18",
+     "basis": "Trabalhos Complementares (art. 370.º do CCP)",
+     "act": "Acordo entre as partes",
+     "price_after": 152921.12,
+     "term_days_after": 90
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 152921.12,
+   "term_days_last": 90,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12970414"
   },
   {
    "id": "14409945",
@@ -137,6 +257,30 @@
    "price_last": 43200,
    "term_days_last": 1095,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11282521"
+  },
+  {
+   "id": "11914499",
+   "council": "silves",
+   "published": "2025-11-10",
+   "signed": "2025-09-17",
+   "procedure": "Concurso público",
+   "price": 183097.53,
+   "base_price": 183150,
+   "term_days": 120,
+   "changes": [
+    {
+     "date": "2026-11-09",
+     "published": "2026-11-19",
+     "basis": "Trabalhos Complementares (art. 370.º do CCP)",
+     "act": "Acto Administrativo",
+     "price_after": 191650.02,
+     "term_days_after": 260
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 191650.02,
+   "term_days_last": 260,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11914499"
   },
   {
    "id": "14573600",
@@ -273,6 +417,30 @@
    "price_last": 48900,
    "term_days_last": 227,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=14926218"
+  },
+  {
+   "id": "11683228",
+   "council": "loule",
+   "published": "2025-09-05",
+   "signed": "2025-09-04",
+   "procedure": "Concurso público",
+   "price": 77223.5,
+   "base_price": 90000,
+   "term_days": 483,
+   "changes": [
+    {
+     "date": "2026-10-30",
+     "published": "2026-11-16",
+     "basis": "Interesse público (art. 312.º, al. c) do CCP",
+     "act": "Acordo entre as partes",
+     "price_after": 77223.5,
+     "term_days_after": 848
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 77223.5,
+   "term_days_last": 848,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11683228"
   },
   {
    "id": "15266641",
@@ -723,6 +891,30 @@
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15458243"
   },
   {
+   "id": "12510428",
+   "council": "loule",
+   "published": "2026-01-13",
+   "signed": "2025-12-19",
+   "procedure": "Concurso público",
+   "price": 4645.92,
+   "base_price": 68632,
+   "term_days": 353,
+   "changes": [
+    {
+     "date": "2026-10-13",
+     "published": "2026-11-17",
+     "basis": "Cláusulas contratuais que indiquem, de forma clara, precisa e inequívoca, o âmbito e a natureza das eventuais modificações, bem como as condições em que podem ser aplicadas (art. 312.º, n.º 1, alínea ",
+     "act": "Acordo entre as partes",
+     "price_after": 4645.92,
+     "term_days_after": 718
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 4645.92,
+   "term_days_last": 718,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12510428"
+  },
+  {
    "id": "14634284",
    "council": "loule",
    "published": "2026-04-24",
@@ -1105,6 +1297,30 @@
    "price_last": 33642.84,
    "term_days_last": 435,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12525195"
+  },
+  {
+   "id": "13958324",
+   "council": "loule",
+   "published": "2026-03-10",
+   "signed": "2026-03-10",
+   "procedure": "Concurso limitado por prévia qualificação",
+   "price": 6514620,
+   "base_price": 6519900,
+   "term_days": 1826,
+   "changes": [
+    {
+     "date": "2026-09-25",
+     "published": "2026-11-16",
+     "basis": "Interesse público (art. 312.º, al. c) do CCP",
+     "act": "Acto Administrativo",
+     "price_after": 6514620,
+     "term_days_after": 1826
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 6514620,
+   "term_days_last": 1826,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=13958324"
   },
   {
    "id": "11635604",
@@ -2697,6 +2913,30 @@
    "price_last": 14320,
    "term_days_last": 730,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11791067"
+  },
+  {
+   "id": "11802852",
+   "council": "vila-do-bispo",
+   "published": "2025-10-17",
+   "signed": "2025-10-15",
+   "procedure": "Consulta Prévia",
+   "price": 54465.35,
+   "base_price": 55000,
+   "term_days": 182,
+   "changes": [
+    {
+     "date": "2026-07-31",
+     "published": "2026-11-20",
+     "basis": "Modificação não substancial, independentemente do respetivo valor (art. 312.º, n.º 1, alínea e), e n.º 3, do CCP) (redação do DL 177/2026)",
+     "act": "Acordo entre as partes",
+     "price_after": 54465.35,
+     "term_days_after": 360
+    }
+   ],
+   "order_uncertain": false,
+   "price_last": 54465.35,
+   "term_days_last": 360,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11802852"
   },
   {
    "id": "11754403",

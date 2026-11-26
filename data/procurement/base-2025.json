@@ -2,8 +2,8 @@
  "source": {
   "title": "Contratos Públicos - Portal Base - IMPIC (open data on dados.gov.pt)",
   "dataset": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-  "resource": "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261115-100657-5259fa0a/contratos2025.zip",
-  "read_on": "2026-11-17",
+  "resource": "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261122-100634-34fd9d57/contratos2025.zip",
+  "read_on": "2026-11-26",
   "licence": "other-pd (as published on dados.gov.pt)",
   "license": {
    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
@@ -77,8 +77,84 @@
    "nif": "506826961"
   }
  },
- "count": 4306,
+ "count": 4308,
  "contracts": [
+  {
+   "id": "15958966",
+   "council": "loule",
+   "object": "TRABALHOS DE CONSTRUÇÃO CIVIL PARA INSTALAÇÃO DE CAUDALÍMETROS",
+   "type": [
+    "Empreitadas de obras públicas"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "508940346",
+     "name": "J. G. Benedito, lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 17220,
+   "base_price": 17270,
+   "published": "2026-11-19",
+   "signed": "2025-03-17",
+   "cpv": [
+    {
+     "id": "45200000-9",
+     "desc": "Obras de construção total ou parcial e de engenharia civil"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 19.º, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15958966",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15951310",
+   "council": "faro",
+   "object": "Aquisição de formação para ingresso na carreira de Polícia Municipal – Curso de Formação para Polícia Municipal (CPM)",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Contratação excluída II",
+   "suppliers": [
+    {
+     "nif": "514452820",
+     "name": "Fundação para os Estudos e Formação nas Autarquias Locais - Fundação FEFAL",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 26325,
+   "base_price": 26325,
+   "published": "2026-11-18",
+   "signed": "2025-09-03",
+   "cpv": [
+    {
+     "id": "80510000-2",
+     "desc": "Serviços de formação especializada"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Faro"
+   ],
+   "legal_basis": "artigo 6.º-A n.º 1 do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15951310",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
   {
    "id": "15892568",
    "council": "lagos",
@@ -1193,7 +1269,7 @@
    "suppliers": [
     {
      "nif": "505325179",
-     "name": "Trans. Reboques Florival &amp; Marreiros,",
+     "name": "Trans. Reboques Florival & Marreiros,",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -2487,7 +2563,7 @@
    "suppliers": [
     {
      "nif": "500563993",
-     "name": "Antonio Saraiva &amp; Filhos, Lda",
+     "name": "Antonio Saraiva & Filhos, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -3479,7 +3555,7 @@
      "nif": "510843018",
      "name": "Partners Stealth, Lda",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 4645.92,
@@ -7622,7 +7698,7 @@
    "suppliers": [
     {
      "nif": "504474170",
-     "name": "FNWAY Consulting &amp; Innovation, Lda",
+     "name": "FNWAY Consulting & Innovation, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -14313,7 +14389,7 @@
    "suppliers": [
     {
      "nif": "510595537",
-     "name": "ZD - Restauração &amp; Eventos, Ldª",
+     "name": "ZD - Restauração & Eventos, Ldª",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -16584,7 +16660,7 @@
    "suppliers": [
     {
      "nif": "500384436",
-     "name": "MENDES &amp; IRMÃOS, SA",
+     "name": "MENDES & IRMÃOS, SA",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -24508,7 +24584,7 @@
    "suppliers": [
     {
      "nif": "504106880",
-     "name": "Henrique Costa &amp; Filhos, Lda (Pirotecnia)",
+     "name": "Henrique Costa & Filhos, Lda (Pirotecnia)",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -24978,7 +25054,7 @@
      "nif": "515554413",
      "name": "IMOTERA - ENGENHARIA E CONSTRUÇÃO, LDA",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 183097.53,
@@ -26418,7 +26494,7 @@
    "suppliers": [
     {
      "nif": "502832266",
-     "name": "Sopsa - Representações &amp; Comércio, Lda.",
+     "name": "Sopsa - Representações & Comércio, Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -31120,7 +31196,7 @@
      "nif": "513427830",
      "name": "byAR, Lda",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 54465.35,
@@ -33052,7 +33128,7 @@
    "suppliers": [
     {
      "nif": "507770439",
-     "name": "Vitor Manuel &amp; Pedro, Lda.",
+     "name": "Vitor Manuel & Pedro, Lda.",
      "country": "PRT",
      "sme": null
     }
@@ -47246,7 +47322,7 @@
    "suppliers": [
     {
      "nif": "507768361",
-     "name": "Eliseu &amp; Sousa, Lda. -Eliarte",
+     "name": "Eliseu & Sousa, Lda. -Eliarte",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -48879,14 +48955,14 @@
    "procedure": "Concurso público",
    "suppliers": [
     {
-     "nif": "516165887",
-     "name": "CTT - Soluções Empresariais, S.A.",
+     "nif": "510005420",
+     "name": "Mygon Lda.",
      "country": "PRT",
      "sme": null
     },
     {
-     "nif": "510005420",
-     "name": "Mygon Lda.",
+     "nif": "516165887",
+     "name": "CTT - Soluções Empresariais, S.A.",
      "country": "PRT",
      "sme": null
     }
@@ -51509,7 +51585,7 @@
    "suppliers": [
     {
      "nif": "515253049",
-     "name": "Walter Alexandre &amp; Martins, Ld.ª",
+     "name": "Walter Alexandre & Martins, Ld.ª",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -55299,7 +55375,7 @@
    "suppliers": [
     {
      "nif": "501212973",
-     "name": "Rui &amp; Eduardo, Lda",
+     "name": "Rui & Eduardo, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -72445,7 +72521,7 @@
    "suppliers": [
     {
      "nif": "507938194",
-     "name": "Pools &amp; More Sociedade Unipessoal Lda",
+     "name": "Pools & More Sociedade Unipessoal Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -74909,7 +74985,7 @@
    "suppliers": [
     {
      "nif": "510595537",
-     "name": "ZD - Restauração &amp; Eventos, Ldª",
+     "name": "ZD - Restauração & Eventos, Ldª",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -88453,7 +88529,7 @@
    "suppliers": [
     {
      "nif": "507220951",
-     "name": "Fun &amp; Fitness - Comércio de Artigos Desportivos, Unip. Lda.",
+     "name": "Fun & Fitness - Comércio de Artigos Desportivos, Unip. Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -93608,14 +93684,14 @@
    "procedure": "Concurso público",
    "suppliers": [
     {
-     "nif": "503210560",
-     "name": "Suma",
+     "nif": "502877472",
+     "name": "ECOAMBIENTE - Serviços e Meio Ambiente S.A.",
      "country": "PRT",
      "sme": null
     },
     {
-     "nif": "502877472",
-     "name": "ECOAMBIENTE - Serviços e Meio Ambiente S.A.",
+     "nif": "503210560",
+     "name": "Suma",
      "country": "PRT",
      "sme": null
     }
@@ -96354,7 +96430,7 @@
    "suppliers": [
     {
      "nif": "500386960",
-     "name": "Monchique Resort &amp; SPA - Montinho de Monchique, S.A.",
+     "name": "Monchique Resort & SPA - Montinho de Monchique, S.A.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -97886,44 +97962,6 @@
    }
   },
   {
-   "id": "11524605",
-   "council": "albufeira",
-   "object": "CONSULTA PRÉVIA PARA EXECUÇÃO DE TRABALHOS DE LIMPEZA DE PRAIAS E LIMPEZA DE ARRIBAS NO CONCELHO DE ALBUFEIRA EM 2025",
-   "type": [
-    "Aquisição de serviços"
-   ],
-   "procedure": "Consulta Prévia",
-   "suppliers": [
-    {
-     "nif": "508271754",
-     "name": "ECOREDE - ENGENHARIA E SERVIÇOS, S.A.",
-     "country": "PRT",
-     "sme": "Sim"
-    }
-   ],
-   "price": 18940,
-   "base_price": 60000,
-   "published": "2025-06-17",
-   "signed": "2025-06-05",
-   "cpv": [
-    {
-     "id": "90680000-7",
-     "desc": "Serviços de limpeza de praias"
-    }
-   ],
-   "place": [
-    "Portugal, Faro, Albufeira"
-   ],
-   "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
-   "bids": 1,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11524605",
-   "license": {
-    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
-    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-    "id": "other-pd"
-   }
-  },
-  {
    "id": "11524575",
    "council": "albufeira",
    "object": "CONSULTA PRÉVIA PARA EXECUÇÃO DE TRABALHOS DE LIMPEZA DE PRAIAS E LIMPEZA DE ARRIBAS NO CONCELHO DE ALBUFEIRA EM 2025",
@@ -97955,6 +97993,44 @@
    "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
    "bids": 1,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11524575",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "11524605",
+   "council": "albufeira",
+   "object": "CONSULTA PRÉVIA PARA EXECUÇÃO DE TRABALHOS DE LIMPEZA DE PRAIAS E LIMPEZA DE ARRIBAS NO CONCELHO DE ALBUFEIRA EM 2025",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "508271754",
+     "name": "ECOREDE - ENGENHARIA E SERVIÇOS, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 18940,
+   "base_price": 60000,
+   "published": "2025-06-17",
+   "signed": "2025-06-05",
+   "cpv": [
+    {
+     "id": "90680000-7",
+     "desc": "Serviços de limpeza de praias"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Albufeira"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11524605",
    "license": {
     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
@@ -104535,7 +104611,7 @@
      "nif": "514345810",
      "name": "BLACK BOLT",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 1299000,
@@ -104764,14 +104840,14 @@
      "sme": null
     },
     {
-     "nif": "502042044",
-     "name": "Fernando L. Gaspar - Sinalização e Equipamentos Rodoviários, S.A",
+     "nif": "509295770",
+     "name": "Play Planet, Lda",
      "country": "PRT",
      "sme": null
     },
     {
-     "nif": "509295770",
-     "name": "Play Planet, Lda",
+     "nif": "502042044",
+     "name": "Fernando L. Gaspar - Sinalização e Equipamentos Rodoviários, S.A",
      "country": "PRT",
      "sme": null
     },
@@ -108031,7 +108107,7 @@
    "suppliers": [
     {
      "nif": "513184929",
-     "name": "Wolf &amp; U - Consulting and Representations Unipessoal, Lda",
+     "name": "Wolf & U - Consulting and Representations Unipessoal, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -109942,7 +110018,7 @@
    "suppliers": [
     {
      "nif": "501585583",
-     "name": "Correia e Santinha, Lda - Slide &amp; Splash",
+     "name": "Correia e Santinha, Lda - Slide & Splash",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -113260,7 +113336,7 @@
    "suppliers": [
     {
      "nif": "501404910",
-     "name": "HUMBERTO PIMENTEL ESTEVES &amp; FILHOS, LDA.",
+     "name": "HUMBERTO PIMENTEL ESTEVES & FILHOS, LDA.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -128390,7 +128466,7 @@
    "suppliers": [
     {
      "nif": "513882081",
-     "name": "Fullquest - Comunicação &amp; Marketing Unipessoal, Lda",
+     "name": "Fullquest - Comunicação & Marketing Unipessoal, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -129942,7 +130018,7 @@
    "suppliers": [
     {
      "nif": "504474170",
-     "name": "FNWAY CONSULTING &amp; INNOVATION, LDA",
+     "name": "FNWAY CONSULTING & INNOVATION, LDA",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -140294,7 +140370,7 @@
      "nif": "500401489",
      "name": "RELVAS, NUNES & LUZ, LDA",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 353006.7,
@@ -141762,7 +141838,7 @@
    "suppliers": [
     {
      "nif": "515253049",
-     "name": "Walter Alexandre &amp; Martins, Ld.ª",
+     "name": "Walter Alexandre & Martins, Ld.ª",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -146405,7 +146481,7 @@
    "suppliers": [
     {
      "nif": "501216901",
-     "name": "Artur Florêncio &amp; Filhos, AFF, Equipamentos Desportivos, Lda.",
+     "name": "Artur Florêncio & Filhos, AFF, Equipamentos Desportivos, Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -146557,7 +146633,7 @@
    "suppliers": [
     {
      "nif": "507768361",
-     "name": "Eliarte - Eliseu &amp; Sousa, Lda",
+     "name": "Eliarte - Eliseu & Sousa, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -148639,7 +148715,7 @@
    "suppliers": [
     {
      "nif": "501940014",
-     "name": "Drogaria Gago de António J. B. Gago &amp; C.ª Lda",
+     "name": "Drogaria Gago de António J. B. Gago & C.ª Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -150732,7 +150808,7 @@
    "suppliers": [
     {
      "nif": "507220951",
-     "name": "FUN &amp; FITNESS",
+     "name": "FUN & FITNESS",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -158414,7 +158490,7 @@
    "suppliers": [
     {
      "nif": "502451246",
-     "name": "Dite Móveis de Diamantino &amp; Teresa, Lda",
+     "name": "Dite Móveis de Diamantino & Teresa, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -159197,7 +159273,7 @@
    "suppliers": [
     {
      "nif": "515234583",
-     "name": "Audiqcer - Auditing, Quality &amp; Certification Services, Lda",
+     "name": "Audiqcer - Auditing, Quality & Certification Services, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -163443,14 +163519,14 @@
    "procedure": "Concurso limitado por prévia qualificação simplificado",
    "suppliers": [
     {
-     "nif": "503171565",
-     "name": "Mota-Engil ATIV - Gestão e Manutenção de Ativos, S.A.",
+     "nif": "502544180",
+     "name": "VODAFONE PORTUGAL, COMUNICAÇÕES PESSOAIS, SA",
      "country": "PRT",
      "sme": null
     },
     {
-     "nif": "502544180",
-     "name": "VODAFONE PORTUGAL, COMUNICAÇÕES PESSOAIS, SA",
+     "nif": "503171565",
+     "name": "Mota-Engil ATIV - Gestão e Manutenção de Ativos, S.A.",
      "country": "PRT",
      "sme": null
     }

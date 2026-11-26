@@ -2,8 +2,8 @@
  "source": {
   "title": "Contratos Públicos - Portal Base - IMPIC (open data on dados.gov.pt)",
   "dataset": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-  "resource": "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261115-100657-5259fa0a/contratos2025.zip",
-  "read_on": "2026-11-18",
+  "resource": "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261122-100634-34fd9d57/contratos2025.zip",
+  "read_on": "2026-11-26",
   "licence": "other-pd (as published on dados.gov.pt)",
   "license": {
    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
@@ -13,7 +13,7 @@
  },
  "buyers": {
   "503830704": {
-   "name": "Infraquinta - Empresa de Infraestruturas da Quinta do Lago, EM",
+   "name": "Infraquinta, E.M.",
    "nif": "503830704",
    "council": "loule"
   },
@@ -33,7 +33,7 @@
    "council": "faro"
   },
   "504667521": {
-   "name": "FESNIMA - Empresa Municipal de Olhão, EM",
+   "name": "FESNIMA, Empresa Municipal de Olhão, EM",
    "nif": "504667521",
    "council": "olhao"
   },
@@ -63,7 +63,7 @@
    "council": "tavira"
   },
   "507725077": {
-   "name": "Lagos em Forma, Gestão Desportiva, EM, SA",
+   "name": "Lagos em Forma, Gestão Desportiva, EEM",
    "nif": "507725077",
    "council": "lagos"
   },
@@ -78,7 +78,7 @@
    "council": "olhao"
   },
   "600086305": {
-   "name": "Teatro Municipal de Faro - Serviços Municipalizados",
+   "name": "TEATRO MUNICIPAL DE FARO-SM",
    "nif": "600086305",
    "council": "faro"
   }
@@ -4984,7 +4984,7 @@
    "suppliers": [
     {
      "nif": "501717307",
-     "name": "Joaquim &amp; Fernandes - Electricidade e Telecomunicações, Lda.",
+     "name": "Joaquim & Fernandes - Electricidade e Telecomunicações, Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -6732,7 +6732,7 @@
    "suppliers": [
     {
      "nif": "502451246",
-     "name": "Diamantino &amp; Teresa, Lda",
+     "name": "Diamantino & Teresa, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -9407,7 +9407,7 @@
    "suppliers": [
     {
      "nif": "507770439",
-     "name": "Vitor Manuel &amp; Pedro, Lda.",
+     "name": "Vitor Manuel & Pedro, Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -12968,24 +12968,24 @@
    }
   },
   {
-   "id": "11689410",
+   "id": "11689390",
    "council": "faro",
    "buyer": "504497782",
-   "object": "Aquisição de bebidas destiladas e energéticas para os bares do Festival F, em regime de contrato de fornecimento contínuo",
+   "object": "Aquisição de cápsulas de café para o Festival F, em regime de contrato de fornecimento contínuo",
    "type": [
     "Aquisição de bens móveis"
    ],
    "procedure": "Ajuste Direto Regime Geral",
    "suppliers": [
     {
-     "nif": "501141243",
-     "name": "GARCIAS SA",
+     "nif": "503919195",
+     "name": "Moedogarve distribuição automática Lda",
      "country": "PRT",
-     "sme": null
+     "sme": "Sim"
     }
    ],
-   "price": 12000,
-   "base_price": 12000,
+   "price": 5000,
+   "base_price": 5000,
    "published": "2025-09-09",
    "signed": "2025-09-02",
    "cpv": [
@@ -12999,7 +12999,7 @@
    ],
    "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
    "bids": 1,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11689410",
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11689390",
    "license": {
     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
@@ -13046,24 +13046,24 @@
    }
   },
   {
-   "id": "11689390",
+   "id": "11689410",
    "council": "faro",
    "buyer": "504497782",
-   "object": "Aquisição de cápsulas de café para o Festival F, em regime de contrato de fornecimento contínuo",
+   "object": "Aquisição de bebidas destiladas e energéticas para os bares do Festival F, em regime de contrato de fornecimento contínuo",
    "type": [
     "Aquisição de bens móveis"
    ],
    "procedure": "Ajuste Direto Regime Geral",
    "suppliers": [
     {
-     "nif": "503919195",
-     "name": "Moedogarve distribuição automática Lda",
+     "nif": "501141243",
+     "name": "GARCIAS SA",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
-   "price": 5000,
-   "base_price": 5000,
+   "price": 12000,
+   "base_price": 12000,
    "published": "2025-09-09",
    "signed": "2025-09-02",
    "cpv": [
@@ -13077,7 +13077,7 @@
    ],
    "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
    "bids": 1,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11689390",
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=11689410",
    "license": {
     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
@@ -20066,7 +20066,7 @@
    "suppliers": [
     {
      "nif": "502042206",
-     "name": "I. Gonçalves &amp; M. Duarte, Lda.",
+     "name": "I. Gonçalves & M. Duarte, Lda.",
      "country": "PRT",
      "sme": "Sim"
     }

@@ -3,15 +3,15 @@
   "title": "Contratos Públicos - Portal Base - IMPIC: Anúncios and Contratos (open data on dados.gov.pt)",
   "notices_dataset": "https://dados.gov.pt/pt/datasets/66d72fbc58cd7a63dae28712/",
   "notices_resource": [
-   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-anuncios-de-2012-a-2026/20261115-100848-5bf93da3/anuncios2025.json",
-   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-anuncios-de-2012-a-2026/20261115-100835-12f6edfa/anuncios2026.json"
+   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-anuncios-de-2012-a-2026/20261122-100822-869b871c/anuncios2025.json",
+   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-anuncios-de-2012-a-2026/20261122-100808-45dc85ae/anuncios2026.json"
   ],
   "contracts_dataset": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
   "contracts_resource": [
-   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261115-100657-5259fa0a/contratos2025.zip",
-   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261115-100642-624650f6/contratos2026.zip"
+   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261122-100634-34fd9d57/contratos2025.zip",
+   "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261122-100620-185121fb/contratos2026.zip"
   ],
-  "read_on": "2026-11-19",
+  "read_on": "2026-11-26",
   "licence": "other-pd (as published on dados.gov.pt)",
   "year": "2026"
  },
@@ -38,8 +38,121 @@
   "vila-do-bispo": "506730573",
   "vila-real-de-santo-antonio": "506833224"
  },
- "count": 497,
+ "count": 503,
  "procedures": [
+  {
+   "n": "27702/2026",
+   "council": "olhao",
+   "kind": "procedure",
+   "published": "2026-11-20",
+   "deadline": "2026-12-18",
+   "procedure": "Concurso público",
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
+   "what": "Aquisição de bens (Upgrade de Infraestrutura Tecnológica e Datacenter)",
+   "base_price": 528200,
+   "base_stated": true,
+   "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/226/419977960.pdf",
+   "changes": [],
+   "base_price_last": 528200,
+   "contracts": []
+  },
+  {
+   "n": "27655/2026",
+   "council": "olhao",
+   "kind": "procedure",
+   "published": "2026-11-19",
+   "deadline": "2026-11-25",
+   "procedure": "Concurso público",
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
+   "what": "Aquisição de Equipamentos Científicos para o HUB Azul de Olhão",
+   "base_price": 200620.47,
+   "base_stated": true,
+   "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/225/419978048.pdf",
+   "changes": [],
+   "base_price_last": 200620.47,
+   "contracts": []
+  },
+  {
+   "n": "27673/2026",
+   "council": "lagoa",
+   "kind": "procedure",
+   "published": "2026-11-19",
+   "deadline": "2026-12-21",
+   "procedure": "Concurso público",
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
+   "what": "Veículo submersível operado remotamente",
+   "base_price": 97560.97,
+   "base_stated": true,
+   "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/225/419977729.pdf",
+   "changes": [],
+   "base_price_last": 97560.97,
+   "contracts": []
+  },
+  {
+   "n": "27674/2026",
+   "council": "lagoa",
+   "kind": "procedure",
+   "published": "2026-11-19",
+   "deadline": "2026-12-06",
+   "procedure": "Concurso público",
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
+   "what": "Mapeamento físico com sistema multifeixe",
+   "base_price": 89430.89,
+   "base_stated": true,
+   "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/225/419977802.pdf",
+   "changes": [],
+   "base_price_last": 89430.89,
+   "contracts": []
+  },
+  {
+   "n": "27394/2026",
+   "council": "olhao",
+   "kind": "procedure",
+   "published": "2026-11-17",
+   "deadline": "2026-12-13",
+   "procedure": "Concurso público",
+   "types": [
+    "Aquisição de bens móveis"
+   ],
+   "what": "Aquisição de Equipamento Técnico para o HUB Azul de Olhão",
+   "base_price": 250415,
+   "base_stated": true,
+   "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/223/419977621.pdf",
+   "changes": [],
+   "base_price_last": 250415,
+   "contracts": []
+  },
+  {
+   "n": "27425/2026",
+   "council": "lagos",
+   "kind": "procedure",
+   "published": "2026-11-17",
+   "deadline": "2026-11-26",
+   "procedure": "Concurso público",
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
+   "what": "Aquisição de Serviços para a Elaboração de Instrumentos de Gestão do Arvoredo Urbano Municipal",
+   "base_price": 65000,
+   "base_stated": true,
+   "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/223/419977775.pdf",
+   "changes": [],
+   "base_price_last": 65000,
+   "contracts": []
+  },
   {
    "n": "27202/2026",
    "council": "loule",
@@ -66,6 +179,7 @@
    "deadline": "2026-11-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de peças e acessórios para veículos ligeiros",
@@ -84,6 +198,7 @@
    "deadline": "2026-12-09",
    "procedure": "Concurso público",
    "types": [
+    "Concessão de serviços públicos",
     "Concessão de serviços públicos"
    ],
    "what": "Concessão do direito de exploração do restaurante Quatro Águas , em Tavira",
@@ -120,6 +235,7 @@
    "deadline": "2026-11-12",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de contentores para recolha de bioresíduos",
@@ -192,6 +308,7 @@
    "deadline": "2026-11-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para aquisição de serviços de perito avaliador de imóveis para os diversos serviços do município de Albufeira",
@@ -210,6 +327,7 @@
    "deadline": "2026-11-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de Serviços de Vigilância para Edifícios Municipais 2027/2029",
@@ -228,6 +346,7 @@
    "deadline": "2026-11-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de cabazes de produtos alimentares - Época Natalícia 2026",
@@ -264,6 +383,7 @@
    "deadline": "2026-11-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para Gestão, Recolha e Encaminhamento de Resíduos em Espaços/Edifícios Municipais.",
@@ -318,6 +438,7 @@
    "deadline": "2026-11-19",
    "procedure": "Concurso público",
    "types": [
+    "Outros",
     "Outros"
    ],
    "what": "Concessão do direito de exploração de lojas no Mercado Municipal de Tavira e nos Mercados das Freguesias de Cabanas de Tavira e Luz de Tavira",
@@ -336,6 +457,7 @@
    "deadline": "2026-11-18",
    "procedure": "Concurso público",
    "types": [
+    "Concessão de serviços públicos",
     "Concessão de serviços públicos"
    ],
    "what": "Concessão do Direito de Utilização Privativa de Espaço Público para Instalação e Exploração de 6 (seis) Pontos de Carregamento de Veiculos Eletricos, no Concelho de São Brás de Alportel",
@@ -353,7 +475,10 @@
    "published": "2026-10-20",
    "deadline": "2026-11-27",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Empreitada de 'Requalificação e Ampliação da Escola EB1/J1 Caldeira Alexandre'",
    "base_price": 2863566.43,
    "base_stated": true,
@@ -396,6 +521,7 @@
    "deadline": "2026-11-14",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de ' Requalificação / Reabilitação de Zonas Ajardinadas no Concelho'",
@@ -414,6 +540,7 @@
    "deadline": "2026-11-14",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de 'Ampliação, Requalificação e Segregação de Infraestruturas Cicláveis e de Mobilidade Ativa de Vila Real de Santo António'",
@@ -432,6 +559,7 @@
    "deadline": "2026-10-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Reparação pontual de pavimentos betuminosos e limpeza de valetas e bermas, Concelho de Faro",
@@ -467,7 +595,11 @@
    "published": "2026-10-15",
    "deadline": "2026-11-18",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Aquisição de mobiliário, equipamento doméstico, informático, audiovisual e segurança da nova Unidade de Saúde Familiar da Villa, São Brás de Alportel",
    "base_price": 116600,
    "base_stated": true,
@@ -492,6 +624,7 @@
    "deadline": "2026-11-05",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de equipamentos clínicos, equipamento para deposição de resíduos e de limpeza, e autonomia energética, para a nova Unidade de Saúde Familiar da Villa, São Brás de Alportel",
@@ -510,6 +643,7 @@
    "deadline": "2026-11-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "FORNECIMENTO DE MATERIAL, REPARAÇÃO E MANUTENÇÃO DE VIATURAS PESADAS DA FROTA DO MUNICÍPIO",
@@ -528,6 +662,7 @@
    "deadline": "2026-11-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "FORNECIMENTO DE MATERIAL, REPARAÇÃO E MANUTENÇÃO DE VIATURAS LIGEIRAS DA FROTA DO MUNICÍPIO",
@@ -546,6 +681,7 @@
    "deadline": "2026-11-13",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Repavimentação da VAL 2127 e VAL 2127-5 (Vale da Lama) - Silves.",
@@ -561,16 +697,26 @@
    "council": "loule",
    "kind": "procedure",
    "published": "2026-10-13",
-   "deadline": "2026-11-16",
+   "deadline": "2026-12-02",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "REABILITAÇÃO DO CAMPO MUNICIPAL DE BOLIQUEIME – RELVADO SINTÉTICO",
    "base_price": 3340000,
    "base_stated": true,
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/10/198/419975290.pdf",
-   "changes": [],
+   "changes": [
+    {
+     "n": "27325/2026",
+     "published": "2026-11-16",
+     "base_price": 3340000,
+     "deadline": "2026-12-02",
+     "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/222/419977607.pdf"
+    }
+   ],
    "base_price_last": 3340000,
    "contracts": []
   },
@@ -600,6 +746,7 @@
    "deadline": "2026-11-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso Público com publicação de anúncio no JOUE para aquisição de serviços de limpeza nas escolas do Município de Albufeira",
@@ -618,6 +765,7 @@
    "deadline": "2026-10-29",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "REPAVIMENTAÇÃO BETUMINOSA DE ESTRADAS, FREGUESIA DA MEXILHOEIRA GRANDE",
@@ -636,6 +784,7 @@
    "deadline": "2026-10-29",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Rede de esgotos dos Machados-Fase 1- Sector a sul da EN2",
@@ -672,6 +821,7 @@
    "deadline": "2026-10-14",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "ILUMINAÇÃO DE NATAL 2026",
@@ -699,6 +849,7 @@
    "deadline": "2026-10-14",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Iluminação de Natal 2026",
@@ -707,7 +858,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/10/195/419974985.pdf",
    "changes": [],
    "base_price_last": 214975,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15970095",
+     "price": 188850,
+     "base_price": 214975,
+     "published": "2026-11-19",
+     "signed": "2026-11-16",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15970095"
+    }
+   ]
   },
   {
    "n": "24756/2026",
@@ -735,6 +895,7 @@
    "deadline": "2026-10-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento e Montagem de Estruturas Modulares para Duas Salas de Aulas na Escola EB 2/3 Poeta Bernardo de Passos",
@@ -750,9 +911,13 @@
    "council": "lagos",
    "kind": "procedure",
    "published": "2026-10-06",
-   "deadline": "2026-11-13",
+   "deadline": "2026-12-21",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Aquisição, em regime de outsourcing, de serviços de impressão, cópia e digitalização",
    "base_price": 324000,
    "base_stated": true,
@@ -764,6 +929,13 @@
      "base_price": 324000,
      "deadline": "2026-11-13",
      "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/217/419977054.pdf"
+    },
+    {
+     "n": "27628/2026",
+     "published": "2026-11-19",
+     "base_price": 324000,
+     "deadline": "2026-12-21",
+     "dr": "https://files.diariodarepublica.pt/cp_hora/2026/11/225/419977614.pdf"
     }
    ],
    "base_price_last": 324000,
@@ -795,6 +967,7 @@
    "deadline": "2026-10-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de sonoplastia e iluminação de cena",
@@ -813,6 +986,7 @@
    "deadline": "2026-10-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": null,
@@ -867,6 +1041,7 @@
    "deadline": "2026-10-29",
    "procedure": "Concurso público",
    "types": [
+    "Concessão de serviços públicos",
     "Concessão de serviços públicos"
    ],
    "what": "ATRIBUIÇÃO DO DIREITO DE EXPLORAÇÃO DA CASA DOS VINHOS E PRODUTOS AUTÓCTONES",
@@ -884,7 +1059,11 @@
    "published": "2026-09-30",
    "deadline": "2026-10-30",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "'Obras de construção de cobertura no polidesportivo de Quelfes'",
    "base_price": 400002.12,
    "base_stated": true,
@@ -909,6 +1088,7 @@
    "deadline": "2026-10-30",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "07-Emp/26 - Empreitada de conceção-construção para a contenção de fachadas de dois edifícios municipais, em Tavira",
@@ -944,7 +1124,11 @@
    "published": "2026-09-29",
    "deadline": "2026-11-03",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO, TRANSPORTE, CARGA, DESCARGA, ENTREGA E MONTAGEM/INSTALAÇÃO DE RELVA ARTIFICIAL, PARA APOIO À ANIMAÇÃO DE NATAL DE 2026 E A OUTROS EVENTOS DO MUNICÍPIO A REALIZAR EM 2027",
    "base_price": 82360,
    "base_stated": true,
@@ -968,7 +1152,10 @@
    "published": "2026-09-29",
    "deadline": "2026-10-20",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Concurso Público para projeto de execução para a construção de edifícios habitacionais com atividades económicas nos lotes 1, 2 e 3 em Budens",
    "base_price": 125000,
    "base_stated": true,
@@ -1065,6 +1252,7 @@
    "deadline": "2026-10-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de serviços de segurança integrada em edifícios e espaços geridos pelo Município de Silves",
@@ -1073,7 +1261,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/09/188/419973602.pdf",
    "changes": [],
    "base_price_last": 169200,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15934742",
+     "price": 139536,
+     "base_price": 169200,
+     "published": "2026-11-16",
+     "signed": "2026-11-13",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15934742"
+    }
+   ]
   },
   {
    "n": "23775/2026",
@@ -1083,6 +1280,7 @@
    "deadline": "2026-10-26",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE PRESTAÇÃO DE SERVIÇOS PARA CONCEÇÃO E IMPRESSÃO DA AGENDA 2027 PARA DISTRIBUIÇÃO AOS FUNCIONÁRIOS MUNICIPAIS",
@@ -1100,7 +1298,10 @@
    "published": "2026-09-24",
    "deadline": "2026-11-02",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Alteração de Edifícios da Quinta do Camacho para Centro de Interpretação do Lince Ibérico",
    "base_price": 2073000,
    "base_stated": true,
@@ -1125,6 +1326,7 @@
    "deadline": "2026-09-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de vigilância humana para o Centro de Saúde de Lagos",
@@ -1152,6 +1354,7 @@
    "deadline": "2026-10-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "FISCALIZAÇÃO, GESTÃO DA QUALIDADE, COORDENAÇÃO DE SEGURANÇA E COORDENAÇÃO DE GESTÃO AMBIENTAL.",
@@ -1170,6 +1373,7 @@
    "deadline": "2026-10-08",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de 'Requalificação Urbana da Rua António Henrique Cabrita'",
@@ -1205,7 +1409,12 @@
    "published": "2026-09-23",
    "deadline": "2026-11-30",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "REABILITAÇÃO DOS EDIFÍCIOS DE HABITAÇÃO COLETIVA DA URBANIZAÇÃO DA BRAVA, MONTES DE ALVOR",
    "base_price": 1792470,
    "base_stated": true,
@@ -1244,6 +1453,7 @@
    "deadline": "2026-10-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de aluguer de equipamentos desfibrilhadores automáticos externos a instalar na via pública, edifícios e viaturas",
@@ -1262,6 +1472,7 @@
    "deadline": "2026-09-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para renovação do licenciamento e do suporte do parque informático",
@@ -1289,6 +1500,7 @@
    "deadline": "2026-09-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aluguer De Monoblocos Pré-Fabricados - Salas De Aula - Escola Básica De Ferragudo, Escola Básica De Mexilhoeira Da Carregação, Escola Básica Professora Conceição Dos Santos E Escola Secundária Padre A",
@@ -1350,6 +1562,7 @@
    "deadline": "2026-09-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para aquisição de serviços de assistentes operacionais para as escolas, JI's, AAAF's, ATL's e outros equipamento educativos do concelho",
@@ -1377,6 +1590,7 @@
    "deadline": "2026-10-04",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "DINAMIZAÇÃO DO PROJETO PORTIMÃO, UM SONHO DE NATAL 2026",
@@ -1385,7 +1599,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/09/173/419972023.pdf",
    "changes": [],
    "base_price_last": 490000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15982933",
+     "price": 456560,
+     "base_price": 490000,
+     "published": "2026-11-20",
+     "signed": "2026-11-20",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15982933"
+    }
+   ]
   },
   {
    "n": "22294/2026",
@@ -1395,6 +1618,7 @@
    "deadline": "2026-09-19",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "Aquisição de serviços no âmbito do aluguer operacional (renting) de quatro viaturas ligeiras, por 48 meses.",
@@ -1458,6 +1682,7 @@
    "deadline": "2026-09-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONCURSO PÚBLICO COM PUBLICAÇÃO NO JOUE PARA AQUISIÇÃO DO DESTROÇADOR DE ELEVADO DESEMPENHO",
@@ -1466,7 +1691,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/09/170/419971673.pdf",
    "changes": [],
    "base_price_last": 395000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15936918",
+     "price": 389600,
+     "base_price": 395000,
+     "published": "2026-11-16",
+     "signed": "2026-11-09",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15936918"
+    }
+   ]
   },
   {
    "n": "22102/2026",
@@ -1476,15 +1710,25 @@
    "deadline": "2026-09-14",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
-   "what": "Aquisição de Serviços - Aluguer, Montagem e Desmontagem de Plataforma Flutuante no rio Guadiana para o Festival do Contrabando, edição de 2027",
+   "what": null,
    "base_price": 80000,
    "base_stated": true,
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/09/170/419971841.pdf",
    "changes": [],
    "base_price_last": 80000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15943622",
+     "price": 76500,
+     "base_price": 80000,
+     "published": "2026-11-17",
+     "signed": "2026-11-09",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15943622"
+    }
+   ]
   },
   {
    "n": "22111/2026",
@@ -1494,6 +1738,7 @@
    "deadline": "2026-09-12",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento e Montagem de Estruturas Modulares para Duas Salas de Aulas na Escola EB 2/3 Poeta Bernardo de Passos",
@@ -1512,6 +1757,7 @@
    "deadline": "2026-09-17",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "REPARAÇÃO DE CALÇADAS E PAVÊS EM ESPAÇO PÚBLICO NA ÁREA DO MUNICÍPIO - SITUAÇÕES PRIORITÁRIAS",
@@ -1548,6 +1794,7 @@
    "deadline": "2026-09-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DOS SERVIÇOS DE LAVAGEM INTERIOR E EXTERIOR DE EQUIPAMENTOS SEMI-ENTERRADOS DE DEPOSIÇÃO DE RESÍDUOS URBANOS INDIFERENCIADOS, NO CONCELHO DE LOULÉ",
@@ -1566,6 +1813,7 @@
    "deadline": "2026-09-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de upgrade à infraestrutura de rede do município",
@@ -1593,6 +1841,7 @@
    "deadline": null,
    "procedure": "Concurso limitado por prévia qualificação",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de decoração, animação e aluguer de equipamentos temáticos de Natal para o evento Lagos, Baía do Natal",
@@ -1601,7 +1850,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/08/168/419971645.pdf",
    "changes": [],
    "base_price_last": 215000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15937460",
+     "price": 214000,
+     "base_price": 215000,
+     "published": "2026-11-16",
+     "signed": "2026-11-10",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937460"
+    }
+   ]
   },
   {
    "n": "21831/2026",
@@ -1611,6 +1869,7 @@
    "deadline": "2026-09-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços continuados de recolha de algas das praias",
@@ -1629,6 +1888,7 @@
    "deadline": "2026-09-11",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "EMPREITADA DE 'REABILITAÇÃO E PINTURA DE PAREDES, MUROS E MURETES NA ÁREA DO MUNICÍPIO",
@@ -1656,6 +1916,7 @@
    "deadline": "2026-09-11",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "EMPREITADA DE TRABALHOS EM ALVENARIA, REBOCOS, REPARAÇÃO DE LANCIS, REPOSIÇÃO DE TAMPAS DE SANEAMENTO E DE ÁGUAS NO CONCELHO DE LAGOS",
@@ -1683,6 +1944,7 @@
    "deadline": "2026-09-25",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Reabilitação Urbana na Aldeia Ruiva, S. Bartolomeu de Messines",
@@ -1701,6 +1963,7 @@
    "deadline": "2026-09-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de reparação e manutenção de viaturas municipais das marcas MAN, MERCEDES e VOLVO",
@@ -1719,6 +1982,7 @@
    "deadline": "2026-08-31",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso Público para fornecimento contínuo de mercearias para as cantinas escolares do Concelho de Albufeira e para outras atividades da Divisão de Educação",
@@ -1746,6 +2010,7 @@
    "deadline": "2026-09-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso Público para renovação de licenciamento Microsoft 365",
@@ -1773,6 +2038,7 @@
    "deadline": "2026-09-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para criação de faixa de gestão de combustível da rede secundária em rede viária",
@@ -1791,6 +2057,7 @@
    "deadline": "2026-09-10",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de construção de salas, instalações sanitárias e gabinetes em monobloco para a EBSA e EB 2,3 Francisco Cabrita, incluindo infraestruturas.",
@@ -1817,7 +2084,11 @@
    "published": "2026-08-25",
    "deadline": "2026-09-05",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Transporte de alunos com Necessidades Educativas Específicas.",
    "base_price": 1,
    "base_stated": true,
@@ -1851,6 +2122,7 @@
    "deadline": "2026-09-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": null,
@@ -1886,6 +2158,8 @@
    "deadline": "2026-09-24",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Reabilitação do Edifício dos Paços do Concelho de Silves",
@@ -1904,6 +2178,7 @@
    "deadline": "2026-09-26",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Concepção-Construção para a Estabilização do Talude do Heliporto Municipal do Semedeiro",
@@ -1922,6 +2197,7 @@
    "deadline": "2026-09-22",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento Contínuo de Massa Asfáltica a Frio com Inertes Finos, para os Anos de 2026, 2027 e 2028",
@@ -1930,7 +2206,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/08/164/419970932.pdf",
    "changes": [],
    "base_price_last": 195500,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15948959",
+     "price": 186660,
+     "base_price": 195500,
+     "published": "2026-11-18",
+     "signed": "2026-11-17",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948959"
+    }
+   ]
   },
   {
    "n": "21539/2026",
@@ -1940,6 +2225,7 @@
    "deadline": "2026-08-31",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para o desenvolvimento das atividades de enriquecimento curricular nas escolas do 1º ciclo do concelho de Vila Real de Santo António, para o ano letivo 2026/2027",
@@ -1967,6 +2253,7 @@
    "deadline": "2026-09-18",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação do Largo Adjacente à E.R. 125 - Altura",
@@ -1985,6 +2272,7 @@
    "deadline": "2026-09-07",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de Plantas e Acessórios de Jardinagem",
@@ -1993,7 +2281,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/08/163/419970989.pdf",
    "changes": [],
    "base_price_last": 100000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15937715",
+     "price": 100000,
+     "base_price": 100000,
+     "published": "2026-11-16",
+     "signed": "2026-11-10",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937715"
+    }
+   ]
   },
   {
    "n": "21472/2026",
@@ -2003,6 +2300,7 @@
    "deadline": "2026-09-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE MANUTENÇÃO E LIMPEZA PROFUNDA DOS SISTEMAS DE DRENAGEM DE ÁGUAS PLUVIAIS EM ESPAÇOS PÚBLICOS, NO CONCELHO DE LOULÉ",
@@ -2030,6 +2328,7 @@
    "deadline": "2026-09-07",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA AQUISIÇÃO DE CARTÕES ALIMENTARES NO ÂMBITO DA ATRIBUIÇÃO DE APOIO ALIMENTAR A FAMÍLIAS SOCIALMENTE VULNERÁVEIS",
@@ -2048,6 +2347,7 @@
    "deadline": "2026-08-26",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de kits de material escolar para crianças e estudantes e aquisição de cadernos/livros de fichas para alunos dos agrupamentos de escolas de Lagoa, ano letivo 26/27",
@@ -2098,7 +2398,12 @@
    "published": "2026-08-20",
    "deadline": "2026-09-25",
    "procedure": "Concurso de concepção",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "CONCURSO PÚBLICO INTERNACIONAL PARA CONCEÇÃO DE PROJETO DE ILUMINAÇÃO DECORATIVA DE NATAL 2026 PARA O MUNICÍPIO DE ALBUFEIRA",
    "base_price": null,
    "base_stated": false,
@@ -2123,6 +2428,7 @@
    "deadline": "2026-08-31",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de aluguer de iluminação alusiva ao Natal",
@@ -2150,6 +2456,7 @@
    "deadline": "2026-08-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços continuados de recolha de algas das praias",
@@ -2177,6 +2484,7 @@
    "deadline": "2026-09-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "AQUISIÇÃO DE SERVIÇOS DE CORTE, DESBASTAÇÃO E LIMPEZA DE VEGETAÇÃO NO CONCELHO DE LAGOS",
@@ -2195,6 +2503,7 @@
    "deadline": "2026-08-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso Público para aquisição de serviços de comunicações fixas e móveis de voz e dados",
@@ -2222,6 +2531,7 @@
    "deadline": "2026-08-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de aplicação de produtos fitofármacos e biológicos em palmeiras do Concelho de Lagos",
@@ -2249,6 +2559,7 @@
    "deadline": "2026-08-28",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de reparação de ruturas na rede de distribuição de água",
@@ -2266,7 +2577,11 @@
    "published": "2026-08-13",
    "deadline": "2026-11-22",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Requalificação da Escola E.B. 2,3 de Castro Marim",
    "base_price": 6640085,
    "base_stated": true,
@@ -2298,6 +2613,7 @@
    "deadline": "2026-08-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "FORNECIMENTO CONTÍNUO DE BRITAS E INERTES",
@@ -2316,6 +2632,7 @@
    "deadline": "2026-08-31",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE REPARAÇÃO DE EQUIPAMENTOS DESTINADOS À DEPOSIÇÃO DE RESÍDUOS URBANOS E MANUTENÇÃO DOS ESPAÇOS ENVOLVENTES, NO CONCELHO DE LOULÉ",
@@ -2334,6 +2651,7 @@
    "deadline": "2026-08-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento Contínuo de Produtos de Mercearia para os Refeitórios Escolares para o Ano Letivo 2026/2027",
@@ -2361,6 +2679,7 @@
    "deadline": "2026-08-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento Contínuo de Frutas e Legumes para as Cantinas Escolares para o Ano Letivo 2026/2027",
@@ -2388,6 +2707,7 @@
    "deadline": "2026-08-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aluguer de Iluminação de Natal 2026",
@@ -2415,6 +2735,7 @@
    "deadline": "2026-08-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento Contínuo de Carne Fresca para as Cantinas Escolares para o Ano Letivo 2026/2027",
@@ -2441,7 +2762,13 @@
    "published": "2026-08-11",
    "deadline": "2026-10-16",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO CONTÍNUO DE EQUIPAMENTOS DE PROTEÇÃO INDIVIDUAL FLORESTAIS PARA A CORPORAÇÃO DE BOMBEIROS MUNICIPAIS DE LOULÉ",
    "base_price": 401650,
    "base_stated": true,
@@ -2466,6 +2793,7 @@
    "deadline": "2026-08-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de carne fresca para os refeitórios escolares do Centro Escolar de Castro Marim, Centro Escolar de Altura e E.B.2,3 de Castro Marim",
@@ -2493,6 +2821,7 @@
    "deadline": "2026-09-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": null,
@@ -2520,6 +2849,7 @@
    "deadline": "2026-08-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de viatura comercial ligeira elétrica, com caixa isotérmica e grupo de refrigeração, destinada ao transporte de pescado fresco no âmbito do Programa MAR 2030 - operação, com o código MAR-031.2.1-FEAMPA-00206",
@@ -2547,6 +2877,7 @@
    "deadline": "2026-08-21",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de limpeza e impermeabilização de caleiras e substituição de chapas metálicas em coberturas de edifícios municipais",
@@ -2574,6 +2905,7 @@
    "deadline": "2026-08-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição e instalação de equipamentos modulares compostos por contentores marítimos para salas de atividades de apoio à educação pré-escolar",
@@ -2600,7 +2932,12 @@
    "published": "2026-08-06",
    "deadline": "2026-09-12",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Empreitada de Reabilitação da Casa do Povo em Martim longo para Edifício Habitacional.",
    "base_price": 230000,
    "base_stated": true,
@@ -2625,6 +2962,7 @@
    "deadline": "2026-08-12",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de gestão de recebimentos por referência multibanco, MBWay e débitos diretos",
@@ -2643,6 +2981,7 @@
    "deadline": "2026-09-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de apólices de seguros",
@@ -2670,6 +3009,7 @@
    "deadline": "2026-08-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento Contínuo de Congelados para os Refeitórios Escolares para o Ano Letivo 2026/2027",
@@ -2715,6 +3055,7 @@
    "deadline": "2026-08-15",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para reparação e fornecimento de peças originais para viaturas Volvo",
@@ -2760,6 +3101,7 @@
    "deadline": "2026-08-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento contínuo de carnes frescas e enchidos para as cantinas escolares do concelho de Albufeira e para outras atividades da Divisão de Educação",
@@ -2805,6 +3147,7 @@
    "deadline": "2026-08-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de serviços contínua para reparação/manutenção e fornecimento de peças para viaturas pesadas da marca Volvo",
@@ -2832,6 +3175,7 @@
    "deadline": "2026-08-14",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de requalificação da avenida Sá Carneiro e zonas envolventes - repavimentação da Rua Manuel Teixeira Gomes",
@@ -2859,6 +3203,7 @@
    "deadline": "2026-09-01",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de seguros",
@@ -2904,6 +3249,7 @@
    "deadline": "2026-08-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público com publicação de anúncio no JOUE para prestação de serviços de transporte coletivo de passageiros em circuitos não definidos",
@@ -2930,7 +3276,10 @@
    "published": "2026-07-29",
    "deadline": "2026-08-27",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Manutenção e assistência técnica, reparação e revisões a viaturas da Frota automóvel Municipal.",
    "base_price": 498780.49,
    "base_stated": true,
@@ -2954,7 +3303,11 @@
    "published": "2026-07-29",
    "deadline": "2026-09-04",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Aquisição de maquinaria e viaturas diversas a incorporar na frota do Município",
    "base_price": 819268.29,
    "base_stated": true,
@@ -2979,6 +3332,7 @@
    "deadline": "2026-08-26",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público com publicação de anúncio no JOUE para prestação de serviços de manutenção da instrumentação, automação e supervisão do sistema de telegestão de abastecimento de água e águas residuai",
@@ -2997,6 +3351,7 @@
    "deadline": "2026-08-04",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "RENOVAÇÃO DA SUBSCRIÇÃO DE LICENÇAS ADOBE E SUBSCRIÇÃO DE NOVAS LICENÇAS",
@@ -3024,6 +3379,7 @@
    "deadline": "2026-08-07",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de equipamento informático para a escola básica das Naus",
@@ -3051,6 +3407,7 @@
    "deadline": "2026-08-13",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de Obras de construção de cobertura no polidesportivo de Quelfes",
@@ -3069,6 +3426,7 @@
    "deadline": "2026-08-05",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de produtos de higiene e limpeza, detergentes e produtos específicos da área alimentar para as cantinas escolares do concelho de Albufeira e para outras atividades da Divisão de",
@@ -3096,6 +3454,7 @@
    "deadline": "2026-07-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviço contínuo de transporte escolar tipo táxi e transporte especializado/adaptado, para o ano letivo 2026/2027",
@@ -3114,6 +3473,7 @@
    "deadline": "2026-08-07",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para recolha, gestão e encaminhamento de resíduos",
@@ -3132,6 +3492,8 @@
    "deadline": "2026-08-26",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE TRANSPORTE ESCOLAR EM TRANSPORTE NÃO URGENTE DE DOENTES E/OU AMBULÂNCIA PARA O ANO LETIVO 2026/2027",
@@ -3159,6 +3521,7 @@
    "deadline": "2026-08-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "AQUISIÇÃO DE SERVIÇOS PARA A CONTRATAÇÃO DE EQUIPA DE FISCALIZAÇÃO E COORDENAÇÃO DE SEGURANÇA EM OBRA, NO ÂMBITO DE EMPREITADAS DE CONCEÇÃO-CONSTRUÇÃO DE HABITAÇÃO MUNICIPAL",
@@ -3177,6 +3540,8 @@
    "deadline": "2026-08-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE SEGUROS",
@@ -3204,6 +3569,7 @@
    "deadline": "2026-08-05",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "Locação de módulos de balneários com arrumos para a EB 2/3 D. Manuel I",
@@ -3231,6 +3597,7 @@
    "deadline": "2026-08-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de embarcação profissional com grua de elevação e rampa",
@@ -3249,6 +3616,7 @@
    "deadline": "2026-07-29",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para locação de máquinas com operador para a recolha de algas nas praias do concelho de Albufeira",
@@ -3276,6 +3644,7 @@
    "deadline": "2026-08-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para a contratação de uma plataforma integrada de gestão documental e de atendimento, com inclusão de um balcão eletrónico",
@@ -3303,6 +3672,7 @@
    "deadline": "2026-08-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "AQUISIÇÃO E IMPLEMENTAÇÃO DE UM CENTRO DE DADOS (DATA CENTER) MODULAR EM CONTENTOR TÉCNICO EXTERIOR",
@@ -3320,7 +3690,12 @@
    "published": "2026-07-24",
    "deadline": "2026-08-24",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Aquisição de várias viaturas ligeiras de passageiros - Fornecimento por lotes",
    "base_price": 103900.76,
    "base_stated": true,
@@ -3353,7 +3728,12 @@
    "published": "2026-07-24",
    "deadline": "2026-09-07",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Empreitada de alteração e ampliação do Jardim de Infância - São Brás de Alportel EB1 n.º 1 e JI",
    "base_price": 2421169.77,
    "base_stated": true,
@@ -3378,6 +3758,7 @@
    "deadline": "2026-08-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO CONTÍNUO DE MATERIAL ELÉTRICO DE USO CORRENTE PARA OS SERVIÇOS DE ELETRICIDADE DA DIVISÃO DE CONSERVAÇÃO E MANUTENÇÃO DO EDIFICADO",
@@ -3405,6 +3786,7 @@
    "deadline": "2026-08-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE MANUTENÇÃO DOS EQUIPAMENTOS FOTOVOLTAICOS NOS EDIFÍCIOS PÚBLICOS",
@@ -3423,6 +3805,7 @@
    "deadline": "2026-07-31",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Publicidade da FATACIL 2026",
@@ -3450,6 +3833,7 @@
    "deadline": "2026-07-31",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aluguer e operação de ecrãs LED, PA, som e luz para os palcos secundários, som de linha e locução para a FATACIL 2026",
@@ -3477,6 +3861,7 @@
    "deadline": "2026-08-01",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de serviços de Assessoria/Consultoria para o cumprimento do Decreto Lei 125/2025 de 4 de dezembro de 2025",
@@ -3495,6 +3880,7 @@
    "deadline": "2026-07-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento contínuo de pão para as cantinas escolares do concelho de Albufeira e para outras atividades da Divisão de Educação",
@@ -3522,6 +3908,7 @@
    "deadline": "2026-07-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento contínuo de peixe congelado para as cantinas escolares do concelho de Albufeira e para outras atividades da Divisão de Educação",
@@ -3549,6 +3936,7 @@
    "deadline": "2026-07-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento contínuo de peixe fresco para as cantinas escolares do concelho de Albufeira e para outras atividades da Divisão de Educação",
@@ -3576,6 +3964,7 @@
    "deadline": "2026-07-27",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "EMPREITADA DE REPARAÇÃO DAS ESTRADAS MUNICIPAIS DO PINCHO E 1142 VALE DO LOBO",
@@ -3603,6 +3992,7 @@
    "deadline": "2026-08-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE COMUNICAÇÕES FIXAS E MÓVEIS PARA O MUNICÍPIO DE LOULÉ",
@@ -3630,6 +4020,7 @@
    "deadline": "2026-07-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento contínuo de mercearias para as cantinas escolares do concelho de Albufeira e para outras atividades da da divisão de educação",
@@ -3648,6 +4039,7 @@
    "deadline": "2026-08-05",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONCURSO PÚBLICO PARA A CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE ELABORAÇÃO DOS PROJETOS DE EXECUÇÃO, PARA A EMPREITADA DE “ARRUAMENTOS EM QUARTEIRA (VIADUTOS, ARRUAMENTOS E OBRAS COMPLEMENTARES)",
@@ -3693,6 +4085,7 @@
    "deadline": "2026-07-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Serviço de aluguer de viaturas certificadas para transporte coletivo de crianças",
@@ -3720,6 +4113,7 @@
    "deadline": "2026-08-04",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "Locação e montagem de iluminação de Natal para 2026 em Tavira",
@@ -3747,6 +4141,7 @@
    "deadline": "2026-08-19",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para aplicação de produtos fitofármacos e biológicos em palmeiras na área do Município de Lagos",
@@ -3765,6 +4160,7 @@
    "deadline": "2026-07-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de aplicação de produtos fitofármacos e biológicos em palmeiras do Concelho de Lagos",
@@ -3783,6 +4179,7 @@
    "deadline": "2026-08-19",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS PARA A ELABORAÇÃO DE PROJETOS DE ESPECIALIDADES PARA A EMPREITADA DE “CONSTRUÇÃO DO CENTRO DE ARTE DE LOULÉ”",
@@ -3810,6 +4207,7 @@
    "deadline": "2026-07-22",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento de carne para as cantinas escolares",
@@ -3827,7 +4225,13 @@
    "published": "2026-07-15",
    "deadline": "2026-11-17",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "FORNECIMENTO E INSTALAÇÃO DE DOIS GRUPOS GERADOR DE EMERGÊNCIA",
    "base_price": 101849.53,
    "base_stated": true,
@@ -3887,6 +4291,7 @@
    "deadline": "2026-08-04",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "REABILITAÇÃO DA ESTRADA DAS ALAGOAS, EM PORTIMÃO",
@@ -3905,6 +4310,7 @@
    "deadline": "2026-07-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de peças e acessórios para veículos ligeiros",
@@ -3923,6 +4329,7 @@
    "deadline": "2026-07-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de atividades de animação e de apoio à família e atividades de enriquecimento curricular",
@@ -3958,6 +4365,7 @@
    "deadline": "2026-07-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso Público para aquisição de serviços para contratação de assistentes operacionais – área de atividade de cozinheiro para as cantinas escolares do Município de Albufeira",
@@ -4003,6 +4411,7 @@
    "deadline": "2026-08-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE REVISÃO DE PROJETOS DE ARQUITETURA E ESPECIALIDADES DE EDIFÍCIOS MUNICIPAIS",
@@ -4030,6 +4439,7 @@
    "deadline": "2026-08-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE DIVERSO MATERIAL DE CONSTRUÇÃO PARA EXECUÇÃO DE TRABALHOS NO MUSEU DO CARNAVAL E OUTROS DEPARTAMENTOS DO MUNICÍPIO PARA 2026 E 2027",
@@ -4057,6 +4467,7 @@
    "deadline": "2026-08-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE SEGURANÇA/VIGILÂNCIA PRIVADA PARA GRANDES EVENTOS",
@@ -4075,6 +4486,7 @@
    "deadline": "2026-08-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA AQUISIÇÃO DE CADERNOS DE ATIVIDADES PARA O 1.º, 2.º, 3.º CICLOS E ENSINO SECUNDÁRIO E DE PARTITURAS MUSICAIS PARA O ENSINO ARTÍSTICO ESPECIALIZADO DE MÚSICA – ANO LETIVO 2026/2027",
@@ -4118,6 +4530,7 @@
    "deadline": "2026-08-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de Serviços de Seguros",
@@ -4153,6 +4566,7 @@
    "deadline": "2026-08-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
@@ -4161,7 +4575,56 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/07/133/419966939.pdf",
    "changes": [],
    "base_price_last": 265857.01,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15954676",
+     "price": 95680,
+     "base_price": 265857.01,
+     "published": "2026-11-19",
+     "signed": "2026-11-17",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15954676"
+    },
+    {
+     "id": "15954944",
+     "price": 37573.81,
+     "base_price": 265857.01,
+     "published": "2026-11-19",
+     "signed": "2026-11-17",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15954944"
+    },
+    {
+     "id": "15955266",
+     "price": 20991.51,
+     "base_price": 265857.01,
+     "published": "2026-11-19",
+     "signed": "2026-11-17",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955266"
+    },
+    {
+     "id": "15955412",
+     "price": 2233,
+     "base_price": 265857.01,
+     "published": "2026-11-19",
+     "signed": "2026-11-17",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955412"
+    },
+    {
+     "id": "15955569",
+     "price": 13394.7,
+     "base_price": 265857.01,
+     "published": "2026-11-19",
+     "signed": "2026-11-17",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955569"
+    },
+    {
+     "id": "15955811",
+     "price": 22500,
+     "base_price": 265857.01,
+     "published": "2026-11-19",
+     "signed": "2026-11-09",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955811"
+    }
+   ]
   },
   {
    "n": "17798/2026",
@@ -4170,7 +4633,12 @@
    "published": "2026-07-10",
    "deadline": "2026-08-14",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Conservação e Beneficiação do Centro de Saúde de Castro Marim",
    "base_price": 997543.24,
    "base_stated": true,
@@ -4204,6 +4672,7 @@
    "deadline": "2026-07-19",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de livros de fichas para os alunos dos 1.º e 2.º ciclos dos Agrupamentos de Escolas do concelho de Silves - Ano letivo 2026/2027",
@@ -4230,7 +4699,12 @@
    "published": "2026-07-10",
    "deadline": "2026-08-01",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Locação de bens móveis",
+    "Locação de bens móveis",
+    "Locação de bens móveis",
+    "Locação de bens móveis"
+   ],
    "what": "Aquisição de serviços no âmbito do aluguer operacional (renting) de quatro viaturas ligeiras, por 48 meses.",
    "base_price": 130000,
    "base_stated": true,
@@ -4255,6 +4729,7 @@
    "deadline": "2026-08-12",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE ELABORAÇÃO DE ESTUDOS GEOLÓGICOS E GEOTÉCNICOS DE TERRENOS MUNICIPAIS NO CONCELHO DE LOULÉ",
@@ -4263,7 +4738,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/07/131/419966452.pdf",
    "changes": [],
    "base_price_last": 150000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15940841",
+     "price": 137080,
+     "base_price": 150000,
+     "published": "2026-11-16",
+     "signed": "2026-10-21",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15940841"
+    }
+   ]
   },
   {
    "n": "17672/2026",
@@ -4273,6 +4757,7 @@
    "deadline": "2026-07-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DE FORNECIMENTO DE CONSUMÍVEIS ALIMENTO PARA ANIMAIS E AREIA ABSORVENTE NÃO AGLOMERANTE PARA GATOS",
@@ -4290,7 +4775,12 @@
    "published": "2026-07-09",
    "deadline": "2026-08-17",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE REVISÃO TÉCNICA DO PROJETO DE EXECUÇÃO – PROTEÇÃO RENATURALIZAÇÃO E VALORIZAÇÃO DAS LINHAS DE ÁGUA ‘RIBEIRA DE CARCAVAI’ E ‘RIBEIRA DO CADOIÇO’",
    "base_price": 25000,
    "base_stated": true,
@@ -4315,6 +4805,7 @@
    "deadline": "2026-07-16",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso Público para aquisição de medicamentos veterinários e consumíveis para o CRO",
@@ -4342,6 +4833,7 @@
    "deadline": "2026-07-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de produtos diversos de mercearia para os refeitórios do Centro Escolar de Castro Marim, Centro Escolar de Altura e E.B.2,3 de Castro Marim (lote 1 e 2)",
@@ -4369,6 +4861,7 @@
    "deadline": "2026-07-29",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de viatura pesada, com dois contentores, com sistema polibenne e grua para recolha de resíduos verdes",
@@ -4396,6 +4889,7 @@
    "deadline": "2026-08-05",
    "procedure": "Concurso público",
    "types": [
+    "Concessão de serviços públicos",
     "Concessão de serviços públicos"
    ],
    "what": "Concessão do direito de exploração publicitária em espaço público no concelho de Tavira, com instalação de painéis publicitários mupis e abrigos em paragens de transporte público",
@@ -4414,6 +4908,7 @@
    "deadline": "2026-07-20",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "Locação de equipamentos no âmbito de iniciativas culturais do Município de Tavira",
@@ -4449,6 +4944,7 @@
    "deadline": "2026-07-21",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de alteração e ampliação do jardim de infância da Correeira",
@@ -4467,6 +4963,7 @@
    "deadline": "2026-07-14",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços continuados de fornecimento de refeições e catering",
@@ -4494,6 +4991,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de Licenciamento para Soluções de Governança, Ambiente e Qualidade de Vida Inteligente para o Município de Albufeira",
@@ -4557,6 +5055,7 @@
    "deadline": "2026-07-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público com publicação de anúncio no JOUE para aquisição de serviços de manutenção multitécnica de equipamentos/máquinas e tratamento das águas das piscinas municipais de Albufeira",
@@ -4583,7 +5082,12 @@
    "published": "2026-07-02",
    "deadline": "2026-07-15",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Fornecimento contínuo de legumes frescos e fruta fresca para os refeitórios do Centro Escolar de Castro Marim, Centro Escolar de Altura e E.B.2,3 de Castro Marim (5 lotes)",
    "base_price": 48800,
    "base_stated": true,
@@ -4617,6 +5121,7 @@
    "deadline": "2026-08-03",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para recolha complementar de recicláveis no concelho de Lagos",
@@ -4644,6 +5149,7 @@
    "deadline": "2026-08-03",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços continuados para limpeza e manutenção de fontes ornamentais do Concelho de Lagos",
@@ -4671,6 +5177,7 @@
    "deadline": "2026-07-15",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de grupos eletrogéneos insonorizados e atrelados e torres telescópicas de iluminação para o Município de Lagos",
@@ -4698,6 +5205,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de Serviços Continuados para a Reparação e Manutenção de Veículos Pesados da Frota Municipal",
@@ -4725,6 +5233,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços continuados de Vigilância Humana para as Escolas Básicas do 2.º e 3.º ciclos, Escolas Secundárias do concelho de Lagos e Espaço Jovem em Lagos",
@@ -4770,6 +5279,7 @@
    "deadline": "2026-07-14",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de sinais de trânsito e outros dispositivos e acessórios de sinalização rodoviária",
@@ -4796,7 +5306,12 @@
    "published": "2026-06-26",
    "deadline": null,
    "procedure": "Concurso limitado por prévia qualificação",
-   "types": [],
+   "types": [
+    "Concessão de serviços públicos",
+    "Concessão de serviços públicos",
+    "Concessão de serviços públicos",
+    "Concessão de serviços públicos"
+   ],
    "what": "CONTRATAÇÃO DA CONCESSÃO DE GESTÃO E EXPLORAÇÃO DA CRECHE DO FORTE NOVO (QUARTEIRA)",
    "base_price": null,
    "base_stated": false,
@@ -4821,6 +5336,7 @@
    "deadline": "2026-07-27",
    "procedure": "Concurso público",
    "types": [
+    "Concessão de serviços públicos",
     "Concessão de serviços públicos"
    ],
    "what": "CONTRATAÇÃO DA CONCESSÃO DE EXPLORAÇÃO DE UM ESPAÇO DESTINADO À INSTALAÇÃO E FUNCIONAMENTO DE UM ESTABELECIMENTO DE BEBIDAS, NO APOIO DE PRAIA TIPO “B”, NA AVENIDA MARGINAL DE QUARTEIRA",
@@ -4839,6 +5355,7 @@
    "deadline": "2026-07-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONCURSO PÚBLICO PARA A CONTRATAÇÃO DE SERVIÇOS DE REVISÃO E REPARAÇÃO DE VEÍCULOS PESADOS OPERACIONAIS AFETOS AOS BOMBEIROS DE LOULÉ.",
@@ -4857,6 +5374,7 @@
    "deadline": "2026-07-01",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "AQUISIÇÃO DE EQUIPAMENTOS PARA ESCORAMENTOS E ELEVAÇÃO DE CARGAS",
@@ -4884,6 +5402,7 @@
    "deadline": "2026-07-04",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento de peças e acessórios multimarcas para viaturas ligeiras",
@@ -4902,6 +5421,7 @@
    "deadline": "2026-07-08",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": null,
@@ -4983,6 +5503,7 @@
    "deadline": "2026-06-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
@@ -5076,6 +5597,7 @@
    "deadline": "2026-07-07",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de reabilitação do conservatório de Albufeira",
@@ -5102,7 +5624,13 @@
    "published": "2026-06-19",
    "deadline": "2026-07-17",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Concurso público com publicação de anúncio no JOUE para prestação de serviços de transporte escolar em circuitos especiais para o ano letivo 2026/2027",
    "base_price": 265000,
    "base_stated": true,
@@ -5136,6 +5664,7 @@
    "deadline": "2026-07-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Vigilância e assistência a banhistas",
@@ -5189,6 +5718,7 @@
    "deadline": "2026-06-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de monoblocos para a Escola Professora Piedade Matoso em Aljezur",
@@ -5216,6 +5746,7 @@
    "deadline": "2026-07-15",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de sete viaturas para recolha seletiva de verdes",
@@ -5243,6 +5774,7 @@
    "deadline": "2026-06-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de licenças Microsoft Open Value Subscription Governo e School Agreement para a infraestrutura informática do Município de Alcoutim",
@@ -5269,7 +5801,12 @@
    "published": "2026-06-17",
    "deadline": "2026-08-12",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "02-Emp/26 - Empreitada para obras de reabilitação de habitação social no Bairro da Porta Nova Tavira, Rua António Pinheiro (Blocos 5, 7 e 9)",
    "base_price": 1234991.24,
    "base_stated": true,
@@ -5294,6 +5831,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE ELABORAÇÃO DO PROJETO DE EXECUÇÃO PARA A EMPREITADA DE “REQUALIFICAÇÃO DA EM 524 ENTRE A RIBEIRA DE ALGIBRE E A RIBEIRA DAS MERCÊS”",
@@ -5321,6 +5859,7 @@
    "deadline": "2026-07-01",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de peças, acessórios e afins para veículos pesados",
@@ -5348,6 +5887,7 @@
    "deadline": "2026-07-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE REVISÃO DE PROJETOS DE ARQUITETURA E ESPECIALIDADES PARA CONSTRUÇÃO DE HABITAÇÃO PÚBLICA",
@@ -5375,6 +5915,7 @@
    "deadline": "2026-07-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DE FORNECIMENTO DE EQUIPAMENTO DE ILUMINAÇÃO PARA REQUALIFICAÇÃO DO PARQUE MUNICIPAL DE LOULÉ",
@@ -5402,6 +5943,7 @@
    "deadline": "2026-07-03",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Reabilitação e manutenção de Passeios na Cidade de Faro (Zona Cidade Velha e Carmo e Zona Sto. António do Alto e S. Luís)",
@@ -5437,6 +5979,7 @@
    "deadline": "2026-06-30",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "04-Emp/26 - Empreitada de conceção-construção para a contenção de fachadas de dois edifícios municipais, em Tavira",
@@ -5455,6 +5998,7 @@
    "deadline": "2026-06-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para revisão do Projeto de Ampliação do Cemitério de Sagres",
@@ -5482,6 +6026,7 @@
    "deadline": "2026-06-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS PARA ELABORAÇÃO E ATUALIZAÇÃO DO CADASTRO DE SANEAMENTO BÁSICO (DISTRIBUIÇÃO, DRENAGEM E PLUVIAIS) DOS SISTEMAS DO AMEIXIAL, SALIR, BARRANCO DO VELHO E VALE JUDEU",
@@ -5490,7 +6035,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/06/111/419963673.pdf",
    "changes": [],
    "base_price_last": 74760,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15938365",
+     "price": 41694,
+     "base_price": 74760,
+     "published": "2026-11-16",
+     "signed": "2026-09-02",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15938365"
+    }
+   ]
   },
   {
    "n": "15009/2026",
@@ -5500,6 +6054,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": null,
@@ -5599,6 +6154,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE IMPRESSÃO DE PUBLICAÇÕES E DE PAGINAÇÃO E IMPRESSÃO DE PUBLICAÇÕES DA CÂMARA MUNICIPAL DE LOULÉ",
@@ -5657,7 +6213,13 @@
    "published": "2026-06-11",
    "deadline": "2026-07-27",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE REVISÃO E REPARAÇÃO DE VEÍCULOS LIGEIROS OPERACIONAIS AFETOS AOS BOMBEIROS DE LOULÉ E À PROTEÇÃO CIVIL.",
    "base_price": 80000,
    "base_stated": true,
@@ -5672,7 +6234,16 @@
     }
    ],
    "base_price_last": 80000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15948994",
+     "price": 80000,
+     "base_price": 80000,
+     "published": "2026-11-18",
+     "signed": "2026-10-26",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948994"
+    }
+   ]
   },
   {
    "n": "15078/2026",
@@ -5682,6 +6253,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Pavimentação da VAL 2047 - Poço Barreto",
@@ -5700,6 +6272,7 @@
    "deadline": "2026-07-13",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "REPAVIMENTAÇÃO DE TROÇO DA VAL 2224 E DA VAL 2228 E EXTENSÃO DAS REDES DE ABASTECIMENTO DE ÁGUA E SANEAMENTO, BARRADAS S. B. MESSINES",
@@ -5718,6 +6291,7 @@
    "deadline": "2026-06-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para aquisição de serviços de seguros de acidentes de trabalho",
@@ -5745,6 +6319,7 @@
    "deadline": "2026-06-26",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "OM 23 2026 - Beneficiação, Reparação e Melhoramentos nas Escolas do Concelho - ESCOLAS DO AGRUPAMENTO PADRE JOÃO COELHO CABANITA – 2026",
@@ -5788,6 +6363,7 @@
    "deadline": "2026-06-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso Público para fornecimento e manutenção de equipamento de segurança contra incêndios para edifícios e viaturas",
@@ -5815,6 +6391,10 @@
    "deadline": "2026-07-18",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "PARQUE AUTÁRQUICO DA FRANQUEADA-4ªFASE",
@@ -5842,6 +6422,7 @@
    "deadline": "2026-06-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de licenciamento de software de produtividade",
@@ -5869,6 +6450,7 @@
    "deadline": "2026-06-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de mobiliário escolar para a EB/JI n.º 1",
@@ -5887,6 +6469,7 @@
    "deadline": "2026-06-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": null,
@@ -5930,6 +6513,7 @@
    "deadline": "2026-06-16",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de remoção da cobertura em fibrocimento e substituição dos vãos no posto da GNR Brigada Territorial",
@@ -5957,6 +6541,7 @@
    "deadline": "2026-06-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento contínuo de materiais em PVC a aplicar na remodelação e conservação da rede de abastecimento de água e saneamento",
@@ -5984,6 +6569,7 @@
    "deadline": "2026-06-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento de refeições escolares para os estabelecimentos do ensino pré-escolar, 1.º ciclo do ensino básico e tempos livres durante aos anos letivos 2026/2027 e 2027/2028",
@@ -6002,6 +6588,7 @@
    "deadline": "2026-07-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de mobiliário escolar para a Escola Básica das Naus",
@@ -6029,6 +6616,7 @@
    "deadline": "2026-06-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "FORNECIMENTO CONTÍNUO DE BRITAS E INERTES",
@@ -6046,7 +6634,12 @@
    "published": "2026-05-29",
    "deadline": "2026-06-26",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Vestuário profissional, na modalidade de fornecimento contínuo, por lotes",
    "base_price": 213480,
    "base_stated": true,
@@ -6088,6 +6681,7 @@
    "deadline": "2026-06-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "AQUISIÇÃO DE COMUNICAÇÕES FIXAS, MÓVEIS DE VOZ E DADOS, INTERNET E SERVIÇOS DE TELEVISÃO PARA O MUNICÍPIO DE PORTIMÃO",
@@ -6115,6 +6709,7 @@
    "deadline": "2026-06-07",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para renovação do licenciamento do software de virtualização Omnissa Horinzon",
@@ -6142,6 +6737,7 @@
    "deadline": "2026-06-17",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "EMPREITADA DE CONSTRUÇÃO DE DOIS MÓDULOS DE CATACUMBAS E COLUMBÁRIOS NO CEMITÉRIO NOVO DE LAGOS",
@@ -6169,6 +6765,7 @@
    "deadline": "2026-06-17",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "EMPREITADA DE CONSTRUÇÃO DE DOIS MÓDULOS DE CATACUMBAS CEMITÉRIO DE BARÃO DE S. JOÃO - LAGOS",
@@ -6196,6 +6793,7 @@
    "deadline": "2026-06-19",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE ELABORAÇÃO DOS PROJETOS DE EXECUÇÃO PARA A EMPREITADA “CONSTRUÇÃO E REPARAÇÃO DE ESTRADAS E CAMINHOS MUNICIPAIS - PAVIMENTAÇÃO DE UM TROÇO DA VNC 561",
@@ -6223,6 +6821,8 @@
    "deadline": "2026-07-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DIVERSOS NA ÁREA DOS ESPAÇOS VERDES EM LOULÉ",
@@ -6258,6 +6858,7 @@
    "deadline": "2026-06-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para renovação do licenciamento da solução de proteção de aplicações web e da solução de proteção de correio eletrónico e de ferramentas",
@@ -6285,6 +6886,7 @@
    "deadline": "2026-06-21",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "“REPARAÇÃO PONTUAL DE PAVIMENTOS BETUMINOSOS, CONCELHO DE LOULÉ”",
@@ -6303,6 +6905,7 @@
    "deadline": "2026-06-16",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Beneficiação, Ampliação, Reparação e Melhoramentos nas Escolas do Concelho - Escolas do Agrupamento de Almancil",
@@ -6330,6 +6933,7 @@
    "deadline": "2026-06-21",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Reparação pontual de passeios (calçadas, pavês e Lancis) em contexto urbano - Concelho de Loulé",
@@ -6348,6 +6952,7 @@
    "deadline": "2026-06-14",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento e Montagem de Equipamentos de Ar Condicionado, de gama média, a instalar em Vários Edifícios Municipais",
@@ -6383,6 +6988,7 @@
    "deadline": "2026-06-29",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DE LOCAÇÃO DE EQUIPAMENTO DE LUZ, SOM E VÍDEO PARA APOIO A EVENTOS",
@@ -6410,6 +7016,7 @@
    "deadline": "2026-06-26",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Alteração de Edifícios da Quinta do Camacho para Centro de Interpretação do Lince Ibérico",
@@ -6427,7 +7034,11 @@
    "published": "2026-05-27",
    "deadline": "2026-06-22",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Aquisição de serviços de impressão de catálogos e materiais de divulgação",
    "base_price": 129500,
    "base_stated": true,
@@ -6461,6 +7072,7 @@
    "deadline": "2026-06-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de alimentação para animais",
@@ -6496,6 +7108,7 @@
    "deadline": "2026-06-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO CONTÍNUO DE PAPEL HIGIÉNICO, PAPEL DE MÃOS, GUARDANAPOS E ROLO PANO LIMPEZA DESCARTÁVEIS",
@@ -6549,6 +7162,7 @@
    "deadline": "2026-06-04",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Construção de um Campo de Padel na escola Secundária José Belchior Viegas",
@@ -6567,6 +7181,8 @@
    "deadline": "2026-06-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de serviços",
     "Aquisição de bens móveis",
     "Aquisição de serviços"
    ],
@@ -6594,7 +7210,11 @@
    "published": "2026-05-26",
    "deadline": "2026-07-03",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Aquisição de tinta acrílica para marcação de vias, em regime de fornecimento contínuo",
    "base_price": 95000,
    "base_stated": true,
@@ -6628,6 +7248,7 @@
    "deadline": "2026-06-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "PRESTAÇÃO DE SERVIÇOS PARA PINTURA DE PASSADEIRAS PARA PEÕES",
@@ -6655,6 +7276,7 @@
    "deadline": "2026-06-03",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de manuais e cadernos/livros de fichas escolares para o 1.º e 2.º ciclos do ensino básico - Ano letivo 2026/2027",
@@ -6682,6 +7304,7 @@
    "deadline": "2026-06-04",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONCURSO PÚBLICO PARA AQUISIÇÃO DE SERVIÇOS DE PINTURAS EM MUROS E GRADEAMENTOS NO MUNICÍPIO DE ALBUFEIRA",
@@ -6709,6 +7332,7 @@
    "deadline": "2026-05-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONCURSO PÚBLICO PARA",
@@ -6727,6 +7351,7 @@
    "deadline": "2026-06-19",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de 'Requalificação Urbana da Rua António Henrique Cabrita'",
@@ -6745,6 +7370,7 @@
    "deadline": "2026-06-09",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Arruamentos em Loulé – Repavimentação das Ruas Carlos Ramos, do Serradinho, Nossa Senhora de Fátima, de Santa Luzia, Francisco Palermo de Aragão, Simão José de Azevedo e Rua de Portugal",
@@ -6772,6 +7398,7 @@
    "deadline": "2026-05-22",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Intervenção Urgente de Reforço Sedimentar da Praia da Fuseta-Mar - Ilha da Armona (Olhão)",
@@ -6799,6 +7426,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONCURSO PÚBLICO PARA AQUISIÇÃO DO SERVIÇO DE ALUGUER DE TENDAS PARA PROJETO “FÉRIAS DE VERÃO”",
@@ -6826,6 +7454,7 @@
    "deadline": "2026-05-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de Serviços de Maquinaria para Intervenção Urgente de Reforço Sedimentar da Praia da Fuseta - Mar - Ilha da Armona'",
@@ -6853,6 +7482,7 @@
    "deadline": "2026-06-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de serviços de transporte escolar - Ano letivo 2026/2027",
@@ -6928,6 +7558,7 @@
    "deadline": "2026-05-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de Mobiliário Técnico e Equipamentos de Infraestruturas de Laboratório - HubAzul",
@@ -6955,6 +7586,7 @@
    "deadline": "2026-05-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de plataforma elevatória para o Município de Silves",
@@ -6963,7 +7595,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/05/095/419961376.pdf",
    "changes": [],
    "base_price_last": 105000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15937602",
+     "price": 98750,
+     "base_price": 105000,
+     "published": "2026-11-16",
+     "signed": "2026-11-13",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937602"
+    }
+   ]
   },
   {
    "n": "12541/2026",
@@ -6973,6 +7614,7 @@
    "deadline": "2026-06-12",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de veículo especial de combate a incêndios em aeronaves",
@@ -7000,6 +7642,7 @@
    "deadline": "2026-06-12",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "FORNECIMENTO E INSTALAÇÃO DE UNIDADES FILTRANTES PARA AS PISCINAS MUNICIPAIS.",
@@ -7018,6 +7661,7 @@
    "deadline": null,
    "procedure": "Concurso limitado por prévia qualificação",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso limitado por prévia qualificação para aquisição de projetos de execução para o Centro Educativo de Vila do Bispo",
@@ -7045,6 +7689,7 @@
    "deadline": "2026-05-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de aluguer de stands para os eventos âncora do Município de Lagos em 2026",
@@ -7080,6 +7725,7 @@
    "deadline": "2026-05-29",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Reabilitação das instalações elétricas da marina e edifício de apoio na Mexilhoeira da Carregação",
@@ -7106,7 +7752,13 @@
    "published": "2026-05-13",
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Revisão dos projetos de centro escolar da Mexilhoeira da Carregação; Escola EB 2/3 Jacinto Correia em Lagoa; Escola Secundária Padre António Martins De Oliveira (ESPAMOL) em Lagoa",
    "base_price": 185960.82,
    "base_stated": true,
@@ -7156,6 +7808,8 @@
    "deadline": "2026-06-16",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS PARA DEFINIÇÃO E IMPLEMENTAÇÃO DE PERCURSOS PEDESTRES E PARA FORNECIMENTO CONTÍNUO DE SINALÉTICA E EQUIPAMENTOS DE APOIO À VISITAÇÃO DAS ÁREAS PROTEGIDAS, TRANSPORTE ...",
@@ -7198,7 +7852,13 @@
    "published": "2026-05-13",
    "deadline": "2026-06-25",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": null,
    "base_price": 250668,
    "base_stated": true,
@@ -7423,7 +8083,11 @@
    "published": "2026-05-13",
    "deadline": "2026-08-26",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Aquisição de serviço público municipal de transporte de passageiros de Lagos",
    "base_price": 20910574,
    "base_stated": true,
@@ -7455,6 +8119,7 @@
    "deadline": "2026-05-27",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de Estabilização da Arriba e Requalificação de Muros entre a Praia do Peneco e o Hotel Sol e Mar",
@@ -7482,6 +8147,7 @@
    "deadline": "2026-05-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Fatacil 2026: Lote 1 – Aluguer de tendas, stands e material diverso; Lote 2 – Aluguer de contentores; Lote 3 – Aluguer de sanitários químicos",
@@ -7517,6 +8183,7 @@
    "deadline": "2026-05-19",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Plataforma de gestão municipal de educação pelo período de 36 meses",
@@ -7544,6 +8211,7 @@
    "deadline": "2026-05-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de renovação do licenciamento firewall e antivírus",
@@ -7571,6 +8239,7 @@
    "deadline": "2026-05-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de retroescavadora para o Município de Silves",
@@ -7598,6 +8267,8 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO CONTÍNUO DE SACOS DO LIXO",
@@ -7625,6 +8296,7 @@
    "deadline": "2026-06-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de energia elétrica em instalações municipais",
@@ -7652,6 +8324,7 @@
    "deadline": "2026-06-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de desinfestação e controlo de pragas urbanas",
@@ -7679,6 +8352,7 @@
    "deadline": "2026-05-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público com publicação no JOUE para aquisição de serviços de segurança e vigilância, para o Município de Albufeira",
@@ -7722,6 +8396,7 @@
    "deadline": "2026-05-26",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE SEGUROS",
@@ -7748,7 +8423,12 @@
    "published": "2026-05-08",
    "deadline": "2026-06-17",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Requalificação Urbanística do Bairro Ribeirinho em Faro",
    "base_price": 3464427.03,
    "base_stated": true,
@@ -7773,6 +8453,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição contínua de diversos materiais de construção civil.",
@@ -7800,6 +8481,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Elaboração do projeto de execução para a reabilitação e adaptação a núcleo museológico do cais coberto da estação ferroviária de Faro.",
@@ -7818,6 +8500,7 @@
    "deadline": "2026-05-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para revisão do projeto de ampliação do Cemitério Municipal de Budens",
@@ -7844,7 +8527,11 @@
    "published": "2026-05-06",
    "deadline": "2026-05-31",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Reabilitação do posto Territorial da GNR de São Brás de Alportel",
    "base_price": 280000,
    "base_stated": true,
@@ -7878,6 +8565,7 @@
    "deadline": "2026-06-03",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de apólices de seguros",
@@ -7896,6 +8584,7 @@
    "deadline": "2026-05-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de instalação e exploração de máquinas de venda automática (vending) em equipamentos municipais",
@@ -7914,6 +8603,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE ELABORAÇÃO DOS PROJETOS DE EXECUÇÃO E ESPECIALIDADES PARA A EMPREITADA “ARRUAMENTOS EM LOULÉ - REQUALIFICAÇÃO DA RUA DA GIL VICENTE'",
@@ -7959,6 +8649,8 @@
    "deadline": "2026-05-20",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "RECUPERAÇÃO E MANUTENÇÃO DE EDIFICIOS E EQUIPAMENTOS DESPORTIVOS MUNICIPAIS-PAVILHÃO GIMNODESPORTIVO DE BOLIQUEIME",
@@ -7986,6 +8678,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE ELABORAÇÃO DOS PROJETOS DE EXECUÇÃO E ESPECIALIDADES PARA A EMPREITADA “REQUALIFICAÇÃO DA RUA DA VENEZUELA EM ALMANCIL'",
@@ -8013,6 +8706,7 @@
    "deadline": "2026-05-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONCURSO PÚBLICO PARA A CONTRATAÇÃO DE SERVIÇOS DE DIREÇÃO ARTÍSTICA DOS EVENTOS FESTIVAL MED E NOITE BRANCA E PROGRAMAÇÃO DO EVENTO SOM RISCADO - FESTIVAL DE MÚSICA E IMAGEM",
@@ -8040,6 +8734,7 @@
    "deadline": "2026-05-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de Serviços para Execução de Faixas Secundárias de Gestão de Combustível na Rede Rodoviária no Concelho de Monchique, em Ordem à Redução da Vulnerabilidade aos Fogos Rurais e à Adaptação às Alterações Climáticas Regionais",
@@ -8067,6 +8762,7 @@
    "deadline": "2026-06-01",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "AQUISIÇÃO DE SERVIÇOS PARA A 'FISCALIZAÇÃO, COORDENAÇÃO DE SEGURANÇA E GESTÃO DE RESÍDUOS, NO ÂMBITO DAS OBRAS MUNICIPAIS'",
@@ -8094,6 +8790,7 @@
    "deadline": "2026-05-13",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "EMPREITADA DE RECUPERAÇÃO DA PONTE DE MADEIRA NA PRAIA DOS SALGADOS - ALBUFEIRA.",
@@ -8121,6 +8818,7 @@
    "deadline": "2026-05-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "REPARAÇÃO, ASSISTÊNCIA TÉCNICA, MELHORIA E MANUTENÇÃO PREVENTIVA DE INSTALAÇÕES MECÂNICAS DE CLIMATIZAÇÃO E VENTILAÇÃO (AVAC), AQS (GÁS E SOLAR) E REFRIGERAÇÃO",
@@ -8139,6 +8837,7 @@
    "deadline": "2026-06-01",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de veículo pesado de mercadorias, até 7,5 ton. com caixa tribasculante",
@@ -8157,6 +8856,7 @@
    "deadline": "2026-05-12",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para forn de mobiliário, para todos os espaços e equipamentos educativos dos agrupamentos de escolas de Albufeira, Albufeira Poente, Albufeira Oriental e Divisão de Educação para 2026",
@@ -8184,6 +8884,7 @@
    "deadline": "2026-05-20",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação de Sinalização Rodoviária Horizontal de Linhas de Estacionamento",
@@ -8202,6 +8903,7 @@
    "deadline": "2026-05-19",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "FORNECIMENTO E MONTAGEM DE MATERIAL LOGÍSTICO DESPORTIVO",
@@ -8229,6 +8931,7 @@
    "deadline": "2026-05-22",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Conservação e Beneficiação do Centro de Saúde de Castro Marim",
@@ -8246,7 +8949,12 @@
    "published": "2026-04-28",
    "deadline": "2026-05-12",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Requalificação do Sistema de AVAC do Complexo de Piscinas Municipais de Olhão e substituição de circuladores",
    "base_price": 365000,
    "base_stated": true,
@@ -8280,6 +8988,7 @@
    "deadline": "2026-05-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento, montagem e reparação de material em alumínio e ferro para o Setor de Carpintaria",
@@ -8307,6 +9016,7 @@
    "deadline": "2026-05-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de Serviços - Atividades de Enriquecimento Curricular Ano Letivo 2026/2027",
@@ -8334,6 +9044,8 @@
    "deadline": "2026-05-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE SEGURANÇA/VIGILÂNCIA PRIVADA - ESTÁTICA E AREs- PARA PEQUENOS/MÉDIOS EVENTOS",
@@ -8377,6 +9089,7 @@
    "deadline": "2026-05-15",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento e Montagem de Equipamentos Novos, de Produção de Águas Quentes Sanitárias, nos Balneários da Escola EB 2,3 Poeta Bernardo de Passos e do Polidesportivo Municipal Gonçalo Assunção , no âmbito da Eficiência Energética, incluindo a Remoção dos Equipamentos Existentes",
@@ -8404,6 +9117,7 @@
    "deadline": "2026-05-07",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Substituição da Cobertura do Jardim de Infância do Corotelo em São Brás de Alportel",
@@ -8431,6 +9145,7 @@
    "deadline": "2026-04-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de combustíveis rodoviários em sistema de cartão frota",
@@ -8458,6 +9173,7 @@
    "deadline": "2026-04-28",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para limpeza de edifícios e instalações municipais",
@@ -8485,6 +9201,7 @@
    "deadline": "2026-04-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de vigilância humana para o Centro de Saúde de Lagos",
@@ -8512,6 +9229,7 @@
    "deadline": "2026-05-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços continuados de transporte de passageiros em regime de aluguer para serviços não definidos",
@@ -8539,6 +9257,7 @@
    "deadline": "2026-05-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "PRESTAÇÃO DE SERVIÇOS DE APOIO À DML NA MANUTENÇÃO E REPARAÇÃO DE EDIFÍCIOS PÚBLICOS",
@@ -8566,6 +9285,7 @@
    "deadline": "2026-04-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "FEIRA DO LIVRO 2026",
@@ -8593,6 +9313,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços Subscrição do licenciamento Microsoft",
@@ -8620,6 +9341,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de aluguer de equipamentos e serviços para os eventos âncora Arte Doce (2026), Banho 29 (2026) e Passagem de Ano 2026/2027",
@@ -8663,6 +9385,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Reabilitação do Quiosque Municipal de S. B. de Messines",
@@ -8681,6 +9404,8 @@
    "deadline": "2026-05-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE PRESTAÇÃO DE SERVIÇOS DE CONSULTORIA DE MONITORIZAÇÃO E RECUPERAÇÃO DE RECEITA FISCAL EM SEDE DE IMT",
@@ -8707,7 +9432,13 @@
    "published": "2026-04-22",
    "deadline": "2026-05-22",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "INTERVENÇÃO DE MANUTENÇÃO NO PAVILHÃO DA ATUAL ESCOLA D. DINIS - 1ª FASE – REABILITAÇÃO DOS BALNEÁRIOS DO PAVILHÃO GIMNODESPORTIVO CARLOS GRAVATA 2026",
    "base_price": 746640,
    "base_stated": true,
@@ -8741,6 +9472,7 @@
    "deadline": "2026-05-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de Serviços de Comunicações Móveis e Fixas de Voz, Dados, Banda Larga Móvel e Pacotes TV",
@@ -8768,6 +9500,7 @@
    "deadline": "2026-05-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE SILVICULTURA PREVENTIVA – GESTÃO DE COMBUSTÍVEL FLORESTAL PARA O ANO 2026",
@@ -8795,6 +9528,7 @@
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE LEVANTAMENTO DAS CONDIÇÕES DE CONFORTO TÉRMICO E NECESSIDADES ENERGÉTICAS PARA INSTALAÇÃO DE UNIDADES DE CLIMATIZAÇÃO NOS ESTABELECIMENTOS DE ENSINO, E PARA MEL",
@@ -8822,6 +9556,7 @@
    "deadline": "2026-04-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição e fornecimento de mobiliário escolar e equipamento para a obra de requalificação e beneficiação da Escola Básica Manuel do Nascimento - Monchique",
@@ -8849,6 +9584,9 @@
    "deadline": "2026-05-22",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE MANUTENÇÃO DE GERADORES DE VÁRIAS INSTALAÇÕES E EQUIPAMENTOS EXPLORADOS PELO MUNICÍPIO DE LOULÉ",
@@ -8876,6 +9614,7 @@
    "deadline": "2026-05-01",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento e Montagem de Cortina Corta-Fogo Automática, com classificação de Resistência ao Fogo de E180 minutos, no Cine Teatro Jaime Pinto em São Brás de Alportel",
@@ -8903,6 +9642,7 @@
    "deadline": "2026-05-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO CONTINUO DE HIPOCLORITO DE SÓDIO TP5",
@@ -8930,6 +9670,7 @@
    "deadline": "2026-04-28",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de implementação da SCIE no auditório Municipal reabilitação/ impermeabilização da sua laje de cobertura",
@@ -8957,6 +9698,7 @@
    "deadline": "2026-04-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso Público para fornecimento contínuo de pneus, câmaras de ar e prestação de serviços conexos",
@@ -9002,6 +9744,7 @@
    "deadline": "2026-05-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de pneus e câmaras de ar e prestação de serviços conexos para veículos do Município de Silves",
@@ -9029,6 +9772,7 @@
    "deadline": "2026-04-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "ESTUDO GEOARQUEOLÓGICO COM RECOLHA INTEGRAL DE SEDIMENTOS E ANÁLISE PALEOAMBIENTAL NO RIO ARADE",
@@ -9056,6 +9800,7 @@
    "deadline": "2026-05-05",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "REPAVIMENTAÇÃO DA URBANIZAÇÃO PONTALGAR",
@@ -9083,6 +9828,7 @@
    "deadline": "2026-04-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de inertes",
@@ -9110,6 +9856,7 @@
    "deadline": "2026-05-09",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação do Largo Adjacente à E.R. 125 - Altura",
@@ -9128,6 +9875,7 @@
    "deadline": "2026-04-30",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Loja do Cidadão de Olhão",
@@ -9146,6 +9894,7 @@
    "deadline": "2026-04-27",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de construção de valetas no concelho de Albufeira",
@@ -9164,6 +9913,7 @@
    "deadline": "2026-04-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para aquisição de GPL, propano e butano",
@@ -9247,6 +9997,7 @@
    "deadline": "2026-04-19",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de serviços de locação de vários equipamentos para eventos organizados e co-organizados pelo Município de Silves",
@@ -9274,6 +10025,8 @@
    "deadline": "2026-05-01",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "BENEFICIAÇÃO, AMPLIAÇÃO, REPARAÇÃO E MELHORAMENTOS NAS ESCOLAS DO CONCELHO – BENEFICIAÇÃO DA EB1 DE SÃO PEDRO DO MAR - INTERVENÇÃO EM TELHADO E EXTERIORES",
@@ -9301,6 +10054,7 @@
    "deadline": "2026-05-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE PROJETORES PARA AS MURALHAS DO CASTELO E MONUMENTO DUARTE PACHECO",
@@ -9328,6 +10082,7 @@
    "deadline": "2026-05-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE ELABORAÇÃO DE PROJETOS DE EXECUÇÃO PARA VÁRIAS LOCALIZAÇÕES NO MUNICÍPIO: NASCENTE DO CAMINHO PASSIS DA ALMARGEM – PEREIRAS E ASSUMADINHA, VALE, ARROCHELA E BACELADA SUL",
@@ -9346,6 +10101,7 @@
    "deadline": "2026-05-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público com publicação de anúncio no JOUE para fornecimento de equipamentos para Bioresíduos",
@@ -9405,6 +10161,7 @@
    "deadline": "2026-04-16",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "Locação de módulos pré-fabricados para complementar o funcionamento de serviços no Centro de Saúde de Tavira",
@@ -9432,6 +10189,7 @@
    "deadline": "2026-05-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de sinalização e equipamento rodoviário em regime de fornecimento contínuo",
@@ -9459,6 +10217,7 @@
    "deadline": null,
    "procedure": "Concurso limitado por prévia qualificação",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO E INSTALAÇÃO DE NOVOS SISTEMAS AUTOMÁTICOS DE DETEÇÃO DE INCÊNDIOS, INTRUSÃO, CONTROLO DE ACESSOS E VIDEOVIGILÂNCIA EM EDIFÍCIOS DO MUNICÍPIO DE LOULÉ",
@@ -9467,7 +10226,16 @@
    "dr": "https://files.diariodarepublica.pt/cp_hora/2026/04/069/419956949.pdf",
    "changes": [],
    "base_price_last": 150000,
-   "contracts": []
+   "contracts": [
+    {
+     "id": "15937975",
+     "price": 123950,
+     "base_price": 150000,
+     "published": "2026-11-16",
+     "signed": "2026-08-28",
+     "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937975"
+    }
+   ]
   },
   {
    "n": "8863/2026",
@@ -9477,6 +10245,7 @@
    "deadline": "2026-04-27",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "BENEFICIAÇÃO, AMPLIAÇÃO, REPARAÇÃO E MELHORAMENTOS NAS ESCOLAS DO CONCELHO – JI POÇO NOVO – ESPAÇOS EXTERIORES",
@@ -9522,6 +10291,7 @@
    "deadline": "2026-04-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": null,
@@ -9549,6 +10319,7 @@
    "deadline": "2026-04-15",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de serviços de nadadores salvadores para as praias do concelho de Faro e Centro Náutico Municipal, por lotes",
@@ -9592,6 +10363,7 @@
    "deadline": "2026-04-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de combustíveis rodoviários em postos públicos mediante apresentação de cartão frota",
@@ -9618,7 +10390,11 @@
    "published": "2026-04-09",
    "deadline": "2026-04-30",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Obras de construção de cobertura no polidesportivo de Quelfes",
    "base_price": 400002.12,
    "base_stated": true,
@@ -9643,6 +10419,8 @@
    "deadline": "2026-04-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de serviços",
     "Aquisição de bens móveis",
     "Aquisição de serviços"
    ],
@@ -9671,6 +10449,7 @@
    "deadline": "2026-04-15",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de vigilância e assistência a banhistas nas unidades balneares UB4 Meia Praia e UB1 Praia da Batata no Município de Lagos",
@@ -9697,7 +10476,11 @@
    "published": "2026-04-07",
    "deadline": "2026-05-04",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": null,
    "base_price": 250000,
    "base_stated": true,
@@ -9739,6 +10522,7 @@
    "deadline": "2026-05-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição, por lotes, de tout-venant de 1.ª e 2.ª, na modalidade de fornecimento contínuo , pelo prazo máximo de 3 anos.",
@@ -9766,6 +10550,7 @@
    "deadline": "2026-04-12",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "01-Emp/26 - Empreitada para reabilitação das Pontes de Umbria e Curral de Boieiros",
@@ -9792,7 +10577,12 @@
    "published": "2026-04-07",
    "deadline": "2026-04-30",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": null,
    "base_price": 58000,
    "base_stated": true,
@@ -9834,6 +10624,7 @@
    "deadline": "2026-04-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "FORNECIMENTO CONTÍNUO DE BRITAS E INERTES",
@@ -9852,6 +10643,7 @@
    "deadline": "2026-05-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE RECOLHA E TRANSPORTE A DESTINO FINAL DE RESÍDUOS URBANOS INDIFERENCIADOS NA ZONA INTERIOR DO CONCELHO DE LOULÉ",
@@ -9887,6 +10679,8 @@
    "deadline": "2026-04-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE MANUTENÇÃO E ASSISTÊNCIA TÉCNICA",
@@ -9914,6 +10708,7 @@
    "deadline": "2026-04-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Transporte de alunos com Necessidades Educativas Especificas para a Escola de Referência de Educação Bilingue.",
@@ -9940,7 +10735,13 @@
    "published": "2026-03-31",
    "deadline": "2026-04-16",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE PAGINAÇÃO E IMPRESSÃO DAS REVISTAS AL-ÚLYÁ NÚMERO 30 E 31",
    "base_price": 11000,
    "base_stated": true,
@@ -9974,6 +10775,7 @@
    "deadline": "2026-05-04",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DE FORNECIMENTO CONTÍNUO DE AGLOMERADO ASFÁLTICO EM BIG-BAGS 1000 KG PARA APLICAÇÃO A FRIO (MASSAS A FRIO)",
@@ -10001,6 +10803,7 @@
    "deadline": "2026-04-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE ESTRUTURAS OUTDOOR, INCLUINDO DESMONTAGEM E SUBSTITUIÇÃO, EM DIVERSOS PONTOS DO CONCELHO DE LOULÉ",
@@ -10019,6 +10822,7 @@
    "deadline": "2026-04-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição por Lotes de viaturas pesados de passageiros, ligeiros de passageiros, ligeiros de mercadorias e máquina para a frota Municipal",
@@ -10110,6 +10914,7 @@
    "deadline": "2026-04-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de Contentorização Subterrânea para Deposição Seletiva de Biorresíduos",
@@ -10136,7 +10941,13 @@
    "published": "2026-03-25",
    "deadline": "2026-04-22",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Concurso Público com publicação no JOUE para aluguer de viatura(s) com condutor para limpeza dos coletores das águas residuais e pluviais",
    "base_price": 393000,
    "base_stated": true,
@@ -10169,7 +10980,12 @@
    "published": "2026-03-25",
    "deadline": "2026-05-25",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "NÚCLEO MUSEOLÓGICO CASA MANUEL TEIXEIRA GOMES",
    "base_price": 4102980.55,
    "base_stated": true,
@@ -10194,6 +11010,8 @@
    "deadline": "2026-04-22",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de serviços",
     "Aquisição de bens móveis",
     "Aquisição de serviços"
    ],
@@ -10222,6 +11040,8 @@
    "deadline": "2026-04-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO E IMPRESSÃO DE DIVERSO MATERIAL PROMOCIONAL PARA APOIO A EVENTOS",
@@ -10248,7 +11068,11 @@
    "published": "2026-03-23",
    "deadline": "2026-05-18",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Aquisição de serviços de limpeza",
    "base_price": 803271.42,
    "base_stated": true,
@@ -10290,6 +11114,7 @@
    "deadline": "2026-04-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DOS SERVIÇOS DE LAVAGEM INTERIOR E EXTERIOR DE CONTENTORES DE SUPERFÍCIE NA ZONA LITORAL, NO CONCELHO DE LOULÉ",
@@ -10317,6 +11142,7 @@
    "deadline": "2026-04-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para o aluguer de equipamentos para a realização de eventos promovidos pelo município",
@@ -10360,6 +11186,7 @@
    "deadline": "2026-03-24",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "Locação de módulos pré-fabricados para instalação provisória da Unidade de Saúde de Conceição-Cabanas",
@@ -10405,6 +11232,7 @@
    "deadline": "2026-04-07",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE HERBICIDAS ISENTOS DE GLIFOSATOS DE USO PROFISSIONAL, PARA APLICAÇÃO EM ESPAÇOS PÚBLICOS URBANOS",
@@ -10432,6 +11260,7 @@
    "deadline": "2026-04-22",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO CONTÍNUO DE FARDAMENTO ESCOLAR E EPI",
@@ -10450,6 +11279,7 @@
    "deadline": "2026-04-07",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE TECIDOS PARA DECORAÇÃO DO FESTIVAL MED E OUTROS EVENTOS DO MUNICÍPIO, COM CONFEÇÃO, MONTAGEM E DESMONTAGEM PARA 2026 E 2027.",
@@ -10485,6 +11315,7 @@
    "deadline": "2026-04-03",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para projeto de especialidades para a alteração do loteamento Roça do Veiga e infraestruturas da zona das alamedas envolventes, em Sagres",
@@ -10512,6 +11343,7 @@
    "deadline": "2026-03-25",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Conservação e Recuperação de Edifícios Municipais-Reparações na Cobertura, Vãos e Pavimentos do Ginásio dos Espanhóis",
@@ -10539,6 +11371,7 @@
    "deadline": "2026-03-31",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": null,
@@ -10566,6 +11399,7 @@
    "deadline": "2026-04-17",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "ALTERAÇÃO DE ESPAÇO PÚBLICO JUNTO AO ALÇADO NORTE DA SÉ CATEDRAL DE SILVES",
@@ -10593,6 +11427,7 @@
    "deadline": "2026-04-17",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "AMPLIAÇÃO DA EB1 DE ALCANTARILHA",
@@ -10620,6 +11455,7 @@
    "deadline": "2026-04-06",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA LOCAÇÃO DE STANDS, TENDAS E OUTROS EQUIPAMENTOS PARA APOIO A EVENTOS",
@@ -10647,6 +11483,7 @@
    "deadline": "2026-04-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de Serviços de Transporte Coletivo de Passageiros com Motorista",
@@ -10674,6 +11511,7 @@
    "deadline": "2026-04-16",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE MANUTENÇÃO DOS EQUIPAMENTOS MECÂNICOS E ELÉTRICOS, E CONDUÇÃO TÉCNICA DA INSTALAÇÃO EM REGIME PRESENCIAL NAS PISCINAS MUNICIPAIS DE QUARTEIRA.",
@@ -10701,6 +11539,7 @@
    "deadline": "2026-03-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de Emulsão betuminosa catiónica C69B2 (ECR-3) a granel",
@@ -10728,6 +11567,8 @@
    "deadline": "2026-03-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de Serviços de Silvicultura Preventiva para o Ano 2026 - Faixas de Gestão de Combustivel",
@@ -10755,6 +11596,7 @@
    "deadline": "2026-03-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA AQUISIÇÃO DE EQUIPAMENTOS DE GINÁSIO PARA A PISTA DE BMX DE QUARTEIRA.",
@@ -10782,6 +11624,7 @@
    "deadline": "2026-04-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE REMOÇÃO DE RESÍDUOS EM ESPAÇOS PÚBLICOS E LIMPEZA DE ESPAÇOS DEGRADADOS E EDIFÍCIOS",
@@ -10817,6 +11660,7 @@
    "deadline": "2026-03-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "PRÉ-POSICIONAMENTO E UTILIZAÇÃO DE MÁQUINA DE RASTOS NO COMBATE A INCÊNDIOS RURAIS",
@@ -10860,6 +11704,7 @@
    "deadline": "2026-03-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "GESTÃO DE COMBUSTÍVEIS REDE RODOVIÁRIA MUNICIPAL",
@@ -10887,6 +11732,7 @@
    "deadline": "2026-04-11",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Ampliação e requalificação do secretariado do Parque Municipal de Feiras e Exposições.",
@@ -10914,6 +11760,7 @@
    "deadline": "2026-03-27",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Instalação, manutenção e reparação de sinalética diversa",
@@ -10932,6 +11779,8 @@
    "deadline": "2026-03-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de serviços",
     "Aquisição de bens móveis",
     "Aquisição de serviços"
    ],
@@ -10960,6 +11809,7 @@
    "deadline": "2026-04-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de uma pavimentadora de rastos",
@@ -10987,6 +11837,7 @@
    "deadline": "2026-03-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "PRESTAÇÃO DE SERVIÇOS DE VIGILÂNCIA/SEGURANÇA NOS EVENTOS DO MUNICÍPIO E NO SILO AUTO DE ARMAÇÃO DE PÊRA DURANTE O ANO 2026",
@@ -11014,6 +11865,7 @@
    "deadline": "2026-03-24",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "RECUPERAÇÃO E MANUTENÇÃO DE EDIFICIOS E EQUIPAMENTOS DESPORTIVOS MUNICIPAIS-REPARAÇÃO DA PISTA DE ATLETISMO DO PARQUE MUNICIPAL",
@@ -11050,6 +11902,7 @@
    "deadline": "2026-03-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público para fornecimento contínuo de materiais de água e saneamento",
@@ -11077,6 +11930,7 @@
    "deadline": "2026-03-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços continuados de recolha de algas das praias",
@@ -11104,6 +11958,7 @@
    "deadline": "2026-04-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": null,
@@ -11131,6 +11986,7 @@
    "deadline": "2026-04-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS NO ÂMBITO DO PROJETO ALDEIAS RESILIENTES – ÁGUAS FRIAS, CORTINHOLA E SARNADAS",
@@ -11174,6 +12030,7 @@
    "deadline": "2026-03-30",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "EMPREITADA DE RECONSTRUÇÃO DO MURO DE SUPORTE NO CAMINHO DA BALEEIRA – SÃO RAFAEL, EM ALBUFEIRA",
@@ -11201,6 +12058,7 @@
    "deadline": "2026-04-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Recolha de resíduos urbanos indiferenciados e de biorresíduos no concelho de Lagoa e lavagem de contentores",
@@ -11228,6 +12086,7 @@
    "deadline": "2026-04-03",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de assessoria técnica especializada no âmbito do realinhamento estratégico organizacional",
@@ -11255,6 +12114,7 @@
    "deadline": "2026-03-10",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de execução das Medidas de Eficiência Energética dos estaleiros municipais de Vale Pedras - Albufeira",
@@ -11282,6 +12142,7 @@
    "deadline": "2026-04-08",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA AQUISIÇÃO DE TABLETS E RESPETIVOS ACESSÓRIOS",
@@ -11317,6 +12178,8 @@
    "deadline": "2026-03-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE ACOMPANHAMENTO PERSONALIZADO DE BANDAS E ARTISTAS, NO ÂMBITO DO FESTIVAL MED 2026",
@@ -11344,6 +12207,7 @@
    "deadline": "2026-03-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE DIVERSO MATERIAL DE PAPELARIA PARA APOIO AOS EVENTOS DO MUNICÍPIO 2026/2027",
@@ -11371,6 +12235,7 @@
    "deadline": "2026-03-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de veículo destroçador florestal automotriz controlado à distância e atrelado",
@@ -11416,6 +12281,7 @@
    "deadline": "2026-04-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO E IMPRESSÃO DE DIVERSO MATERIAL PUBLICITÁRIO PARA APOIO AOS EVENTOS DO MUNICÍPIO PARA 2026 E 2027",
@@ -11443,6 +12309,7 @@
    "deadline": "2026-04-06",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE EQUIPAMENTOS PARA A “BLACKBOX” DO PAVILHÃO MULTIUSOS 25 DE ABRIL DE ALMANCIL",
@@ -11461,6 +12328,7 @@
    "deadline": "2026-03-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE DESINFESTAÇÃO EM AGLOMERADOS URBANOS E EDIFÍCIOS CAMARÁRIOS DO CONCELHO DE LOULÉ",
@@ -11512,6 +12380,7 @@
    "deadline": "2026-03-13",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Conservação e Beneficiação do DICAD - UDTS de Olhão",
@@ -11530,6 +12399,7 @@
    "deadline": "2026-03-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": null,
@@ -11581,6 +12451,7 @@
    "deadline": "2026-03-30",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE MANUTENÇÃO E LIMPEZA DE FAIXAS CONFINANTES COM A REDE VIÁRIA – ESTRADAS MUNICIPAIS E NACIONAIS SOB RESPONSABILIDADE DA AUTARQUIA",
@@ -11624,6 +12495,7 @@
    "deadline": "2026-03-02",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para aquisição de serviços de controlo analítico do sistema de abastecimento de água para consumo humano e monitorização de água residual - 2026",
@@ -11651,6 +12523,8 @@
    "deadline": "2026-03-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE LONAS E OUTROS MATERIAIS COM IMPRESSÃO INCLUÍDA PARA APOIO AOS EVENTOS DO MUNICÍPIO",
@@ -11678,6 +12552,7 @@
    "deadline": "2026-03-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE ESPETÁCULOS PIROTÉCNICO E PIROMUSICAL PARA APOIO A EVENTOS",
@@ -11713,6 +12588,7 @@
    "deadline": "2026-03-14",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Escola Básica 2,3 de São Vicente – Condicionamento Acústico",
@@ -11731,6 +12607,7 @@
    "deadline": "2026-03-26",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO ALUGUER OPERACIONAL (RENTING) DE VIATURAS LIGEIRAS",
@@ -11782,6 +12659,7 @@
    "deadline": "2026-03-26",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE FARDAMENTO PARA OS ASSISTENTES OPERACIONAIS DA DIVISÃO DE SALUBRIDADE E HIGIENE PÚBLICA",
@@ -11800,6 +12678,7 @@
    "deadline": "2026-03-09",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação da rede de iluminação pública da vila de Parchal - Fase IV",
@@ -11827,6 +12706,7 @@
    "deadline": "2026-03-07",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação da rede de iluminação pública da vila de carvoeiro - Fase I",
@@ -11854,6 +12734,7 @@
    "deadline": "2026-03-07",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação da rede de iluminação pública da vila de Porches - Fase IV",
@@ -11881,6 +12762,7 @@
    "deadline": "2026-03-24",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação da Rua Infante de Sagres no Parchal",
@@ -11909,6 +12791,8 @@
    "procedure": "Concurso público",
    "types": [
     "Aquisição de bens móveis",
+    "Aquisição de serviços",
+    "Aquisição de bens móveis",
     "Aquisição de serviços"
    ],
    "what": "Limpeza, higienização e manutenção de sanitários públicos no litoral",
@@ -11936,6 +12820,7 @@
    "deadline": "2026-03-24",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Conceção e execução do Espaço Gamboa no convento de S. José",
@@ -11954,6 +12839,7 @@
    "deadline": "2026-03-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE CONTROLO ANALÍTICO DA QUALIDADE DA ÁGUA PARA CONSUMO HUMANO E MONITORIZAÇÃO DA LEGIONELLA",
@@ -11981,6 +12867,7 @@
    "deadline": "2026-02-24",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Concurso público para aquisição de extensão de garantia para servidores, storage, equipamentos cisco e rede lorawan",
@@ -12008,6 +12895,7 @@
    "deadline": "2026-02-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de máquina retroescavadora",
@@ -12052,7 +12940,13 @@
    "published": "2026-02-11",
    "deadline": "2026-04-13",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS PARA CONCEÇÃO E IMPLEMENTAÇÃO DO PLANO DE COMUNICAÇÃO E SENSIBILIZAÇÃO NO ÂMBITO DO ACOMPANHAMENTO DO PROJETO DE IMPLEMENTAÇÃO DO SISTEMA DE BICICLETAS DE USO PART",
    "base_price": 148225,
    "base_stated": true,
@@ -12086,6 +12980,7 @@
    "deadline": "2026-03-13",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONTRATAÇÃO DO FORNECIMENTO DE ÁRVORES NO ÂMBITO DA CAMPANHA “UMA ÁRVORE DÁ VIDA”",
@@ -12153,6 +13048,7 @@
    "deadline": "2026-03-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público com publicação no JOUE para fornecimento contínuo de frutas e produtos hortícolas para as cantinas escolares do concelho de Albufeira, jardins de infância, escolas do 1º ciclo do ensi",
@@ -12180,6 +13076,7 @@
    "deadline": "2026-03-11",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Concurso público com publicação no JOUE para fornecimento contínuo de refeições e lanches escolares para a EB 1/JI dos Olhos D'Água, EB 1 de Vale Carro, EB 1, 2, 3 da Guia, JI da Guia, JI de Ferreiras",
@@ -12206,7 +13103,11 @@
    "published": "2026-02-10",
    "deadline": "2026-03-04",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "Empreitada para a requalificação do 'Centro de Recolha Animal Intermunicipal de Vila Real de Santo António'",
    "base_price": 93973.88,
    "base_stated": true,
@@ -12231,6 +13132,8 @@
    "deadline": "2026-03-13",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA LOCAÇÃO DE MÓDULOS CONTENTORES PARA APOIO A EVENTOS",
@@ -12258,6 +13161,7 @@
    "deadline": "2026-02-17",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de agregados e betuminoso a frio",
@@ -12285,6 +13189,7 @@
    "deadline": "2026-02-18",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo, execução e manutenção de artigos de madeira para o setor de Carpintaria",
@@ -12312,6 +13217,8 @@
    "deadline": "2026-03-09",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DE LOCAÇÃO DE GERADORES PARA APOIO A EVENTOS DO MUNICÍPIO",
@@ -12339,6 +13246,7 @@
    "deadline": "2026-02-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS DE ENFERMAGEM PARA A UNIDADE MÓVEL DE SAÚDE DO CONCELHO DE LOULÉ",
@@ -12366,6 +13274,7 @@
    "deadline": "2026-03-09",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONTRATAÇÃO DE SERVIÇOS DE CATERING PARA APOIO A EVENTOS DO MUNICIPIO",
@@ -12384,6 +13293,7 @@
    "deadline": "2026-02-23",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO LOCAÇÃO DE INSTALAÇÕES ELÉTRICAS PARA ILUMINAÇÃO DECORATIVA PARA EVENTOS A REALIZAR EM 2026",
@@ -12419,6 +13329,8 @@
    "deadline": "2026-02-23",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DE LOCAÇÃO DE BANCADAS PARA APOIO A EVENTOS DO MUNICÍPIO",
@@ -12454,6 +13366,7 @@
    "deadline": "2026-02-23",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA LOCAÇÃO DE EQUIPAMENTOS SANITÁRIOS PARA APOIO A EVENTOS",
@@ -12481,6 +13394,7 @@
    "deadline": "2026-02-18",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Empreitada de Execução das Medidas de Eficiência Energética afetas ao Edifício das Instalações do Páteo - Albufeira.",
@@ -12499,6 +13413,7 @@
    "deadline": "2026-02-10",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "CONCURSO PÚBLICO PARA FORNECIMENTO DE EQUIPAMENTOS INDUSTRIAIS E AQS, INCLUÍDO MANUTENÇÃO E REPARAÇÃO 2026",
@@ -12525,7 +13440,12 @@
    "published": "2026-02-02",
    "deadline": "2026-02-24",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Fornecimento continuado de material para manutenção de ilhas ecológicas",
    "base_price": 160000,
    "base_stated": true,
@@ -12558,7 +13478,12 @@
    "published": "2026-01-29",
    "deadline": "2026-02-06",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Aquisição de serviços para a Assessoria Técnica Especializada",
    "base_price": 121951.22,
    "base_stated": true,
@@ -12628,6 +13553,7 @@
    "deadline": "2026-02-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de vigilância humana para as instalações do DSAU",
@@ -12646,6 +13572,7 @@
    "deadline": "2026-02-25",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços para tratamento com produtos fitofármacos e biológicos em palmeiras do Concelho de Lagos",
@@ -12664,6 +13591,7 @@
    "deadline": "2026-02-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Aquisição de serviços de transporte de alunos com necessidades educativas especiais e mobilidade reduzida ou condicionada a cadeira de rodas",
@@ -12691,6 +13619,7 @@
    "deadline": "2026-02-20",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Reabilitação do Centro de Saúde de Vila do Bispo",
@@ -12717,7 +13646,11 @@
    "published": "2026-01-22",
    "deadline": "2026-02-21",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Prestação de Serviços de Seguros",
    "base_price": 630000,
    "base_stated": true,
@@ -12768,7 +13701,11 @@
    "published": "2026-01-22",
    "deadline": "2026-02-10",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
+    "Aquisição de serviços"
+   ],
    "what": "Aquisição de serviços continuados de análises de águas para consumo humano, subterrâneas e residuais do Concelho de Lagos",
    "base_price": 90000,
    "base_stated": true,
@@ -12801,7 +13738,11 @@
    "published": "2026-01-22",
    "deadline": "2026-02-16",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis",
+    "Aquisição de bens móveis"
+   ],
    "what": "Fornecimento Contínuo de Material de Água e Saneamento para o Ano 2026",
    "base_price": 71250,
    "base_stated": true,
@@ -12850,7 +13791,12 @@
    "published": "2026-01-22",
    "deadline": "2026-03-08",
    "procedure": "Concurso público",
-   "types": [],
+   "types": [
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas",
+    "Empreitadas de obras públicas"
+   ],
    "what": "34/OM/2025- Requalificação da Av. 5 de Outubro - Poente",
    "base_price": 2747593.3,
    "base_stated": true,
@@ -12875,6 +13821,7 @@
    "deadline": "2026-02-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de dois veículos ligeiros tipo pick-up",
@@ -12902,6 +13849,7 @@
    "deadline": "2026-02-20",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento de Veículo Ligeiro elétrico de 9 lugares",
@@ -12929,6 +13877,7 @@
    "deadline": "2026-02-05",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento continuado de pneus, acessórios e serviços associados",
@@ -12956,6 +13905,7 @@
    "deadline": "2026-01-27",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "Prestação de serviços contínua de transporte coletivo para atividades do Município de Silves",
@@ -12983,6 +13933,7 @@
    "deadline": "2026-02-06",
    "procedure": "Concurso público",
    "types": [
+    "Locação de bens móveis",
     "Locação de bens móveis"
    ],
    "what": "CONTRATAÇÃO DA LOCAÇÃO DE STANDS, TENDAS E OUTROS EQUIPAMENTOS PARA APOIO A EVENTOS",
@@ -13001,6 +13952,8 @@
    "deadline": "2026-01-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de serviços",
+    "Aquisição de serviços",
     "Aquisição de serviços"
    ],
    "what": "CONCURSO PÚBLICO PARA PARA AQUISIÇÃO DE SERVIÇOS DE ASSISTENTES TÉCNICOS (ANIMADOR SOCIOCULTURAL) E ASSISTENTES OPERACIONAIS",
@@ -13036,6 +13989,7 @@
    "deadline": "2026-02-03",
    "procedure": "Concurso público",
    "types": [
+    "Concessão de serviços públicos",
     "Concessão de serviços públicos"
    ],
    "what": "CESSÃO DO DIREITO DE USO PRIVATIVO DE ESPAÇO PÚBLICO DESTINADO À INSTALAÇÃO E EXPLORAÇÃO DE DEZANOVE POSTOS DE CARREGAMENTO DUPLOS DE BATERIAS DE VEÍCULOS ELÉTRICOS NO MUNICÍPIO DE VILA REAL DE SANTO ANTÓNIO",
@@ -13063,6 +14017,7 @@
    "deadline": "2026-01-26",
    "procedure": "Concurso público",
    "types": [
+    "Empreitadas de obras públicas",
     "Empreitadas de obras públicas"
    ],
    "what": "Requalificação Urbanística do Bairro Ribeirinho em Faro",
@@ -13081,6 +14036,7 @@
    "deadline": "2026-01-21",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de frutas e legumes para os Refeitórios EBPPM Aljezur e EB Odeceixe, Regime Escolar e Marchas Passeio |Ano Civil 2026",
@@ -13108,6 +14064,7 @@
    "deadline": "2026-01-23",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Aquisição de veículo para Biblioteca Itinerante online",
@@ -13135,6 +14092,7 @@
    "deadline": "2026-01-15",
    "procedure": "Concurso público",
    "types": [
+    "Aquisição de bens móveis",
     "Aquisição de bens móveis"
    ],
    "what": "Fornecimento contínuo de mercearias e alimentos congelados para os Refeitórios da Escola Professora Piedade Matoso, Aljezur e EB1 de Odeceixe",

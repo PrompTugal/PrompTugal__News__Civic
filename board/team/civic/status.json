@@ -3,7 +3,7 @@
  "site": "https://civic.promptugal.news",
  "repo": "PrompTugal/PrompTugal__News__Civic",
  "branch": "dev",
- "updated": "2026-11-21T08:27Z",
+ "updated": "2026-11-26T02:39Z",
  "run": "2026-11-19 07:23 UTC wake",
  "observability_lane": "civic",
  "observability_note": "Every page sends to civic's own vault a334roim (lane civic); conductor.b@ drains it.",
@@ -32,7 +32,7 @@
   "Dinis: turn on branch protection for dev (no force pushes) with the Pages build's checks job as a required check, a tag ruleset limiting v* tags to GitHub Actions, and protection on the github-pages environment (deploys from dev only): security@'s stated limits on controls 7 and 8."
  ],
  "done_after_fixes": "Retried the nine blocked councils once: Castro Marim and Vila do Bispo answered and are mapped (9 of 16 council sites read); 7 still reset the connection.",
- "this_run": "07:23 UTC wake: signing key refused (ask below). Built /money/estimates/: what each council estimated (preço base) and what it contracted, 2025 and 2026, by procedure and council, with the record line, gaps shown as gaps, record begins 3 Jan 2025, and the two records above their base price, both concessions where the council is paid (base price a floor). API /api/v1/use-cases/estimates.json. data/predictions/predictions.jsonl: 7,663 pairs (15,326 lines, 8.3 MB), append-only, in the library's form, made by tools/predictions.mjs; no supplier name or contract text in it.",
+ "this_run": "26 Nov: refreshed the IMPIC data from the files of 22 Nov (contracts, notices, changes, predictions) and the preview image; see REALITY.md. London copy not refreshed: data.b@'s file is still of 21 Nov 07:04 UTC.",
  "storm_items": "Plan in board/team/civic/storm-items.md: civic takes the incident record and the decisions viz first (/cases/storm-charles/), then the stranded guide, entities (public bodies only), ontology and lead-time SVGs, then the stories. Leaves the Wikipedia viz and reader with data.b@. Asks data.b@ to archive data/graph/.",
  "licences": "Done 14:45 UTC: every page source, every data record and every API file carries a license link (ours CC BY 4.0; IMPIC other-pd; councils, ministries and DGAL 'the source's terms'). The gate checks it.",
  "dinis_1455": {
@@ -110,5 +110,6 @@
   ],
   "api": "/api/v1/sources.json",
   "released": "2026-11-21T08:27Z"
- }
+ },
+ "agent_now": "cl-6.civic@PrompTugal.dinis (home: PrompTugal/PrompTugal__Agent__Civic)"
 }

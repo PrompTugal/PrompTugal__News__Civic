@@ -2,8 +2,8 @@
  "source": {
   "title": "Contratos Públicos - Portal Base - IMPIC (open data on dados.gov.pt)",
   "dataset": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-  "resource": "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261115-100642-624650f6/contratos2026.zip",
-  "read_on": "2026-11-17",
+  "resource": "https://dados.gov.pt/s/resources/contratos-publicos-portal-base-impic-contratos-de-2012-a-2026/20261122-100620-185121fb/contratos2026.zip",
+  "read_on": "2026-11-26",
   "licence": "other-pd (as published on dados.gov.pt)",
   "license": {
    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
@@ -40,13 +40,13 @@
    "name": "Município de Faro",
    "nif": "506579425"
   },
-  "castro-marim": {
-   "name": "Município de Castro Marim",
-   "nif": "506801969"
-  },
   "sao-bras-de-alportel": {
    "name": "Município de São Brás de Alportel",
    "nif": "503219924"
+  },
+  "castro-marim": {
+   "name": "Município de Castro Marim",
+   "nif": "506801969"
   },
   "lagos": {
    "name": "Município de Lagos",
@@ -77,8 +77,3105 @@
    "nif": "506833224"
   }
  },
- "count": 3396,
+ "count": 3478,
  "contracts": [
+  {
+   "id": "15971983",
+   "council": "lagos",
+   "object": "Aquisição de serviços - Coprodução do Espetáculo \"Techno Zombies\"",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "507918320",
+     "name": "Casa B - Associação Cultural",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 13440,
+   "base_price": 13440,
+   "published": "2026-11-20",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "92300000-4",
+     "desc": "Serviços recreativos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15971983",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15972227",
+   "council": "alcoutim",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 18975,
+   "base_price": 19000,
+   "published": "2026-11-20",
+   "signed": "2026-11-20",
+   "cpv": [
+    {
+     "id": "79100000-5",
+     "desc": "Serviços jurídicos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15972227",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15974110",
+   "council": "loule",
+   "object": "Consulta prévia para a contratação de aquisição de mobiliário para a Divisão de Gestão de Projetos, Mobilidade e Edifícios (DGPME) ao abrigo do Acordo Quadro de Mobiliário da ESPAP AQ-MOB (lotes 1, 2 e 3)",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 259.º)",
+   "suppliers": [
+    {
+     "nif": "503653179",
+     "name": "NAUTILUS, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 3233.86,
+   "base_price": 14524.49,
+   "published": "2026-11-20",
+   "signed": "2026-09-25",
+   "cpv": [
+    {
+     "id": "39130000-2",
+     "desc": "Mobiliário de escritório"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 259.º do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15974110",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15974405",
+   "council": "faro",
+   "object": "Aquisição de Gás Propano a Granel - Opcional 1.2 - Fornecimento de Gás Propano a Granel > 15 e ≤ 100 toneladas",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 258.º)",
+   "suppliers": [
+    {
+     "nif": "500697370",
+     "name": "PETROGAL, S.A.",
+     "country": "PRT",
+     "sme": null
+    }
+   ],
+   "price": 29920.15,
+   "base_price": 29920.15,
+   "published": "2026-11-20",
+   "signed": "2026-11-19",
+   "cpv": [
+    {
+     "id": "09122110-4",
+     "desc": "Gás propano liquefeito"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Faro"
+   ],
+   "legal_basis": "Artigo 258.º do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15974405",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15974431",
+   "council": "loule",
+   "object": "Consulta prévia para a contratação de aquisição de mobiliário para a Divisão de Gestão de Projetos, Mobilidade e Edifícios (DGPME) ao abrigo do Acordo Quadro de Mobiliário da ESPAP AQ-MOB (lotes 1, 2 e 3)",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 259.º)",
+   "suppliers": [
+    {
+     "nif": "503653179",
+     "name": "NAUTILUS, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 1989.9,
+   "base_price": 14524.49,
+   "published": "2026-11-20",
+   "signed": "2026-09-25",
+   "cpv": [
+    {
+     "id": "39130000-2",
+     "desc": "Mobiliário de escritório"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 259.º do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15974431",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15974566",
+   "council": "loule",
+   "object": "Consulta prévia para a contratação de aquisição de mobiliário para a Divisão de Gestão de Projetos, Mobilidade e Edifícios (DGPME) ao abrigo do Acordo Quadro de Mobiliário da ESPAP AQ-MOB (lotes 1, 2 e 3)",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 259.º)",
+   "suppliers": [
+    {
+     "nif": "503653179",
+     "name": "NAUTILUS, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 5829.84,
+   "base_price": 14524.49,
+   "published": "2026-11-20",
+   "signed": "2026-09-25",
+   "cpv": [
+    {
+     "id": "39130000-2",
+     "desc": "Mobiliário de escritório"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 259.º do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15974566",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15974593",
+   "council": "loule",
+   "object": "Ajuste direto (regime geral) para a contratação do fornecimento de peças com instalação para equipamentos de elevação instalados no Edifício Amendoeiras e serviços de manutenção completa dos equipamentos",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "500230757",
+     "name": "SCHMITT - ELEVADORES, LDA",
+     "country": "PRT",
+     "sme": null
+    }
+   ],
+   "price": 25900,
+   "base_price": 25900,
+   "published": "2026-11-20",
+   "signed": "2026-10-29",
+   "cpv": [
+    {
+     "id": "42417000-2",
+     "desc": "Elevadores e transportadores"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15974593",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15975335",
+   "council": "loule",
+   "object": "CONSULTA PRÉVIA PARA A CONTRATAÇÃO DO FORNECIMENTO DE MOBILIÁRIO PARA A DIVISÃO DE TRANSPORTES E OFICINAS (DTO) AO ABRIGO DO ACORDO QUADRO DE MOBILIÁRIO DA ESPAP AQ-MOB (LOTES 1, 2 E 12)",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 259.º)",
+   "suppliers": [
+    {
+     "nif": "503653179",
+     "name": "NAUTILUS, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 2454.86,
+   "base_price": 5676.32,
+   "published": "2026-11-20",
+   "signed": "2026-09-22",
+   "cpv": [
+    {
+     "id": "39130000-2",
+     "desc": "Mobiliário de escritório"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 259.º do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15975335",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15975740",
+   "council": "loule",
+   "object": "CONSULTA PRÉVIA PARA A CONTRATAÇÃO DO FORNECIMENTO DE MOBILIÁRIO PARA A DIVISÃO DE TRANSPORTES E OFICINAS (DTO) AO ABRIGO DO ACORDO QUADRO DE MOBILIÁRIO DA ESPAP AQ-MOB (LOTES 1, 2 E 12)",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 259.º)",
+   "suppliers": [
+    {
+     "nif": "503653179",
+     "name": "NAUTILUS, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 595.74,
+   "base_price": 5676.32,
+   "published": "2026-11-20",
+   "signed": "2026-09-22",
+   "cpv": [
+    {
+     "id": "39130000-2",
+     "desc": "Mobiliário de escritório"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 259.º do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15975740",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15980177",
+   "council": "faro",
+   "object": "Fornecimento de Gás – Lote 1 - Gás Natural ao abrigo do “Acordo Quadro para o fornecimento de gás natural (AQ/67/2023)“ promovido pela Central Nacional de Compras Municipais (CNCM)",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 258.º)",
+   "suppliers": [
+    {
+     "nif": "507857542",
+     "name": "Gold Energy - Comercializadora de Energia, SA",
+     "country": "PRT",
+     "sme": null
+    }
+   ],
+   "price": 121809.03,
+   "base_price": 121809.03,
+   "published": "2026-11-20",
+   "signed": "2026-11-20",
+   "cpv": [
+    {
+     "id": "09123000-7",
+     "desc": "Gás natural"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Faro"
+   ],
+   "legal_basis": "Artigo 258.º do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15980177",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15980385",
+   "council": "aljezur",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 20000,
+   "base_price": 20000,
+   "published": "2026-11-20",
+   "signed": "2026-11-20",
+   "cpv": [
+    {
+     "id": "90910000-9",
+     "desc": "Serviços de limpeza"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Aljezur"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15980385",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15980459",
+   "council": "albufeira",
+   "object": "AQUISIÇÃO DE MATERIAL DE REQUALIFICAÇÃO E PEDAGÓGICO PARA A PRÁTICA DE ATIVIDADES AQUÁTICAS N PISCINA MUNICIPAL DE ALBUFEIRA",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "505501155",
+     "name": "Valter Ferreira Arcanjo, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 14799.85,
+   "base_price": 14801.37,
+   "published": "2026-11-20",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "43324100-1",
+     "desc": "Equipamento para piscinas"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Albufeira"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15980459",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15980652",
+   "council": "aljezur",
+   "object": "Aquisição de mobiliário (mesas, bancos e cadeiras) para eventos do município",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "504684892",
+     "name": "Sergisil - Comércio de Mobiliário e Colchões, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 16278.77,
+   "base_price": 18902.3,
+   "published": "2026-11-20",
+   "signed": "2026-11-20",
+   "cpv": [
+    {
+     "id": "39110000-6",
+     "desc": "Assentos, cadeiras e produtos afins e peças associadas"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Aljezur"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15980652",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15981273",
+   "council": "vila-do-bispo",
+   "object": "Fornecimento de iluminação de Natal 2026/2027",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "507874439",
+     "name": "Incidências de Luz - Iluminações Festivas, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 61000,
+   "base_price": 61000,
+   "published": "2026-11-20",
+   "signed": "2026-11-19",
+   "cpv": [
+    {
+     "id": "71318100-1",
+     "desc": "Serviços de iluminação natural e artificial"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Vila do Bispo"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15981273",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15982926",
+   "council": "alcoutim",
+   "object": "Serviços de Reparações e/ou Revisões Periódicas de Viaturas da Marca Skoda.",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "501274936",
+     "name": "Forportil Comércio de Automóveis e Tractores, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 19900,
+   "base_price": 19900,
+   "published": "2026-11-20",
+   "signed": "2026-11-20",
+   "cpv": [
+    {
+     "id": "98300000-6",
+     "desc": "Serviços diversos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15982926",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15982933",
+   "council": "portimao",
+   "object": "DINAMIZAÇÃO DO PROJETO -PORTIMÃO, UM SONHO DE NATAL 2026-",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "508071380",
+     "name": "YesWemakit Events Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 456560,
+   "base_price": 490000,
+   "published": "2026-11-20",
+   "signed": "2026-11-20",
+   "cpv": [
+    {
+     "id": "79952000-2",
+     "desc": "Serviços de eventos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 15,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15982933",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15982942",
+   "council": "faro",
+   "object": "Elaboração de estudo preliminar de Reabilitação e Ampliação do Edifício do Museu Municipal de Faro",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "505338807",
+     "name": "Gonçalo Louro & Cláudia Santos - Arquitectos, lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 15000,
+   "base_price": 15000,
+   "published": "2026-11-20",
+   "signed": "2026-11-09",
+   "cpv": [
+    {
+     "id": "71242000-6",
+     "desc": "Preparação de projecto e concepção, estimativa de custos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15982942",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15952653",
+   "council": "sao-bras-de-alportel",
+   "object": "O presente procedimento tem por objeto uma prestação de serviços de reparação da viatura M.A.N. matrícula [matrícula]",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "515537233",
+     "name": "Oneshop - Distribuição Automóvel, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 5660.95,
+   "base_price": 5700,
+   "published": "2026-11-19",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "50114000-7",
+     "desc": "Serviços de reparação e manutenção de camiões"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15952653",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15952987",
+   "council": "portimao",
+   "object": "REMOÇÃO DE VEÍCULOS ABANDONADOS NA VIA PUBLICA",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "505325179",
+     "name": "Transportes e Reboques Florival e Marreiros, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 19886.3,
+   "base_price": 19886.3,
+   "published": "2026-11-19",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "50118110-9",
+     "desc": "Serviços de reboque de veículos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15952987",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15953057",
+   "council": "portimao",
+   "object": "Fornecimento e montagem de aspersores de rega para o Complexo Desportivo da Mexilhoeira Grande",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "513849114",
+     "name": "Domo Fun Grass Portugal Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 9200,
+   "base_price": 9200,
+   "published": "2026-11-19",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "43323000-3",
+     "desc": "Equipamento para irrigação"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15953057",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15953630",
+   "council": "portimao",
+   "object": "Aquisição de Serviços de Consultoria para Elaboração de Planos de Preservação Digital",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "508496870",
+     "name": "KEEP SOLUTIONS, LDA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 19990,
+   "base_price": 19990,
+   "published": "2026-11-19",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "72246000-1",
+     "desc": "Serviços de consultoria em matéria de sistemas"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15953630",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15954676",
+   "council": "olhao",
+   "object": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "503387398",
+     "name": "Alfagene, Novas Tecnologias das Ciências da Vida, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 95680,
+   "base_price": 265857.01,
+   "published": "2026-11-19",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "38000000-5",
+     "desc": "Equipamento laboratorial, óptico e de precisão (exc. óculos)"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15954676",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15954863",
+   "council": "portimao",
+   "object": "LOCAÇÃO DE SANITÁRIOS QUIMICOS PARA A FEIRA S. MARTINHO 2026",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "508669685",
+     "name": "Grupo Vendap, SA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 1153,
+   "base_price": 1153,
+   "published": "2026-11-19",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "98390000-3",
+     "desc": "Outros serviços"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15954863",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15954944",
+   "council": "olhao",
+   "object": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "506708616",
+     "name": "Filsat - Equipamentos Médico Científicos, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 37573.81,
+   "base_price": 265857.01,
+   "published": "2026-11-19",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "38000000-5",
+     "desc": "Equipamento laboratorial, óptico e de precisão (exc. óculos)"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 2,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15954944",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15955266",
+   "council": "olhao",
+   "object": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "507350871",
+     "name": "Specanalítica - Equipamentos Científicos, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 20991.51,
+   "base_price": 265857.01,
+   "published": "2026-11-19",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "38000000-5",
+     "desc": "Equipamento laboratorial, óptico e de precisão (exc. óculos)"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 2,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955266",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15955399",
+   "council": "olhao",
+   "object": "Aquisição de serviços de disponibilização e utilização de plataforma de recrutamento para gestão de procedimentos concursais",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "508750172",
+     "name": "Libertrium, L.da",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 14460,
+   "base_price": 14460,
+   "published": "2026-11-19",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "72210000-0",
+     "desc": "Serviços de programação de pacotes de software"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955399",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15955412",
+   "council": "olhao",
+   "object": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "505400057",
+     "name": "Ambifood, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 2233,
+   "base_price": 265857.01,
+   "published": "2026-11-19",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "38000000-5",
+     "desc": "Equipamento laboratorial, óptico e de precisão (exc. óculos)"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 3,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955412",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15955569",
+   "council": "olhao",
+   "object": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "501279989",
+     "name": "Castelhano & Ferreira Industria Tectos Falsos Divisorias SA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 13394.7,
+   "base_price": 265857.01,
+   "published": "2026-11-19",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "38000000-5",
+     "desc": "Equipamento laboratorial, óptico e de precisão (exc. óculos)"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955569",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15955811",
+   "council": "olhao",
+   "object": "Aquisição de Equipamentos Científicos e Tecnológicos para o HUB Azul de Olhão",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "501968245",
+     "name": "Fernando Ribeiro, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 22500,
+   "base_price": 265857.01,
+   "published": "2026-11-19",
+   "signed": "2026-11-09",
+   "cpv": [
+    {
+     "id": "38000000-5",
+     "desc": "Equipamento laboratorial, óptico e de precisão (exc. óculos)"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15955811",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15956623",
+   "council": "monchique",
+   "object": "Renovação de licenciamento de software e suportes da infraestrutura informática do Município.",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "503536717",
+     "name": "Visualforma - Tecnologias de Informação, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 21582.24,
+   "base_price": 21582.24,
+   "published": "2026-11-19",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "72261000-2",
+     "desc": "Serviços de assistência em matéria de software"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Monchique"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15956623",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15958573",
+   "council": "sao-bras-de-alportel",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 17000,
+   "base_price": 17000,
+   "published": "2026-11-19",
+   "signed": "2026-11-18",
+   "cpv": [
+    {
+     "id": "92111250-9",
+     "desc": "Produção de filmes informativos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, São Brás de Alportel"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15958573",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15959029",
+   "council": "lagos",
+   "object": "Fornecimento continuado de fardamento de trabalho",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "506555658",
+     "name": "VESTIPROTEGE, LDA.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 50000,
+   "base_price": 50000,
+   "published": "2026-11-19",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "18110000-3",
+     "desc": "Vestuário profissional"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
+   "bids": 2,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15959029",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15962593",
+   "council": "lagos",
+   "object": "AQUISIÇÃO DE SERVIÇOS PARA A ELABORAÇÃO DO PROJETO DE LICENCIAMENTO DO RAMAL DE MÉDIA TENSÃO DO POSTO DE TRANSFORMAÇÃO DE CONSUMO DA ESCOLA EB2,3 DAS NAUS",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "508373271",
+     "name": "L. Ferreira da Costa Engenharias, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 1500,
+   "base_price": 1500,
+   "published": "2026-11-19",
+   "signed": "2026-11-19",
+   "cpv": [
+    {
+     "id": "71334000-8",
+     "desc": "Serviços de engenharia mecânica e eléctrica"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15962593",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15970095",
+   "council": "faro",
+   "object": "Iluminação de Natal 2026",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "504941399",
+     "name": "Humberto Rodrigues Iluminações Uni pessoal Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 188850,
+   "base_price": 214975,
+   "published": "2026-11-19",
+   "signed": "2026-11-16",
+   "cpv": [
+    {
+     "id": "71318100-1",
+     "desc": "Serviços de iluminação natural e artificial"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": 2,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15970095",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15970146",
+   "council": "aljezur",
+   "object": "Fornecimento de gás propano a granel para a Escola Professora Piedade Matoso, Aljezur",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "513108890",
+     "name": "RUBIS ENERGIA PORTUGAL, SA",
+     "country": "PRT",
+     "sme": null
+    }
+   ],
+   "price": 14560,
+   "base_price": 14560,
+   "published": "2026-11-19",
+   "signed": "2026-11-19",
+   "cpv": [
+    {
+     "id": "09120000-6",
+     "desc": "Combustíveis gasosos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea ii) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15970146",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15948221",
+   "council": "lagos",
+   "object": "AQUISIÇÃO DE SERVIÇOS DE ALUGUER DE MONOBLOCO DE APOIO AOS SERVIÇOS MUNICIPAIS NA FEIRA FRANCA DE LAGOS/2026",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "502721871",
+     "name": "ALGECO - CONSTRUÇÕES PRÉ-FABRICADAS S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 1902.11,
+   "base_price": 1910,
+   "published": "2026-11-18",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "98300000-6",
+     "desc": "Serviços diversos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948221",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15948748",
+   "council": "vila-real-de-santo-antonio",
+   "object": "Aquisição de discos para Storage Lenovo DE6000H ou equivalente, para suporte ao software de arquivo digital ao abrigo do aviso Algarve 2030 - Digitalização da Administração Local ao abrigo Algarve2030- 2025-13, projeto nº - Algarve-Feder-0367800",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "503536717",
+     "name": "Visualforma - Tecnologias de Informação, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 13250,
+   "base_price": 13250,
+   "published": "2026-11-18",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "30233130-1",
+     "desc": "Unidades de memória em discos magnéticos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Vila Real Sto Antonio"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948748",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15948759",
+   "council": "lagos",
+   "object": "EMPREITADA DE -CONSTRUÇÃO DE PASSADIÇO JUNTO À ESCOLA EB2,3 DAS NAUS-",
+   "type": [
+    "Empreitadas de obras públicas"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "507344898",
+     "name": "CARMO - ESTRUTURAS EM MADEIRA S.A",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 29299.89,
+   "base_price": 29300,
+   "published": "2026-11-18",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "45246510-1",
+     "desc": "Construção de passadiço"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 19.º, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948759",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15948775",
+   "council": "tavira",
+   "object": "05-Emp/26 - Empreitada para fornecimento e colocação de placas toponímicas no concelho de Tavira - 9.ª fase",
+   "type": [
+    "Empreitadas de obras públicas"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "505377276",
+     "name": "José Quintino, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 32730,
+   "base_price": 33000,
+   "published": "2026-11-18",
+   "signed": "2026-10-28",
+   "cpv": [
+    {
+     "id": "45431200-9",
+     "desc": "Colocação de azulejos em paredes"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Tavira"
+   ],
+   "legal_basis": "Artigo 19.º, alínea c) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948775",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15948943",
+   "council": "lagos",
+   "object": "EMPREITADA DE -IMPERMEABILIZAÇÃO DE COBERTURAS DAS OFICINAS MUNICIPAIS-",
+   "type": [
+    "Empreitadas de obras públicas"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "510606326",
+     "name": "M.J.MOURÃO Serviços e Construções Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 148999,
+   "base_price": 149000,
+   "published": "2026-11-18",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "45261420-4",
+     "desc": "Obras de impermeabilização"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 19.º, alínea c) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948943",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15948959",
+   "council": "monchique",
+   "object": "Fornecimento Contínuo de Massa Asfáltica a Frio com Inertes Finos, para os Anos de 2026, 2027 e 2028",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "500142459",
+     "name": "Windpark, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 186660,
+   "base_price": 195500,
+   "published": "2026-11-18",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "44113620-7",
+     "desc": "Asfalto"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Monchique"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": 4,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948959",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15948994",
+   "council": "loule",
+   "object": "CONTRATAÇÃO DE SERVIÇOS DE REVISÃO E REPARAÇÃO DE VEÍCULOS LIGEIROS OPERACIONAIS AFETOS AOS BOMBEIROS DE LOULÉ E À PROTEÇÃO CIVIL.",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "513078800",
+     "name": "Auto Paulo & Armanda, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 80000,
+   "base_price": 80000,
+   "published": "2026-11-18",
+   "signed": "2026-10-26",
+   "cpv": [
+    {
+     "id": "50112000-3",
+     "desc": "Serviços de reparação e manutenção de automóveis"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15948994",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15949383",
+   "council": "vila-real-de-santo-antonio",
+   "object": "Fornecimento de Energia Elétrica para Eventos Municipais - 2026",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "513816666",
+     "name": "Lusíadaenergia, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 11500,
+   "base_price": 11500,
+   "published": "2026-11-18",
+   "signed": "2026-11-16",
+   "cpv": [
+    {
+     "id": "71314100-3",
+     "desc": "Serviços de electricidade"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15949383",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15949610",
+   "council": "silves",
+   "object": "Prestação de Serviços de Audiovisual e Equipamentos para a Cerimónia \"Estrelas do Desporto, da Serra ao Mar\"",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "513477578",
+     "name": "Conquista Adrenalina - Animação Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 19500,
+   "base_price": 19500,
+   "published": "2026-11-18",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "79952000-2",
+     "desc": "Serviços de eventos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Silves"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15949610",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15949898",
+   "council": "monchique",
+   "object": "Elaboração do Projeto de Execução para a reabilitação do mercado municipal",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "507855400",
+     "name": "Vistraço - Atelier de Arq.e Eng. Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 24000.01,
+   "base_price": 30000,
+   "published": "2026-11-18",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "79411100-9",
+     "desc": "Serviços de consultoria no desenvolvimento de empresas"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Monchique"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15949898",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15952474",
+   "council": "loule",
+   "object": "Empreitada de beneficiação, reparação e melhoramentos em estabelecimentos de ensino do concelho de Loulé, especificamente destinada à pavimentação e arranjo do espaço exterior do Jardim de Infância de Almancil, incluindo a execução de trabalhos de construção civil, aplicação de novos pavimentos e demais intervenções necessárias à melhoria das condições de utilização e segurança do recinto escolar.",
+   "type": [
+    "Empreitadas de obras públicas"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "502042044",
+     "name": "Fernando L. Gaspar - Sinalização e Equipamentos Rodoviários, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 93500,
+   "base_price": 98217.95,
+   "published": "2026-11-18",
+   "signed": "2026-10-01",
+   "cpv": [
+    {
+     "id": "45236290-9",
+     "desc": "Reparação de zonas de recreio"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 19.º, alínea c) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15952474",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15941729",
+   "council": "sao-bras-de-alportel",
+   "object": "A obra consiste na escavação e preparação da base e colocação de contentores de resíduos, trabalhos acessórios de reposição dos pavimentos envolventes, execução de passadeiras elevadas e colocação de dois candeeiros no espaço contiguo tal como descritos no mapa de quantidades de apoio à intervenção.",
+   "type": [
+    "Empreitadas de obras públicas"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "501764402",
+     "name": "Martins Gago & Filhos, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 26398.59,
+   "base_price": 26470.34,
+   "published": "2026-11-17",
+   "signed": "2026-10-28",
+   "cpv": [
+    {
+     "id": "45222110-3",
+     "desc": "Construção de depósito de resíduos"
+    },
+    {
+     "id": "45233200-1",
+     "desc": "Obras diversas de pavimentação"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, São Brás de Alportel"
+   ],
+   "legal_basis": "Artigo 19.º, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15941729",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15941950",
+   "council": "olhao",
+   "object": "-Aquisição de serviços para deslocação de módulos contentores da EB José Carlos da Maia para a EB João da Rosa-",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "513539204",
+     "name": "MIGUEL CASTRO OLIVEIRA UNIPESSOAL LDA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 19801.3,
+   "base_price": 19801.3,
+   "published": "2026-11-17",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "63111000-0",
+     "desc": "Serviços de movimentação de contentores"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15941950",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15942497",
+   "council": "loule",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 13988.8,
+   "base_price": 13988.8,
+   "published": "2026-11-17",
+   "signed": "2026-11-02",
+   "cpv": [
+    {
+     "id": "79413000-2",
+     "desc": "Serviços de consultoria em matéria de gestão de marketing"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15942497",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15942793",
+   "council": "faro",
+   "object": "Aquisição de papel fotocópia para stock",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "504242644",
+     "name": "TOPTONER - Rec. e Comercialização Consumiveis Inf., Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 12496,
+   "base_price": 12662.4,
+   "published": "2026-11-17",
+   "signed": "2026-10-26",
+   "cpv": [
+    {
+     "id": "30197643-5",
+     "desc": "Papel para fotocópia"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Faro"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15942793",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15942809",
+   "council": "lagos",
+   "object": "Alojamento para participação no XX Encontro Nacional de Municípios com Centro Histórico",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 259.º)",
+   "suppliers": [
+    {
+     "nif": "506019608",
+     "name": "Smile - Viagens e Turismo, Unipessoal Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 82.47,
+   "base_price": 82.47,
+   "published": "2026-11-17",
+   "signed": "2026-10-28",
+   "cpv": [
+    {
+     "id": "63510000-7",
+     "desc": "Serviços de agências de viagens e serviços similares"
+    }
+   ],
+   "place": [
+    "Portugal, Porto, Vila do Conde"
+   ],
+   "legal_basis": "Artigo 259.º do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15942809",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15942878",
+   "council": "faro",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 7000,
+   "base_price": 7000,
+   "published": "2026-11-17",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "92312000-1",
+     "desc": "Serviços relacionados com arte"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Faro"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15942878",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15943106",
+   "council": "lagos",
+   "object": "Alojamento para participação no IX Seminário Anual CESOP-Local para o Desenvolvimento Sustentável (Lisboa)",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ao abrigo de acordo-quadro (art.º 259.º)",
+   "suppliers": [
+    {
+     "nif": "506019608",
+     "name": "Smile - Viagens e Turismo, Unipessoal Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 90.01,
+   "base_price": 90.01,
+   "published": "2026-11-17",
+   "signed": "2026-10-26",
+   "cpv": [
+    {
+     "id": "63510000-7",
+     "desc": "Serviços de agências de viagens e serviços similares"
+    }
+   ],
+   "place": [
+    "Portugal, Lisboa, Lisboa"
+   ],
+   "legal_basis": "Artigo 259.º do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15943106",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15943622",
+   "council": "alcoutim",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "ESP"
+    }
+   ],
+   "price": 76500,
+   "base_price": 80000,
+   "published": "2026-11-17",
+   "signed": "2026-11-09",
+   "cpv": [
+    {
+     "id": "79952100-3",
+     "desc": "Serviços de organização de eventos culturais"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Alcoutim"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": 2,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15943622",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15944398",
+   "council": "portimao",
+   "object": "Aquisição de espaço publicitário em publicação periódica de âmbito local",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "508134595",
+     "name": "PressRoma, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 31000,
+   "base_price": 31000,
+   "published": "2026-11-17",
+   "signed": "2026-11-16",
+   "cpv": [
+    {
+     "id": "79341000-6",
+     "desc": "Serviços de publicidade"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15944398",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15944996",
+   "council": "loule",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 17486,
+   "base_price": 17486,
+   "published": "2026-11-17",
+   "signed": "2026-11-02",
+   "cpv": [
+    {
+     "id": "79933000-3",
+     "desc": "Serviços de assistência em matéria de design"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15944996",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15945171",
+   "council": "portimao",
+   "object": "Locação de stands de exterior para a Feira de S. Martinho 2026",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "506871541",
+     "name": "Multitendas-Comércio e Aluguer de Tendas, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 50292.8,
+   "base_price": 50293,
+   "published": "2026-11-17",
+   "signed": "2026-11-16",
+   "cpv": [
+    {
+     "id": "79952000-2",
+     "desc": "Serviços de eventos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15945171",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15946511",
+   "council": "loule",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 19234.6,
+   "base_price": 19234.6,
+   "published": "2026-11-17",
+   "signed": "2026-11-16",
+   "cpv": [
+    {
+     "id": "79621000-3",
+     "desc": "Serviços de fornecimento de pessoal de escritório"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15946511",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15947252",
+   "council": "albufeira",
+   "object": "Fornecimento e Montagem de Placas Alveolares",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "513904301",
+     "name": "GOLD DIGGER, LDA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 18549,
+   "base_price": 18549,
+   "published": "2026-11-17",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "44100000-1",
+     "desc": "Materiais de construção e artigos afins"
+    }
+   ],
+   "place": [
+    "Portugal, Lisboa, Sintra"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15947252",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15947905",
+   "council": "loule",
+   "object": "Ajuste direto (critério material) para a contratação de prestação de serviços de realização do Espetáculo com Júlio Resende feat Bruno Chaveiro",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "517315785",
+     "name": "JULIO MIGUEL RESENDE UNIPESSOAL",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 7500,
+   "base_price": 7500,
+   "published": "2026-11-17",
+   "signed": "2026-11-06",
+   "cpv": [
+    {
+     "id": "92312000-1",
+     "desc": "Serviços relacionados com arte"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15947905",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15947911",
+   "council": "loule",
+   "object": "Ajuste direto (critério material) para a contratação de prestação de serviços de execução de esculturas para colocação nas aldeias de Natal, no âmbito da animação de Natal 2026",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "506087573",
+     "name": "Origami Produções, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 20000,
+   "base_price": 20000,
+   "published": "2026-11-17",
+   "signed": "2026-11-09",
+   "cpv": [
+    {
+     "id": "92312000-1",
+     "desc": "Serviços relacionados com arte"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15947911",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15947914",
+   "council": "aljezur",
+   "object": "Prestação de serviços de produção do evento Festival da Batata-Doce de Aljezur 2026",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "507152662",
+     "name": "Sons da Vicentina",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 35800,
+   "base_price": 46800,
+   "published": "2026-11-17",
+   "signed": "2026-11-17",
+   "cpv": [
+    {
+     "id": "79950000-8",
+     "desc": "Serviços de organização de exposições, feiras e congressos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
+   "bids": 3,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15947914",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15947918",
+   "council": "loule",
+   "object": "Ajuste direto (critério material) para a contratação de prestação de serviços para a realização do espetáculo \"A menina e o pássaro”",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "515298409",
+     "name": "Magnifica Cena, Unipessoal Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 20000,
+   "base_price": 20000,
+   "published": "2026-11-17",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "92312000-1",
+     "desc": "Serviços relacionados com arte"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15947918",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15934742",
+   "council": "silves",
+   "object": "Prestação de serviços de segurança integrada em edifícios e espaços geridos pelo Município de Silves",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "503125873",
+     "name": "Trablisa ESSEGUR - Serviços de Segurança, S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 139536,
+   "base_price": 169200,
+   "published": "2026-11-16",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "79711000-1",
+     "desc": "Serviços de controlo de alarmes"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Silves"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15934742",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15935037",
+   "council": "castro-marim",
+   "object": null,
+   "type": [
+    "Aquisição de serviços",
+    "Sociedade"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 7020,
+   "base_price": 7020,
+   "published": "2026-11-16",
+   "signed": "2026-11-09",
+   "cpv": [
+    {
+     "id": "85312300-2",
+     "desc": "Serviços de orientação e aconselhamento"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Castro Marim"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15935037",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15935590",
+   "council": "vila-real-de-santo-antonio",
+   "object": "Contratação de Espetáculos para o Evento de Passagem de Ano 2026/2027 no Município de Vila Real de Santo António",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "516538888",
+     "name": "WCA PRODUCTIONS, UNIPESSOAL LDA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 136351.3,
+   "base_price": 136351.3,
+   "published": "2026-11-16",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "79952000-2",
+     "desc": "Serviços de eventos"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15935590",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15936918",
+   "council": "albufeira",
+   "object": "AQUISIÇÃO DO DESTROÇADOR DE ELEVADO DESEMPENHO",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "507599721",
+     "name": "Dmcar, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 389600,
+   "base_price": 395000,
+   "published": "2026-11-16",
+   "signed": "2026-11-09",
+   "cpv": [
+    {
+     "id": "42900000-5",
+     "desc": "Maquinaria diversa genérica ou de finalidade específica"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Albufeira"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15936918",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15936929",
+   "council": "sao-bras-de-alportel",
+   "object": "O procedimento tem como objeto: Prestação de Serviços de Terapia da Fala.",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "503831042",
+     "name": "SAN Saúde Integrativa",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 18150,
+   "base_price": 18150,
+   "published": "2026-11-16",
+   "signed": "2026-11-10",
+   "cpv": [
+    {
+     "id": "85140000-2",
+     "desc": "Serviços de saúde diversos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, São Brás de Alportel"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15936929",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15937342",
+   "council": "loule",
+   "object": "Ajuste direto (critério material) para a contratação de prestação de serviços de realização do Espetáculo com Frankie Chavez",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "510939503",
+     "name": "Bairro da Musica, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 15960,
+   "base_price": 15960,
+   "published": "2026-11-16",
+   "signed": "2026-10-16",
+   "cpv": [
+    {
+     "id": "92312000-1",
+     "desc": "Serviços relacionados com arte"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937342",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15937460",
+   "council": "lagos",
+   "object": "Aquisição de serviços de decoração, animação e aluguer de equipamentos temáticos de Natal para o evento \"Lagos, Baía do Natal\"",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso limitado por prévia qualificação",
+   "suppliers": [
+    {
+     "nif": "510224601",
+     "name": "Estudinvest - Publicidade e Marketing Limitada",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 214000,
+   "base_price": 215000,
+   "published": "2026-11-16",
+   "signed": "2026-11-10",
+   "cpv": [
+    {
+     "id": "98300000-6",
+     "desc": "Serviços diversos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": 2,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937460",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15937602",
+   "council": "silves",
+   "object": "Fornecimento de plataforma elevatória para o Município de Silves",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "514215089",
+     "name": "ELEVACENTRO - Máquinas e Equipamentos, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 98750,
+   "base_price": 105000,
+   "published": "2026-11-16",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "34142100-5",
+     "desc": "Camiões de plataforma elevatória"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Silves"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": 4,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937602",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15937715",
+   "council": "lagos",
+   "object": "Fornecimento continuado de Plantas e Acessórios de Jardinagem",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "506551040",
+     "name": "Cirurgias Urbanas I - Arboricultura e Arquitectura Paisagista, Lda",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 100000,
+   "base_price": 100000,
+   "published": "2026-11-16",
+   "signed": "2026-11-10",
+   "cpv": [
+    {
+     "id": "03121100-6",
+     "desc": "Plantas vivas, bolbos, raízes, estacas e enxertos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Lagos"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": 3,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937715",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15937975",
+   "council": "loule",
+   "object": "CONTRATAÇÃO DO FORNECIMENTO E INSTALAÇÃO DE NOVOS SISTEMAS AUTOMÁTICOS DE DETEÇÃO DE INCÊNDIOS, INTRUSÃO, CONTROLO DE ACESSOS E VIDEOVIGILÂNCIA EM EDIFÍCIOS DO MUNICÍPIO DE LOULÉ",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso limitado por prévia qualificação",
+   "suppliers": [
+    {
+     "nif": "500243719",
+     "name": "SECURITAS - SERVIÇOS E TECNOLOGIA DE SEGURANÇA, SA",
+     "country": "PRT",
+     "sme": null
+    }
+   ],
+   "price": 123950,
+   "base_price": 150000,
+   "published": "2026-11-16",
+   "signed": "2026-08-28",
+   "cpv": [
+    {
+     "id": "35125000-6",
+     "desc": "Sistema de vigilância"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937975",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15937991",
+   "council": "loule",
+   "object": "Ajuste direto (critério material) contratação de prestação de serviços para a realização do espetáculo \"Dilatação- FAAP- Formação avançada em artes performativas 2026\"",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "503704563",
+     "name": "Devir Assoc. de Actividades Culturais",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 20000,
+   "base_price": 20000,
+   "published": "2026-11-16",
+   "signed": "2026-10-30",
+   "cpv": [
+    {
+     "id": "92312000-1",
+     "desc": "Serviços relacionados com arte"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15937991",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15938365",
+   "council": "loule",
+   "object": "CONTRATAÇÃO DA PRESTAÇÃO DE SERVIÇOS PARA ELABORAÇÃO E ATUALIZAÇÃO DO CADASTRO DE SANEAMENTO BÁSICO (DISTRIBUIÇÃO, DRENAGEM E PLUVIAIS) DOS SISTEMAS DO AMEIXIAL, SALIR, BARRANCO DO VELHO E VALE JUDEU - CONCELHO DE LOULÉ",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "518325580",
+     "name": "Izimapping, Survey, Lda.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 41694,
+   "base_price": 74760,
+   "published": "2026-11-16",
+   "signed": "2026-09-02",
+   "cpv": [
+    {
+     "id": "71350000-6",
+     "desc": "Serviços técnicos e científicos relacionados com a engenharia"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15938365",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15938479",
+   "council": "olhao",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 33600,
+   "base_price": 33600,
+   "published": "2026-11-16",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "85121270-6",
+     "desc": "Serviços de psiquiatria ou psicologia"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15938479",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15939201",
+   "council": "vila-do-bispo",
+   "object": "Aquisição, transporte e montagem de plataforma elevatória para a EB São Vicente",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "505860503",
+     "name": "Liftech S. A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 18975,
+   "base_price": 19000,
+   "published": "2026-11-16",
+   "signed": "2026-11-16",
+   "cpv": [
+    {
+     "id": "42416100-6",
+     "desc": "Elevadores"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Vila do Bispo"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15939201",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15940479",
+   "council": "albufeira",
+   "object": "Empreitada de remoção e instalação de sistema AVAC no Auditório Municipal de Albufeira",
+   "type": [
+    "Empreitadas de obras públicas"
+   ],
+   "procedure": "Consulta Prévia",
+   "suppliers": [
+    {
+     "nif": "504206150",
+     "name": "TCPI Internacional, Tecnoprojeto Internacional, SA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 139645.78,
+   "base_price": 140000,
+   "published": "2026-11-16",
+   "signed": "2026-11-09",
+   "cpv": [
+    {
+     "id": "45331200-8",
+     "desc": "Instalação de ventilação e de ar condicionado"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Albufeira"
+   ],
+   "legal_basis": "Artigo 19.º, alínea c) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15940479",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15940560",
+   "council": "olhao",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 9408,
+   "base_price": 9408,
+   "published": "2026-11-16",
+   "signed": "2026-11-13",
+   "cpv": [
+    {
+     "id": "90911200-8",
+     "desc": "Serviços de limpeza de edifícios"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Olhão"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15940560",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15940724",
+   "council": "faro",
+   "object": "Aquisição de serviços para a realização de espetáculo na passagem de ano 2026/2027",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "516538888",
+     "name": "WCA PRODUCTIONS, UNIPESSOAL LDA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 74950,
+   "base_price": 74950,
+   "published": "2026-11-16",
+   "signed": "2026-11-16",
+   "cpv": [
+    {
+     "id": "79952000-2",
+     "desc": "Serviços de eventos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Faro"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15940724",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15940841",
+   "council": "loule",
+   "object": "CONTRATAÇÃO DA PRESTAÇÃO DE ELABORAÇÃO DE ESTUDOS GEOLÓGICOS E GEOTÉCNICOS DE TERRENOS MUNICIPAIS NO CONCELHO DE LOULÉ",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "501695729",
+     "name": "GEOMA",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 137080,
+   "base_price": 150000,
+   "published": "2026-11-16",
+   "signed": "2026-10-21",
+   "cpv": [
+    {
+     "id": "71351000-3",
+     "desc": "Serviços de prospecção geológica e geofísica e outros serviços de prospecção científica"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea a) do Código dos Contratos Públicos",
+   "bids": 9,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15940841",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15941095",
+   "council": "portimao",
+   "object": null,
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "withheld": true,
+     "country": "PRT"
+    }
+   ],
+   "price": 2700,
+   "base_price": 2700,
+   "published": "2026-11-16",
+   "signed": "2026-11-12",
+   "cpv": [
+    {
+     "id": "92312250-8",
+     "desc": "Serviços prestados por artistas individuais"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15941095",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
   {
    "id": "15930555",
    "council": "faro",
@@ -654,7 +3751,7 @@
    "suppliers": [
     {
      "nif": "514246510",
-     "name": "Alpestana, Pinto &amp; Roxo, Lda.",
+     "name": "Alpestana, Pinto & Roxo, Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -7972,7 +11069,7 @@
      "nif": "500266743",
      "name": "SOINCA - Sociedade Industrial de Cucujães, S.A.",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 23027.92,
@@ -8651,7 +11748,7 @@
    "suppliers": [
     {
      "nif": "502336200",
-     "name": "Américo de Jesus &amp; Viegas,Ldª.",
+     "name": "Américo de Jesus & Viegas,Ldª.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -30808,7 +33905,7 @@
    "suppliers": [
     {
      "nif": "505608286",
-     "name": "J. Plácido Santos &amp; Associados Advogados, SP, RL",
+     "name": "J. Plácido Santos & Associados Advogados, SP, RL",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -42767,7 +45864,7 @@
    "suppliers": [
     {
      "nif": "514180960",
-     "name": "Chavenas &amp; Tachos Unipessoal",
+     "name": "Chavenas & Tachos Unipessoal",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -50443,7 +53540,7 @@
    "suppliers": [
     {
      "nif": "505483440",
-     "name": "José de Almeida Gomes &amp; Filhos, Lda.",
+     "name": "José de Almeida Gomes & Filhos, Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -54698,7 +57795,7 @@
    "suppliers": [
     {
      "nif": "501071512",
-     "name": "Balbino &amp; Faustino, Lda",
+     "name": "Balbino & Faustino, Lda",
      "country": "PRT",
      "sme": null
     }
@@ -56908,14 +60005,20 @@
    "procedure": "Concurso público",
    "suppliers": [
     {
+     "nif": "505231212",
+     "name": "PayShop (Portugal), S.A",
+     "country": "PRT",
+     "sme": "Sim"
+    },
+    {
      "nif": "509295967",
      "name": "Edubox S.A.",
      "country": "PRT",
      "sme": "Sim"
     },
     {
-     "nif": "505231212",
-     "name": "PayShop (Portugal), S.A",
+     "nif": "508775876",
+     "name": "INOVAR +AZ- Sistemas de Informação, Lda",
      "country": "PRT",
      "sme": "Sim"
     },
@@ -56924,12 +60027,6 @@
      "name": "CTT Soluções Empresariais, S.A.",
      "country": "PRT",
      "sme": null
-    },
-    {
-     "nif": "508775876",
-     "name": "INOVAR +AZ- Sistemas de Informação, Lda",
-     "country": "PRT",
-     "sme": "Sim"
     }
    ],
    "price": 123501.67,
@@ -60404,7 +63501,7 @@
      "nif": "508245567",
      "name": "Ubiwhere Lda.",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 42000,
@@ -66767,7 +69864,7 @@
    "suppliers": [
     {
      "nif": "516513052",
-     "name": "SU &amp; VH, Lda",
+     "name": "SU & VH, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -69373,6 +72470,120 @@
    }
   },
   {
+   "id": "15186318",
+   "council": "loule",
+   "object": "CONTRATAÇÃO DA AQUISIÇÃO DE MÁQUINAS E EQUIPAMENTOS PARA A LIMPEZA DAS INSTALAÇÕES DESPORTIVAS MUNICIPAIS DO CONCELHO DE LOULÉ",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "510219233",
+     "name": "GOSTOMATIC",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 10107.7,
+   "base_price": 88380,
+   "published": "2026-06-22",
+   "signed": "2026-06-02",
+   "cpv": [
+    {
+     "id": "42990000-2",
+     "desc": "Máquinas diversas para usos específicos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15186318",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15186338",
+   "council": "loule",
+   "object": "CONTRATAÇÃO DA AQUISIÇÃO DE MÁQUINAS E EQUIPAMENTOS PARA A LIMPEZA DAS INSTALAÇÕES DESPORTIVAS MUNICIPAIS DO CONCELHO DE LOULÉ",
+   "type": [
+    "Aquisição de bens móveis"
+   ],
+   "procedure": "Concurso público",
+   "suppliers": [
+    {
+     "nif": "510219233",
+     "name": "GOSTOMATIC",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 3400,
+   "base_price": 88380,
+   "published": "2026-06-22",
+   "signed": "2026-05-29",
+   "cpv": [
+    {
+     "id": "42990000-2",
+     "desc": "Máquinas diversas para usos específicos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Loulé"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15186338",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
+   "id": "15186345",
+   "council": "sao-bras-de-alportel",
+   "object": "O presente procedimento tem por objeto o Licenciamento das Plataformas WireTrust e WireRecruit por 36 meses",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "505331187",
+     "name": "WireMaze - Sistemas de Informação S.A.",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 16635.89,
+   "base_price": 16635.89,
+   "published": "2026-06-22",
+   "signed": "2026-06-18",
+   "cpv": [
+    {
+     "id": "72416000-9",
+     "desc": "Fornecedores de aplicações"
+    }
+   ],
+   "place": [
+    "Portugal"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea iii) do Código dos Contratos Públicos",
+   "bids": 1,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15186345",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
    "id": "15186482",
    "council": "portimao",
    "object": "SUBSTITUIÇÃO DE DIVERSOS MATERIAIS DO CENTRO DE CONVÍVIO DA ALDEIA DAS SOBREIRAS",
@@ -69442,120 +72653,6 @@
    "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
    "bids": null,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15186503",
-   "license": {
-    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
-    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-    "id": "other-pd"
-   }
-  },
-  {
-   "id": "15186345",
-   "council": "sao-bras-de-alportel",
-   "object": "O presente procedimento tem por objeto o Licenciamento das Plataformas WireTrust e WireRecruit por 36 meses",
-   "type": [
-    "Aquisição de serviços"
-   ],
-   "procedure": "Ajuste Direto Regime Geral",
-   "suppliers": [
-    {
-     "nif": "505331187",
-     "name": "WireMaze - Sistemas de Informação S.A.",
-     "country": "PRT",
-     "sme": "Sim"
-    }
-   ],
-   "price": 16635.89,
-   "base_price": 16635.89,
-   "published": "2026-06-22",
-   "signed": "2026-06-18",
-   "cpv": [
-    {
-     "id": "72416000-9",
-     "desc": "Fornecedores de aplicações"
-    }
-   ],
-   "place": [
-    "Portugal"
-   ],
-   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea iii) do Código dos Contratos Públicos",
-   "bids": 1,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15186345",
-   "license": {
-    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
-    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-    "id": "other-pd"
-   }
-  },
-  {
-   "id": "15186338",
-   "council": "loule",
-   "object": "CONTRATAÇÃO DA AQUISIÇÃO DE MÁQUINAS E EQUIPAMENTOS PARA A LIMPEZA DAS INSTALAÇÕES DESPORTIVAS MUNICIPAIS DO CONCELHO DE LOULÉ",
-   "type": [
-    "Aquisição de bens móveis"
-   ],
-   "procedure": "Concurso público",
-   "suppliers": [
-    {
-     "nif": "510219233",
-     "name": "GOSTOMATIC",
-     "country": "PRT",
-     "sme": "Sim"
-    }
-   ],
-   "price": 3400,
-   "base_price": 88380,
-   "published": "2026-06-22",
-   "signed": "2026-05-29",
-   "cpv": [
-    {
-     "id": "42990000-2",
-     "desc": "Máquinas diversas para usos específicos"
-    }
-   ],
-   "place": [
-    "Portugal, Faro, Loulé"
-   ],
-   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
-   "bids": null,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15186338",
-   "license": {
-    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
-    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-    "id": "other-pd"
-   }
-  },
-  {
-   "id": "15186318",
-   "council": "loule",
-   "object": "CONTRATAÇÃO DA AQUISIÇÃO DE MÁQUINAS E EQUIPAMENTOS PARA A LIMPEZA DAS INSTALAÇÕES DESPORTIVAS MUNICIPAIS DO CONCELHO DE LOULÉ",
-   "type": [
-    "Aquisição de bens móveis"
-   ],
-   "procedure": "Concurso público",
-   "suppliers": [
-    {
-     "nif": "510219233",
-     "name": "GOSTOMATIC",
-     "country": "PRT",
-     "sme": "Sim"
-    }
-   ],
-   "price": 10107.7,
-   "base_price": 88380,
-   "published": "2026-06-22",
-   "signed": "2026-06-02",
-   "cpv": [
-    {
-     "id": "42990000-2",
-     "desc": "Máquinas diversas para usos específicos"
-    }
-   ],
-   "place": [
-    "Portugal, Faro, Loulé"
-   ],
-   "legal_basis": "Artigo 20.º, n.º 1, alínea b) do Código dos Contratos Públicos",
-   "bids": null,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=15186318",
    "license": {
     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
@@ -70137,14 +73234,14 @@
    "procedure": "Ao abrigo de acordo-quadro (art.º 258.º)",
    "suppliers": [
     {
-     "nif": "510652581",
-     "name": "Powershield - Segurança Privada, S.A.",
+     "nif": "507011724",
+     "name": "Ronsegur, Rondas e Segurança, S.A",
      "country": "PRT",
      "sme": null
     },
     {
-     "nif": "507011724",
-     "name": "Ronsegur, Rondas e Segurança, S.A",
+     "nif": "510652581",
+     "name": "Powershield - Segurança Privada, S.A.",
      "country": "PRT",
      "sme": null
     }
@@ -70521,7 +73618,7 @@
    "suppliers": [
     {
      "nif": "503897787",
-     "name": "Artur&amp;Guerreiro",
+     "name": "Artur&Guerreiro",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -75913,7 +79010,7 @@
    "suppliers": [
     {
      "nif": "501585583",
-     "name": "Correia &amp; Santinha,Lda",
+     "name": "Correia & Santinha,Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -76142,7 +79239,7 @@
    "suppliers": [
     {
      "nif": "506901866",
-     "name": "Figueiroa &amp; Gonçalves, Lda",
+     "name": "Figueiroa & Gonçalves, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -77440,7 +80537,7 @@
    "suppliers": [
     {
      "nif": "507768361",
-     "name": "Eliarte - Eliseu &amp; Sousa, Lda",
+     "name": "Eliarte - Eliseu & Sousa, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -78048,7 +81145,7 @@
    "suppliers": [
     {
      "nif": "517386100",
-     "name": "Américo Rodrigues &amp; Rodrigues - Serralharia, Lda",
+     "name": "Américo Rodrigues & Rodrigues - Serralharia, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -78568,7 +81665,7 @@
    "suppliers": [
     {
      "nif": "507768361",
-     "name": "Eliarte - Eliseu &amp; Sousa, Lda",
+     "name": "Eliarte - Eliseu & Sousa, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -85471,7 +88568,7 @@
    "suppliers": [
     {
      "nif": "507768361",
-     "name": "Eliarte-Eliseu &amp; Sousa Ldª.",
+     "name": "Eliarte-Eliseu & Sousa Ldª.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -86400,7 +89497,7 @@
    "suppliers": [
     {
      "nif": "502451246",
-     "name": "Dite Móveis de Diamantino &amp; Teresa, Lda",
+     "name": "Dite Móveis de Diamantino & Teresa, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -86439,7 +89536,7 @@
    "suppliers": [
     {
      "nif": "501204040",
-     "name": "Manuel Maria &amp; Caetano, Lda",
+     "name": "Manuel Maria & Caetano, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -88178,7 +91275,7 @@
    "suppliers": [
     {
      "nif": "507938194",
-     "name": "Pools &amp; More Sociedade Unipessoal Lda",
+     "name": "Pools & More Sociedade Unipessoal Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -100301,14 +103398,14 @@
    "procedure": "Ajuste Direto Regime Geral",
    "suppliers": [
     {
-     "nif": "508245567",
-     "name": "Ubiwhere Lda.",
+     "nif": "508516242",
+     "name": "Digiwest – Wireless and Embedded Solutions, Lda",
      "country": "PRT",
      "sme": "Sim"
     },
     {
-     "nif": "508516242",
-     "name": "Digiwest – Wireless and Embedded Solutions, Lda",
+     "nif": "508245567",
+     "name": "Ubiwhere Lda.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -101222,7 +104319,7 @@
    "suppliers": [
     {
      "nif": "501204040",
-     "name": "Manuel Maria &amp; Caetano, Lda",
+     "name": "Manuel Maria & Caetano, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -103303,7 +106400,7 @@
    "suppliers": [
     {
      "nif": "515253049",
-     "name": "Walter Alexandre &amp; Martins, Ld.ª",
+     "name": "Walter Alexandre & Martins, Ld.ª",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -109269,7 +112366,7 @@
    "suppliers": [
     {
      "nif": "500563993",
-     "name": "Antonio Saraiva &amp; Filhos, Lda",
+     "name": "Antonio Saraiva & Filhos, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -109907,7 +113004,7 @@
    "suppliers": [
     {
      "nif": "500384436",
-     "name": "MENDES &amp; IRMÃOS, SA",
+     "name": "MENDES & IRMÃOS, SA",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -112882,7 +115979,7 @@
    "suppliers": [
     {
      "nif": "507768361",
-     "name": "Eliarte - Eliseu &amp; Sousa, Lda",
+     "name": "Eliarte - Eliseu & Sousa, Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -120868,7 +123965,7 @@
    "suppliers": [
     {
      "nif": "501940014",
-     "name": "Drogaria Gago de António J. B. Gago &amp; C.ª Lda",
+     "name": "Drogaria Gago de António J. B. Gago & C.ª Lda",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -121590,7 +124687,7 @@
    "suppliers": [
     {
      "nif": "501404910",
-     "name": "HUMBERTO PIMENTEL ESTEVES &amp; FILHOS, LDA.",
+     "name": "HUMBERTO PIMENTEL ESTEVES & FILHOS, LDA.",
      "country": "PRT",
      "sme": "Sim"
     }
@@ -125208,7 +128305,7 @@
      "nif": "510669530",
      "name": "Matriz Elementar, Lda.",
      "country": "PRT",
-     "sme": "Sim"
+     "sme": null
     }
    ],
    "price": 139814.51,
@@ -125927,6 +129024,44 @@
    }
   },
   {
+   "id": "12875024",
+   "council": "silves",
+   "object": "Prestação de serviços de manutenção do software GIB instalado na Biblioteca Municipal de Silves",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "504910230",
+     "name": "Libware,Tecnologias de Informação e Documentação, Ldª",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 45000,
+   "base_price": 45000,
+   "published": "2026-01-26",
+   "signed": "2026-01-23",
+   "cpv": [
+    {
+     "id": "72000000-5",
+     "desc": "Serviços de TI: consultoria, desenvolvimento de software, Internet e apoio"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, Silves"
+   ],
+   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea ii) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12875024",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
    "id": "12876192",
    "council": "loule",
    "object": "Ajuste direto (critério material) para a contratação de prestação de serviços de realização do espetáculo “QUE VOZ DE LIBERDADE É ESSA? - UM CANTO A SÉRGIO GODINHO”, PELO CANTO NONO COM PARTICIPAÇÃO DE PEDRO LAMARES.",
@@ -125996,44 +129131,6 @@
    "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea i) do Código dos Contratos Públicos",
    "bids": null,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12878280",
-   "license": {
-    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
-    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-    "id": "other-pd"
-   }
-  },
-  {
-   "id": "12875024",
-   "council": "silves",
-   "object": "Prestação de serviços de manutenção do software GIB instalado na Biblioteca Municipal de Silves",
-   "type": [
-    "Aquisição de serviços"
-   ],
-   "procedure": "Ajuste Direto Regime Geral",
-   "suppliers": [
-    {
-     "nif": "504910230",
-     "name": "Libware,Tecnologias de Informação e Documentação, Ldª",
-     "country": "PRT",
-     "sme": "Sim"
-    }
-   ],
-   "price": 45000,
-   "base_price": 45000,
-   "published": "2026-01-26",
-   "signed": "2026-01-23",
-   "cpv": [
-    {
-     "id": "72000000-5",
-     "desc": "Serviços de TI: consultoria, desenvolvimento de software, Internet e apoio"
-    }
-   ],
-   "place": [
-    "Portugal, Faro, Silves"
-   ],
-   "legal_basis": "Artigo 24.º, n.º 1, alínea e), subalínea ii) do Código dos Contratos Públicos",
-   "bids": null,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12875024",
    "license": {
     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
@@ -128566,6 +131663,44 @@
    }
   },
   {
+   "id": "12491890",
+   "council": "sao-bras-de-alportel",
+   "object": "O presente procedimento tem como obejcto a Prestação de Serviços de Terapia da Fala",
+   "type": [
+    "Aquisição de serviços"
+   ],
+   "procedure": "Ajuste Direto Regime Geral",
+   "suppliers": [
+    {
+     "nif": "503831042",
+     "name": "SAN Saúde Integrativa",
+     "country": "PRT",
+     "sme": "Sim"
+    }
+   ],
+   "price": 10500,
+   "base_price": 10500,
+   "published": "2026-01-09",
+   "signed": "2026-01-08",
+   "cpv": [
+    {
+     "id": "80410000-1",
+     "desc": "Serviços escolares diversos"
+    }
+   ],
+   "place": [
+    "Portugal, Faro, São Brás de Alportel"
+   ],
+   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
+   "bids": null,
+   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12491890",
+   "license": {
+    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
+    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
+    "id": "other-pd"
+   }
+  },
+  {
    "id": "12491935",
    "council": "castro-marim",
    "object": "Aquisição de serviços para recolha de resíduos e serviços conexos",
@@ -128601,44 +131736,6 @@
    "legal_basis": "Artigo 20.º, n.º 1, alínea c) do Código dos Contratos Públicos",
    "bids": 5,
    "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12491935",
-   "license": {
-    "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
-    "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
-    "id": "other-pd"
-   }
-  },
-  {
-   "id": "12491890",
-   "council": "sao-bras-de-alportel",
-   "object": "O presente procedimento tem como obejcto a Prestação de Serviços de Terapia da Fala",
-   "type": [
-    "Aquisição de serviços"
-   ],
-   "procedure": "Ajuste Direto Regime Geral",
-   "suppliers": [
-    {
-     "nif": "503831042",
-     "name": "SAN Saúde Integrativa",
-     "country": "PRT",
-     "sme": "Sim"
-    }
-   ],
-   "price": 10500,
-   "base_price": 10500,
-   "published": "2026-01-09",
-   "signed": "2026-01-08",
-   "cpv": [
-    {
-     "id": "80410000-1",
-     "desc": "Serviços escolares diversos"
-    }
-   ],
-   "place": [
-    "Portugal, Faro, São Brás de Alportel"
-   ],
-   "legal_basis": "Artigo 20.º, n.º 1, alínea d) do Código dos Contratos Públicos",
-   "bids": null,
-   "url": "https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=12491890",
    "license": {
     "name": "Outra (Domínio Público), as dados.gov.pt publishes it for this dataset",
     "url": "https://dados.gov.pt/pt/datasets/66d72d488ca4b7cb2de28712/",
