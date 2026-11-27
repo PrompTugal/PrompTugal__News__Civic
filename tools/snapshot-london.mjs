@@ -8,13 +8,15 @@ const d = JSON.parse(readFileSync(inFile, 'utf8'));
 const clean = (s, n) => String(s ?? '').replace(/[\u0000-\u001f\u007f-\u009f​-‏‪-‮⁦-⁩﻿]/g, ' ').replace(/—/g, '-').replace(/[<>`]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
 const TS = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
 const gbp = v => v && v.currency === 'GBP' && typeof v.amount === 'number' && Number.isFinite(v.amount) && v.amount >= 0 && v.amount < 1e11 ? Math.round(v.amount * 100) / 100 : null;
+// Titles withheld on cl-6.security@'s ruling (27 Nov 2026): a word that may be a private person's first name. Keyed by notice id.
+const WITHHELD_TITLE = new Set(['b369f0ae-d1d6-4b2d-8735-746913a606f3']);
 const NOTICE = /^https:\/\/www\.contractsfinder\.service\.gov\.uk\/Notice\/[0-9a-f-]{36}$/;
 const STAGES = new Set(['planning', 'tender', 'award', 'contract', 'implementation']);
 if (d.license?.name !== 'Open Government Licence v3.0' || typeof d.license?.attribution !== 'string') { console.error('not the OGL v3.0 file'); process.exit(1); }
 if (!TS.test(d.read_at || '')) { console.error('no read time'); process.exit(1); }
 const notices = (Array.isArray(d.notices) ? d.notices : []).filter(n => n && NOTICE.test(n.notice) && TS.test(n.published || '')).slice(0, 500).map(n => ({
   notice: n.notice, published: n.published, stage: (Array.isArray(n.stage) ? n.stage : []).filter(s => STAGES.has(s)).slice(0, 3),
-  title: clean(n.title, 200), buyer: clean(n.buyer, 120), district: /^[A-Z]{1,2}\d[A-Z\d]?$/.test(n.buyer_postcode_district || '') ? n.buyer_postcode_district : null,
+  title: WITHHELD_TITLE.has(String(n.notice).split('/').pop()) ? '(title withheld)' : clean(n.title, 200), buyer: clean(n.buyer, 120), district: /^[A-Z]{1,2}\d[A-Z\d]?$/.test(n.buyer_postcode_district || '') ? n.buyer_postcode_district : null,
   status: clean(n.status, 20), value_gbp: gbp(n.value), award_gbp: gbp(n.award_value),
   deadline: TS.test(n.deadline || '') ? n.deadline : null, method: clean(n.procurement_method, 30),
 }));
